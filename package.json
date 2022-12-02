@@ -1,7 +1,7 @@
 {
-  "name": "reactsetup",
+  "name": "front-end-capstone",
   "version": "1.0.0",
-  "description": "react setup practice",
+  "description": "team taco bell",
   "main": "./client/src/index.jsx",
   "scripts": {
     "dev": "webpack serve",
@@ -9,7 +9,7 @@
     "test": "jest",
     "coverage": "jest --coverage"
   },
-  "author": "William",
+  "author": "William Park, Jonathan Sindorf, Charlie Um, Matthew Sigler",
   "license": "UNLICENSED",
   "dependencies": {
     "axios": "^1.2.0",
@@ -26,6 +26,7 @@
     "@testing-library/react": "^13.4.0",
     "babel-loader": "^9.1.0",
     "babel-preset-airbnb": "^5.0.0",
+    "css-loader": "^6.7.2",
     "eslint": "^8.28.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
@@ -36,6 +37,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
