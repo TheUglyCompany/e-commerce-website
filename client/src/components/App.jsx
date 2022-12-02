@@ -28,7 +28,7 @@ function App() {
         Wiliam Park, Charlie Um, Matthew Sigler, Jonathan Sindorf
       </h3>
       <Overview />
-      <RecommendedItems />
+      <RecommendedItems product={product} setProduct={setProduct} />
       <QandA />
       <Ratings />
     </div>

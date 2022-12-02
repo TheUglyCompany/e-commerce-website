@@ -1,9 +1,12 @@
 import React from 'react';
+import RelatedProducts from './RelatedProducts';
+import YourOutfit from './YourOutfit';
 
-function RecommendedItems() {
+function RecommendedItems({ product, setProduct }) {
   return (
     <div>
-      Recommended Items go here.
+      <RelatedProducts />
+      <YourOutfit />
     </div>
   );
 }
