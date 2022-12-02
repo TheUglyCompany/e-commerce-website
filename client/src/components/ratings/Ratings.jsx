@@ -1,9 +1,10 @@
 import React from 'react';
+import ReviewList from './ReviewList';
 
-function Ratings() {
+function Ratings({product}) {
   return (
     <div>
-      Ratings go here.
+      <ReviewList product={product}/>
     </div>
   );
 }
