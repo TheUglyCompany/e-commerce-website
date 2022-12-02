@@ -3,6 +3,7 @@ import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
+import API_KEY from '../../config'
 
 function App() {
   return (
