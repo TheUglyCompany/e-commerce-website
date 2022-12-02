@@ -4,7 +4,7 @@
 
 ### Start with main branch
 ```
-git checkout master
+git checkout main
 ```
 ```
 git fetch origin 
