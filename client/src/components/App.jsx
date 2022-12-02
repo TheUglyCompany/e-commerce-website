@@ -4,14 +4,17 @@ import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
-import API_KEY from '../../config'
+import API_KEY from '../config';
 
 function App() {
-  
+  const [product, setProduct] = useState(null);
+
   useEffect(() => {
-  axios.get(url, {headers: {Authorization : API_KEY}})
-  },  []);
-  
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
+      .then((response) => setProduct(response.data[0]))
+      .catch((err) => console.log(err.message));
+  }, []);
+
   return (
     <div>
       <h2>Taco Bell&apos;s FEC Project</h2>
