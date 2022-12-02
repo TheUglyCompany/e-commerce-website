@@ -2,9 +2,9 @@
 
 ## Setup
 
-### Start with main branch
+### Start with master branch
 ```
-git checkout main
+git checkout master
 ```
 ```
 git fetch origin 
