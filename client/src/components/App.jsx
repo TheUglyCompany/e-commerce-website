@@ -21,7 +21,7 @@ function App() {
     }
   }, [product]);
 
-  return (
+  return !ready ? <>App is not ready</> : (
     <div>
       <h2>Taco Bell&apos;s FEC Project</h2>
       <h3>
