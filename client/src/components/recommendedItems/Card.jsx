@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
@@ -14,10 +15,11 @@ function Card({ setProduct, productId }) {
       .then(() => axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: productId } }))
       .then((response) => {
         const { ratings } = response.data;
-        console.log(ratings);
-        // eslint-disable-next-line radix, prefer-const
-        let ratingSum = parseInt(ratings['1']) + parseInt(ratings['2']) * 2 + parseInt(ratings['3']) * 3 + parseInt(ratings['4']) * 4 + parseInt(ratings['5']) * 5;
-        // need to count the amount of ratings!!!
+        const ratingSum = parseInt(ratings['1']) + parseInt(ratings['2']) * 2 + parseInt(ratings['3']) * 3 + parseInt(ratings['4']) * 4 + parseInt(ratings['5']) * 5;
+        const reviewCount = parseInt(ratings['1']) + parseInt(ratings['2']) + parseInt(ratings['3']) + parseInt(ratings['4']) + parseInt(ratings['5']);
+        const averageRating = ratingSum / reviewCount;
+
+        setRatingObj({ averageRating, reviewCount });
       });
   }, []);
   useEffect(() => {
@@ -31,6 +33,15 @@ function Card({ setProduct, productId }) {
       <p>{cardProduct.category}</p>
       <p>{cardProduct.name}</p>
       <p>{cardProduct.default_price}</p>
+      <p>
+        {Math.floor(ratingObj.averageRating * 10) / 10}
+        {' '}
+        stars out of
+        {' '}
+        {ratingObj.reviewCount}
+        {' '}
+        reviews
+      </p>
     </div>
   );
 }
