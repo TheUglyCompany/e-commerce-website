@@ -4,17 +4,9 @@ function Overview() {
   return (
     <div>
       Overview goes here.
-      This is an update from William
+      This is an update from William. sdf
     </div>
   );
 }
 
 export default Overview;
-
-hello
-
-
-https://github.com/TacoBellFEC/front-end-capstone.git
-https://github.com/TacoBellFEC/front-end-capstone.git
-
-https://github.com/TacoBellFEC/front-end-capstone-Deprecated-.git
