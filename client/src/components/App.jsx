@@ -21,13 +21,13 @@ function App() {
     }
   }, [product]);
 
-  return !ready ? <>App is not ready</> : (
+  return (
     <div>
       <h2>Taco Bell&apos;s FEC Project</h2>
       <h3>
         Wiliam Park, Charlie Um, Matthew Sigler, Jonathan Sindorf
       </h3>
-      <Overview />
+      <Overview product={product} />
       <RecommendedItems />
       <QandA />
       <Ratings />
