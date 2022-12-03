@@ -5,6 +5,7 @@ import API_KEY from '../../../config';
 
 function Ratings({ product }) {
   const [reviews, setReviews] = useState([]);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     axios.get(
@@ -15,15 +16,20 @@ function Ratings({ product }) {
       },
     )
       .then((response) => {
-        // console.log(response.data.results);
+        console.log(response);
         setReviews(response.data.results);
         // response.data contains count, page, product_id, and results
       })
       .catch((err) => console.log(err.message));
   }, []);
+  useEffect(() => {
+    if (reviews !== null) {
+      setReady(true);
+    }
+  }, [reviews]);
 
-  return (
-    <div>
+  return !ready ? <>Ratings are not ready</> : (
+    <div data-testid="ratings">
       <ReviewList reviews={reviews} />
     </div>
   );
