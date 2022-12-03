@@ -30,7 +30,7 @@ function App() {
       <Overview />
       <RecommendedItems />
       <QandA />
-      <Ratings product={product}/>
+      <Ratings product={product} />
     </div>
   );
 }

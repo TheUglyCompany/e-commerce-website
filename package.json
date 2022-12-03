@@ -7,7 +7,8 @@
     "dev": "webpack serve",
     "build": "webpack",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "lint": "eslint ./client/src/"
   },
   "author": "William Park, Jonathan Sindorf, Charlie Um, Matthew Sigler",
   "license": "UNLICENSED",
@@ -27,7 +28,7 @@
     "babel-loader": "^9.1.0",
     "babel-preset-airbnb": "^5.0.0",
     "css-loader": "^6.7.2",
-    "eslint": "^8.28.0",
+    "eslint": "^8.29.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.1.6",

@@ -1,14 +1,31 @@
 import React from 'react';
 
-function ReviewListTile ({product}) {
-
-  return(
+function ReviewListTile({ review }) {
+  return (
     <div>
-      {product.id}
+      Rating: {review.rating}
+      Reviewer Name: {review.reviewer_name}
+      Date: {review.date}
+      Summary: {review.summary}
+      <br />
+      {review.body}
+      helpfulness {review.helpfulness}
+      <hr />
     </div>
-
-
   );
 }
 
 export default ReviewListTile;
+
+/*
+body: "product exksajdlkdjklsjkldjklajdkljskaldjklajskldjasd"
+date: "2022-07-26T00:00:00.000Z"
+helpfulness: 99
+photos: []
+rating: 3
+recommend: true
+response: null
+review_id: 1276009
+reviewer_name: "hello"
+summary: "vool"
+*/
