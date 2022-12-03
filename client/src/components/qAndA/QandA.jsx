@@ -1,9 +1,12 @@
 import React from 'react';
+import QASearchBar from './QASearchBar';
+import QuestionsList from './QuestionsList';
 
-function QandA() {
+function QandA({ productId }) {
   return (
     <div>
-      Questions and Answers goes here.
+      <QASearchBar />
+      <QuestionsList productId={productId} />
     </div>
   );
 }

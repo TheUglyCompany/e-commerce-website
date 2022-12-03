@@ -20,7 +20,6 @@ function App() {
       setReady(true);
     }
   }, [product]);
-
   return !ready ? <>App is not ready</> : (
     <div>
       <h2>Taco Bell&apos;s FEC Project</h2>
@@ -29,7 +28,7 @@ function App() {
       </h3>
       <Overview />
       <RecommendedItems />
-      <QandA />
+      <QandA productId={product.id} />
       <Ratings />
     </div>
   );
