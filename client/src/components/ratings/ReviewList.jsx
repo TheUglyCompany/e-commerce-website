@@ -1,12 +1,9 @@
 import React from 'react';
 import ReviewListTile from './ReviewListTile';
 
-function ReviewList({ reviews }) {
-  console.log(reviews);
-
+function ReviewList({ reviews, onSelect }) {
   return (
     <div>
-      <h2> Review List </h2>
       <hr />
       {reviews.map((review) => (
         <div>
