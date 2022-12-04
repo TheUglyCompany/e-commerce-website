@@ -2,14 +2,21 @@ import React from 'react';
 import ReviewListTile from './ReviewListTile';
 
 function ReviewList({ reviews, onSelect }) {
+  let renderCount = 0;
   return (
     <div>
       <hr />
-      {reviews.map((review) => (
-        <div>
-          <ReviewListTile review={review} />
-        </div>
-      ))}
+      {reviews.map((review) => {
+        renderCount += 1;
+        if (renderCount <= 2) {
+          return (
+            <div>
+              <ReviewListTile review={review} />
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 }
