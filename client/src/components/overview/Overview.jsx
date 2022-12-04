@@ -13,6 +13,9 @@ import {
   Styles,
   Purchase,
   Button,
+  StylePreview,
+  StyleImg,
+  StyleImgPad,
   DropdownStyle,
   DropdownStyleSelect,
 } from './Overview.style';
@@ -49,11 +52,16 @@ function Overview({ product }) {
         </Price>
         <Styles>
           <div>STYLES:</div>
-          {/* <div> */}
-          {styleOpts.map((styleOpt) => <StylesComp styleOpt={styleOpt} />)}
-          {/* </div> */}
+          <div>
+            {styleOpts.map((styleOpt) => (
+              <StyleImgPad>
+                <StyleImg src={styleOpt.photos[0].thumbnail_url} />
+              </StyleImgPad>
+            ))}
+          </div>
+          {/* {styleOpts.map((styleOpt) => <StylesComp styleOpt={styleOpt} />)} */}
         </Styles>
-        <hr />
+
         <Purchase>
           <DropdownStyle>
             <DropdownStyleSelect value="volvo">VOLVO</DropdownStyleSelect>

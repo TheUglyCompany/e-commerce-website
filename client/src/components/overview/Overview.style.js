@@ -54,21 +54,26 @@ const Styles = styled.div`
   font-size: 15px;
   font-weight: bold;
   padding: 5px 0px 5px 0px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;
 
-// const StyleImg = styled.img`
-//   border-radius:50%;
-//   width: 75px;
-//   height: 75px;
-//   border: 0px solid black;
-// `;
+const StyleImg = styled.img`
+  src: ${(props) => `url(${props.src})`};
+  border-radius:50%;
+  width: 75px;
+  height: 75px;
+  border: 0px solid black;
+`;
+
+const StyleImgPad = styled.span`
+  padding: 5px;
+`;
 
 const StylePreview = styled.span`
   float: left;
   margin: 10px;
   /* display: block; */
-  /* border: 1px solid black; */
+  border: 1px solid black;
   display: flex;
   justify-content: space-around;
 `;
@@ -81,6 +86,7 @@ const StyleOption = styled.div`
   width: 75px;
   height: 75px;
   margin: 5px;
+  display: flex;
   /* border: 1px solid black; */
 `;
 
@@ -149,7 +155,8 @@ export {
   Name,
   Price,
   Styles,
-  // StyleImg,
+  StyleImg,
+  StyleImgPad,
   StyleOption,
   Purchase,
   Button,
