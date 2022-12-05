@@ -62,10 +62,14 @@ function Ratings({ product }) {
   const options = ['helpful', 'newest', 'relevant'];
   const defaultOption = options[2];
   const onSelect = (e) => (setSort(e.value));
+  let reviewCount = 0;
+  reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
     <div data-testid="ratings">
       <h2> Review List </h2>
       <h4>
+        { reviewCount }
+        {' '}
         total reviews, Sorted by
       </h4>
       <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
