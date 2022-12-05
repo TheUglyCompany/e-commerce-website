@@ -24,7 +24,8 @@ function Ratings({ product }) {
       headers: { Authorization: API_KEY },
       params: { product_id: product.id },
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
+      setMetaData(metaData);
       totalReviews = (Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']));
       // response.data.ratings is an object with a number in the form of a string
       setMetaData(response.data);
@@ -44,36 +45,13 @@ function Ratings({ product }) {
             },
           },
         )
-          .then((responseTwo) => {
-            console.log(responseTwo);
-            setReviews(responseTwo.data.results);
-            console.log(' totalReviews in get all reviews', totalReviews);
+          .then((response) => {
+            setReviews(response.data.results);
             // response.data contains count, page, product_id, and results
           })
           .catch((err) => console.log(err.message));
       })
       .catch((err) => console.log(err.message));
-
-
-    // get all reviews
-    // axios.get(
-    //   'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-    //   {
-    //     headers: { Authorization: API_KEY },
-    //     params: {
-    //       product_id: product.id,
-    //       sort, // if count is 5 and page is 1 this only serves the first 5
-    //       count: totalReviews, // this does not wait for the first get function
-    //       page: 1,
-    //     },
-    //   },
-    // )
-    //   .then((response) => {
-    //     setReviews(response.data.results);
-    //     console.log(' totalReviews in get all reviews', totalReviews);
-    //     // response.data contains count, page, product_id, and results
-    //   })
-    //   .catch((err) => console.log(err.message));
   }, [sort]);
   useEffect(() => {
     if (reviews !== null) {
@@ -84,11 +62,12 @@ function Ratings({ product }) {
   const options = ['helpful', 'newest', 'relevant'];
   const defaultOption = options[2];
   const onSelect = (e) => (setSort(e.value));
-
   return !ready ? <>Ratings are not ready</> : (
     <div data-testid="ratings">
       <h2> Review List </h2>
-      <h4> Sorted by </h4>
+      <h4>
+        total reviews, Sorted by
+      </h4>
       <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
       <ReviewList reviews={reviews} onSelect={() => onSelect} />
     </div>

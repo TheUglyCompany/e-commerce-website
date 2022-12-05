@@ -10,6 +10,8 @@ function ReviewListTile({ review }) {
       <br />
       {review.body}
       helpfulness {review.helpfulness}
+      <p>Helfpul?</p>
+      <p>Report</p>
       <hr />
     </div>
   );

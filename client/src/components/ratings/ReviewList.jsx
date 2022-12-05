@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewListTile from './ReviewListTile';
 
-function ReviewList({ reviews, onSelect }) {
-  let renderCount = 0;
+function ReviewList({ reviews }) {
+  const [renderCount, setRenderCount] = useState(2);
+  let count = 0;
   return (
     <div>
       <hr />
-      {reviews.map((review) => {
-        renderCount += 1;
-        if (renderCount <= 2) {
+      {
+      reviews.map((review) => { // map is probably the wrong tool for this,
+        // because I can't break out of the loop early, any suggestions?
+        count += 1;
+        if (count <= renderCount) {
           return (
             <div>
               <ReviewListTile review={review} />
@@ -16,7 +19,10 @@ function ReviewList({ reviews, onSelect }) {
           );
         }
         return null;
-      })}
+      })
+      }
+      <button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</button>
+      <button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</button>
     </div>
   );
 }
