@@ -1,17 +1,31 @@
 import React from 'react';
 
-function ReviewListTile({ review }) {
+function ReviewListTile({ review, postFeedback }) {
   return (
     <div>
-      Rating: {review.rating}
-      Reviewer Name: {review.reviewer_name}
-      Date: {review.date}
-      Summary: {review.summary}
+      Rating:
+      {' '}
+      {review.rating}
+      Reviewer Name:
+      {' '}
+      {review.reviewer_name}
+      Date:
+      {' '}
+      {review.date}
+      Summary:
+      {' '}
+      {review.summary}
       <br />
       {review.body}
-      helpfulness {review.helpfulness}
-      <p>Helfpul?</p>
-      <p>Report</p>
+      helpfulness
+      {' '}
+      {review.helpfulness}
+      <p onClick={(e) => { postFeedback(e.target) }} style={{cursor: 'pointer', textDecoration: 'underline'}}>
+        Helfpul?
+      </p>
+      <p onClick={(e) => { postFeedback(e.target); }} style={{cursor: 'pointer', textDecoration: 'underline'}}>
+      Report
+      </p>
       <hr />
     </div>
   );

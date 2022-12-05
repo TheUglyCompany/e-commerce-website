@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import ReviewListTile from './ReviewListTile';
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, reviewCount }) {
   const [renderCount, setRenderCount] = useState(2);
+
+  function postFeedback(feedbackType) {
+    console.log(feedbackType);
+  }
   let count = 0;
   return (
     <div>
@@ -14,14 +18,17 @@ function ReviewList({ reviews }) {
         if (count <= renderCount) {
           return (
             <div>
-              <ReviewListTile review={review} />
+              <ReviewListTile
+                review={review}
+                postFeedback={(feedbackType) => {postFeedback(feedbackType)}} />
             </div>
           );
         }
         return null;
       })
       }
-      <button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</button>
+      {reviewCount <= renderCount ? null
+        : <button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</button>}
       <button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</button>
     </div>
   );
