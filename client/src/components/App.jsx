@@ -29,7 +29,7 @@ function App() {
       </h3>
       <Overview />
       <RecommendedItems />
-      <QandA />
+      <QandA productId={product.id} />
       <Ratings product={product} />
     </div>
   );
