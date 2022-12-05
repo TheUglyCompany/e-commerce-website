@@ -11,7 +11,7 @@ import {
   Price,
   Styles,
   Purchase,
-  Button,
+  // Button,
   StyleImg,
   StyleImgPad,
   StyleHeader,
