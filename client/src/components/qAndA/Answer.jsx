@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Answer({ answer }) {
-  console.log('Answer: ', answer);
   return (
     <div id="answer">
       <strong>A: </strong>

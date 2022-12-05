@@ -2,7 +2,6 @@ import React from 'react';
 import AnswerList from './AnswerList';
 
 function Question({ question }) {
-  console.log('Question: ', question);
   return (
     <div id="Question">
       {' '}
@@ -20,7 +19,9 @@ function Question({ question }) {
       {question.question_helpfulness}
       )
       {' '}
-      | Report
+      |
+      {' '}
+      <u>Add Answer</u>
       {' '}
       <div id="AnswerList">
         <AnswerList questionId={question.question_id} />

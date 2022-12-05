@@ -5,7 +5,6 @@ import Answer from './Answer';
 
 function AnswerList({ questionId }) {
   const [answerList, setAnswerList] = useState([]);
-  console.log('QuestionId: ', questionId);
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`, {
       headers: { Authorization: API_KEY },

@@ -28,7 +28,7 @@ function App() {
       </h3>
       <Overview />
       <RecommendedItems />
-      <QandA productId={40347} />
+      <QandA productId={product.id} />
       <Ratings />
     </div>
   );
