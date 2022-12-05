@@ -8,9 +8,9 @@ const Ov = styled.div`
 
 const Gallery = styled.div`
   float: left;
+  /* display: inline-block; */
   width: 50%;
-  border: 0px;
-  border-style: solid;
+  /* border: 1px solid black; */
   padding: 10px;
 `;
 
@@ -20,9 +20,9 @@ const GalleryBig = styled.div`
 
 const Details = styled.div`
   float: right;
+  /* display: inline-block; */
   width: 40%;
-  border: 0px;
-  border-style: solid;
+  /* border: 1px solid black; */
   padding: 10px;
 `;
 
@@ -53,8 +53,8 @@ const Styles = styled.div`
   font-family: Roboto;
   font-size: 15px;
   font-weight: bold;
-  padding: 5px 0px 5px 0px;
-  border: 1px solid black;
+  padding: 5px 0px 10px 0px;
+  /* border: 1px solid black; */
 `;
 
 const StyleImg = styled.img`
@@ -62,41 +62,24 @@ const StyleImg = styled.img`
   border-radius:50%;
   width: 75px;
   height: 75px;
-  border: 0px solid black;
+  /* border: 0px solid black; */
 `;
 
 const StyleImgPad = styled.span`
-  padding: 5px;
+  padding: 10px;
 `;
 
-const StylePreview = styled.span`
-  float: left;
-  margin: 10px;
-  /* display: block; */
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-around;
+const StyleHeader = styled.div`
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 0px 10px 0px;
 `;
 
-const StyleOption = styled.div`
-  background-image: ${(props) => `url(${props.src})`};
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 75px;
-  height: 75px;
-  margin: 5px;
-  display: flex;
-  /* border: 1px solid black; */
-`;
-
-const StyleContent = styled.span`
+const StyleSelected = styled.span`
   font-family: Poppins;
-  font-size: 8px;
-  font-weight: light;
-  text-align: center;
-  display: block;
-  /* border: 1px solid black; */
+  font-size: 15px;
+  font-weight: 200;
 `;
 
 const Purchase = styled.div`
@@ -105,7 +88,6 @@ const Purchase = styled.div`
   font-weight: bold;
   padding: 5px 0px 0px 0px;
   display: block;
-  float: left;
   /* border: 1px solid black; */
 `;
 
@@ -157,11 +139,10 @@ export {
   Styles,
   StyleImg,
   StyleImgPad,
-  StyleOption,
+  StyleHeader,
+  StyleSelected,
   Purchase,
   Button,
-  StylePreview,
-  StyleContent,
   DropdownStyle,
   DropdownStyleSelect,
 };

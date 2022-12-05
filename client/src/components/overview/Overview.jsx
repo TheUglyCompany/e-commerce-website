@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
-import StylesComp from './StylesComp';
 import {
   Ov,
   Gallery,
@@ -13,9 +12,10 @@ import {
   Styles,
   Purchase,
   Button,
-  StylePreview,
   StyleImg,
   StyleImgPad,
+  StyleHeader,
+  StyleSelected,
   DropdownStyle,
   DropdownStyleSelect,
 } from './Overview.style';
@@ -23,10 +23,14 @@ import {
 function Overview({ product }) {
   const [styleOpts, setStyleOpts] = useState([]);
   const [ready, setReady] = useState(false);
+  const [styleSelected, setStyleSelected] = useState('');
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
-      .then((response) => setStyleOpts(response.data.results))
+      .then((response) => {
+        setStyleOpts(response.data.results);
+        setStyleSelected(response.data.results[0].name);
+      })
       .catch((err) => console.log(err.message));
   }, []);
   useEffect(() => {
@@ -35,6 +39,8 @@ function Overview({ product }) {
     }
   }, [product]);
   useEffect(() => { console.log('styleOpts: ', styleOpts); }, [styleOpts]);
+
+  console.log('styleOpts: ', styleOpts[0]);
 
   return !ready ? <>App is not ready</> : (
     <Ov>
@@ -51,7 +57,16 @@ function Overview({ product }) {
           {product.default_price}
         </Price>
         <Styles>
-          <div>STYLES:</div>
+          <StyleHeader>
+            STYLE:&nbsp;
+            <StyleSelected>
+              {styleSelected && (
+                <span>
+                  {styleSelected.toUpperCase()}
+                </span>
+              )}
+            </StyleSelected>
+          </StyleHeader>
           <div>
             {styleOpts.map((styleOpt) => (
               <StyleImgPad>
@@ -59,7 +74,6 @@ function Overview({ product }) {
               </StyleImgPad>
             ))}
           </div>
-          {/* {styleOpts.map((styleOpt) => <StylesComp styleOpt={styleOpt} />)} */}
         </Styles>
 
         <Purchase>
@@ -70,9 +84,9 @@ function Overview({ product }) {
             <DropdownStyleSelect value="audi">AUDI</DropdownStyleSelect>
           </DropdownStyle>
         </Purchase>
-        <Purchase>
+        {/* <Purchase>
           <Button>ADD TO CART</Button>
-        </Purchase>
+        </Purchase> */}
       </Details>
     </Ov>
   );
