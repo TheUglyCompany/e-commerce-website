@@ -14,6 +14,7 @@ function QuestionsList({ productId }) {
       params: { product_id: productId },
     })
       .then((response) => {
+        console.log('Response in QuestionList: ', response);
         setQuestionList(response.data);
         setCurrQuestionList(response.data);
       })
