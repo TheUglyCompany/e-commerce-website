@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 function Answer({ answer }) {
   const { date } = answer;
-  const formatDate = format( new Date(date), 'MMMM d, yyyy');
+  const formatDate = format(new Date(date), 'MMMM d, yyyy');
   return (
     <div id="answer">
       <br />
