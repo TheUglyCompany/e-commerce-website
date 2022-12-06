@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import {
-  ModalContainer, ModalContent, Overlay,
+  ModalContainer, ModalContent,
 } from './QandA.style';
 
 function Modal({
@@ -12,6 +12,7 @@ function Modal({
     textInput: '',
     nameInput: '',
     emailInput: '',
+    imageInput: '',
   });
 
   function handleQuestionSubmit() {
@@ -41,6 +42,7 @@ function Modal({
         body: form.textInput,
         name: form.nameInput,
         email: form.emailInput,
+        photos: form.imageInput,
       },
       { headers: { Authorization: API_KEY } },
     )
@@ -55,94 +57,15 @@ function Modal({
   if (location === 'question') {
     return (
       <ModalContainer>
-        <Overlay>
-          <ModalContent>
-            <h1>Ask Your Question</h1>
-            <h3>
-              About the
-              {' '}
-              {productName}
-            </h3>
-            <label>
-              What&apos;s your Question?
-              <input
-                value={form.textInput}
-                type="text"
-                maxLength="1000"
-                required="true"
-                onChange={(event) => {
-                  setForm({
-                    ...form,
-                    textInput: event.target.value,
-                  });
-                }}
-              />
-            </label>
-            <br />
-            <label>
-              <br />
-              Name:
-              <input
-                value={form.nameInput}
-                type="text"
-                maxLength="60"
-                required="true"
-                placeholder="Example: jack543!"
-                onChange={(event) => {
-                  setForm({
-                    ...form,
-                    nameInput: event.target.value,
-                  });
-                }}
-              />
-              <br />
-              For privacy reasons, don&apos;t use your full name or email
-              <br />
-            </label>
-            <label>
-              Email:
-              <input
-                value={form.emailInput}
-                type="text"
-                maxLength="60"
-                required="true"
-                placeholder="Example: jack@email.com"
-                onChange={(event) => {
-                  setForm({
-                    ...form,
-                    emailInput: event.target.value,
-                  });
-                }}
-              />
-              <br />
-              For authentication reasons, you will not be emailed
-              <br />
-            </label>
-            <button
-              type="submit"
-              onClick={handleQuestionSubmit}
-            >
-              Submit
-            </button>
-          </ModalContent>
-        </Overlay>
-      </ModalContainer>
-    );
-  }
-  return (
-    <ModalContainer>
-      <Overlay>
         <ModalContent>
-          <h1>Submit Your Answer</h1>
+          <h1>Ask Your Question</h1>
           <h3>
+            About the
+            {' '}
             {productName}
-            {' '}
-            :
-            {' '}
-            {questionBody}
           </h3>
           <label>
-            What&apos;s your Answer?
+            What&apos;s your Question?
             <input
               value={form.textInput}
               type="text"
@@ -158,13 +81,14 @@ function Modal({
           </label>
           <br />
           <label>
+            <br />
             Name:
             <input
               value={form.nameInput}
               type="text"
               maxLength="60"
-              placeholder="Example: jackson11!"
               required="true"
+              placeholder="Example: jack543!"
               onChange={(event) => {
                 setForm({
                   ...form,
@@ -174,16 +98,16 @@ function Modal({
             />
             <br />
             For privacy reasons, don&apos;t use your full name or email
+            <br />
           </label>
-          <br />
           <label>
             Email:
             <input
               value={form.emailInput}
               type="text"
               maxLength="60"
-              placeholder="Why did you like the product or not?"
               required="true"
+              placeholder="Example: jack@email.com"
               onChange={(event) => {
                 setForm({
                   ...form,
@@ -197,13 +121,95 @@ function Modal({
           </label>
           <button
             type="submit"
-            onClick={handleAnswerSubmit}
+            onClick={handleQuestionSubmit}
           >
             Submit
-
           </button>
         </ModalContent>
-      </Overlay>
+      </ModalContainer>
+    );
+  }
+  return (
+    <ModalContainer>
+      <ModalContent>
+        <h1>Submit Your Answer</h1>
+        <h3>
+          {productName}
+          {' '}
+          :
+          {' '}
+          {questionBody}
+        </h3>
+        <label>
+          What&apos;s your Answer?
+          <input
+            value={form.textInput}
+            type="text"
+            maxLength="1000"
+            required="true"
+            onChange={(event) => {
+              setForm({
+                ...form,
+                textInput: event.target.value,
+              });
+            }}
+          />
+        </label>
+        <br />
+        <label>
+          Name:
+          <input
+            value={form.nameInput}
+            type="text"
+            maxLength="60"
+            placeholder="Example: jackson11!"
+            required="true"
+            onChange={(event) => {
+              setForm({
+                ...form,
+                nameInput: event.target.value,
+              });
+            }}
+          />
+          <br />
+          For privacy reasons, don&apos;t use your full name or email
+        </label>
+        <br />
+        <label>
+          Email:
+          <input
+            value={form.emailInput}
+            type="text"
+            maxLength="60"
+            placeholder="Why did you like the product or not?"
+            required="true"
+            onChange={(event) => {
+              setForm({
+                ...form,
+                emailInput: event.target.value,
+              });
+            }}
+          />
+          <br />
+          For authentication reasons, you will not be emailed
+          <br />
+        </label>
+        <label>
+          Image Upload:
+          <input
+            value={form.imageInput}
+            type="file"
+            required="false"
+          />
+        </label>
+        <button
+          type="submit"
+          onClick={handleAnswerSubmit}
+        >
+          Submit
+
+        </button>
+      </ModalContent>
     </ModalContainer>
   );
 }

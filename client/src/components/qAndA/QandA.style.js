@@ -27,18 +27,18 @@ const LoadMoreButton = styled.button`
 `;
 
 const ModalContainer = styled.div`
-display: flex;
-width: 100px;
-height: 100px;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(0,0,0, 0.5);
+  z-index: 1000;
 `;
 
 const ModalContent = styled.div`
-position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
   line-height: 1.4;
@@ -49,10 +49,10 @@ position: absolute;
   min-width: 300px;
 `;
 
-const Overlay = styled.div`
-  background: rgba(0,0,0, 0.5);
+const OutermostLayer = styled.div`
+  max-height: 50vh;
+  overflow: auto;
 `;
-
 // const ModalTitle = styled.h1`
 //   margin: 0;
 // `;
@@ -73,5 +73,5 @@ export {
   LoadMoreButton,
   ModalContainer,
   ModalContent,
-  Overlay,
+  OutermostLayer,
 };

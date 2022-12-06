@@ -4,6 +4,7 @@ import API_KEY from '../../../config';
 import QASearchBar from './QASearchBar';
 import Question from './Question';
 import Modal from './Modal';
+import { OutermostLayer } from './QandA.style';
 
 function QuestionsList({ productId, productName }) {
   const [questionList, setQuestionList] = useState([]);
@@ -40,7 +41,7 @@ function QuestionsList({ productId, productName }) {
       {
         currQuestionList.results !== undefined && currQuestionList.results.length !== 0
           ? (
-            <div id="QuestionList">
+            <OutermostLayer>
               {currQuestionList.results.map((question) => {
                 count += 1;
                 if (count <= renderCount) {
@@ -81,7 +82,7 @@ function QuestionsList({ productId, productName }) {
                     location={location}
                   />
                 ) : null}
-            </div>
+            </OutermostLayer>
           )
           : (
             <div>
