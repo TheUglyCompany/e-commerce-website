@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 const Ov = styled.div`
-  overflow:hidden;
+  overflow:visible;
+  display: flex;
   width: 80%;
-  margin: auto;
+  margin: 30px auto;
   font-family: Poppins;
   font-size: 12px;
   font-weight: light;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
 `;
 
 const Gallery = styled.div`
   float: left;
-  /* display: inline-block; */
+  display: block;
   width: 50%;
   /* border: 1px solid black; */
   padding: 10px;
@@ -23,7 +26,7 @@ const GalleryBig = styled.div`
 
 const Details = styled.div`
   float: right;
-  /* display: inline-block; */
+  display: block;
   width: 40%;
   /* border: 1px solid black; */
   padding: 10px;
@@ -48,6 +51,14 @@ const Price = styled.div`
   font-family: Poppins;
   font-size: 15px;
   font-weight: light;
+  padding: 5px 0px;
+  color: #3a3a3a;
+`;
+
+const Desc = styled.div`
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 200;
   padding: 5px 0px;
   color: #3a3a3a;
 `;
@@ -144,7 +155,7 @@ const DdContent = styled.div`
   background: #ffffff;
   width: 85%;
   z-index: 1;
-  max-height: 100px;
+  max-height: 200px;
   overflow: auto;
   /* overflow-clip-margin: 20px; */
 `;
@@ -160,6 +171,19 @@ const DdItem = styled.div`
   }
 `;
 
+const Slogan = styled.div`
+  font-family: Poppins;
+  font-size: 50px;
+  font-weight: light;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  margin: 15px;
+  text-align: center;
+  /* border: 1px solid black; */
+  /* position: relative; */
+`
+
 export {
   Ov,
   Gallery,
@@ -168,6 +192,7 @@ export {
   Category,
   Name,
   Price,
+  Desc,
   Styles,
   StyleImg,
   StyleImgPad,
@@ -179,4 +204,5 @@ export {
   DdBttn,
   DdContent,
   DdItem,
+  Slogan,
 };

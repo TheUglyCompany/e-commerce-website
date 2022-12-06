@@ -35,6 +35,10 @@ function OVquantity({
       num = 15;
     }
 
+    if (num <= 0 || num === null) {
+      return ['OUT OF STOCK']
+    }
+
     for (var i = 0; i < num; i++) {
       result.push(i+1);
     }

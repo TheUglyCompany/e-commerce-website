@@ -11,6 +11,7 @@ import {
   Category,
   Name,
   Price,
+  Desc,
   Styles,
   Purchase,
   StyleImg,
@@ -21,6 +22,7 @@ import {
   DdBttn,
   DdContent,
   DdItem,
+  Slogan,
 } from './Overview.style';
 
 function Overview({ product }) {
@@ -33,6 +35,8 @@ function Overview({ product }) {
   const [bttnSize, setBttnSize] = useState('SELECT SIZE');
   const [bttnQntyActive, setBttnQntyActive] = useState(false);
   const [bttnQnty, setBttnQnty] = useState('QUANTITY');
+
+  console.log('product: ', product);
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
@@ -52,72 +56,85 @@ function Overview({ product }) {
   useEffect(() => { console.log('styleOpts: ', styleOpts); }, [styleOpts]);
 
   return !ready ? <>App is not ready</> : (
-    <Ov>
-      <Gallery>
-        <GalleryBig>
-          <img src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" height="500px" alt="" />
-        </GalleryBig>
-      </Gallery>
-      <Details>
-        <Category>{product.category.toUpperCase()}</Category>
-        <Name>{product.name}</Name>
-        <Price>
-          $
-          {product.default_price}
-        </Price>
-        <Styles>
-          <StyleHeader>
-            STYLE:&nbsp;
-            <StyleSelected>
-              {styleSelected && (
-                <span>
-                  {styleSelected.toUpperCase()}
-                </span>
-              )}
-            </StyleSelected>
-          </StyleHeader>
+    <div>
+
+      <Ov>
+        <Gallery>
+          <GalleryBig>
+            <img src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" height="500px" alt="" />
+          </GalleryBig>
+        </Gallery>
+        <Details>
+          <Category>{product.category.toUpperCase()}</Category>
+          <Name>{product.name}</Name>
+          <Price>
+            $
+            {product.default_price}
+          </Price>
+          <Desc>
+            <em>"{product.slogan}"</em>
+          </Desc>
+          <Desc>
+            {product.description}
+          </Desc>
+          <Styles>
+            <StyleHeader>
+              STYLE:&nbsp;
+              <StyleSelected>
+                {styleSelected && (
+                  <span>
+                    {styleSelected.toUpperCase()}
+                  </span>
+                )}
+              </StyleSelected>
+            </StyleHeader>
+            <div>
+              {styleOpts.map((styleOpt, index) => (
+                <OVstyleImg styleOpts={styleOpts} styleOpt={styleOpt} index={index} setSkuOptions={setSkuOptions} setStyleSelected={setStyleSelected} />
+              ))}
+            </div>
+          </Styles>
+
           <div>
-            {styleOpts.map((styleOpt, index) => (
-              <OVstyleImg styleOpts={styleOpts} styleOpt={styleOpt} index={index} setSkuOptions={setSkuOptions} setStyleSelected={setStyleSelected} />
-            ))}
+            <Dd>
+              <DdBttn onClick={(e) => {setBttnSizeActive(!bttnSizeActive)}}>
+                {bttnSize}&nbsp;&nbsp;
+                <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" /></span>
+              </DdBttn>
+                {bttnSizeActive && (
+                  <DdContent>
+                    {skuOptions.map((skuOption) => (
+                      <DdItem onClick={(e) => {
+                        setBttnSize(e.target.textContent);
+                        setBttnSizeActive(false);
+                        setCurrentSku(skuOption);
+                      }}>
+                        {skuOption.size}
+                      </DdItem>
+                    ))}
+                  </DdContent>
+                )}
+            </Dd>
+
+            {currentSku && (
+              <OVquantity
+                currentSku={currentSku}
+                bttnQntyActive={bttnQntyActive}
+                setBttnQntyActive={setBttnQntyActive}
+                bttnQnty={bttnQnty}
+                setBttnQnty={setBttnQnty} />
+            )}
           </div>
-        </Styles>
 
-        <div>
-          <Dd>
-            <DdBttn onClick={(e) => {setBttnSizeActive(!bttnSizeActive)}}>
-              {bttnSize}&nbsp;&nbsp;
-              <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" /></span>
-            </DdBttn>
-              {bttnSizeActive && (
-                <DdContent>
-                  {skuOptions.map((skuOption) => (
-                    <DdItem onClick={(e) => {
-                      console.log('s: ', skuOption);
-                      setBttnSize(e.target.textContent);
-                      setBttnSizeActive(false);
-                      setCurrentSku(skuOption);
-                    }}>
-                      {skuOption.size}
-                      {/* .toUpperCase() */}
-                    </DdItem>
-                  ))}
-                </DdContent>
-              )}
-          </Dd>
+        </Details>
+      </Ov>
+      {/* <Ov>
+        <Slogan>
+          "{product.slogan}"
+        </Slogan>
+      </Ov> */}
 
-          {currentSku && (
-            <OVquantity
-              currentSku={currentSku}
-              bttnQntyActive={bttnQntyActive}
-              setBttnQntyActive={setBttnQntyActive}
-              bttnQnty={bttnQnty}
-              setBttnQnty={setBttnQnty} />
-          )}
-        </div>
-
-      </Details>
-    </Ov>
+    </div>
   );
 }
 
