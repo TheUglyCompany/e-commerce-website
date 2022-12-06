@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import API_KEY from '../../../config';
+import { UnderlineTextButton, HelpfulButton } from './QandA.style';
 
 function Answer({ answer }) {
   const { date } = answer;
@@ -21,7 +22,8 @@ function Answer({ answer }) {
         console.log('There is an error in handleHelpful: ', error);
       });
   }
-  function handleAnswerReport() {
+  function handleAnswerReport(event) {
+    event.preventDefault();
     const reported = { reported: true };
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.answer_id}/report`, reported, {
       headers:
@@ -53,12 +55,12 @@ function Answer({ answer }) {
         {' '}
         |
         {' '}
-        <button
+        <HelpfulButton
           type="button"
-          onClick={handleHelpfulAnswer}
+          onClick={() => handleHelpfulAnswer}
         >
           Helpful?
-        </button>
+        </HelpfulButton>
         {' '}
         <u>Yes</u>
         {' '}
@@ -66,13 +68,12 @@ function Answer({ answer }) {
         {answer.helpfulness}
         ) |
         {' '}
-        <button
+        <UnderlineTextButton
           type="button"
-          onClick={handleAnswerReport}
+          onClick={() => handleAnswerReport}
         >
           Report
-        </button>
-        <br />
+        </UnderlineTextButton>
         <br />
       </div>
     </div>

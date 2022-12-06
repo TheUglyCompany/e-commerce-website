@@ -3,6 +3,7 @@ import axios from 'axios';
 import AnswerList from './AnswerList';
 import Modal from './Modal';
 import API_KEY from '../../../config';
+import { UnderlineTextButton, HelpfulButton } from './QandA.style';
 
 function Question({ question, productName }) {
   const [showModal, setShowModal] = useState(false);
@@ -49,13 +50,13 @@ function Question({ question, productName }) {
         {question.question_body}
       </strong>
       {' '}
-      <button
+      <HelpfulButton
         type="button"
-        onClick={handleHelpfullQuestions}
+        onClick={() => handleHelpfullQuestions}
       >
         Helpful?
 
-      </button>
+      </HelpfulButton>
       {' '}
       <u>Yes</u>
       {' '}
@@ -65,15 +66,17 @@ function Question({ question, productName }) {
       {' '}
       |
       {' '}
-      <button
+      <UnderlineTextButton
         type="button"
-        onClick={handleQuestionReport}
+        onClick={() => handleQuestionReport}
       >
         Report
 
-      </button>
+      </UnderlineTextButton>
+      {' '}
       |
-      <button
+      {' '}
+      <UnderlineTextButton
         type="button"
         onClick={() => {
           setShowModal(true);
@@ -81,7 +84,7 @@ function Question({ question, productName }) {
         }}
       >
         Add Answer
-      </button>
+      </UnderlineTextButton>
       {showModal
         ? (
           <Modal

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import Answer from './Answer';
+import { LoadMoreButton } from './QandA.style';
 
 function AnswerList({ questionId }) {
   const [answerList, setAnswerList] = useState([]);
@@ -32,7 +33,7 @@ function AnswerList({ questionId }) {
       })}
       {answerList.length >= 2 && count > renderCount
         ? (
-          <button
+          <LoadMoreButton
             type="button"
             onClick={() => {
               setRenderCount(renderCount + 2);
@@ -40,21 +41,25 @@ function AnswerList({ questionId }) {
             }}
           >
             LOAD MORE ANSWERS
-          </button>
+          </LoadMoreButton>
         )
         : null}
-      {showMoreAnswers ? (
-        <button
-          type="button"
-          onClick={() => {
-            setRenderCount(2);
-            setShowMoreAnswers(false);
-          }}
-        >
-          HIDE MORE ANSWERS
+      <br />
+      {showMoreAnswers
+        ? (
+          <LoadMoreButton
+            type="button"
+            onClick={() => {
+              setRenderCount(2);
+              setShowMoreAnswers(false);
+            }}
+          >
+            HIDE MORE ANSWERS
 
-        </button>
-      ) : null}
+          </LoadMoreButton>
+        )
+        : null}
+      <br />
     </div>
   );
 }

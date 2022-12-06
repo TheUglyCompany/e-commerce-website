@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
+import {
+  ModalContainer, ModalContent, Overlay,
+} from './QandA.style';
 
 function Modal({
   setShowModal, productId, productName, location, questionId, questionBody,
@@ -51,132 +54,157 @@ function Modal({
 
   if (location === 'question') {
     return (
-      <div id="Modal">
-        <h1>Ask Your Question</h1>
-        <h3>
-          About the
-          {' '}
-          {productName}
-        </h3>
-        <label>
-          What&apos;s your Question?
-          <input
-            value={form.textInput}
-            type="text"
-            maxLength="1000"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                textInput: event.target.value,
-              });
-            }}
-          />
-        </label>
-        <label>
-          Name:
-          <input
-            value={form.nameInput}
-            type="text"
-            maxLength="60"
-            placeholder="Example: jack543!"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                nameInput: event.target.value,
-              });
-            }}
-          />
-          For privacy reasons, don&apos;t use your full name or email
-        </label>
-        <label>
-          Email:
-          <input
-            value={form.emailInput}
-            type="text"
-            maxLength="60"
-            placeholder="Example: jack@email.com"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                emailInput: event.target.value,
-              });
-            }}
-          />
-          For authentication reasons, you will not be emailed
-        </label>
-        <button
-          type="submit"
-          onClick={handleQuestionSubmit}
-        >
-          Submit
-        </button>
-      </div>
+      <ModalContainer>
+        <Overlay>
+          <ModalContent>
+            <h1>Ask Your Question</h1>
+            <h3>
+              About the
+              {' '}
+              {productName}
+            </h3>
+            <label>
+              What&apos;s your Question?
+              <input
+                value={form.textInput}
+                type="text"
+                maxLength="1000"
+                required="true"
+                onChange={(event) => {
+                  setForm({
+                    ...form,
+                    textInput: event.target.value,
+                  });
+                }}
+              />
+            </label>
+            <br />
+            <label>
+              <br />
+              Name:
+              <input
+                value={form.nameInput}
+                type="text"
+                maxLength="60"
+                required="true"
+                placeholder="Example: jack543!"
+                onChange={(event) => {
+                  setForm({
+                    ...form,
+                    nameInput: event.target.value,
+                  });
+                }}
+              />
+              <br />
+              For privacy reasons, don&apos;t use your full name or email
+              <br />
+            </label>
+            <label>
+              Email:
+              <input
+                value={form.emailInput}
+                type="text"
+                maxLength="60"
+                required="true"
+                placeholder="Example: jack@email.com"
+                onChange={(event) => {
+                  setForm({
+                    ...form,
+                    emailInput: event.target.value,
+                  });
+                }}
+              />
+              <br />
+              For authentication reasons, you will not be emailed
+              <br />
+            </label>
+            <button
+              type="submit"
+              onClick={handleQuestionSubmit}
+            >
+              Submit
+            </button>
+          </ModalContent>
+        </Overlay>
+      </ModalContainer>
     );
   }
   return (
-    <div id="Modal">
-      <h1>Submit Your Answer</h1>
-      <h3>
-        {productName}
-        {' '}
-        :
-        {' '}
-        {questionBody}
-      </h3>
-      <label>
-        What&apos;s your Answer?
-        <input
-          value={form.textInput}
-          type="text"
-          maxLength="1000"
-          onChange={(event) => {
-            setForm({
-              ...form,
-              textInput: event.target.value,
-            });
-          }}
-        />
-      </label>
-      <label>
-        Name:
-        <input
-          value={form.nameInput}
-          type="text"
-          maxLength="60"
-          placeholder="Example: jackson11!"
-          onChange={(event) => {
-            setForm({
-              ...form,
-              nameInput: event.target.value,
-            });
-          }}
-        />
-        For privacy reasons, don&apos;t use your full name or email
-      </label>
-      <label>
-        Email:
-        <input
-          value={form.emailInput}
-          type="text"
-          maxLength="60"
-          placeholder="Why did you like the product or not?"
-          onChange={(event) => {
-            setForm({
-              ...form,
-              emailInput: event.target.value,
-            });
-          }}
-        />
-        For authentication reasons, you will not be emailed
-      </label>
-      <button
-        type="submit"
-        onClick={handleAnswerSubmit}
-      >
-        Submit
+    <ModalContainer>
+      <Overlay>
+        <ModalContent>
+          <h1>Submit Your Answer</h1>
+          <h3>
+            {productName}
+            {' '}
+            :
+            {' '}
+            {questionBody}
+          </h3>
+          <label>
+            What&apos;s your Answer?
+            <input
+              value={form.textInput}
+              type="text"
+              maxLength="1000"
+              required="true"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  textInput: event.target.value,
+                });
+              }}
+            />
+          </label>
+          <br />
+          <label>
+            Name:
+            <input
+              value={form.nameInput}
+              type="text"
+              maxLength="60"
+              placeholder="Example: jackson11!"
+              required="true"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  nameInput: event.target.value,
+                });
+              }}
+            />
+            <br />
+            For privacy reasons, don&apos;t use your full name or email
+          </label>
+          <br />
+          <label>
+            Email:
+            <input
+              value={form.emailInput}
+              type="text"
+              maxLength="60"
+              placeholder="Why did you like the product or not?"
+              required="true"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  emailInput: event.target.value,
+                });
+              }}
+            />
+            <br />
+            For authentication reasons, you will not be emailed
+            <br />
+          </label>
+          <button
+            type="submit"
+            onClick={handleAnswerSubmit}
+          >
+            Submit
 
-      </button>
-    </div>
+          </button>
+        </ModalContent>
+      </Overlay>
+    </ModalContainer>
   );
 }
 

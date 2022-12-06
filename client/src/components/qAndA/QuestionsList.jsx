@@ -34,6 +34,7 @@ function QuestionsList({ productId, productName }) {
     <div id="QuestionsList">
       <QASearchBar
         setCurrQuestionList={setCurrQuestionList}
+        currQuestionList={currQuestionList}
         questionList={questionList}
       />
       {
