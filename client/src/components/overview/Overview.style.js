@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 const Ov = styled.div`
-  overflow:visible;
+  overflow: visible;
   display: flex;
   width: 80%;
   margin: 30px auto;
   font-family: Poppins;
   font-size: 12px;
   font-weight: light;
-  /* overflow-x: hidden;
-  overflow-y: auto; */
 `;
 
 const Gallery = styled.div`
@@ -53,6 +51,10 @@ const Price = styled.div`
   font-weight: light;
   padding: 5px 0px;
   color: #3a3a3a;
+`;
+
+const SalePrice = styled.span`
+  color: red;
 `;
 
 const Desc = styled.div`
@@ -182,7 +184,7 @@ const Slogan = styled.div`
   text-align: center;
   /* border: 1px solid black; */
   /* position: relative; */
-`
+`;
 
 export {
   Ov,
@@ -192,6 +194,7 @@ export {
   Category,
   Name,
   Price,
+  SalePrice,
   Desc,
   Styles,
   StyleImg,
