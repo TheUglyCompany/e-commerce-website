@@ -10,7 +10,7 @@ import {
 function ReviewList({ reviews, reviewCount }) {
   const [renderCount, setRenderCount] = useState(2);
 
-  function postFeedback(feedbackType, reviewId) {
+  function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
       { review_id: reviewId },
@@ -32,7 +32,6 @@ function ReviewList({ reviews, reviewCount }) {
         // because I can't break out of the loop early, any suggestions?
         count += 1;
         if (count <= renderCount) {
-          console.log(review.review_id);
           return (
             <div>
               <ReviewListTile

@@ -11,7 +11,6 @@ import {
 // convert the below to HelpfulButtons
 
 function ReviewListTile({ review, postFeedback }) {
-  console.log(review);
   return (
     <TileStyle>
       {' '}
@@ -42,8 +41,9 @@ function ReviewListTile({ review, postFeedback }) {
         Helpful?
       </HelpfulButton>
       Yes
-      {' '}
+      {' ('}
       {review.helpfulness}
+      {') '}
       <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
         Report
       </HelpfulButton>
