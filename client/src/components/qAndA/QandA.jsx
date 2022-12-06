@@ -1,10 +1,10 @@
 import React from 'react';
 import QuestionsList from './QuestionsList';
 
-function QandA({ productId }) {
+function QandA({ product }) {
   return (
     <div>
-      <QuestionsList productId={productId} />
+      <QuestionsList productId={product.id} productName={product.name} />
     </div>
   );
 }

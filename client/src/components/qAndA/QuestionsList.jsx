@@ -5,11 +5,12 @@ import QASearchBar from './QASearchBar';
 import Question from './Question';
 import Modal from './Modal';
 
-function QuestionsList({ productId }) {
+function QuestionsList({ productId, productName }) {
   const [questionList, setQuestionList] = useState([]);
   const [renderCount, setRenderCount] = useState(4);
   const [currQuestionList, setCurrQuestionList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [location, setLocation] = useState('');
   let count = 0;
 
   useEffect(() => {
@@ -21,6 +22,7 @@ function QuestionsList({ productId }) {
       },
     })
       .then((response) => {
+        console.log('The Data: ', response.data);
         setQuestionList(response.data);
         setCurrQuestionList(response.data);
       })
@@ -42,7 +44,10 @@ function QuestionsList({ productId }) {
                 count += 1;
                 if (count <= renderCount) {
                   return (
-                    <Question question={question} />
+                    <Question
+                      question={question}
+                      productName={productName}
+                    />
                   );
                 }
                 return null;
@@ -59,19 +64,47 @@ function QuestionsList({ productId }) {
               ) : null}
               <button
                 type="button"
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  setShowModal(true);
+                  setLocation('question');
+                }}
               >
                 Add a Question
               </button>
               {showModal
-                ? <Modal setShowModal={setShowModal} productId={productId} /> : null}
+                ? (
+                  <Modal
+                    setShowModal={setShowModal}
+                    productId={productId}
+                    productName={productName}
+                    location={location}
+                  />
+                ) : null}
             </div>
           )
           : (
             <div>
               No Questions Found
               <div>
-                <button type="button">Ask a Question</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowModal(true);
+                    setLocation('question');
+                  }}
+                >
+                  Ask a Question
+                </button>
+                {showModal
+                  ? (
+                    <Modal
+                      setShowModal={setShowModal}
+                      productId={productId}
+                      productName={productName}
+                      location={location}
+                    />
+                  )
+                  : null}
               </div>
             </div>
           )

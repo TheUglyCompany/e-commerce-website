@@ -51,7 +51,7 @@ function AnswerList({ questionId }) {
             setShowMoreAnswers(false);
           }}
         >
-          Hide More Answers
+          HIDE MORE ANSWERS
 
         </button>
       ) : null}
