@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
+import OVquantity from './OVquantity';
+import OVstyleImg from './OVstyleImg';
 import {
   Ov,
   Gallery,
@@ -11,25 +13,34 @@ import {
   Price,
   Styles,
   Purchase,
-  // Button,
   StyleImg,
   StyleImgPad,
   StyleHeader,
   StyleSelected,
-  DropdownStyle,
-  DropdownStyleSelect,
+  Dd,
+  DdBttn,
+  DdContent,
+  DdItem,
 } from './Overview.style';
 
 function Overview({ product }) {
   const [styleOpts, setStyleOpts] = useState([]);
   const [ready, setReady] = useState(false);
   const [styleSelected, setStyleSelected] = useState('');
+  const [skuOptions, setSkuOptions] = useState([]);
+  const [currentSku, setCurrentSku] = useState({});
+  const [bttnSizeActive, setBttnSizeActive] = useState(false);
+  const [bttnSize, setBttnSize] = useState('SELECT SIZE');
+  const [bttnQntyActive, setBttnQntyActive] = useState(false);
+  const [bttnQnty, setBttnQnty] = useState('QUANTITY');
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
       .then((response) => {
         setStyleOpts(response.data.results);
         setStyleSelected(response.data.results[0].name);
+        setSkuOptions(Object.values(response.data.results[0].skus));
+        setCurrentSku(Object.values(response.data.results[0].skus)[0])
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -39,8 +50,6 @@ function Overview({ product }) {
     }
   }, [product]);
   useEffect(() => { console.log('styleOpts: ', styleOpts); }, [styleOpts]);
-
-  console.log('styleOpts: ', styleOpts[0]);
 
   return !ready ? <>App is not ready</> : (
     <Ov>
@@ -68,25 +77,45 @@ function Overview({ product }) {
             </StyleSelected>
           </StyleHeader>
           <div>
-            {styleOpts.map((styleOpt) => (
-              <StyleImgPad>
-                <StyleImg src={styleOpt.photos[0].thumbnail_url} />
-              </StyleImgPad>
+            {styleOpts.map((styleOpt, index) => (
+              <OVstyleImg styleOpts={styleOpts} styleOpt={styleOpt} index={index} setSkuOptions={setSkuOptions} setStyleSelected={setStyleSelected} />
             ))}
           </div>
         </Styles>
 
-        <Purchase>
-          <DropdownStyle>
-            <DropdownStyleSelect value="volvo">VOLVO</DropdownStyleSelect>
-            <DropdownStyleSelect value="saab">SAAB</DropdownStyleSelect>
-            <DropdownStyleSelect value="mercedes">MERCEDES</DropdownStyleSelect>
-            <DropdownStyleSelect value="audi">AUDI</DropdownStyleSelect>
-          </DropdownStyle>
-        </Purchase>
-        {/* <Purchase>
-          <Button>ADD TO CART</Button>
-        </Purchase> */}
+        <div>
+          <Dd>
+            <DdBttn onClick={(e) => {setBttnSizeActive(!bttnSizeActive)}}>
+              {bttnSize}&nbsp;&nbsp;
+              <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" /></span>
+            </DdBttn>
+              {bttnSizeActive && (
+                <DdContent>
+                  {skuOptions.map((skuOption) => (
+                    <DdItem onClick={(e) => {
+                      console.log('s: ', skuOption);
+                      setBttnSize(e.target.textContent);
+                      setBttnSizeActive(false);
+                      setCurrentSku(skuOption);
+                    }}>
+                      {skuOption.size}
+                      {/* .toUpperCase() */}
+                    </DdItem>
+                  ))}
+                </DdContent>
+              )}
+          </Dd>
+
+          {currentSku && (
+            <OVquantity
+              currentSku={currentSku}
+              bttnQntyActive={bttnQntyActive}
+              setBttnQntyActive={setBttnQntyActive}
+              bttnQnty={bttnQnty}
+              setBttnQnty={setBttnQnty} />
+          )}
+        </div>
+
       </Details>
     </Ov>
   );
