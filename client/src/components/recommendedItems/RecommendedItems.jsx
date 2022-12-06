@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import RelatedProducts from './RelatedProducts';
 // import YourOutfit from './YourOutfit';
 import API_KEY from '../../../config';
+
+const CarouselContainer = styled.div`
+  border: 2px solid black;
+`;
 
 function RecommendedItems({ product, cardClicked }) {
   const [relatedProducts, setRelatedProducts] = useState(null);
@@ -20,10 +25,10 @@ function RecommendedItems({ product, cardClicked }) {
   }, [relatedProducts]);
 
   return !ready ? <>Recommended Items Lists are Loading</> : (
-    <div>
+    <CarouselContainer>
       <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
       {/* <YourOutfit setProduct={setProduct} cardClicked={cardClicked/> */}
-    </div>
+    </CarouselContainer>
   );
 }
 
