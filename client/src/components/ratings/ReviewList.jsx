@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ReviewListTile from './ReviewListTile';
+import API_KEY from '../../../config';
 import {
   Reviews,
   ShowMore,
@@ -10,18 +11,17 @@ function ReviewList({ reviews, reviewCount }) {
   const [renderCount, setRenderCount] = useState(2);
 
   function postFeedback(feedbackType, reviewId) {
-    if (feedbackType === 'helpful') {
-      console.log('reeview_id', reviewId);
-      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/:review_id/helpful', {
-        review_id: reviewId,
-      }).then((response) => {
-        console.log('success posting helpful', response);
+    axios.put(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
+      { review_id: reviewId },
+      { headers: { Authorization: API_KEY } },
+    )
+      .then(() => {
+        console.log('successful', feedbackType);
       })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
-    // axios.post()
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
   let count = 0;
   return (

@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const TileStyle = styled.div`
 display: flex;
 flex-direction: column;
-width: 100%;
+align-items: flex-start;
+width: 600px;
+border-style: solid;
 `;
 
 const CardSummary = styled.h4`
@@ -18,7 +20,6 @@ background-color: white;
 
 const CardInfo = styled.div`
 display: flex;
-justify-content: space-between;
 `;
 
 const Body = styled.div`
