@@ -72,6 +72,11 @@ const StyleImgPad = styled.span`
   padding: 10px;
 `;
 
+const StyleImgThumb = styled.div`
+  flex: 1;
+  border: 1px solid black;
+`;
+
 const StyleHeader = styled.div`
   font-family: Roboto;
   font-size: 15px;
@@ -111,7 +116,7 @@ const Purchase = styled.div`
 // `;
 
 const Dd = styled.div`
-  width: 300px;
+  width: 150px;
   margin: 10px;
   position: relative;
   display: inline-block;
@@ -137,8 +142,10 @@ const DdContent = styled.div`
   left: 0;
   padding: 10px;
   background: #ffffff;
-  width: 92.5%;
+  width: 85%;
   z-index: 1;
+  max-height: 100px;
+  overflow: auto;
   /* overflow-clip-margin: 20px; */
 `;
 
@@ -148,8 +155,6 @@ const DdItem = styled.div`
   cursor: pointer;
   transition: all 0.2s;
   z-index: 1;
-  /* overflow: visible; */
-  /* overflow-clip-margin: 20px; */
   &:hover {
     background: #D3D3D3;
   }
@@ -166,6 +171,7 @@ export {
   Styles,
   StyleImg,
   StyleImgPad,
+  StyleImgThumb,
   StyleHeader,
   StyleSelected,
   Purchase,
