@@ -4,7 +4,7 @@ import RelatedProducts from './RelatedProducts';
 // import YourOutfit from './YourOutfit';
 import API_KEY from '../../../config';
 
-function RecommendedItems({ product, setProduct }) {
+function RecommendedItems({ product, cardClicked }) {
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [ready, setReady] = useState(false);
 
@@ -21,8 +21,8 @@ function RecommendedItems({ product, setProduct }) {
 
   return !ready ? <>Recommended Items Lists are Loading</> : (
     <div>
-      <RelatedProducts relatedProducts={relatedProducts} setProduct={setProduct} />
-      {/* <YourOutfit setProduct={setProduct} /> */}
+      <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
+      {/* <YourOutfit setProduct={setProduct} cardClicked={cardClicked/> */}
     </div>
   );
 }

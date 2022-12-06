@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Ratings from './ratings/Ratings';
+// import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
@@ -10,11 +10,21 @@ function App() {
   const [product, setProduct] = useState(null);
   const [ready, setReady] = useState(false);
 
+  const cardClicked = (productId) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
+      .then((response) => {
+        setReady(false);
+        setProduct(response.data);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
       .then((response) => { setProduct(response.data[0]); })
       .catch((err) => console.log(err.message));
   }, []);
+
   useEffect(() => {
     if (product !== null) {
       setReady(true);
@@ -28,7 +38,7 @@ function App() {
         Wiliam Park, Charlie Um, Matthew Sigler, Jonathan Sindorf
       </h3>
       <Overview />
-      <RecommendedItems product={product} setProduct={setProduct} />
+      <RecommendedItems product={product} cardClicked={cardClicked} />
       <QandA />
       {/* <Ratings product={product} /> */}
     </div>

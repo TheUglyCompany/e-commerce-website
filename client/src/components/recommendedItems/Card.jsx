@@ -4,7 +4,7 @@ import axios from 'axios';
 import CardImage from './CardImage';
 import API_KEY from '../../../config';
 
-function Card({ setProduct, productId }) {
+function Card({ productId, cardClicked }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
@@ -31,11 +31,10 @@ function Card({ setProduct, productId }) {
   }, [cardProduct, ratingObj, stylesObj]);
 
   return !ready ? <>Card Loading</> : (
-    <div
-      className="Card"
-    // onClick={setProduct(placeHolder)}
-    >
-      <CardImage productId={productId} />
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div onClick={() => cardClicked(productId)}>
+      <CardImage stylesObj={stylesObj} />
       <p>{cardProduct.category}</p>
       <p>{cardProduct.name}</p>
       <p>{cardProduct.default_price}</p>
