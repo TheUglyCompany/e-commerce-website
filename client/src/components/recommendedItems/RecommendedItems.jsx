@@ -10,7 +10,7 @@ function RecommendedItems({ product, cardClicked }) {
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, { headers: { Authorization: API_KEY } })
-      .then((response) => setRelatedProducts(response.data))
+      .then((response) => setRelatedProducts([...new Set(response.data)]))
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
