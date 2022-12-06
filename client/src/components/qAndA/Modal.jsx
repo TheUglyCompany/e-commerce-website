@@ -12,7 +12,7 @@ function Modal({
     textInput: '',
     nameInput: '',
     emailInput: '',
-    imageInput: '',
+    imageInput: [],
   });
 
   function handleQuestionSubmit() {
@@ -35,7 +35,8 @@ function Modal({
     setShowModal(false);
   }
 
-  function handleAnswerSubmit() {
+  function handleAnswerSubmit(event) {
+
     axios.post(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
       {
@@ -52,6 +53,15 @@ function Modal({
       .catch((error) => {
         console.log('There is an error in Answer Modal: ', error);
       });
+  }
+
+  function handleFileEvent(event) {
+    const chosenFiles = Array.prototype.slice.call(event.target.files);
+    setForm({
+      ...form,
+      imageInput: chosenFiles,
+    });
+    console.log(form.imageInput);
   }
 
   if (location === 'question') {
@@ -200,6 +210,8 @@ function Modal({
             value={form.imageInput}
             type="file"
             required="false"
+            multiple
+            onChange={handleFileEvent}
           />
         </label>
         <button
