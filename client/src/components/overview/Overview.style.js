@@ -4,6 +4,9 @@ const Ov = styled.div`
   overflow:hidden;
   width: 80%;
   margin: auto;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: light;
 `;
 
 const Gallery = styled.div`
@@ -91,41 +94,65 @@ const Purchase = styled.div`
   /* border: 1px solid black; */
 `;
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 1px;
+// const Button = styled.button`
+//   background: transparent;
+//   border-radius: 1px;
+//   border: 1px solid black;
+//   color: black;
+//   padding: 10px;
+//   margin: 5px 0px;
+//   width: 200px;
+//   cursor: pointer;
+//   font-family: Roboto;
+//   font-weight: bold;
+//   font-size: 16px;
+//   height: 50px;
+//   float: left;
+// `;
+
+const Dd = styled.div`
+  width: 300px;
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+  background: #ffffff;
+  /* user-select: none; */
+`;
+
+const DdBttn = styled.div`
   border: 1px solid black;
-  color: black;
   padding: 10px;
-  margin: 5px 0px;
-  width: 200px;
-  cursor: pointer;
+  background: #ffffff;
+  display: flex;
   font-family: Roboto;
-  font-weight: bold;
-  font-size: 16px;
-  height: 50px;
-  float: left;
-`;
-
-const DropdownStyle = styled.select`
-  padding: 10px;
-  margin: 15px 0px 10px 0px;
-  width: 200px;
-  background: transparent;
-  border: 1px solid #000000;
-  color: #000000;
-  font-family: Poppins;
   font-size: 15px;
-  font-weight: light;
-  height: 50px;
-  float: left;
+  font-weight: bold;
+  cursor: pointer;
 `;
 
-const DropdownStyleSelect = styled.option`
-  font-family: Poppins;
-  font-size: 12px;
-  font-weight: light;
-  color: black;
+const DdContent = styled.div`
+  border: 1px solid black;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  padding: 10px;
+  background: #ffffff;
+  width: 92.5%;
+  z-index: 1;
+  /* overflow-clip-margin: 20px; */
+`;
+
+const DdItem = styled.div`
+  padding: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 1;
+  /* overflow: visible; */
+  /* overflow-clip-margin: 20px; */
+  &:hover {
+    background: #D3D3D3;
+  }
 `;
 
 export {
@@ -142,7 +169,8 @@ export {
   StyleHeader,
   StyleSelected,
   Purchase,
-  Button,
-  DropdownStyle,
-  DropdownStyleSelect,
+  Dd,
+  DdBttn,
+  DdContent,
+  DdItem,
 };
