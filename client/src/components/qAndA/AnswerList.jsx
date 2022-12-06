@@ -45,20 +45,18 @@ function AnswerList({ questionId }) {
         )
         : null}
       <br />
-      {showMoreAnswers
-        ? (
-          <LoadMoreButton
-            type="button"
-            onClick={() => {
-              setRenderCount(2);
-              setShowMoreAnswers(false);
-            }}
-          >
-            HIDE MORE ANSWERS
+      {showMoreAnswers ? (
+        <LoadMoreButton
+          type="button"
+          onClick={() => {
+            setRenderCount(2);
+            setShowMoreAnswers(false);
+          }}
+        >
+          HIDE MORE ANSWERS
 
-          </LoadMoreButton>
-        )
-        : null}
+        </LoadMoreButton>
+      ) : null}
       <br />
     </div>
   );
