@@ -1,11 +1,31 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import ReviewListTile from './ReviewListTile';
+import API_KEY from '../../../config';
+import {
+  Reviews,
+  ShowMore,
+} from './ReviewList.style';
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, reviewCount }) {
   const [renderCount, setRenderCount] = useState(2);
+
+  function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
+    axios.put(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
+      { review_id: reviewId },
+      { headers: { Authorization: API_KEY } },
+    )
+      .then(() => {
+        console.log('successful', feedbackType);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
   let count = 0;
   return (
-    <div>
+    <Reviews>
       <hr />
       {
       reviews.map((review) => { // map is probably the wrong tool for this,
@@ -14,16 +34,21 @@ function ReviewList({ reviews }) {
         if (count <= renderCount) {
           return (
             <div>
-              <ReviewListTile review={review} />
+              <ReviewListTile
+                review={review}
+                key={review.review_id}
+                postFeedback={(feedbackType, reviewId) => { postFeedback(feedbackType, reviewId); }}
+              />
             </div>
           );
         }
         return null;
       })
       }
-      <button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</button>
-      <button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</button>
-    </div>
+      {reviewCount <= renderCount ? null
+        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
+      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
+    </Reviews>
   );
 }
 

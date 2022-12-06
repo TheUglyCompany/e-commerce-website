@@ -1,19 +1,54 @@
 import React from 'react';
+import {
+  CardSummary,
+  HelpfulButton,
+  OwnerResponse,
+  Body,
+  CardInfo,
+  TileStyle,
+} from './ReviewListTile.style';
 
-function ReviewListTile({ review }) {
+// convert the below to HelpfulButtons
+
+function ReviewListTile({ review, postFeedback }) {
   return (
-    <div>
-      Rating: {review.rating}
-      Reviewer Name: {review.reviewer_name}
-      Date: {review.date}
-      Summary: {review.summary}
+    <TileStyle>
+      {' '}
+      <CardInfo>
+        <div>
+          Rating:
+          {' '}
+          {review.rating}
+        </div>
+        <div>
+          {' '}
+          {review.reviewer_name}
+          {' '}
+          {review.date}
+          {' '}
+        </div>
+      </CardInfo>
+      <CardSummary>
+        {review.summary}
+      </CardSummary>
+      {review.recommend ? <div>I recommend this product</div> : null}
       <br />
-      {review.body}
-      helpfulness {review.helpfulness}
-      <p>Helfpul?</p>
-      <p>Report</p>
+      <Body>
+        {review.body}
+      </Body>
+      {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
+      <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        Helpful?
+      </HelpfulButton>
+      Yes
+      {' ('}
+      {review.helpfulness}
+      {') '}
+      <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        Report
+      </HelpfulButton>
       <hr />
-    </div>
+    </TileStyle>
   );
 }
 
