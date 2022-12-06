@@ -1,33 +1,52 @@
 import React from 'react';
+import {
+  CardSummary,
+  HelpfulButton,
+  OwnerResponse,
+  Body,
+  CardInfo,
+  TileStyle,
+} from './ReviewListTile.style';
+
+// convert the below to HelpfulButtons
 
 function ReviewListTile({ review, postFeedback }) {
+  console.log(review);
   return (
-    <div>
-      Rating:
+    <TileStyle>
       {' '}
-      {review.rating}
-      Reviewer Name:
-      {' '}
-      {review.reviewer_name}
-      Date:
-      {' '}
-      {review.date}
-      Summary:
-      {' '}
-      {review.summary}
-      <br />
-      {review.body}
-      helpfulness
+      <CardInfo>
+        <div>
+          Rating:
+          {' '}
+          {review.rating}
+        </div>
+        <div>
+          {' '}
+          {review.reviewer_name}
+          {' '}
+          {review.date}
+          {' '}
+        </div>
+      </CardInfo>
+      <CardSummary>
+        {review.summary}
+      </CardSummary>
+      <Body>
+        {review.body}
+      </Body>
+      {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
+      <HelpfulButton value="helpful" id={review.review_id.toString()} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        Helpful?
+      </HelpfulButton>
+      Yes
       {' '}
       {review.helpfulness}
-      <p onClick={(e) => { postFeedback(e.target) }} style={{cursor: 'pointer', textDecoration: 'underline'}}>
-        Helfpul?
-      </p>
-      <p onClick={(e) => { postFeedback(e.target); }} style={{cursor: 'pointer', textDecoration: 'underline'}}>
-      Report
-      </p>
+      <HelpfulButton value="report" onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        Report
+      </HelpfulButton>
       <hr />
-    </div>
+    </TileStyle>
   );
 }
 

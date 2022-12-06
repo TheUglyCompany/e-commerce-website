@@ -73,7 +73,11 @@ function Ratings({ product }) {
         total reviews, Sorted by
       </h4>
       <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-      <ReviewList reviews={reviews} onSelect={() => onSelect} reviewCount={reviewCount} />
+      <ReviewList
+        reviews={reviews}
+        onSelect={() => onSelect}
+        reviewCount={reviewCount}
+      />
     </div>
   );
 }
