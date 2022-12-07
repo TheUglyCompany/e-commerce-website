@@ -29,7 +29,7 @@ function App() {
       </h3>
       {/* <Overview product={product} />
       <RecommendedItems />
-      <QandA productId={product.id} /> */}
+      <QandA product={product} /> */}
       <h4> Ratings & Reviews </h4>
       <Ratings product={product} />
     </div>

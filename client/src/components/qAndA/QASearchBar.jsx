@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 
-function QASearchBar({ setCurrQuestionList, questionList }) {
+function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
   const [query, setQuery] = useState('');
 
   function handleSearch(event) {
     setQuery(event.target.value);
   }
 
-  function handleSort() {
-    setCurrQuestionList(questionList.filter((question) => {
-      if (question.includes(query)) {
-        return question;
-      }
-    }));
+  function handleSort(event) {
+    event.preventDefault();
+    if (query.length < 3) {
+      setCurrQuestionList(questionList);
+    } else {
+      setCurrQuestionList(questionList.results.filter((question) => {
+        if (question.question_body.includes(query)) {
+          return question;
+        }
+      }));
+    }
+    console.log(currQuestionList);
   }
 
   return (
