@@ -5,21 +5,11 @@ diplay: inline-flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: flex-start;
-width: 80%;
+width: 100%;
 max-height: 100vh;
 overflow: auto;
 `;
 
-const OuterMostLayer = styled.div`
-
-`;
-
-const ShowMore = styled.button`
-flex-direction: row;
-`;
-
 export {
   Reviews,
-  ShowMore,
-  OuterMostLayer,
 };

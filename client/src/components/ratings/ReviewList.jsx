@@ -4,13 +4,9 @@ import ReviewListTile from './ReviewListTile';
 import API_KEY from '../../../config';
 import {
   Reviews,
-  ShowMore,
-  OuterMostLayer,
 } from './ReviewList.style';
 
-function ReviewList({ reviews, reviewCount, filter }) {
-  const [renderCount, setRenderCount] = useState(2);
-
+function ReviewList({ reviews, renderCount, filter }) {
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
@@ -26,7 +22,6 @@ function ReviewList({ reviews, reviewCount, filter }) {
   }
   let count = 0;
   return (
-    <OuterMostLayer>
       <Reviews>
         {
         reviews.map((review) => { // map is probably the wrong tool for this,
@@ -49,10 +44,7 @@ function ReviewList({ reviews, reviewCount, filter }) {
         })
         }
       </Reviews>
-      {reviewCount <= renderCount ? null
-        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
-      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
-    </OuterMostLayer>
+
   );
 }
 

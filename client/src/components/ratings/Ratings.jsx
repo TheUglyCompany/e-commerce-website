@@ -9,9 +9,12 @@ import {
   RatingsAndReviews,
   RatingStyle,
   ReviewStyle,
+  OuterMostLayer,
+  ShowMore,
 } from './Ratings.style';
 
 function Ratings({ product }) {
+  const [renderCount, setRenderCount] = useState(2);
   const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
   const [ready, setReady] = useState(false);
@@ -78,8 +81,10 @@ function Ratings({ product }) {
   let reviewCount = 0;
   reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
+    <OuterMostLayer>
     <RatingsAndReviews>
       <RatingStyle>
+      <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
       </RatingStyle>
       <ReviewStyle>
@@ -92,11 +97,15 @@ function Ratings({ product }) {
         <ReviewList
           reviews={reviews}
           onSelect={() => onSelect}
-          reviewCount={reviewCount}
+          renderCount={renderCount}
           filter={filter}
         />
       </ReviewStyle>
     </RatingsAndReviews>
+      {reviewCount <= renderCount ? null
+        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
+      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
+    </OuterMostLayer>
   );
 }
 

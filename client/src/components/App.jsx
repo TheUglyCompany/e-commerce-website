@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
-      .then((response) => { setProduct(response.data[1]); })
+      .then((response) => { setProduct(response.data[0]); })
       .catch((err) => console.log(err.message));
   }, []);
   useEffect(() => {
@@ -30,7 +30,6 @@ function App() {
       {/* <Overview product={product} />
       <RecommendedItems />
       <QandA product={product} /> */}
-      <h4> Ratings & Reviews </h4>
       <Ratings product={product} />
     </div>
   );
