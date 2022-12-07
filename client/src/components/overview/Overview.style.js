@@ -19,13 +19,25 @@ const Gallery = styled.div`
 `;
 
 const GalleryBig = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+`;
+
+const ImageBig = styled.img`
+  src: ${(props) => `url(${props.src})`};
+  flex-shrink: 0;
+  /* height: 500px; */
+  max-width: 500px;
+  max-height: 500px;
 `;
 
 const Details = styled.div`
   float: right;
   display: block;
   width: 40%;
+  background: white;
   /* border: 1px solid black; */
   padding: 10px;
 `;
@@ -112,21 +124,21 @@ const Purchase = styled.div`
   /* border: 1px solid black; */
 `;
 
-// const Button = styled.button`
-//   background: transparent;
-//   border-radius: 1px;
-//   border: 1px solid black;
-//   color: black;
-//   padding: 10px;
-//   margin: 5px 0px;
-//   width: 200px;
-//   cursor: pointer;
-//   font-family: Roboto;
-//   font-weight: bold;
-//   font-size: 16px;
-//   height: 50px;
-//   float: left;
-// `;
+const Button = styled.button`
+  background: white;
+  border-radius: 1px;
+  border: 1px solid black;
+  color: black;
+  padding: 5px;
+  margin: 10px;
+  width: 200px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 15px;
+  height: 40px;
+  /* display: block; */
+`;
 
 const Dd = styled.div`
   width: 150px;
@@ -190,9 +202,11 @@ export {
   Ov,
   Gallery,
   GalleryBig,
+  ImageBig,
   Details,
   Category,
   Name,
+  Button,
   Price,
   SalePrice,
   Desc,

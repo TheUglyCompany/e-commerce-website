@@ -7,6 +7,7 @@ import {
   Ov,
   Gallery,
   GalleryBig,
+  ImageBig,
   Details,
   Category,
   Name,
@@ -20,6 +21,7 @@ import {
   DdBttn,
   DdContent,
   DdItem,
+  Button,
 } from './Overview.style';
 
 function Overview({ product }) {
@@ -53,109 +55,109 @@ function Overview({ product }) {
   // console.log('OV > styleSelected: ', styleSelected.photos);
 
   return !ready ? <>App is not ready</> : (
-    <div>
 
-      <Ov>
-        <Gallery>
-          <GalleryBig>
-            {styleSelected.photos !== undefined
-              ? <img src={styleSelected?.photos[0].url} height="500px" alt="" /> : null}
-          </GalleryBig>
-        </Gallery>
-        <Details>
-          <Category>{product.category.toUpperCase()}</Category>
-          <Name>{product.name}</Name>
-          <Price>
-            $
-            {styleSelected.sale_price
-              ? (
+    <Ov>
+      <Gallery>
+        <GalleryBig>
+          {styleSelected.photos !== undefined
+            ? <ImageBig src={styleSelected?.photos[0].url} alt="" /> : null}
+        </GalleryBig>
+      </Gallery>
+      <Details>
+        <Category>{product.category.toUpperCase()}</Category>
+        <Name>{product.name}</Name>
+        <Price>
+          $
+          {styleSelected.sale_price
+            ? (
+              <span>
+                <strike>{styleSelected.original_price}</strike>
+                &nbsp;
+                <SalePrice>{styleSelected.sale_price}</SalePrice>
+              </span>
+            )
+            : styleSelected.original_price}
+        </Price>
+        <Desc>
+          <em>
+            &quot;
+            {product.slogan}
+            &quot;
+          </em>
+        </Desc>
+        <Desc>
+          {product.description}
+        </Desc>
+        <Styles>
+          <StyleHeader>
+            STYLE:&nbsp;
+            <StyleSelected>
+              {styleSelected && (
                 <span>
-                  <strike>{styleSelected.original_price}</strike>
-                  &nbsp;
-                  <SalePrice>{styleSelected.sale_price}</SalePrice>
+                  {styleSelected.name?.toUpperCase()}
                 </span>
-              )
-              : styleSelected.original_price}
-          </Price>
-          <Desc>
-            <em>
-              &quot;
-              {product.slogan}
-              &quot;
-            </em>
-          </Desc>
-          <Desc>
-            {product.description}
-          </Desc>
-          <Styles>
-            <StyleHeader>
-              STYLE:&nbsp;
-              <StyleSelected>
-                {styleSelected && (
-                  <span>
-                    {styleSelected.name?.toUpperCase()}
-                  </span>
-                )}
-              </StyleSelected>
-            </StyleHeader>
-            <div>
-              {styleOpts.map((styleOpt, index) => (
-                <OVstyleImg
-                  styleOpts={styleOpts}
-                  styleOpt={styleOpt}
-                  index={index}
-                  setSkuOptions={setSkuOptions}
-                  setStyleSelected={setStyleSelected}
-                />
-              ))}
-            </div>
-          </Styles>
-
-          <div>
-            <Dd>
-              <DdBttn onClick={() => { setBttnSizeActive(!bttnSizeActive); }}>
-                {bttnSize}
-                &nbsp;&nbsp;
-                <span>
-                  <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
-                </span>
-              </DdBttn>
-              {bttnSizeActive && (
-                <DdContent>
-                  {skuOptions.map((skuOption) => (
-                    <DdItem onClick={(e) => {
-                      setBttnSize(e.target.textContent);
-                      setBttnSizeActive(false);
-                      setCurrentSku(skuOption);
-                    }}
-                    >
-                      {skuOption.size}
-                    </DdItem>
-                  ))}
-                </DdContent>
               )}
-            </Dd>
-
-            {currentSku && (
-              <OVquantity
-                currentSku={currentSku}
-                bttnQntyActive={bttnQntyActive}
-                setBttnQntyActive={setBttnQntyActive}
-                bttnQnty={bttnQnty}
-                setBttnQnty={setBttnQnty}
+            </StyleSelected>
+          </StyleHeader>
+          <div>
+            {styleOpts.map((styleOpt, index) => (
+              <OVstyleImg
+                styleOpts={styleOpts}
+                styleOpt={styleOpt}
+                index={index}
+                setSkuOptions={setSkuOptions}
+                setStyleSelected={setStyleSelected}
               />
-            )}
+            ))}
           </div>
+        </Styles>
 
-        </Details>
-      </Ov>
-      {/* <Ov>
-        <Slogan>
-          "{product.slogan}"
-        </Slogan>
-      </Ov> */}
+        <div>
+          <Dd>
+            <DdBttn onClick={() => { setBttnSizeActive(!bttnSizeActive); }}>
+              {bttnSize}
+              &nbsp;&nbsp;
+              <span>
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
+              </span>
+            </DdBttn>
+            {bttnSizeActive && (
+              <DdContent>
+                {skuOptions.map((skuOption) => (
+                  <DdItem onClick={(e) => {
+                    setBttnSize(e.target.textContent);
+                    setBttnSizeActive(false);
+                    setCurrentSku(skuOption);
+                  }}
+                  >
+                    {skuOption.size}
+                  </DdItem>
+                ))}
+              </DdContent>
+            )}
+          </Dd>
 
-    </div>
+          {currentSku && (
+            <OVquantity
+              currentSku={currentSku}
+              bttnQntyActive={bttnQntyActive}
+              setBttnQntyActive={setBttnQntyActive}
+              bttnQnty={bttnQnty}
+              setBttnQnty={setBttnQnty}
+            />
+          )}
+        </div>
+        <Button>
+          ADD TO CART
+        </Button>
+        <div>
+          <span>
+            <img src="./assets/fb.png" alt="" />
+            s
+          </span>
+        </div>
+      </Details>
+    </Ov>
   );
 }
 
