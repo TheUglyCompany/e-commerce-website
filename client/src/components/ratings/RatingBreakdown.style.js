@@ -8,7 +8,7 @@ const StarChart = styled.div`
   width: 300px;
 `;
 
-const BarContainer = styled.div`
+const RowFormat = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -38,6 +38,12 @@ const GreenBar = styled.div`
   height: 20px;
 `;
 
+const AverageTitle = styled.div`
+  font-size: 40px;
+  font-weight: bold;
+  margin-right: 25px;
+`;
+
 const GrayBar = styled(GreenBar)`
   background-color: gray;
   margin-left: 0%;
@@ -46,7 +52,8 @@ export {
   GrayBar,
   GreenBar,
   StarChart,
-  BarContainer,
+  RowFormat,
   StarButton,
   ResetFilter,
+  AverageTitle,
 };

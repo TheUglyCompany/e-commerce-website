@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const TileStyle = styled.div`
 flex-direction: column;
 align-items: flex-start;
-width: 600px;
+flex: 1;
 border-style: solid;
 `;
 

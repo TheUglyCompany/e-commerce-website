@@ -4,9 +4,10 @@ import {
   StarChart,
   GreenBar,
   GrayBar,
-  BarContainer,
+  RowFormat,
   StarButton,
   ResetFilter,
+  AverageTitle,
 } from './RatingBreakdown.style';
 
 // TODO: say what percentage of people recommend this product
@@ -68,12 +69,14 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
   // converting filter to array
   return !metaData.ratings ? null : (
     <div>
-      <h1>{avg}</h1>
-      <FiveStarRating />
+      <RowFormat>
+        <AverageTitle>{avg}</AverageTitle>
+        <FiveStarRating />
+      </RowFormat>
       {isFilter ? <ResetFilter onClick={() => resetState(true)}>Reset Filter</ResetFilter> : null}
       <StarChart>
         {percentages.map((percentage, index) => (
-          <BarContainer>
+          <RowFormat key={index}>
             <StarButton value={index + 1} onClick={(e) => filterBy(e)}>
               {index + 1}
               {' '}
@@ -81,7 +84,7 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
             </StarButton>
             <GreenBar inputWidth={`${percentage}%`} />
             <GrayBar inputWidth={`${(75 - percentage)}%`} />
-          </BarContainer>
+          </RowFormat>
         ))}
       </StarChart>
     </div>

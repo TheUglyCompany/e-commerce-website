@@ -79,17 +79,17 @@ function Ratings({ product }) {
   reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
     <RatingsAndReviews>
-      <h4> Ratings & Reviews </h4>
-      <h4>
-        { reviewCount }
-        {' '}
-        total reviews, Sorted by
-      </h4>
-      <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
       <RatingStyle>
+        <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
       </RatingStyle>
       <ReviewStyle>
+        <h4>
+          { reviewCount }
+          {' '}
+          total reviews, Sorted by
+        </h4>
+        <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
         <ReviewList
           reviews={reviews}
           onSelect={() => onSelect}
