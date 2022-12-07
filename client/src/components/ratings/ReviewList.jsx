@@ -7,7 +7,7 @@ import {
   ShowMore,
 } from './ReviewList.style';
 
-function ReviewList({ reviews, reviewCount }) {
+function ReviewList({ reviews, reviewCount, filter }) {
   const [renderCount, setRenderCount] = useState(2);
 
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
@@ -29,8 +29,8 @@ function ReviewList({ reviews, reviewCount }) {
       {
       reviews.map((review) => { // map is probably the wrong tool for this,
         // because I can't break out of the loop early, any suggestions?
-        count += 1;
-        if (count <= renderCount) {
+        if (count < renderCount && filter[review.rating.toString()]) {
+          count += 1;
           return (
             <div>
               <ReviewListTile

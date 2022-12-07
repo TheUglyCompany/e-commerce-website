@@ -23,6 +23,13 @@ const StarButton = styled.button`
   width: 20%
 `;
 
+const ResetFilter = styled(StarButton)`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+
 const GreenBar = styled.div`
   box-sizing: border-box;
   background-color: green;
@@ -41,4 +48,5 @@ export {
   StarChart,
   BarContainer,
   StarButton,
+  ResetFilter,
 };

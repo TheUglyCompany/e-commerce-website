@@ -16,6 +16,13 @@ function Ratings({ product }) {
   const [reviews, setReviews] = useState([]);
   const [ready, setReady] = useState(false);
   const [sort, setSort] = useState('relevant');
+  const [filter, setFilter] = useState({
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+    5: true,
+  });
   // initial API call
   /*
   page: selects the page to return
@@ -80,13 +87,14 @@ function Ratings({ product }) {
       </h4>
       <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
       <RatingStyle>
-        <RatingBreakdown metaData={metaData} />
+        <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
       </RatingStyle>
       <ReviewStyle>
         <ReviewList
           reviews={reviews}
           onSelect={() => onSelect}
           reviewCount={reviewCount}
+          filter={filter}
         />
       </ReviewStyle>
     </RatingsAndReviews>
