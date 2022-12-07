@@ -3,6 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../../config';
 import OVquantity from './OVquantity';
 import OVstyleImg from './OVstyleImg';
+// import fb from './assets/fb.png';
 import {
   Ov,
   Gallery,
@@ -152,8 +153,7 @@ function Overview({ product }) {
         </Button>
         <div>
           <span>
-            <img src="./assets/fb.png" alt="" />
-            s
+            <img src="./assets/fb.png" />
           </span>
         </div>
       </Details>
