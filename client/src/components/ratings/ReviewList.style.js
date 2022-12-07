@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 const Reviews = styled.div`
-display: flex;
+diplay: inline-flex;
 flex-direction: column;
-align-items: flex-end;
+justify-content: flex-start;
+align-items: flex-start;
+width: 80%;
 max-height: 100vh;
 overflow: auto;
 `;
 
 const ShowMore = styled.button`
-display: flex;
 flex-direction: row;
 `;
 

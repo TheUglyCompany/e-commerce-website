@@ -26,7 +26,6 @@ function ReviewList({ reviews, reviewCount }) {
   let count = 0;
   return (
     <Reviews>
-      <hr />
       {
       reviews.map((review) => { // map is probably the wrong tool for this,
         // because I can't break out of the loop early, any suggestions?
@@ -35,8 +34,8 @@ function ReviewList({ reviews, reviewCount }) {
           return (
             <div>
               <ReviewListTile
-                review={review}
                 key={review.review_id}
+                review={review}
                 postFeedback={(feedbackType, reviewId) => { postFeedback(feedbackType, reviewId); }}
               />
             </div>
