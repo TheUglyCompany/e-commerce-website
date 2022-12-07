@@ -7,6 +7,7 @@ import {
   CardInfo,
   TileStyle,
 } from './ReviewListTile.style';
+import FiveStarRating from '../sharedComponents/FiveStarRating';
 
 // convert the below to HelpfulButtons
 
@@ -19,6 +20,7 @@ function ReviewListTile({ review, postFeedback }) {
           Rating:
           {' '}
           {review.rating}
+          <FiveStarRating />
         </div>
         <div>
           {' '}
