@@ -20,16 +20,16 @@ function AnswerList({ questionId }) {
         console.log('There is an error in AnswerList: ', error);
       });
   }, []);
-
   return (
     <div>
-      {answerList.map((answer) => {
+      {answerList.map((answer, index) => {
         count += 1;
         if (count <= renderCount) {
           return (
-            <Answer answer={answer} />
+            <Answer answer={answer} key={index} />
           );
         }
+        return null;
       })}
       {answerList.length >= 2 && count > renderCount
         ? (

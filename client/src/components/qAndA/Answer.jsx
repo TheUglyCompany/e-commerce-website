@@ -43,6 +43,10 @@ function Answer({ answer }) {
       <br />
       <strong>A: </strong>
       {answer.body}
+      {answer.photos?.length !== 0
+        ? answer.photos.map((photo) => (
+          <img src={photo.url} alt="product" />
+        )) : null}
       <br />
       <br />
       <div id="signature">

@@ -3,7 +3,7 @@ import axios from 'axios';
 import AnswerList from './AnswerList';
 import Modal from './Modal';
 import API_KEY from '../../../config';
-import { UnderlineTextButton, HelpfulButton } from './QandA.style';
+import { UnderlineTextButton, HelpfulButton, QuestionStyle } from './QandA.style';
 
 function Question({ question, productName }) {
   const [showModal, setShowModal] = useState(false);
@@ -39,10 +39,9 @@ function Question({ question, productName }) {
         console.log('There is an error in handleQuestionReport: ', error);
       });
   }
-  console.log(question);
 
   return (
-    <div id="Question">
+    <QuestionStyle>
       {' '}
       <strong>
         Q:
@@ -99,7 +98,7 @@ function Question({ question, productName }) {
       <div id="AnswerList">
         <AnswerList questionId={question.question_id} />
       </div>
-    </div>
+    </QuestionStyle>
   );
 }
 

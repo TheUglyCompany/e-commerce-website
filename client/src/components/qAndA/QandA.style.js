@@ -39,19 +39,24 @@ const ModalContainer = styled.div`
 
 const ModalContent = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 20%;
+  left: 20%;
   line-height: 1.4;
   background: #f1f1f1;
-  padding: 14px 28px;
+  padding: 14px 35px;
   border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
+  min-height: 300px;
+  max-height: 100%;
+  max-width: 100%;
+  min-width: 500px;
 `;
 
 const OutermostLayer = styled.div`
   max-height: 50vh;
   overflow: auto;
+`;
+
+const QuestionStyle = styled.div`
 `;
 // const ModalTitle = styled.h1`
 //   margin: 0;
@@ -74,4 +79,5 @@ export {
   ModalContainer,
   ModalContent,
   OutermostLayer,
+  QuestionStyle,
 };

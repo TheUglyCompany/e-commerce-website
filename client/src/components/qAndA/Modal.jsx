@@ -12,7 +12,7 @@ function Modal({
     textInput: '',
     nameInput: '',
     emailInput: '',
-    imageInput: [],
+    imageInput: '',
   });
 
   function handleQuestionSubmit() {
@@ -35,8 +35,7 @@ function Modal({
     setShowModal(false);
   }
 
-  function handleAnswerSubmit(event) {
-
+  function handleAnswerSubmit() {
     axios.post(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
       {
@@ -53,21 +52,32 @@ function Modal({
       .catch((error) => {
         console.log('There is an error in Answer Modal: ', error);
       });
+    setShowModal(false);
   }
 
   function handleFileEvent(event) {
-    const chosenFiles = Array.prototype.slice.call(event.target.files);
+    const chosenFiles = Array.from(event.target.files);
+    const fileArray = [];
+    chosenFiles.forEach((file) => {
+      fileArray.push(file.name);
+    });
     setForm({
       ...form,
-      imageInput: chosenFiles,
+      imageInput: fileArray,
     });
-    console.log(form.imageInput);
   }
 
   if (location === 'question') {
     return (
       <ModalContainer>
         <ModalContent>
+          <span
+            onClick={() => {
+              setShowModal(false);
+            }}
+          >
+            X
+          </span>
           <h1>Ask Your Question</h1>
           <h3>
             About the
@@ -142,6 +152,13 @@ function Modal({
   return (
     <ModalContainer>
       <ModalContent>
+        <span
+          onClick={() => {
+            setShowModal(false);
+          }}
+        >
+          X
+        </span>
         <h1>Submit Your Answer</h1>
         <h3>
           {productName}
@@ -207,7 +224,6 @@ function Modal({
         <label>
           Image Upload:
           <input
-            value={form.imageInput}
             type="file"
             required="false"
             multiple
@@ -219,7 +235,6 @@ function Modal({
           onClick={handleAnswerSubmit}
         >
           Submit
-
         </button>
       </ModalContent>
     </ModalContainer>

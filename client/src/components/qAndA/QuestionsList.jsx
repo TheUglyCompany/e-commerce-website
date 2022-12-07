@@ -38,79 +38,48 @@ function QuestionsList({ productId, productName }) {
         currQuestionList={currQuestionList}
         questionList={questionList}
       />
-      {
-        currQuestionList.results !== undefined && currQuestionList.results.length !== 0
-          ? (
-            <OutermostLayer>
-              {currQuestionList.results.map((question) => {
-                count += 1;
-                if (count <= renderCount) {
-                  return (
-                    <Question
-                      question={question}
-                      productName={productName}
-                    />
-                  );
-                }
-                return null;
-              })}
-              {currQuestionList.results.length > 2 ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setRenderCount(renderCount + 2);
-                  }}
-                >
-                  More Answered Questions
-                </button>
-              ) : null}
-              <button
-                type="button"
-                onClick={() => {
-                  setShowModal(true);
-                  setLocation('question');
-                }}
-              >
-                Add a Question
-              </button>
-              {showModal
-                ? (
-                  <Modal
-                    setShowModal={setShowModal}
-                    productId={productId}
-                    productName={productName}
-                    location={location}
-                  />
-                ) : null}
-            </OutermostLayer>
-          )
-          : (
-            <div>
-              No Questions Found
-              <div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowModal(true);
-                    setLocation('question');
-                  }}
-                >
-                  Ask a Question
-                </button>
-                {showModal
-                  ? (
-                    <Modal
-                      setShowModal={setShowModal}
-                      productId={productId}
-                      productName={productName}
-                      location={location}
-                    />
-                  )
-                  : null}
-              </div>
-            </div>
-          )
-      }
+      <OutermostLayer>
+        {currQuestionList.results?.length !== 0
+          ? currQuestionList.results?.map((question, key) => {
+            count += 1;
+            if (count <= renderCount) {
+              return (
+                <Question question={question} key={key} />
+              );
+            }
+            return null;
+          }) : <div> No Questions Found </div>}
+      </OutermostLayer>
+      {currQuestionList.results?.length > 2
+        ? (
+          <button
+            type="button"
+            onClick={() => { setRenderCount(renderCount + 2); }}
+          >
+            {' '}
+            More Questions
+            {' '}
+          </button>
+        )
+        : null }
+      <button
+        type="button"
+        onClick={() => {
+          setShowModal(true);
+          setLocation('question');
+        }}
+      >
+        Add a Question
+      </button>
+      {showModal
+        ? (
+          <Modal
+            setShowModal={setShowModal}
+            productId={productId}
+            productName={productName}
+            location={location}
+          />
+        ) : null}
     </div>
   );
 }
