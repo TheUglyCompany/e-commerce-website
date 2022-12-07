@@ -4,17 +4,19 @@ const UnderlineTextButton = styled.button`
   background: none;
   border: none;
   padding: 0;
-  color: grey;
+  color: black;
   cursor: pointer;
   text-decoration: underline;
+  font-size: 18px;
 `;
 
 const HelpfulButton = styled.button`
   background: none;
   border: none;
   padding: 0;
-  color: grey;
+  color: black;
   cursor: pointer;
+  font-size: 18px;
 `;
 
 const LoadMoreButton = styled.button`
@@ -24,6 +26,7 @@ const LoadMoreButton = styled.button`
   padding: 0;
   color: black;
   cursor: pointer;
+  font-size: 18px;
 `;
 
 const ModalContainer = styled.div`
@@ -54,9 +57,43 @@ const ModalContent = styled.div`
 const OutermostLayer = styled.div`
   max-height: 50vh;
   overflow: auto;
+  border: 1px solid;
 `;
 
 const QuestionStyle = styled.div`
+  justify-content: space-around;
+  border: 1px solid;
+  padding: 10px;
+  margin: 5px 5px;
+  letter-spacing: 0.1em;
+  font-size: 20px;
+`;
+
+const AnswerStyle = styled.div`
+  border: 1px solid;
+  padding: 10px;
+`;
+
+const SearchBarStyle = styled.div`
+  position: block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const SearchBarInput = styled.input`
+  type: text;
+  width: 90%;
+  height: 25px;
+  font-size: 20px;
+  line-height: 3;
+  border-radius: 5px;
+`;
+
+const ButtonSpan = styled.span`
+  display: flex;
+  float: right;
+  letter-spacing: 0.1em;
 `;
 // const ModalTitle = styled.h1`
 //   margin: 0;
@@ -80,4 +117,8 @@ export {
   ModalContent,
   OutermostLayer,
   QuestionStyle,
+  AnswerStyle,
+  SearchBarStyle,
+  ButtonSpan,
+  SearchBarInput,
 };

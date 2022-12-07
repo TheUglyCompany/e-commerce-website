@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import Answer from './Answer';
-import { LoadMoreButton } from './QandA.style';
+import { LoadMoreButton, AnswerStyle } from './QandA.style';
 
 function AnswerList({ questionId }) {
   const [answerList, setAnswerList] = useState([]);
@@ -21,7 +21,7 @@ function AnswerList({ questionId }) {
       });
   }, []);
   return (
-    <div>
+    <AnswerStyle>
       {answerList.map((answer, index) => {
         count += 1;
         if (count <= renderCount) {
@@ -58,7 +58,7 @@ function AnswerList({ questionId }) {
         </LoadMoreButton>
       ) : null}
       <br />
-    </div>
+    </AnswerStyle>
   );
 }
 

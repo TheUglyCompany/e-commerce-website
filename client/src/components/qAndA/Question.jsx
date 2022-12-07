@@ -3,7 +3,9 @@ import axios from 'axios';
 import AnswerList from './AnswerList';
 import Modal from './Modal';
 import API_KEY from '../../../config';
-import { UnderlineTextButton, HelpfulButton, QuestionStyle } from './QandA.style';
+import {
+  UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan,
+} from './QandA.style';
 
 function Question({ question, productName }) {
   const [showModal, setShowModal] = useState(false);
@@ -49,41 +51,43 @@ function Question({ question, productName }) {
         {question.question_body}
       </strong>
       {' '}
-      <HelpfulButton
-        type="button"
-        onClick={() => handleHelpfullQuestions}
-      >
-        Helpful?
+      <ButtonSpan>
+        <HelpfulButton
+          type="button"
+          onClick={() => handleHelpfullQuestions}
+        >
+          Helpful?
 
-      </HelpfulButton>
-      {' '}
-      <u>Yes</u>
-      {' '}
-      (
-      {question.question_helpfulness}
-      )
-      {' '}
-      |
-      {' '}
-      <UnderlineTextButton
-        type="button"
-        onClick={() => handleQuestionReport}
-      >
-        Report
+        </HelpfulButton>
+        &nbsp;
+        <u>Yes</u>
+        {' '}
+        (
+        {question.question_helpfulness}
+        )
+        {' '}
+        |
+        &nbsp;
+        <UnderlineTextButton
+          type="button"
+          onClick={() => handleQuestionReport}
+        >
+          Report
 
-      </UnderlineTextButton>
-      {' '}
-      |
-      {' '}
-      <UnderlineTextButton
-        type="button"
-        onClick={() => {
-          setShowModal(true);
-          setLocation('answer');
-        }}
-      >
-        Add Answer
-      </UnderlineTextButton>
+        </UnderlineTextButton>
+        &nbsp;
+        |
+        &nbsp;
+        <UnderlineTextButton
+          type="button"
+          onClick={() => {
+            setShowModal(true);
+            setLocation('answer');
+          }}
+        >
+          Add Answer
+        </UnderlineTextButton>
+      </ButtonSpan>
       {showModal
         ? (
           <Modal

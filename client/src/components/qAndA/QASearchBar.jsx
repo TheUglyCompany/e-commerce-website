@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SearchBarStyle, SearchBarInput } from './QandA.style';
 
 function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
   const [query, setQuery] = useState('');
@@ -22,11 +23,10 @@ function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
   }
 
   return (
-    <div id="QuestionsSearchBar">
-      <input
-        type="text"
+    <SearchBarStyle>
+      <SearchBarInput
         placeholder="Have a question? Search for answers..."
-        onChange={handleSearch}
+        onChange={() => handleSearch}
       />
       <button
         type="submit"
@@ -35,7 +35,7 @@ function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
       >
         Search
       </button>
-    </div>
+    </SearchBarStyle>
   );
 }
 
