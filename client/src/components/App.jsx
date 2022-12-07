@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Ratings from './ratings/Ratings';
+import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
@@ -40,7 +40,7 @@ function App() {
       <Overview />
       <RecommendedItems product={product} cardClicked={cardClicked} />
       <QandA />
-      {/* <Ratings product={product} /> */}
+      <Ratings product={product} />
     </div>
   );
 }
