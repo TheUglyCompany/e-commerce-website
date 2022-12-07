@@ -22,9 +22,9 @@ const OuterMostLayer = styled.div`
   flex-direction: column;
 `;
 
-const ShowMore = styled.button`
-
-width: 20%
+const ButtonContainer = styled.span`
+  display: flex;
+  justify-content: center;
 `;
 
 export {
@@ -32,5 +32,5 @@ export {
   RatingStyle,
   ReviewStyle,
   OuterMostLayer,
-  ShowMore,
+  ButtonContainer,
 };

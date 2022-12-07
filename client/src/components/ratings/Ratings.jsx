@@ -10,8 +10,9 @@ import {
   RatingStyle,
   ReviewStyle,
   OuterMostLayer,
-  ShowMore,
+  ButtonContainer,
 } from './Ratings.style';
+import { Button } from '../overview/Overview.style';
 
 function Ratings({ product }) {
   const [renderCount, setRenderCount] = useState(2);
@@ -102,9 +103,11 @@ function Ratings({ product }) {
         />
       </ReviewStyle>
     </RatingsAndReviews>
-      {reviewCount <= renderCount ? null
-        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
-      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
+      <ButtonContainer>
+        {reviewCount <= renderCount ? null
+          : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
+        <Button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</Button>
+      </ButtonContainer>
     </OuterMostLayer>
   );
 }
