@@ -40,8 +40,16 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
     if (isAllTrue) {
       tempObj = resetState(false);
     }
-
     tempObj[event.target.value] = !tempObj[event.target.value];
+    let isAllFalse = true;
+    for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
+      if (tempObj[i.toString()]) {
+        isAllFalse = false;
+      }
+    }
+    if (isAllFalse) {
+      tempObj = resetState(true);
+    }
     setFilter(tempObj);
   }
 

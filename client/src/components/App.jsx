@@ -27,9 +27,9 @@ function App() {
       <h3>
         Wiliam Park, Charlie Um, Matthew Sigler, Jonathan Sindorf
       </h3>
-      {/* <Overview product={product} />
+      <Overview product={product} />
       <RecommendedItems />
-      <QandA product={product} /> */}
+      <QandA product={product} />
       <Ratings product={product} />
     </div>
   );
