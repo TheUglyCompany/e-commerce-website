@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const TileStyle = styled.div`
-display: flex;
 flex-direction: column;
 align-items: flex-start;
-width: 600px;
+flex: 1;
 border-style: solid;
 `;
 
@@ -13,13 +12,11 @@ flex-wrap: wrap;
 `;
 
 const HelpfulButton = styled.button`
-flex-direction: row;
 border: none;
 background-color: white;
 `;
 
 const CardInfo = styled.div`
-display: flex;
 `;
 
 const Body = styled.div`
