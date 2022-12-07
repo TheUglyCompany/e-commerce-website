@@ -8,6 +8,8 @@ import {
   StarButton,
 } from './RatingBreakdown.style';
 
+let avg = 0;
+
 function RatingBreakdown({ metaData }) {
   const percentages = [];
   // get review metadata
@@ -15,21 +17,27 @@ function RatingBreakdown({ metaData }) {
   console.log('allratings: ', metaData.ratings);// object with 1-5 as keys and a string of number of ratings
   const ratingsObj = metaData.ratings;
   // total
-  if (metaData.ratings) { //Todo: make this
+  if (metaData.ratings) { // calculating total amount of ratings
     const allRatings = (Number(ratingsObj['1']) + Number(ratingsObj['2']) + Number(ratingsObj['3']) + Number(ratingsObj['4']) + Number(ratingsObj['5']));
-
+    // calulating average
+    avg = (
+      (Number(ratingsObj['1'])
+        + (Number(ratingsObj['2']) * 2)
+        + (Number(ratingsObj['3']) * 3)
+        + (Number(ratingsObj['4']) * 4)
+        + (Number(ratingsObj['5']) * 5))
+        / allRatings
+    );
+    avg = +avg.toFixed(1);
     // adding percentages to array
     for (let i = 1; i <= 5; i += 1) { // 75% is 100% so I only multiply by 75
       percentages.push(((75 * Number(ratingsObj[i.toString()])) / allRatings));
     }
-    console.log(allRatings);
-    console.log(percentages);
   }
-
 
   return !metaData.ratings ? null : (
     <div>
-      RatingBreakdown
+      <h1>{avg}</h1>
       <FiveStarRating />
       <StarChart>
         {percentages.map((percentage, index) => (

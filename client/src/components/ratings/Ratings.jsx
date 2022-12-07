@@ -5,7 +5,11 @@ import 'react-dropdown/style.css';
 import ReviewList from './ReviewList';
 import API_KEY from '../../../config';
 import RatingBreakdown from './RatingBreakdown';
-import { RatingStyle } from './Ratings.style';
+import {
+  RatingsAndReviews,
+  RatingStyle,
+  ReviewStyle,
+} from './Ratings.style';
 
 function Ratings({ product }) {
   const [metaData, setMetaData] = useState({});
@@ -67,23 +71,25 @@ function Ratings({ product }) {
   let reviewCount = 0;
   reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
-    <RatingStyle>
-      <h2> Review List </h2>
+    <RatingsAndReviews>
+      <h4> Ratings & Reviews </h4>
       <h4>
         { reviewCount }
         {' '}
         total reviews, Sorted by
       </h4>
       <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-      <div>
+      <RatingStyle>
         <RatingBreakdown metaData={metaData} />
-      </div>
-      <ReviewList
-        reviews={reviews}
-        onSelect={() => onSelect}
-        reviewCount={reviewCount}
-      />
-    </RatingStyle>
+      </RatingStyle>
+      <ReviewStyle>
+        <ReviewList
+          reviews={reviews}
+          onSelect={() => onSelect}
+          reviewCount={reviewCount}
+        />
+      </ReviewStyle>
+    </RatingsAndReviews>
   );
 }
 
