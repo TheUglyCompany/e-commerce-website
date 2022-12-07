@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../../config';
 import OVquantity from './OVquantity';
 import OVstyleImg from './OVstyleImg';
-// import fb from './assets/fb.png';
+import OVsocial from './OVsocial';
 import {
   Ov,
   Gallery,
@@ -23,6 +23,7 @@ import {
   DdContent,
   DdItem,
   Button,
+  FavButton,
 } from './Overview.style';
 
 function Overview({ product }) {
@@ -151,11 +152,12 @@ function Overview({ product }) {
         <Button>
           ADD TO CART
         </Button>
-        <div>
-          <span>
-            <img src="./assets/fb.png" />
-          </span>
-        </div>
+
+        <FavButton>
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" width="15px" alt="" />
+        </FavButton>
+
+        <OVsocial />
       </Details>
     </Ov>
   );
