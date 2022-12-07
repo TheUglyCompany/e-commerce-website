@@ -10,6 +10,10 @@ max-height: 100vh;
 overflow: auto;
 `;
 
+const OuterMostLayer = styled.div`
+
+`;
+
 const ShowMore = styled.button`
 flex-direction: row;
 `;
@@ -17,4 +21,5 @@ flex-direction: row;
 export {
   Reviews,
   ShowMore,
+  OuterMostLayer,
 };

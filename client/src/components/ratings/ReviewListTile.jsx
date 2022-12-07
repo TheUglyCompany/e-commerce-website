@@ -33,11 +33,12 @@ function ReviewListTile({ review, postFeedback }) {
       <CardSummary>
         {review.summary}
       </CardSummary>
-      {review.recommend ? <div>I recommend this product</div> : null}
-      <br />
       <Body>
         {review.body}
       </Body>
+
+      {review.recommend ? <OwnerResponse>I recommend this product</OwnerResponse> : null}
+
       {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
       <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
         Helpful?
@@ -49,7 +50,6 @@ function ReviewListTile({ review, postFeedback }) {
       <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
         Report
       </HelpfulButton>
-      <hr />
     </TileStyle>
   );
 }

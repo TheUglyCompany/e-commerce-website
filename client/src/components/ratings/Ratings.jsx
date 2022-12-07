@@ -80,7 +80,6 @@ function Ratings({ product }) {
   return !ready ? <>Ratings are not ready</> : (
     <RatingsAndReviews>
       <RatingStyle>
-        <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
       </RatingStyle>
       <ReviewStyle>

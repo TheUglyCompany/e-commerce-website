@@ -5,6 +5,7 @@ import API_KEY from '../../../config';
 import {
   Reviews,
   ShowMore,
+  OuterMostLayer,
 } from './ReviewList.style';
 
 function ReviewList({ reviews, reviewCount, filter }) {
@@ -25,29 +26,33 @@ function ReviewList({ reviews, reviewCount, filter }) {
   }
   let count = 0;
   return (
-    <Reviews>
-      {
-      reviews.map((review) => { // map is probably the wrong tool for this,
-        // because I can't break out of the loop early, any suggestions?
-        if (count < renderCount && filter[review.rating.toString()]) {
-          count += 1;
-          return (
-            <div>
-              <ReviewListTile
-                key={review.review_id}
-                review={review}
-                postFeedback={(feedbackType, reviewId) => { postFeedback(feedbackType, reviewId); }}
-              />
-            </div>
-          );
+    <OuterMostLayer>
+      <Reviews>
+        {
+        reviews.map((review) => { // map is probably the wrong tool for this,
+          // because I can't break out of the loop early, any suggestions?
+          if (count < renderCount && filter[review.rating.toString()]) {
+            count += 1;
+            return (
+              <div>
+                <ReviewListTile
+                  key={review.review_id}
+                  review={review}
+                  postFeedback={(feedbackType, reviewId) => {
+                    postFeedback(feedbackType, reviewId);
+                  }}
+                />
+              </div>
+            );
+          }
+          return null;
+        })
         }
-        return null;
-      })
-      }
+      </Reviews>
       {reviewCount <= renderCount ? null
         : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
       <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
-    </Reviews>
+    </OuterMostLayer>
   );
 }
 
