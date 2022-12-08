@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import Answer from './Answer';
-import { LoadMoreButton } from './QandA.style';
+import {
+  LoadMoreButton, AnswerStyle, LoadMoreButtonSpan, NoAnswerStyle,
+} from './QandA.style';
 
-function AnswerList({ questionId }) {
+function AnswerList({ questionId, productName }) {
   const [answerList, setAnswerList] = useState([]);
   const [showMoreAnswers, setShowMoreAnswers] = useState(false);
   const [renderCount, setRenderCount] = useState(2);
@@ -21,44 +23,52 @@ function AnswerList({ questionId }) {
       });
   }, []);
   return (
-    <div>
-      {answerList.map((answer, index) => {
-        count += 1;
-        if (count <= renderCount) {
-          return (
-            <Answer answer={answer} key={index} />
-          );
-        }
-        return null;
-      })}
-      {answerList.length >= 2 && count > renderCount
-        ? (
+    <AnswerStyle>
+      {answerList?.length !== 0
+        ? answerList.map((answer, index) => {
+          count += 1;
+          if (count <= renderCount) {
+            return (
+              <Answer
+                answer={answer}
+                key={index}
+                productName={productName}
+              />
+            );
+          }
+          return null;
+        }) : <NoAnswerStyle>No Answers Found</NoAnswerStyle>}
+      <LoadMoreButtonSpan>
+        {answerList.length >= 2 && count > renderCount
+          ? (
+            <LoadMoreButton
+              type="button"
+              onClick={() => {
+                setRenderCount(renderCount + 2);
+                setShowMoreAnswers(true);
+              }}
+            >
+              LOAD MORE ANSWERS
+            </LoadMoreButton>
+          )
+          : null}
+        &nbsp;
+        &nbsp;
+        {showMoreAnswers ? (
           <LoadMoreButton
             type="button"
             onClick={() => {
-              setRenderCount(renderCount + 2);
-              setShowMoreAnswers(true);
+              setRenderCount(2);
+              setShowMoreAnswers(false);
             }}
           >
-            LOAD MORE ANSWERS
-          </LoadMoreButton>
-        )
-        : null}
-      <br />
-      {showMoreAnswers ? (
-        <LoadMoreButton
-          type="button"
-          onClick={() => {
-            setRenderCount(2);
-            setShowMoreAnswers(false);
-          }}
-        >
-          HIDE MORE ANSWERS
+            HIDE MORE ANSWERS
 
-        </LoadMoreButton>
-      ) : null}
-      <br />
-    </div>
+          </LoadMoreButton>
+        ) : null}
+      </LoadMoreButtonSpan>
+      &nbsp;
+    </AnswerStyle>
   );
 }
 

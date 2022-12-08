@@ -2,7 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import API_KEY from '../../../config';
-import { UnderlineTextButton, HelpfulButton } from './QandA.style';
+import {
+  UnderlineTextButton,
+  HelpfulButton,
+  AnswerImageStyle, YesStyle,
+} from './QandA.style';
 
 function Answer({ answer }) {
   const { date } = answer;
@@ -40,46 +44,50 @@ function Answer({ answer }) {
   }
   return (
     <div id="answer">
-      <br />
       <strong>A: </strong>
       {answer.body}
-      {answer.photos?.length !== 0
-        ? answer.photos.map((photo) => (
-          <img src={photo.url} alt="product" />
-        )) : null}
-      <br />
-      <br />
-      <div id="signature">
+      <div>
+        {answer.photos?.length !== 0
+          ? answer.photos.map((photo) => (
+            <AnswerImageStyle src={photo.url} alt="product" />
+          )) : null}
+      </div>
+      <YesStyle>
         by
         {' '}
         {answer.answerer_name}
         ,
         {' '}
         {formatDate}
-        {' '}
+        &nbsp;
+        &nbsp;
         |
-        {' '}
+        &nbsp;
+        &nbsp;
         <HelpfulButton
           type="button"
           onClick={() => handleHelpfulAnswer}
         >
           Helpful?
         </HelpfulButton>
-        {' '}
+        &nbsp;
         <u>Yes</u>
         {' '}
         (
         {answer.helpfulness}
-        ) |
-        {' '}
+        )
+        &nbsp;
+        |
+        &nbsp;
+        &nbsp;
         <UnderlineTextButton
           type="button"
           onClick={() => handleAnswerReport}
         >
           Report
         </UnderlineTextButton>
-        <br />
-      </div>
+        <hr />
+      </YesStyle>
     </div>
   );
 }

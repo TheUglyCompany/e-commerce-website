@@ -3,7 +3,9 @@ import axios from 'axios';
 import AnswerList from './AnswerList';
 import Modal from './Modal';
 import API_KEY from '../../../config';
-import { UnderlineTextButton, HelpfulButton, QuestionStyle } from './QandA.style';
+import {
+  UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan, QuestionBodySpan, YesStyle,
+} from './QandA.style';
 
 function Question({ question, productName }) {
   const [showModal, setShowModal] = useState(false);
@@ -43,47 +45,55 @@ function Question({ question, productName }) {
   return (
     <QuestionStyle>
       {' '}
-      <strong>
+      <QuestionBodySpan>
         Q:
-        {' '}
+        &nbsp;
         {question.question_body}
-      </strong>
-      {' '}
-      <HelpfulButton
-        type="button"
-        onClick={() => handleHelpfullQuestions}
-      >
-        Helpful?
+      </QuestionBodySpan>
+      <ButtonSpan>
+        <HelpfulButton
+          type="button"
+          onClick={() => handleHelpfullQuestions}
+        >
+          Helpful?
 
-      </HelpfulButton>
-      {' '}
-      <u>Yes</u>
-      {' '}
-      (
-      {question.question_helpfulness}
-      )
-      {' '}
-      |
-      {' '}
-      <UnderlineTextButton
-        type="button"
-        onClick={() => handleQuestionReport}
-      >
-        Report
+        </HelpfulButton>
+        &nbsp;
+        <YesStyle>
+          <u>Yes</u>
+          {' '}
+          (
+          {question.question_helpfulness}
+          )
+          &nbsp;
+          |
+        </YesStyle>
+        &nbsp;
+        &nbsp;
+        <UnderlineTextButton
+          type="button"
+          onClick={() => handleQuestionReport}
+        >
+          Report
 
-      </UnderlineTextButton>
-      {' '}
-      |
-      {' '}
-      <UnderlineTextButton
-        type="button"
-        onClick={() => {
-          setShowModal(true);
-          setLocation('answer');
-        }}
-      >
-        Add Answer
-      </UnderlineTextButton>
+        </UnderlineTextButton>
+        &nbsp;
+        &nbsp;
+        <YesStyle>
+          |
+        </YesStyle>
+        &nbsp;
+        &nbsp;
+        <UnderlineTextButton
+          type="button"
+          onClick={() => {
+            setShowModal(true);
+            setLocation('answer');
+          }}
+        >
+          Add Answer
+        </UnderlineTextButton>
+      </ButtonSpan>
       {showModal
         ? (
           <Modal
@@ -91,12 +101,17 @@ function Question({ question, productName }) {
             questionId={question.question_id}
             questionBody={question.question_body}
             productName={productName}
+            setShowModal={setShowModal}
           />
         )
         : null}
       {' '}
       <div id="AnswerList">
-        <AnswerList questionId={question.question_id} />
+        <AnswerList
+          questionId={question.question_id}
+          productName={productName}
+          setShowModal={setShowModal}
+        />
       </div>
     </QuestionStyle>
   );
