@@ -152,11 +152,9 @@ function Overview({ product }) {
         <Button>
           ADD TO CART
         </Button>
-
         <FavButton>
           <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" width="15px" alt="" />
         </FavButton>
-
         <OVsocial />
       </Details>
     </Ov>
