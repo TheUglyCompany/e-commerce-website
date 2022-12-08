@@ -6,9 +6,9 @@ function FiveStarRating() {// pass product Id as prop
   // find star rating graphic
   // return star graphic
   return (
-    <div>
+    <span>
       ★★★★★
-    </div>
+    </span>
   );
 }
 

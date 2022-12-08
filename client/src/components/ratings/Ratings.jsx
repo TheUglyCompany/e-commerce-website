@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import ReviewList from './ReviewList';
 import API_KEY from '../../../config';
+import Modal from './Modal';
 import RatingBreakdown from './RatingBreakdown';
+import ProductBreakdown from './ProductBreakdown';
 import {
   RatingsAndReviews,
   RatingStyle,
   ReviewStyle,
+  OuterMostLayer,
+  ButtonContainer,
 } from './Ratings.style';
+import {
+  Button,
+  Dd,
+  DdBttn,
+  DdContent,
+  DdItem,
+} from '../overview/Overview.style';
 
 function Ratings({ product }) {
+  const [renderCount, setRenderCount] = useState(2);
   const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
   const [ready, setReady] = useState(false);
@@ -23,6 +33,8 @@ function Ratings({ product }) {
     4: true,
     5: true,
   });
+  const [showModal, setShowModal] = useState(false);
+  const [dropdownActive, setDropdownActive] = useState(false);
   // initial API call
   /*
   page: selects the page to return
@@ -78,10 +90,13 @@ function Ratings({ product }) {
   let reviewCount = 0;
   reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
+    <OuterMostLayer>
     <RatingsAndReviews>
       <RatingStyle>
         <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+
+        <ProductBreakdown metaData={metaData} />
       </RatingStyle>
       <ReviewStyle>
         <h4>
@@ -89,15 +104,47 @@ function Ratings({ product }) {
           {' '}
           total reviews, Sorted by
         </h4>
-        <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
+        <Dd>
+          <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
+            {sort}
+            {'  '}
+            <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
+          </DdBttn>
+          {dropdownActive && (
+            <DdContent>
+              {options.map((option) => (
+                <DdItem onClick={(e) => {
+                  setSort(e.target.textContent);
+                  setDropdownActive(false);
+                }}
+                >
+                  {option}
+                </DdItem>
+              ))}
+            </DdContent>
+          )}
+        </Dd>
+
         <ReviewList
           reviews={reviews}
           onSelect={() => onSelect}
-          reviewCount={reviewCount}
+          renderCount={renderCount}
           filter={filter}
         />
       </ReviewStyle>
     </RatingsAndReviews>
+      <ButtonContainer>
+        {reviewCount <= renderCount ? null
+          : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
+        <Button type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
+      </ButtonContainer>
+      {showModal
+        ? (
+          <Modal
+            setShowModal={setShowModal}
+          />
+        ) : null}
+    </OuterMostLayer>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import {
   CardSummary,
   HelpfulButton,
@@ -26,18 +27,19 @@ function ReviewListTile({ review, postFeedback }) {
           {' '}
           {review.reviewer_name}
           {' '}
-          {review.date}
+          {format(new Date(review.date), 'MMMM d, yyyy')}
           {' '}
         </div>
       </CardInfo>
       <CardSummary>
         {review.summary}
       </CardSummary>
-      {review.recommend ? <div>I recommend this product</div> : null}
-      <br />
       <Body>
         {review.body}
       </Body>
+
+      {review.recommend ? <OwnerResponse>I recommend this product</OwnerResponse> : null}
+
       {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
       <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
         Helpful?

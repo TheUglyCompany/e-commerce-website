@@ -131,17 +131,35 @@ const Button = styled.button`
   color: black;
   padding: 5px;
   margin: 10px;
-  width: 200px;
+  width: 220px;
   cursor: pointer;
   font-family: Roboto;
   font-weight: bold;
   font-size: 15px;
   height: 40px;
+  text-transform: uppercase;
+  /* display: block; */
+`;
+
+const FavButton = styled.button`
+  background: white;
+  border-radius: 1px;
+  border: 1px solid black;
+  color: black;
+  padding: 5px;
+  margin: 10px;
+  width: 50px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 15px;
+  height: 40px;
+  text-transform: uppercase;
   /* display: block; */
 `;
 
 const Dd = styled.div`
-  width: 150px;
+  width: 135px;
   margin: 10px;
   position: relative;
   display: inline-block;
@@ -198,6 +216,21 @@ const Slogan = styled.div`
   /* position: relative; */
 `;
 
+const Social = styled.div`
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  /* justify-content: center; */
+  /* text-align: center; */
+`;
+
+const SocialIcons = styled.span`
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 10px;
+`;
+
 export {
   Ov,
   Gallery,
@@ -207,6 +240,7 @@ export {
   Category,
   Name,
   Button,
+  FavButton,
   Price,
   SalePrice,
   Desc,
@@ -222,4 +256,6 @@ export {
   DdContent,
   DdItem,
   Slogan,
+  Social,
+  SocialIcons,
 };
