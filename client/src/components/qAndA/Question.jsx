@@ -4,7 +4,7 @@ import AnswerList from './AnswerList';
 import Modal from './Modal';
 import API_KEY from '../../../config';
 import {
-  UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan,
+  UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan, QuestionBodySpan, YesStyle,
 } from './QandA.style';
 
 function Question({ question, productName }) {
@@ -45,12 +45,11 @@ function Question({ question, productName }) {
   return (
     <QuestionStyle>
       {' '}
-      <strong>
+      <QuestionBodySpan>
         Q:
-        {' '}
+        &nbsp;
         {question.question_body}
-      </strong>
-      {' '}
+      </QuestionBodySpan>
       <ButtonSpan>
         <HelpfulButton
           type="button"
@@ -60,13 +59,16 @@ function Question({ question, productName }) {
 
         </HelpfulButton>
         &nbsp;
-        <u>Yes</u>
-        {' '}
-        (
-        {question.question_helpfulness}
-        )
-        {' '}
-        |
+        <YesStyle>
+          <u>Yes</u>
+          {' '}
+          (
+          {question.question_helpfulness}
+          )
+          &nbsp;
+          |
+        </YesStyle>
+        &nbsp;
         &nbsp;
         <UnderlineTextButton
           type="button"
@@ -76,7 +78,11 @@ function Question({ question, productName }) {
 
         </UnderlineTextButton>
         &nbsp;
-        |
+        &nbsp;
+        <YesStyle>
+          |
+        </YesStyle>
+        &nbsp;
         &nbsp;
         <UnderlineTextButton
           type="button"
@@ -95,12 +101,17 @@ function Question({ question, productName }) {
             questionId={question.question_id}
             questionBody={question.question_body}
             productName={productName}
+            setShowModal={setShowModal}
           />
         )
         : null}
       {' '}
       <div id="AnswerList">
-        <AnswerList questionId={question.question_id} />
+        <AnswerList
+          questionId={question.question_id}
+          productName={productName}
+          setShowModal={setShowModal}
+        />
       </div>
     </QuestionStyle>
   );

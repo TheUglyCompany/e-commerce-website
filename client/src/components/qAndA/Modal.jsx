@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import {
-  ModalContainer, ModalContent,
+  ModalContainer,
+  ModalContent, XSpan, ModalTitle, ModalDesc, TextFieldinput, NameFieldInput, EmailFieldInput, StandardButton, StandardButtonSpan, ImageInputUpload,
 } from './QandA.style';
 
 function Modal({
@@ -71,22 +72,24 @@ function Modal({
     return (
       <ModalContainer>
         <ModalContent>
-          <span
+          <XSpan
             onClick={() => {
               setShowModal(false);
             }}
           >
             X
-          </span>
-          <h1>Ask Your Question</h1>
-          <h3>
+          </XSpan>
+          <ModalTitle>Ask Your Question</ModalTitle>
+          <ModalDesc>
             About the
             {' '}
             {productName}
-          </h3>
+          </ModalDesc>
+          <br />
           <label>
-            What&apos;s your Question?
-            <input
+            Question:
+            &nbsp;
+            <TextFieldinput
               value={form.textInput}
               type="text"
               maxLength="1000"
@@ -103,7 +106,8 @@ function Modal({
           <label>
             <br />
             Name:
-            <input
+            &nbsp;
+            <NameFieldInput
               value={form.nameInput}
               type="text"
               maxLength="60"
@@ -117,12 +121,16 @@ function Modal({
               }}
             />
             <br />
-            For privacy reasons, don&apos;t use your full name or email
+            &nbsp;
+            <ModalDesc>
+              For privacy reasons, don&apos;t use your full name or email
+            </ModalDesc>
             <br />
           </label>
           <label>
             Email:
-            <input
+            &nbsp;
+            <EmailFieldInput
               value={form.emailInput}
               type="text"
               maxLength="60"
@@ -136,15 +144,20 @@ function Modal({
               }}
             />
             <br />
-            For authentication reasons, you will not be emailed
+            <br />
+            <ModalDesc>
+              For authentication reasons, you will not be emailed
+            </ModalDesc>
             <br />
           </label>
-          <button
-            type="submit"
-            onClick={handleQuestionSubmit}
-          >
-            Submit
-          </button>
+          <StandardButtonSpan>
+            <StandardButton
+              type="submit"
+              onClick={handleQuestionSubmit}
+            >
+              Submit
+            </StandardButton>
+          </StandardButtonSpan>
         </ModalContent>
       </ModalContainer>
     );
@@ -152,24 +165,27 @@ function Modal({
   return (
     <ModalContainer>
       <ModalContent>
-        <span
+        <XSpan
           onClick={() => {
             setShowModal(false);
           }}
         >
           X
-        </span>
-        <h1>Submit Your Answer</h1>
-        <h3>
+        </XSpan>
+        <br />
+        <ModalTitle>Submit Your Answer</ModalTitle>
+        <ModalDesc>
           {productName}
           {' '}
           :
           {' '}
           {questionBody}
-        </h3>
+        </ModalDesc>
+        <br />
         <label>
-          What&apos;s your Answer?
-          <input
+          Answer:
+          &nbsp;
+          <TextFieldinput
             value={form.textInput}
             type="text"
             maxLength="1000"
@@ -183,9 +199,11 @@ function Modal({
           />
         </label>
         <br />
+        <br />
         <label>
           Name:
-          <input
+          &nbsp;
+          <NameFieldInput
             value={form.nameInput}
             type="text"
             maxLength="60"
@@ -199,12 +217,16 @@ function Modal({
             }}
           />
           <br />
-          For privacy reasons, don&apos;t use your full name or email
+          <br />
+          <ModalDesc>
+            For privacy reasons, don&apos;t use your full name or email
+          </ModalDesc>
         </label>
         <br />
         <label>
           Email:
-          <input
+          &nbsp;
+          <EmailFieldInput
             value={form.emailInput}
             type="text"
             maxLength="60"
@@ -218,24 +240,30 @@ function Modal({
             }}
           />
           <br />
-          For authentication reasons, you will not be emailed
+          <br />
+          <ModalDesc>
+            For authentication reasons, you will not be emailed
+          </ModalDesc>
           <br />
         </label>
         <label>
           Image Upload:
-          <input
+          &nbsp;
+          <ImageInputUpload
             type="file"
             required="false"
             multiple
             onChange={handleFileEvent}
           />
         </label>
-        <button
-          type="submit"
-          onClick={handleAnswerSubmit}
-        >
-          Submit
-        </button>
+        <StandardButtonSpan>
+          <StandardButton
+            type="submit"
+            onClick={handleAnswerSubmit}
+          >
+            Submit
+          </StandardButton>
+        </StandardButtonSpan>
       </ModalContent>
     </ModalContainer>
   );

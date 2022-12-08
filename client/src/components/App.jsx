@@ -5,6 +5,7 @@ import Overview from './overview/Overview';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
 import API_KEY from '../../config';
+import { QATitle } from './qAndA/QandA.style';
 
 function App() {
   const [product, setProduct] = useState(null);
@@ -29,6 +30,7 @@ function App() {
       </h3>
       <Overview product={product} />
       <RecommendedItems />
+      <QATitle>Questions & Answers</QATitle>
       <QandA product={product} />
       <Ratings product={product} />
     </div>

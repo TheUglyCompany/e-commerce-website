@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { SearchBarStyle, SearchBarInput } from './QandA.style';
+import { SearchBarStyle, SearchBarInput, StandardButton } from './QandA.style';
 
-function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
+function QASearchBar({ setCurrQuestionList, questionList }) {
   const [query, setQuery] = useState('');
 
   function handleSearch(event) {
+    event.preventDefault();
     setQuery(event.target.value);
   }
 
@@ -13,28 +14,26 @@ function QASearchBar({ setCurrQuestionList, questionList, currQuestionList }) {
     if (query.length < 3) {
       setCurrQuestionList(questionList);
     } else {
-      setCurrQuestionList(questionList.results.filter((question) => {
+      setCurrQuestionList(questionList.filter((question) => {
         if (question.question_body.includes(query)) {
           return question;
         }
       }));
     }
-    console.log(currQuestionList);
   }
 
   return (
     <SearchBarStyle>
       <SearchBarInput
         placeholder="Have a question? Search for answers..."
-        onChange={() => handleSearch}
+        onChange={handleSearch}
       />
-      <button
+      <StandardButton
         type="submit"
-        className="search-button"
         onClick={handleSort}
       >
         Search
-      </button>
+      </StandardButton>
     </SearchBarStyle>
   );
 }
