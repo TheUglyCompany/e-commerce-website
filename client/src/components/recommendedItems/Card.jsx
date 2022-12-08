@@ -15,7 +15,7 @@ const StyledCard = styled.div`
   border-radius: 5px;
 `;
 
-function Card({ productId, cardClicked }) {
+function Card({ productId, cardClicked, renderStars }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
@@ -44,20 +44,12 @@ function Card({ productId, cardClicked }) {
   return !ready ? <>Card Loading</> : (
     // eslint-disable-next-line max-len
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <StyledCard onClick={() => cardClicked(productId)} >
+    <StyledCard onClick={() => cardClicked(productId)}>
       <CardImage stylesObj={stylesObj} />
       <p>{cardProduct.category}</p>
       <p>{cardProduct.name}</p>
       <p>{cardProduct.default_price}</p>
-      <p>
-        {Math.floor(ratingObj.averageRating * 10) / 10}
-        {' '}
-        stars out of
-        {' '}
-        {ratingObj.reviewCount}
-        {' '}
-        reviews
-      </p>
+      {renderStars(ratingObj.ratings)}
     </StyledCard>
   );
 }

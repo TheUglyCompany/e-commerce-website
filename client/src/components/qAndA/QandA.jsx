@@ -1,9 +1,11 @@
 import React from 'react';
+import QuestionsList from './QuestionsList';
 
-function QandA() {
+function QandA({ product }) {
   return (
     <div>
-      Questions and Answers goes here.
+      <h3>Questions & Answers</h3>
+      <QuestionsList productId={product.id} productName={product.name} />
     </div>
   );
 }

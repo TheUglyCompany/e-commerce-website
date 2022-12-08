@@ -4,12 +4,25 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import ReviewList from './ReviewList';
 import API_KEY from '../../../config';
+import RatingBreakdown from './RatingBreakdown';
+import {
+  RatingsAndReviews,
+  RatingStyle,
+  ReviewStyle,
+} from './Ratings.style';
 
 function Ratings({ product }) {
   const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
   const [ready, setReady] = useState(false);
   const [sort, setSort] = useState('relevant');
+  const [filter, setFilter] = useState({
+    1: true,
+    2: true,
+    3: true,
+    4: true,
+    5: true,
+  });
   // initial API call
   /*
   page: selects the page to return
@@ -62,15 +75,29 @@ function Ratings({ product }) {
   const options = ['helpful', 'newest', 'relevant'];
   const defaultOption = options[2];
   const onSelect = (e) => (setSort(e.value));
+  let reviewCount = 0;
+  reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
-    <div data-testid="ratings">
-      <h2> Review List </h2>
-      <h4>
-        total reviews, Sorted by
-      </h4>
-      <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
-      <ReviewList reviews={reviews} onSelect={() => onSelect} />
-    </div>
+    <RatingsAndReviews>
+      <RatingStyle>
+        <h4> Ratings & Reviews </h4>
+        <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+      </RatingStyle>
+      <ReviewStyle>
+        <h4>
+          { reviewCount }
+          {' '}
+          total reviews, Sorted by
+        </h4>
+        <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
+        <ReviewList
+          reviews={reviews}
+          onSelect={() => onSelect}
+          reviewCount={reviewCount}
+          filter={filter}
+        />
+      </ReviewStyle>
+    </RatingsAndReviews>
   );
 }
 

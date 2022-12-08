@@ -8,9 +8,10 @@ const StyledRelatedProducts = styled.div`
   border: 2px solid black;
 `;
 
-function RelatedProducts({ relatedProducts, cardClicked }) {
+function RelatedProducts({ relatedProducts, cardClicked, renderStars }) {
   const renderList = () => relatedProducts.map((productId) => (
-    <Card key={productId} productId={productId} cardClicked={cardClicked} />
+    // eslint-disable-next-line max-len
+    <Card key={productId} productId={productId} cardClicked={cardClicked} renderStars={renderStars} />
   ));
 
   return (

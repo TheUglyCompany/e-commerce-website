@@ -1,29 +1,53 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import ReviewListTile from './ReviewListTile';
+import API_KEY from '../../../config';
+import {
+  Reviews,
+  ShowMore,
+} from './ReviewList.style';
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, reviewCount, filter }) {
   const [renderCount, setRenderCount] = useState(2);
+
+  function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
+    axios.put(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
+      { review_id: reviewId },
+      { headers: { Authorization: API_KEY } },
+    )
+      .then(() => {
+        console.log('successful', feedbackType);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
   let count = 0;
   return (
-    <div>
-      <hr />
+    <Reviews>
       {
       reviews.map((review) => { // map is probably the wrong tool for this,
         // because I can't break out of the loop early, any suggestions?
-        count += 1;
-        if (count <= renderCount) {
+        if (count < renderCount && filter[review.rating.toString()]) {
+          count += 1;
           return (
             <div>
-              <ReviewListTile review={review} />
+              <ReviewListTile
+                key={review.review_id}
+                review={review}
+                postFeedback={(feedbackType, reviewId) => { postFeedback(feedbackType, reviewId); }}
+              />
             </div>
           );
         }
         return null;
       })
       }
-      <button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</button>
-      <button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</button>
-    </div>
+      {reviewCount <= renderCount ? null
+        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
+      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
+    </Reviews>
   );
 }
 
