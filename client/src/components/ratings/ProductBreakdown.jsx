@@ -4,7 +4,7 @@ import {
 } from './ProductBreakdown.style';
 
 function ProductBreakdown({ metaData }) {
-  // console.log(metaData);
+  console.log(metaData);
   let totalAttributeValues = 0;
   let allVal = [];
   let attributeNames = [];
@@ -29,7 +29,7 @@ function ProductBreakdown({ metaData }) {
     // attribute name
     // percentage of attribute value passed as width
   return (
-    <FitChart>
+    <FitChart data-testid="test">
       PRODUCT BREAKDOWN
       {
         attributes.map((attribute) => {

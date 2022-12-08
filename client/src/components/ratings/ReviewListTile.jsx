@@ -51,6 +51,7 @@ function ReviewListTile({ review, postFeedback }) {
       <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
         Report
       </HelpfulButton>
+      <hr />
     </TileStyle>
   );
 }
