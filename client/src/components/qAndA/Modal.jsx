@@ -3,7 +3,16 @@ import axios from 'axios';
 import API_KEY from '../../../config';
 import {
   ModalContainer,
-  ModalContent, XSpan, ModalTitle, ModalDesc, TextFieldinput, NameFieldInput, EmailFieldInput, StandardButton, StandardButtonSpan, ImageInputUpload,
+  ModalContent,
+  XSpan,
+  ModalTitle,
+  ModalDesc,
+  TextFieldinput,
+  NameFieldInput,
+  EmailFieldInput,
+  StandardButton,
+  StandardButtonSpan,
+  ImageInputUpload,
 } from './QandA.style';
 
 function Modal({
@@ -91,7 +100,7 @@ function Modal({
             &nbsp;
             <TextFieldinput
               value={form.textInput}
-              type="text"
+              type="body"
               maxLength="1000"
               required="true"
               onChange={(event) => {

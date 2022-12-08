@@ -93,6 +93,7 @@ const XSpan = styled.span`
   display: flex;
   font-family: poppins;
   font-size: 10px;
+  cursor: pointer;
 `;
 
 const TextFieldinput = styled.input`
@@ -102,16 +103,20 @@ const TextFieldinput = styled.input`
   font-family: poppins;
   font-weight: light;
   font-size: 12;
+  overflow: hidden;
+  resize: none;
 `;
 
 const NameFieldInput = styled.input`
   height: 25px;
   width: 80%;
+  text-align: center;
 `;
 
 const EmailFieldInput = styled.input`
   height: 25px;
   width: 80%;
+  text-align: center;
 `;
 
 const OutermostLayer = styled.div`
@@ -149,8 +154,9 @@ const SearchBarStyle = styled.div`
 `;
 
 const SearchBarInput = styled.input`
+  text-align: center;
   type: text;
-  width: 70%;
+  width: 80%;
   height: 35px;
   font-size: 15px;
   line-height: 3;
@@ -189,8 +195,8 @@ const StandardButtonSpan = styled.div`
 `;
 
 const AnswerImageStyle = styled.img`
-  max-height: 100px;
-  max-width: 100px;
+  height: 100px;
+  width: 100px;
   border: 1px solid black;
 `;
 
