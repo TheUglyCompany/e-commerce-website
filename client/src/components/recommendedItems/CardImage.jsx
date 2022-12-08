@@ -12,7 +12,7 @@ const ThumbnailImg = styled.img`
 
 function CardImage({ stylesObj }) {
   return (
-    <ThumbnailImg src={stylesObj.results[0].photos[0].thumbnail_url} alt="product thumbnail" />
+    <ThumbnailImg data-testid="thumbnail" src={stylesObj.results[0].photos[0].thumbnail_url} alt="product thumbnail" />
   );
 }
 
