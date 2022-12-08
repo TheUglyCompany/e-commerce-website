@@ -6,6 +6,8 @@ const StarChart = styled.div`
   flex-direction: column;
   height: 200px;
   width: 300px;
+  // border: solid;
+  margin-right: 20px;
 `;
 
 const RowFormat = styled.div`
@@ -15,12 +17,16 @@ const RowFormat = styled.div`
 `;
 
 const StarButton = styled.button`
+  display: flex;
+  justify-content: flex-start;
   background: none;
+  font-size: 16px;
   border: none;
   padding: 0;
   text-decoration: underline;
   cursor: pointer;
   width: 20%
+
 `;
 
 const ResetFilter = styled(StarButton)`
@@ -32,7 +38,7 @@ const ResetFilter = styled(StarButton)`
 
 const GreenBar = styled.div`
   box-sizing: border-box;
-  background-color: green;
+  background-color: #14453D;
   width: ${(p) => (p.inputWidth ? p.inputWidth : '25%')};
   margin-left: 5%;
   height: 20px;
@@ -45,9 +51,10 @@ const AverageTitle = styled.div`
 `;
 
 const GrayBar = styled(GreenBar)`
-  background-color: gray;
+  background-color: lightgray;
   margin-left: 0%;
 `;
+
 export {
   GrayBar,
   GreenBar,
