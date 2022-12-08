@@ -37,28 +37,28 @@ jest.mock('axios');
 // Act: simulate user events
 // Assert: run assertions
 
-test('should render App component', async () => {
+test('should render App component', () => {
   // renders a react element into the DOM
-  jest.spyOn(axios, 'get').mockResolvedValueOnce({
-    data: [
-      {
-        id: 40344,
-        campus: 'hr-rfp',
-        name: 'Camo Onesie',
-        slogan: 'Blend in to your crowd',
-        description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
-        category: 'Jackets',
-        default_price: '140.00',
-        created_at: '2021-08-13T14:38:44.509Z',
-        updated_at: '2021-08-13T14:38:44.509Z',
-      },
-    ],
-  });
+  // jest.spyOn(axios, 'get').mockResolvedValueOnce({
+  //   data: [
+  //     {
+  //       id: 40344,
+  //       campus: 'hr-rfp',
+  //       name: 'Camo Onesie',
+  //       slogan: 'Blend in to your crowd',
+  //       description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.',
+  //       category: 'Jackets',
+  //       default_price: '140.00',
+  //       created_at: '2021-08-13T14:38:44.509Z',
+  //       updated_at: '2021-08-13T14:38:44.509Z',
+  //     },
+  //   ],
+  // });
   // arrange
   render(<App />);
   // act
-  const appElement = await screen.getByTestId('app');
+  const appElement = screen.getByTestId('app');
   // assert
-  // expect(appElement).toBeInTheDocument();
-  expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(appElement).toBeInTheDocument();
+  // expect(axios.get).toHaveBeenCalledTimes(1);
 });

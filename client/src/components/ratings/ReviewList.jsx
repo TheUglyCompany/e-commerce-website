@@ -4,12 +4,9 @@ import ReviewListTile from './ReviewListTile';
 import API_KEY from '../../../config';
 import {
   Reviews,
-  ShowMore,
 } from './ReviewList.style';
 
-function ReviewList({ reviews, reviewCount, filter }) {
-  const [renderCount, setRenderCount] = useState(2);
-
+function ReviewList({ reviews, renderCount, filter }) {
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
@@ -25,29 +22,29 @@ function ReviewList({ reviews, reviewCount, filter }) {
   }
   let count = 0;
   return (
-    <Reviews>
-      {
-      reviews.map((review) => { // map is probably the wrong tool for this,
-        // because I can't break out of the loop early, any suggestions?
-        if (count < renderCount && filter[review.rating.toString()]) {
-          count += 1;
-          return (
-            <div>
-              <ReviewListTile
-                key={review.review_id}
-                review={review}
-                postFeedback={(feedbackType, reviewId) => { postFeedback(feedbackType, reviewId); }}
-              />
-            </div>
-          );
+      <Reviews>
+        {
+        reviews.map((review) => { // map is probably the wrong tool for this,
+          // because I can't break out of the loop early, any suggestions?
+          if (count < renderCount && filter[review.rating.toString()]) {
+            count += 1;
+            return (
+              <div>
+                <ReviewListTile
+                  key={review.review_id}
+                  review={review}
+                  postFeedback={(feedbackType, reviewId) => {
+                    postFeedback(feedbackType, reviewId);
+                  }}
+                />
+              </div>
+            );
+          }
+          return null;
+        })
         }
-        return null;
-      })
-      }
-      {reviewCount <= renderCount ? null
-        : <ShowMore type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</ShowMore>}
-      <ShowMore type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</ShowMore>
-    </Reviews>
+      </Reviews>
+
   );
 }
 
