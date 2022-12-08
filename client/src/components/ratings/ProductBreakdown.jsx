@@ -4,7 +4,7 @@ import {
 } from './ProductBreakdown.style';
 
 function ProductBreakdown({ metaData }) {
-  console.log(metaData);
+  // console.log(metaData);
   let totalAttributeValues = 0;
   let allVal = [];
   let attributeNames = [];
@@ -20,7 +20,7 @@ function ProductBreakdown({ metaData }) {
 
   if (metaData.characteristics) {
     attributes = (Object.entries(metaData.characteristics));// an array of arrays
-    console.log('nameVals', attributes);// array[0][]
+    // console.log('nameVals', attributes);// array[0][]
   }
 
   // make an array of names
@@ -33,7 +33,7 @@ function ProductBreakdown({ metaData }) {
       PRODUCT BREAKDOWN
       {
         attributes.map((attribute) => {
-          console.log(attribute);
+          // console.log(attribute);
           return (
             <div>
               {attribute[0]}

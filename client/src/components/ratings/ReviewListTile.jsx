@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import {
   CardSummary,
   HelpfulButton,
@@ -26,7 +27,7 @@ function ReviewListTile({ review, postFeedback }) {
           {' '}
           {review.reviewer_name}
           {' '}
-          {review.date}
+          {format(new Date(review.date), 'MMMM d, yyyy')}
           {' '}
         </div>
       </CardInfo>
