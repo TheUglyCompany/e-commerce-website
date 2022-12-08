@@ -4,7 +4,9 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import ReviewList from './ReviewList';
 import API_KEY from '../../../config';
+import Modal from './Modal';
 import RatingBreakdown from './RatingBreakdown';
+import ProductBreakdown from './ProductBreakdown';
 import {
   RatingsAndReviews,
   RatingStyle,
@@ -27,6 +29,7 @@ function Ratings({ product }) {
     4: true,
     5: true,
   });
+  const [showModal, setShowModal] = useState(false);
   // initial API call
   /*
   page: selects the page to return
@@ -85,8 +88,9 @@ function Ratings({ product }) {
     <OuterMostLayer>
     <RatingsAndReviews>
       <RatingStyle>
-      <h4> Ratings & Reviews </h4>
+        <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+        <ProductBreakdown metaData={metaData} />
       </RatingStyle>
       <ReviewStyle>
         <h4>
@@ -106,8 +110,14 @@ function Ratings({ product }) {
       <ButtonContainer>
         {reviewCount <= renderCount ? null
           : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
-        <Button type="button" onClick={() => { console.log('Entry form here'); }}>Add Review</Button>
+        <Button type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
       </ButtonContainer>
+      {showModal
+        ? (
+          <Modal
+            setShowModal={setShowModal}
+          />
+        ) : null}
     </OuterMostLayer>
   );
 }
