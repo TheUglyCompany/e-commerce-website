@@ -4,7 +4,9 @@ import API_KEY from '../../../config';
 import QASearchBar from './QASearchBar';
 import Question from './Question';
 import Modal from './Modal';
-import { OutermostLayer } from './QandA.style';
+import {
+  OutermostLayer, StandardButton, StandardButtonSpan, NoQuestionsFoundStyle,
+} from './QandA.style';
 
 function QuestionsList({ productId, productName }) {
   const [questionList, setQuestionList] = useState([]);
@@ -24,8 +26,8 @@ function QuestionsList({ productId, productName }) {
     })
       .then((response) => {
         console.log('The Data: ', response.data);
-        setQuestionList(response.data);
-        setCurrQuestionList(response.data);
+        setQuestionList(response.data.results);
+        setCurrQuestionList(response.data.results);
       })
       .catch((error) => {
         console.log('There is an error in QuestionsList: ', error);
@@ -35,51 +37,57 @@ function QuestionsList({ productId, productName }) {
     <div id="QuestionsList">
       <QASearchBar
         setCurrQuestionList={setCurrQuestionList}
-        currQuestionList={currQuestionList}
         questionList={questionList}
       />
       <OutermostLayer>
-        {currQuestionList.results?.length !== 0
-          ? currQuestionList.results?.map((question, key) => {
+        {currQuestionList?.length !== 0
+          ? currQuestionList?.map((question, key) => {
             count += 1;
             if (count <= renderCount) {
               return (
-                <Question question={question} key={key} />
+                <Question
+                  question={question}
+                  key={key}
+                  productName={productName}
+                  setShowModal={setShowModal}
+                />
               );
             }
             return null;
-          }) : <div> No Questions Found </div>}
+          }) : <NoQuestionsFoundStyle> No Questions Found </NoQuestionsFoundStyle>}
       </OutermostLayer>
-      {currQuestionList.results?.length > 2
-        ? (
-          <button
-            type="button"
-            onClick={() => { setRenderCount(renderCount + 2); }}
-          >
-            {' '}
-            More Questions
-            {' '}
-          </button>
-        )
-        : null }
-      <button
-        type="button"
-        onClick={() => {
-          setShowModal(true);
-          setLocation('question');
-        }}
-      >
-        Add a Question
-      </button>
-      {showModal
-        ? (
-          <Modal
-            setShowModal={setShowModal}
-            productId={productId}
-            productName={productName}
-            location={location}
-          />
-        ) : null}
+      <StandardButtonSpan>
+        {currQuestionList?.length > 2
+          ? (
+            <StandardButton
+              type="button"
+              onClick={() => { setRenderCount(renderCount + 2); }}
+            >
+              {' '}
+              More Questions
+              {' '}
+            </StandardButton>
+          )
+          : null }
+        <StandardButton
+          type="button"
+          onClick={() => {
+            setShowModal(true);
+            setLocation('question');
+          }}
+        >
+          Add a Question
+        </StandardButton>
+        {showModal
+          ? (
+            <Modal
+              setShowModal={setShowModal}
+              productId={productId}
+              productName={productName}
+              location={location}
+            />
+          ) : null}
+      </StandardButtonSpan>
     </div>
   );
 }
