@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import ReviewList from './ReviewList';
 import API_KEY from '../../../config';
 import Modal from './Modal';
@@ -14,7 +12,13 @@ import {
   OuterMostLayer,
   ButtonContainer,
 } from './Ratings.style';
-import { Button } from '../overview/Overview.style';
+import {
+  Button,
+  Dd,
+  DdBttn,
+  DdContent,
+  DdItem,
+} from '../overview/Overview.style';
 
 function Ratings({ product }) {
   const [renderCount, setRenderCount] = useState(2);
@@ -30,6 +34,7 @@ function Ratings({ product }) {
     5: true,
   });
   const [showModal, setShowModal] = useState(false);
+  const [dropdownActive, setDropdownActive] = useState(false);
   // initial API call
   /*
   page: selects the page to return
@@ -90,6 +95,7 @@ function Ratings({ product }) {
       <RatingStyle>
         <h4> Ratings & Reviews </h4>
         <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+
         <ProductBreakdown metaData={metaData} />
       </RatingStyle>
       <ReviewStyle>
@@ -98,7 +104,27 @@ function Ratings({ product }) {
           {' '}
           total reviews, Sorted by
         </h4>
-        <Dropdown options={options} onChange={onSelect} value={defaultOption} placeholder="Select an option" />
+        <Dd>
+          <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
+            {sort}
+            {'  '}
+            <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
+          </DdBttn>
+          {dropdownActive && (
+            <DdContent>
+              {options.map((option) => (
+                <DdItem onClick={(e) => {
+                  setSort(e.target.textContent);
+                  setDropdownActive(false);
+                }}
+                >
+                  {option}
+                </DdItem>
+              ))}
+            </DdContent>
+          )}
+        </Dd>
+
         <ReviewList
           reviews={reviews}
           onSelect={() => onSelect}
