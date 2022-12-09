@@ -14,7 +14,6 @@ function OVgallerySmall({ styleSelected, setMainImg }) {
   useEffect(() => {
     if (styleSelected.photos !== undefined) {
       photoArr = styleSelected.photos;
-      console.log('photoArr: ', styleSelected.photos.length);
       if (photoArr.length > 7) {
         setArrow('flex');
       }
