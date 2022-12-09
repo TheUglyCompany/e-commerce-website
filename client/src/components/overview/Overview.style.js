@@ -19,10 +19,11 @@ const Gallery = styled.div`
 `;
 
 const OVgalleryThumbs = styled.div`
-  margin: 2px auto;
+  margin: 10px auto;
   justify-content: center;
   display: flex;
   cursor: pointer;
+  /* overflow: auto; */
 `;
 
 const OVgalleryArrows = styled.div`
@@ -35,7 +36,8 @@ const OVgalleryArrows = styled.div`
 
 const OVgalleryThumb = styled.img`
   margin: 2px;
-  max-height: 50px;
+  height: 50px;
+  /* max-width: 100%; */
 `;
 
 const GalleryBig = styled.div`
