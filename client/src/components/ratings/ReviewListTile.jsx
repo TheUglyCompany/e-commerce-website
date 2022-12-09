@@ -8,8 +8,7 @@ import {
   CardInfo,
   TileStyle,
 } from './ReviewListTile.style';
-import FiveStarRating from '../sharedComponents/FiveStarRating';
-import { Stars } from './Ratings.style';
+import { Stars } from '../recommendedItems/RecommendedItems.style';
 
 // convert the below to HelpfulButtons
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FiveStarRating from '../sharedComponents/FiveStarRating';
 import {
   StarChart,
   GreenBar,
@@ -9,7 +8,7 @@ import {
   ResetFilter,
   AverageTitle,
 } from './RatingBreakdown.style';
-import { Stars } from './Ratings.style';
+import { Stars } from '../recommendedItems/RecommendedItems.style';
 
 // TODO: say what percentage of people recommend this product
 // say current filters
