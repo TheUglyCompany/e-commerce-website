@@ -9,6 +9,7 @@ import {
   ResetFilter,
   AverageTitle,
 } from './RatingBreakdown.style';
+import { Stars } from './Ratings.style';
 
 // TODO: say what percentage of people recommend this product
 // say current filters
@@ -79,7 +80,8 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
     <div>
       <RowFormat>
         <AverageTitle>{avg}</AverageTitle>
-        <FiveStarRating />
+        {/* <FiveStarRating /> */}
+        <Stars style={{ '--rating': `${((avg / 5) * 100)}%` }} />
       </RowFormat>
       {isFilter ? <ResetFilter onClick={() => resetState(true)}>Reset Filter</ResetFilter> : null}
       <StarChart>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const RatingsAndReviews = styled.div`
+font-family: poppins;
   flex: 1;
   display: flex;
   width: 100%;
@@ -28,10 +29,26 @@ const ButtonContainer = styled.span`
   justify-content: center;
 `;
 
+const Stars = styled.div`
+  display: inline-block;
+  font-size: 20px;
+  font-family: Times;
+  line-height: 1;
+
+  &::before {
+    content: '⭒⭒⭒⭒⭒';
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #d8d805 var(--rating), gray var(--rating));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
 export {
   RatingsAndReviews,
   RatingStyle,
   ReviewStyle,
   OuterMostLayer,
   ButtonContainer,
+  Stars,
 };

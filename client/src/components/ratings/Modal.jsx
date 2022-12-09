@@ -11,6 +11,15 @@ function Modal({ setShowModal }) {
     emailInput: '',
     imageInput: '',
   });
+  // onSubmit axios post function
+  // on file upload handle file upload
+
+  /*
+  Fields:
+    Text:
+    Selectable:
+      The overall rating will be five selectable star icons, when you click on one all the ones before it will be filled in
+  */
 
   return (
     <ModalContainer>
@@ -20,7 +29,6 @@ function Modal({ setShowModal }) {
         </span>
         <h1>Add a review!</h1>
         <label>
-
         </label>
       </ModalContent>
     </ModalContainer>
