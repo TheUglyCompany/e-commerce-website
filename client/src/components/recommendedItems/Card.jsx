@@ -26,7 +26,7 @@ const Stars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
-    background: linear-gradient(90deg, #d8d805 var(--rating), gray var(--rating));
+    background: linear-gradient(90deg, #c2bf0a var(--rating), gray var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -56,7 +56,6 @@ function Card({ productId, cardClicked }) {
 
   useEffect(() => {
     if (ratingObj !== null) {
-      console.log(ratingObj);
       let ratingCount = 0;
       let ratingTotal = 0;
       const numbers = Object.keys(ratingObj.ratings);
