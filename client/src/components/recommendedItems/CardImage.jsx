@@ -6,8 +6,8 @@ const ThumbnailImg = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  max-height: 60%
-  /* object-fit: none; */
+  height: 60%;
+  object-fit: contain;
 `;
 
 function CardImage({ stylesObj }) {
