@@ -18,11 +18,45 @@ const Gallery = styled.div`
   padding: 10px;
 `;
 
+const OVgalleryThumbs = styled.div`
+  margin: 2px auto;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+`;
+
+const OVgalleryArrows = styled.div`
+  display: ${(props) => `${props.display}`};
+  align-items: center;
+  margin: 0;
+  height: 50px;
+  cursor: pointer;
+`;
+
+const OVgalleryThumb = styled.img`
+  margin: 2px;
+  max-height: 50px;
+`;
+
 const GalleryBig = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden
+  overflow: hidden;
+`;
+
+const GalleryZoom = styled.div`
+  display: ${(props) => `${props.display}`};
+  /* display: absolute; */
+  position: absolute;
+  overflow: auto;
+  top: 50px;
+  left: 50px;
+  width: 90%;
+  height: 90%;
+  background: black;
+  z-index: 2;
+  border: 5px solid black;
+  /* cursor: pointer; */
 `;
 
 const ImageBig = styled.img`
@@ -90,11 +124,27 @@ const StyleImg = styled.img`
   border-radius:50%;
   width: 75px;
   height: 75px;
+  cursor: pointer;
+  position: relative;
   /* border: 0px solid black; */
 `;
 
 const StyleImgPad = styled.span`
   padding: 10px;
+  position: relative;
+`;
+
+const Check = styled.span`
+  position: absolute;
+  top: -50px;
+  left: 60px;
+  display: flex;
+  background-color: red;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyleImgThumb = styled.div`
@@ -234,7 +284,11 @@ const SocialIcons = styled.span`
 export {
   Ov,
   Gallery,
+  OVgalleryThumbs,
+  OVgalleryArrows,
+  OVgalleryThumb,
   GalleryBig,
+  GalleryZoom,
   ImageBig,
   Details,
   Category,
@@ -247,6 +301,7 @@ export {
   Styles,
   StyleImg,
   StyleImgPad,
+  Check,
   StyleImgThumb,
   StyleHeader,
   StyleSelected,
