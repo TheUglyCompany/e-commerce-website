@@ -11,11 +11,21 @@ function App() {
   const [product, setProduct] = useState(null);
   const [ready, setReady] = useState(false);
 
+  const cardClicked = (productId) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
+      .then((response) => {
+        setReady(false);
+        setProduct(response.data);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
       .then((response) => { setProduct(response.data[0]); })
       .catch((err) => console.log(err.message));
   }, []);
+
   useEffect(() => {
     if (product !== null) {
       setReady(true);
@@ -29,7 +39,7 @@ function App() {
         Wiliam Park, Charlie Um, Matthew Sigler, Jonathan Sindorf
       </h3>
       <Overview product={product} />
-      <RecommendedItems />
+      <RecommendedItems product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
       <QandA product={product} />
       <Ratings product={product} />
