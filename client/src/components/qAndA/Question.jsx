@@ -7,7 +7,7 @@ import {
   UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan, QuestionBodySpan, YesStyle,
 } from './QandA.style';
 
-function Question({ question, productName }) {
+function Question({ question, productName, currQuestionList }) {
   const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState('');
 
@@ -111,6 +111,7 @@ function Question({ question, productName }) {
           questionId={question.question_id}
           productName={productName}
           setShowModal={setShowModal}
+          currQuestionList={currQuestionList}
         />
       </div>
     </QuestionStyle>

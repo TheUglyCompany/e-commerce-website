@@ -6,7 +6,7 @@ import {
   LoadMoreButton, AnswerStyle, LoadMoreButtonSpan, NoAnswerStyle,
 } from './QandA.style';
 
-function AnswerList({ questionId, productName }) {
+function AnswerList({ questionId, productName, currQuestionList }) {
   const [answerList, setAnswerList] = useState([]);
   const [showMoreAnswers, setShowMoreAnswers] = useState(false);
   const [renderCount, setRenderCount] = useState(2);
@@ -21,12 +21,13 @@ function AnswerList({ questionId, productName }) {
       .catch((error) => {
         console.log('There is an error in AnswerList: ', error);
       });
-  }, []);
+  }, [currQuestionList]);
   return (
     <AnswerStyle>
       {answerList?.length !== 0
         ? answerList.map((answer, index) => {
           count += 1;
+          console.log('Answer: ', answer);
           if (count <= renderCount) {
             return (
               <Answer

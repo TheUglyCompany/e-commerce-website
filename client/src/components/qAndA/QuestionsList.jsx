@@ -43,6 +43,7 @@ function QuestionsList({ productId, productName }) {
         {currQuestionList?.length !== 0
           ? currQuestionList?.map((question, key) => {
             count += 1;
+            console.log('Question: ', question);
             if (count <= renderCount) {
               return (
                 <Question
@@ -50,6 +51,7 @@ function QuestionsList({ productId, productName }) {
                   key={key}
                   productName={productName}
                   setShowModal={setShowModal}
+                  currQuestionList={currQuestionList}
                 />
               );
             }

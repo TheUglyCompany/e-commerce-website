@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 import API_KEY from '../../../config';
@@ -6,9 +6,12 @@ import {
   UnderlineTextButton,
   HelpfulButton,
   AnswerImageStyle, YesStyle,
+  AnswerImageZoom,
+  ModalContainer,
 } from './QandA.style';
 
 function Answer({ answer }) {
+  const [zoom, setZoom] = useState(false);
   const { date } = answer;
   const formatDate = format(new Date(date), 'MMMM d, yyyy');
   function handleHelpfulAnswer() {
@@ -42,6 +45,17 @@ function Answer({ answer }) {
         console.log('There is an error in handleAnswerReport: ', error);
       });
   }
+
+  const zoomIn = () => {
+    setZoom(true);
+    console.log('Zoomed in!');
+  };
+
+  const zoomOut = () => {
+    setZoom(false);
+    console.log('Zoomed out!');
+  };
+
   return (
     <div id="answer">
       <strong>A: </strong>
@@ -49,7 +63,13 @@ function Answer({ answer }) {
       <div>
         {answer.photos?.length !== 0
           ? answer.photos.map((photo) => (
-            <AnswerImageStyle src={photo.url} alt="product" />
+            !zoom
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} />
+              : (
+                <ModalContainer>
+                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} />
+                </ModalContainer>
+              )
           )) : null}
       </div>
       <YesStyle>

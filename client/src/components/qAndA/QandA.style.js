@@ -240,6 +240,18 @@ const QATitle = styled.span`
   font-size: 23px;
   font-weight: bold;
 `;
+
+const AnswerImageZoom = styled.img`
+  display: absolute;
+  top: 50px;
+  left: 50px;
+  width: 80%;
+  height: 90%;
+  background: black;
+  z-index: 3;
+  border: 5px solid black;
+  /* cursor: pointer; */
+`;
 // const ModalTitle = styled.h1`
 //   margin: 0;
 // `;
@@ -283,4 +295,5 @@ export {
   EmailFieldInput,
   ImageInputUpload,
   QATitle,
+  AnswerImageZoom,
 };
