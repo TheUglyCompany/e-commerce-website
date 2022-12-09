@@ -7,7 +7,7 @@ import RelatedProducts from './RelatedProducts';
 import API_KEY from '../../../config';
 
 const CarouselContainer = styled.div`
-  border: 2px solid black;
+  /* border: 2px solid black; */
 `;
 
 function RecommendedItems({ product, cardClicked }) {

@@ -7,11 +7,13 @@ import CardImage from './CardImage';
 import API_KEY from '../../../config';
 
 const StyledCard = styled.div`
-  /* display: inline-block; */
-  /* height: 400px;
-  width: 25%; */
-  border: solid;
-  border-color: #575656;
+  display: inline-block;
+  margin: 2px 4px;
+  padding: 10px;
+  height: 400px;
+  width: 25%;
+  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
+  border: 1px solid black;
   border-radius: 5px;
 `;
 
@@ -35,7 +37,7 @@ function Card({ productId, cardClicked }) {
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
   const [rating, setRating] = useState('0%');
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
 
   const [ready, setReady] = useState(false);
 
@@ -54,11 +56,15 @@ function Card({ productId, cardClicked }) {
 
   useEffect(() => {
     if (ratingObj !== null) {
-      const {
-        1: one, 2: two, 3: three, 4: four, 5: five,
-      } = ratingObj.ratings;
-      const ratingTotal = parseInt(one) + parseInt(two) * 2 + parseInt(three) * 3 + parseInt(four) * 4 + parseInt(five) * 5;
-      const ratingCount = parseInt(one) + parseInt(two) + parseInt(three) + parseInt(four) + parseInt(five);
+      console.log(ratingObj);
+      let ratingCount = 0;
+      let ratingTotal = 0;
+      const numbers = Object.keys(ratingObj.ratings);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const number of numbers) {
+        ratingCount += parseInt(ratingObj.ratings[number]);
+        ratingTotal += parseInt(ratingObj.ratings[number]) * number;
+      }
       setRating(`${(ratingTotal / ratingCount) * 20}%`);
       setTotal(ratingTotal);
     }
