@@ -1,15 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const ThumbnailImg = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  height: 60%;
-  background: #77788554;
-  object-fit: contain;
-`;
+import { ThumbnailImg } from './RecommendedItems.style';
 
 function CardImage({ stylesObj }) {
   return (
