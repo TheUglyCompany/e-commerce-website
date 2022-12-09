@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import {
   FitChart,
+  FitChartContent,
+  AttributeStyle,
+  DataStyle,
+  ArrowDown,
 } from './ProductBreakdown.style';
 
 function ProductBreakdown({ metaData }) {
   console.log(metaData);
-  let totalAttributeValues = 0;
-  let allVal = [];
-  let attributeNames = [];
   let attributes = [];
   /*
         1. Size
@@ -20,26 +21,27 @@ function ProductBreakdown({ metaData }) {
 
   if (metaData.characteristics) {
     attributes = (Object.entries(metaData.characteristics));// an array of arrays
-    // console.log('nameVals', attributes);// array[0][]
   }
 
   // make an array of names
   // make an equal array length of Values
   // map through them
-    // attribute name
-    // percentage of attribute value passed as width
+  // attribute name
+  // percentage of attribute value passed as width
   return (
     <FitChart data-testid="test">
-      PRODUCT BREAKDOWN
       {
         attributes.map((attribute) => {
-          // console.log(attribute);
+          const percentage = ((attribute[1].value / 5) * 75);
           return (
-            <div>
-              {attribute[0]}
-              {' '}
-              {attribute[1].value}
-            </div>
+            <FitChartContent>
+              <DataStyle>
+                {attribute[0]}
+                {console.log(percentage)}
+              </DataStyle>
+              <ArrowDown inputWidth={`${percentage + 25}%`} />
+              <AttributeStyle />
+            </FitChartContent>
           );
         })
       }
