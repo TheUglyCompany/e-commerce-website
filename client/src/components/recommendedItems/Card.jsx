@@ -2,35 +2,9 @@
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import CardImage from './CardImage';
 import API_KEY from '../../../config';
-
-const StyledCard = styled.div`
-  display: inline-block;
-  margin: 2px 4px;
-  padding: 10px;
-  height: 400px;
-  width: 25%;
-  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
-  border: 1px solid black;
-  border-radius: 5px;
-`;
-
-const Stars = styled.div`
-  display: inline-block;
-  font-size: 20px;
-  font-family: Times;
-  line-height: 1;
-
-  &::before {
-    content: '★★★★★';
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #d8d805 var(--rating), gray var(--rating));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-`;
+import { StyledCard, Stars } from './RecommendedItems.style';
 
 function Card({ productId, cardClicked }) {
   const [cardProduct, setCardProduct] = useState(null);
@@ -56,7 +30,6 @@ function Card({ productId, cardClicked }) {
 
   useEffect(() => {
     if (ratingObj !== null) {
-      console.log(ratingObj);
       let ratingCount = 0;
       let ratingTotal = 0;
       const numbers = Object.keys(ratingObj.ratings);
