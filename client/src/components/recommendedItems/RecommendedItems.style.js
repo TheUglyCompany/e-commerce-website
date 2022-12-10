@@ -52,8 +52,10 @@ const NavigationButton = styled.button`
   border: none;
   color: rgba(0, 0, 0, 0.3);
   font-size: 30px;
+  transition: color 0.1s;
   &:hover{
     color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
   }
 `;
 
