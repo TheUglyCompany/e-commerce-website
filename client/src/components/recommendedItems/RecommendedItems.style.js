@@ -22,6 +22,7 @@ top: -40%
 
 const Carousel = styled.div`
   display: flex;
+  position: relative;
   margin: 40px 10px 40px 10px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -42,6 +43,35 @@ const PlusText = styled.p`
   top: 25%;
   font-size: 200px;
   color: gray;
+`;
+
+const NavigationButton = styled.button`
+  position: absolute;
+  width: 80px;
+  height: 100%;
+  border: none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 30px;
+  &:hover{
+    color: rgba(255, 255, 255, 0.3);
+  }
+`;
+
+const PreviousButton = styled(NavigationButton)`
+  left: 0;
+  background: linear-gradient(270deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
+
+  &::before{
+    content: '<'
+  }
+`;
+
+const NextButton = styled(NavigationButton)`
+  right: 0;
+  background: linear-gradient(90deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
+  &::before{
+    content: '>'
+  }
 `;
 
 // requires --rating css variable inside component
@@ -88,7 +118,9 @@ const ThumbnailImg = styled.img`
 export {
   AddToOutfitCard,
   AddToOutfitText,
+  NextButton,
   PlusText,
+  PreviousButton,
   Carousel,
   CarouselContainer,
   Stars,

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AddToOutfitCard, AddToOutfitText, PlusText, Carousel } from './RecommendedItems.style';
+import { AddToOutfitCard, AddToOutfitText, PlusText, Carousel, PreviousButton, NextButton } from './RecommendedItems.style';
 // import Card from './Card';
 
 function YourOutfit({ cardClicked }) {
@@ -15,11 +15,13 @@ function YourOutfit({ cardClicked }) {
     <div>
       <h3>Your Outfit</h3>
       <Carousel>
+        <PreviousButton />
         <AddToOutfitCard>
           <PlusText>+</PlusText>
           <AddToOutfitText>Add to Outfit</AddToOutfitText>
         </AddToOutfitCard>
         {/* {renderList()} */}
+        <NextButton />
       </Carousel>
     </div>
   );

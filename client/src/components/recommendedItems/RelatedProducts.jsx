@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card';
-import { Carousel } from './RecommendedItems.style';
+import { Carousel, PreviousButton, NextButton } from './RecommendedItems.style';
 
 function RelatedProducts({ relatedProducts, cardClicked }) {
   const renderList = () => relatedProducts.map((productId, index) => (
@@ -11,7 +11,9 @@ function RelatedProducts({ relatedProducts, cardClicked }) {
     <div>
       <h3>Related Products</h3>
       <Carousel>
+        <PreviousButton />
         {renderList()}
+        <NextButton />
       </Carousel>
     </div>
   );
