@@ -8,7 +8,7 @@ import {
   CardInfo,
   TileStyle,
 } from './ReviewListTile.style';
-import FiveStarRating from '../sharedComponents/FiveStarRating';
+import { Stars } from '../recommendedItems/RecommendedItems.style';
 
 // convert the below to HelpfulButtons
 
@@ -18,10 +18,7 @@ function ReviewListTile({ review, postFeedback }) {
       {' '}
       <CardInfo>
         <div>
-          Rating:
-          {' '}
-          {review.rating}
-          <FiveStarRating />
+          <Stars style={{ '--rating': `${((review.rating / 5) * 100)}%` }} />
         </div>
         <div>
           {' '}

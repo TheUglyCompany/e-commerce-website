@@ -19,6 +19,7 @@ const RowFormat = styled.div`
 const StarButton = styled.button`
   display: flex;
   justify-content: flex-start;
+  font-family: poppins;
   background: none;
   font-size: 16px;
   border: none;
