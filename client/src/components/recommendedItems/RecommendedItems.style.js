@@ -24,7 +24,12 @@ const Carousel = styled.div`
   display: flex;
   margin: 40px 10px 40px 10px;
   overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   /* border: 2px solid black; */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CarouselContainer = styled.div`
@@ -67,6 +72,7 @@ const StyledCard = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   overflow: hidden;
+  scroll-snap-align: start;
 `;
 
 const ThumbnailImg = styled.img`

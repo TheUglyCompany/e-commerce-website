@@ -3,8 +3,8 @@ import Card from './Card';
 import { Carousel } from './RecommendedItems.style';
 
 function RelatedProducts({ relatedProducts, cardClicked }) {
-  const renderList = () => relatedProducts.map((productId) => (
-    <Card key={productId} productId={productId} cardClicked={cardClicked} />
+  const renderList = () => relatedProducts.map((productId, index) => (
+    <Card key={productId} id={`related-card-${index}`} productId={productId} cardClicked={cardClicked} />
   ));
 
   return (
