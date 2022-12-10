@@ -3,16 +3,12 @@ import axios from 'axios';
 import API_KEY from '../../../config';
 import OVgallery from './OVgallery';
 import OVprodDetails from './OVprodDetails';
-import OVquantity from './OVquantity';
 import OVsocial from './OVsocial';
 import OVstyles from './OVstyles';
+import OVorderDetails from './OVorderDetails';
 import {
   Ov,
   Details,
-  Dd,
-  DdBttn,
-  DdContent,
-  DdItem,
   Button,
   FavButton,
 } from './Overview.style';
@@ -59,41 +55,19 @@ function Overview({ product }) {
           setStyleSelected={setStyleSelected}
         />
 
-        <div>
-          <Dd>
-            <DdBttn onClick={() => { setBttnSizeActive(!bttnSizeActive); }}>
-              {bttnSize}
-              &nbsp;&nbsp;
-              <span>
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
-              </span>
-            </DdBttn>
-            {bttnSizeActive && (
-              <DdContent>
-                {skuOptions.map((skuOption) => (
-                  <DdItem onClick={(e) => {
-                    setBttnSize(e.target.textContent);
-                    setBttnSizeActive(false);
-                    setCurrentSku(skuOption);
-                  }}
-                  >
-                    {skuOption.size}
-                  </DdItem>
-                ))}
-              </DdContent>
-            )}
-          </Dd>
-
-          {currentSku && (
-            <OVquantity
-              currentSku={currentSku}
-              bttnQntyActive={bttnQntyActive}
-              setBttnQntyActive={setBttnQntyActive}
-              bttnQnty={bttnQnty}
-              setBttnQnty={setBttnQnty}
-            />
-          )}
-        </div>
+        <OVorderDetails
+          skuOptions={skuOptions}
+          currentSku={currentSku}
+          setCurrentSku={setCurrentSku}
+          bttnSizeActive={bttnSizeActive}
+          setBttnSizeActive={setBttnSizeActive}
+          bttnSize={bttnSize}
+          setBttnSize={setBttnSize}
+          bttnQntyActive={bttnQntyActive}
+          setBttnQntyActive={setBttnQntyActive}
+          bttnQnty={bttnQnty}
+          setBttnQnty={setBttnQnty}
+        />
 
         <Button>
           ADD TO CART

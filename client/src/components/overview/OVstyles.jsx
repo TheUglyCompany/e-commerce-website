@@ -24,6 +24,8 @@ function OVstyles({
       <div>
         {styleOpts.map((styleOpt, index) => (
           <OVstyleImg
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             styleOpts={styleOpts}
             styleOpt={styleOpt}
             index={index}
