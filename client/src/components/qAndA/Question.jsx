@@ -7,39 +7,56 @@ import {
   UnderlineTextButton, HelpfulButton, QuestionStyle, ButtonSpan, QuestionBodySpan, YesStyle,
 } from './QandA.style';
 
-function Question({ question, productName }) {
+function Question({
+  question, productName, currQuestionList, setCurrQuestionList,
+}) {
   const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState('');
+  const [reported, setReported] = useState(false);
+  const [helpful, setHelpful] = useState(false);
+  const questionId = question.question_id;
+  const currQuestionInfo = localStorage[questionId];
 
   function handleHelpfullQuestions() {
     const helpfulNum = question.question_helpfulness + 1;
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question.question_id}/helpful`, helpfulNum, {
-      headers:
+    if (currQuestionInfo === undefined && helpful === false) {
+      localStorage[questionId] = 'helpful';
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question.question_id}/helpful`, helpfulNum, {
+        headers:
     {
       Authorization: API_KEY,
     },
-    })
-      .then((response) => {
-        console.log('This is the response in handleHelpful: ', response);
       })
-      .catch((error) => {
-        console.log('There is an error in handleHelpful: ', error);
-      });
+        .then((response) => {
+          console.log('This is the response in handleHelpful: ', response);
+        })
+        .catch((error) => {
+          console.log('There is an error in handleHelpful: ', error);
+        });
+      setHelpful(true);
+    } else {
+      window.alert('You\'ve already said the question was helpful!');
+    }
   }
   function handleQuestionReport() {
-    const reported = { reported: true };
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question.question_id}/report`, reported, {
-      headers:
+    const reportRequest = { reported: true };
+    if (currQuestionInfo === undefined && reported === false) {
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${question.question_id}/report`, reportRequest, {
+        headers:
     {
       Authorization: API_KEY,
     },
-    })
-      .then((response) => {
-        console.log('This is the response in handleQuestionReport: ', response);
       })
-      .catch((error) => {
-        console.log('There is an error in handleQuestionReport: ', error);
-      });
+        .then((response) => {
+          console.log('This is the response in handleQuestionReport: ', response);
+        })
+        .catch((error) => {
+          console.log('There is an error in handleQuestionReport: ', error);
+        });
+      setReported(true);
+    } else {
+      window.alert('You\'ve already reported this question!');
+    }
   }
 
   return (
@@ -53,7 +70,7 @@ function Question({ question, productName }) {
       <ButtonSpan>
         <HelpfulButton
           type="button"
-          onClick={() => handleHelpfullQuestions}
+          onClick={() => handleHelpfullQuestions()}
         >
           Helpful?
 
@@ -63,20 +80,26 @@ function Question({ question, productName }) {
           <u>Yes</u>
           {' '}
           (
-          {question.question_helpfulness}
+          {!helpful
+            ? question.question_helpfulness
+            : question.question_helpfulness + 1}
           )
           &nbsp;
           |
         </YesStyle>
         &nbsp;
         &nbsp;
-        <UnderlineTextButton
-          type="button"
-          onClick={() => handleQuestionReport}
-        >
-          Report
+        {reported
+          ? <YesStyle>Reported!</YesStyle>
+          : (
+            <UnderlineTextButton
+              type="button"
+              onClick={() => handleQuestionReport()}
+            >
+              Report
 
-        </UnderlineTextButton>
+            </UnderlineTextButton>
+          )}
         &nbsp;
         &nbsp;
         <YesStyle>
@@ -111,6 +134,8 @@ function Question({ question, productName }) {
           questionId={question.question_id}
           productName={productName}
           setShowModal={setShowModal}
+          currQuestionList={currQuestionList}
+          setCurrQuestionList={setCurrQuestionList}
         />
       </div>
     </QuestionStyle>

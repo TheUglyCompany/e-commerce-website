@@ -96,7 +96,7 @@ const XSpan = styled.span`
   cursor: pointer;
 `;
 
-const TextFieldinput = styled.input`
+const TextFieldinput = styled.textarea`
   height: 100px;
   width: 100%;
   overflow: auto;
@@ -198,6 +198,7 @@ const AnswerImageStyle = styled.img`
   height: 100px;
   width: 100px;
   border: 1px solid black;
+  margin: 5px;
 `;
 
 const QuestionBodySpan = styled.span`
@@ -239,6 +240,26 @@ const QATitle = styled.span`
   font-family: ROBOTO;
   font-size: 23px;
   font-weight: bold;
+`;
+
+const AnswerImageZoom = styled.img`
+  display: absolute;
+  top: 50px;
+  left: 50px;
+  width: 80%;
+  height: 90%;
+  background: black;
+  z-index: 3;
+  border: 5px solid black;
+  /* cursor: pointer; */
+`;
+
+const ErrorMessage = styled.p`
+  text-align: center;
+  font-family: ROBOTO;
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
 `;
 // const ModalTitle = styled.h1`
 //   margin: 0;
@@ -283,4 +304,6 @@ export {
   EmailFieldInput,
   ImageInputUpload,
   QATitle,
+  AnswerImageZoom,
+  ErrorMessage,
 };

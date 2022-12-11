@@ -25,7 +25,6 @@ function QuestionsList({ productId, productName }) {
       },
     })
       .then((response) => {
-        console.log('The Data: ', response.data);
         setQuestionList(response.data.results);
         setCurrQuestionList(response.data.results);
       })
@@ -50,6 +49,7 @@ function QuestionsList({ productId, productName }) {
                   key={key}
                   productName={productName}
                   setShowModal={setShowModal}
+                  currQuestionList={currQuestionList}
                 />
               );
             }
