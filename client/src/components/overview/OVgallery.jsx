@@ -39,6 +39,7 @@ function OVgallery({
       <OVgallerySmall
         styleSelected={styleSelected}
         setMainImg={setMainImg}
+        mainImg={mainImg}
         // setPhotoIdx={setPhotoIdx}
       />
       <GalleryBig onClick={goZoom}>

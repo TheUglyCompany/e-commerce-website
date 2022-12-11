@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import OVgallery from './OVgallery';
+import OVratings from './OVratings';
 import OVprodDetails from './OVprodDetails';
 import OVsocial from './OVsocial';
 import OVstyles from './OVstyles';
@@ -41,12 +42,15 @@ function Overview({ product }) {
   }, [product]);
   useEffect(() => {}, [styleOpts]);
 
+  console.log('styleSelected: ', styleSelected);
+
   return !ready ? <>App is not ready</> : (
 
     <Ov>
       <OVgallery styleSelected={styleSelected} />
 
       <Details>
+        <OVratings />
         <OVprodDetails product={product} styleSelected={styleSelected} />
         <OVstyles
           styleSelected={styleSelected}
@@ -54,7 +58,6 @@ function Overview({ product }) {
           setSkuOptions={setSkuOptions}
           setStyleSelected={setStyleSelected}
         />
-
         <OVorderDetails
           skuOptions={skuOptions}
           currentSku={currentSku}

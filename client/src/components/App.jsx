@@ -40,9 +40,9 @@ function App() {
       </h3>
       <Overview product={product} />
       <RecommendedItems product={product} cardClicked={cardClicked} />
-      {/* <QATitle>Questions & Answers</QATitle> */}
-      {/* <QandA product={product} /> */}
-      {/* <Ratings product={product} /> */}
+      <QATitle>Questions & Answers</QATitle>
+      <QandA product={product} />
+      <Ratings product={product} />
     </div>
   );
 }

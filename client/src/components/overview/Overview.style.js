@@ -15,14 +15,17 @@ const Gallery = styled.div`
   display: block;
   width: 50%;
   /* border: 1px solid black; */
-  padding: 10px;
+  padding: 0px;
 `;
 
 const OVgalleryThumbs = styled.div`
-  margin: 10px auto;
+  margin: 0px auto;
+  padding: 2px;
   justify-content: center;
   display: flex;
   cursor: pointer;
+  /* background-color: #D3D3D3; */
+  /* border: solid; */
   /* overflow: auto; */
 `;
 
@@ -32,6 +35,7 @@ const OVgalleryArrowLeft = styled.div`
   margin: 0;
   height: 50px;
   cursor: pointer;
+  /* float: left; */
 `;
 
 const OVgalleryArrowRight = styled.div`
@@ -40,11 +44,20 @@ const OVgalleryArrowRight = styled.div`
   margin: 0;
   height: 50px;
   cursor: pointer;
+  /* float: right; */
 `;
 
 const OVgalleryThumb = styled.img`
   margin: 2px;
   height: 50px;
+  /* max-width: 100%; */
+`;
+
+const OVgalleryThumbSelect = styled.img`
+  margin: 2px;
+  height: 48px;
+  opacity: 0.5;
+  border: 1px solid black;
   /* max-width: 100%; */
 `;
 
@@ -84,6 +97,31 @@ const Details = styled.div`
   background: white;
   /* border: 1px solid black; */
   padding: 10px;
+`;
+
+const OVstars = styled.div`
+  display: inline-block;
+  font-size: 10px;
+  font-family: Poppins;
+  font-weight: 200;
+  line-height: 1;
+  margin: 5px;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #000000 var(--rating), #D3D3D3 var(--rating));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
+const OVstarsReview = styled.span`
+  font-size: 10px;
+  font-family: Poppins;
+  font-weight: 200;
+  padding: 0px 5px;
+  color: #D3D3D3;
 `;
 
 const Category = styled.div`
@@ -298,10 +336,13 @@ export {
   OVgalleryArrowLeft,
   OVgalleryArrowRight,
   OVgalleryThumb,
+  OVgalleryThumbSelect,
   GalleryBig,
   GalleryZoom,
   ImageBig,
   Details,
+  OVstars,
+  OVstarsReview,
   Category,
   Name,
   Button,

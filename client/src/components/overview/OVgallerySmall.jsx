@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import {
   OVgalleryThumb,
+  OVgalleryThumbSelect,
   OVgalleryThumbs,
   OVgalleryArrowLeft,
   OVgalleryArrowRight,
 } from './Overview.style';
 
-function OVgallerySmall({ styleSelected, setMainImg }) {
+function OVgallerySmall({ styleSelected, setMainImg, mainImg }) {
   const [leftArrow, setLeftArrow] = useState('none');
   const [rightArrow, setRightArrow] = useState('none');
   const [masterPhotoArr, setMasterPhotoArr] = useState([]);
@@ -39,6 +40,8 @@ function OVgallerySmall({ styleSelected, setMainImg }) {
     if (styleSelected.photos !== undefined) {
       setMasterPhotoArr(styleSelected.photos);
       setPhotoArr(styleSelected.photos);
+      setArrStart(0);
+      setArrEnd(7);
     }
   }, [styleSelected]);
   useEffect(() => {
@@ -72,7 +75,9 @@ function OVgallerySmall({ styleSelected, setMainImg }) {
       </OVgalleryArrowLeft>
       {photoArr.length !== 0
         ? photoArr.map((photo, index) => (
-          <OVgalleryThumb key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo); }} alt="" />
+          photo.url === mainImg
+            ? <OVgalleryThumbSelect key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo); }} alt="" />
+            : <OVgalleryThumb key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo); }} alt="" />
         ))
         : null}
       <OVgalleryArrowRight display={rightArrow} onClick={() => { goRight(); }}>
