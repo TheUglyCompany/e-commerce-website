@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
+import ComparisonModal from './ComparisonModal';
 import { Carousel, CarouselContainer, PreviousButton, NextButton } from './RecommendedItems.style';
 
 function RelatedProducts({ relatedProducts, cardClicked }) {
@@ -24,6 +25,8 @@ function RelatedProducts({ relatedProducts, cardClicked }) {
 
   const handleRelatedAction = (event, cardID) => {
     event.stopPropagation();
+    console.log(cardID);
+    return <ComparisonModal cardID={cardID} />;
   };
 
   const renderCarousel = () => (

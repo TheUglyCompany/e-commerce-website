@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProducts from './RelatedProducts';
-// import YourOutfit from './YourOutfit';
+import YourOutfit from './YourOutfit';
 import API_KEY from '../../../config';
 import { CarouselContainer } from './RecommendedItems.style';
 
@@ -25,7 +25,7 @@ function RecommendedItems({ product, cardClicked }) {
     <div>
       <CarouselContainer>
         <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
-        {/* <YourOutfit cardClicked={cardClicked} /> */}
+        <YourOutfit cardClicked={cardClicked} />
       </CarouselContainer>
     </div>
   );

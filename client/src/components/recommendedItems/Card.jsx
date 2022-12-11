@@ -66,7 +66,6 @@ function Card({ productId, cardClicked, id, handleRelatedAction, related }) {
         reviews
       </span>
       {related ? <RelatedAction onClick={(event) => { handleRelatedAction(event, productId); }} /> : null}
-      {/* <RelatedAction onClick=(/> */}
     </StyledCard>
   );
 }

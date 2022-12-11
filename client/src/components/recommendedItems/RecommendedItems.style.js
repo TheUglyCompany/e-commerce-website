@@ -5,13 +5,14 @@ const AddToOutfitCard = styled.div`
   margin: 2px 4px;
   padding: 10px;
   height: 400px;
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
+  width: 250px;
   text-align: center;
   background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
-  border: 1px solid black;
   border-radius: 5px;
+
+  box-sizing: border-box;
+  scroll-snap-align: center;
+  overflow: hidden;
 `;
 
 const AddToOutfitText = styled.p`
