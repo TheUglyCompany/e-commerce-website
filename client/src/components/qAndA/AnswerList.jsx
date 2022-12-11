@@ -27,7 +27,6 @@ function AnswerList({ questionId, productName, currQuestionList }) {
       {answerList?.length !== 0
         ? answerList.map((answer, index) => {
           count += 1;
-          console.log('Answer: ', answer);
           if (count <= renderCount) {
             return (
               <Answer

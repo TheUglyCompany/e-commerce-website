@@ -25,7 +25,6 @@ function QuestionsList({ productId, productName }) {
       },
     })
       .then((response) => {
-        console.log('The Data: ', response.data);
         setQuestionList(response.data.results);
         setCurrQuestionList(response.data.results);
       })
@@ -43,7 +42,6 @@ function QuestionsList({ productId, productName }) {
         {currQuestionList?.length !== 0
           ? currQuestionList?.map((question, key) => {
             count += 1;
-            console.log('Question: ', question);
             if (count <= renderCount) {
               return (
                 <Question
