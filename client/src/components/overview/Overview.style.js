@@ -13,35 +13,71 @@ const Ov = styled.div`
 const Gallery = styled.div`
   float: left;
   display: block;
-  width: 50%;
+  width: 600px;
+  min-width: 600px;
   /* border: 1px solid black; */
-  padding: 10px;
+  padding: 0px;
 `;
 
 const OVgalleryThumbs = styled.div`
-  margin: 2px auto;
+  margin: 0px auto;
+  padding: 2px;
   justify-content: center;
   display: flex;
   cursor: pointer;
+  /* background-color: #D3D3D3; */
+  /* border: solid; */
+  /* overflow: auto; */
 `;
 
-const OVgalleryArrows = styled.div`
+const OVgalleryArrowLeft = styled.span`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
-  height: 50px;
+  width: 25px;
+  /* border: 1px solid; */
   cursor: pointer;
+  /* float: left; */
+`;
+
+const OVgalleryArrowRight = styled.span`
+  display: ${(props) => `${props.display}`};
+  align-items: center;
+  margin: 0;
+  width: 25px;
+  /* border: 1px solid; */
+  cursor: pointer;
+  /* float: right; */
 `;
 
 const OVgalleryThumb = styled.img`
   margin: 2px;
-  max-height: 50px;
+  height: 50px;
+  /* max-width: 100%; */
 `;
 
-const GalleryBig = styled.div`
+const OVgalleryThumbSelect = styled.img`
+  margin: 2px;
+  height: 48px;
+  opacity: 0.5;
+  border: 1px solid black;
+  /* max-width: 100%; */
+`;
+
+const GalleryContainer = styled.div`
+  display: flex;
+  /* height: 500px; */
+`;
+
+const GalleryBig = styled.span`
   display: flex;
   justify-content: center;
   overflow: hidden;
+  margin: 0px auto;
+  cursor: pointer;
+  width: 550px;
+  /* height: 500px; */
+  /* line-height:50px; */
 `;
 
 const GalleryZoom = styled.div`
@@ -62,9 +98,9 @@ const GalleryZoom = styled.div`
 const ImageBig = styled.img`
   src: ${(props) => `url(${props.src})`};
   flex-shrink: 0;
-  /* height: 500px; */
   max-width: 500px;
   max-height: 500px;
+  /* border: 3px solid black; */
 `;
 
 const Details = styled.div`
@@ -74,6 +110,31 @@ const Details = styled.div`
   background: white;
   /* border: 1px solid black; */
   padding: 10px;
+`;
+
+const OVstars = styled.div`
+  display: inline-block;
+  font-size: 10px;
+  font-family: Poppins;
+  font-weight: 200;
+  line-height: 1;
+  margin: 5px;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #000000 var(--rating), #D3D3D3 var(--rating));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
+const OVstarsReview = styled.span`
+  font-size: 10px;
+  font-family: Poppins;
+  font-weight: 200;
+  padding: 0px 5px;
+  color: #D3D3D3;
 `;
 
 const Category = styled.div`
@@ -285,12 +346,17 @@ export {
   Ov,
   Gallery,
   OVgalleryThumbs,
-  OVgalleryArrows,
+  OVgalleryArrowLeft,
+  OVgalleryArrowRight,
   OVgalleryThumb,
+  OVgalleryThumbSelect,
   GalleryBig,
+  GalleryContainer,
   GalleryZoom,
   ImageBig,
   Details,
+  OVstars,
+  OVstarsReview,
   Category,
   Name,
   Button,

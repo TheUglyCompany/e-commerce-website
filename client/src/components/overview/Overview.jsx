@@ -2,17 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import OVgallery from './OVgallery';
+import OVratings from './OVratings';
 import OVprodDetails from './OVprodDetails';
-import OVquantity from './OVquantity';
 import OVsocial from './OVsocial';
 import OVstyles from './OVstyles';
+import OVorderDetails from './OVorderDetails';
 import {
   Ov,
   Details,
-  Dd,
-  DdBttn,
-  DdContent,
-  DdItem,
   Button,
   FavButton,
 } from './Overview.style';
@@ -45,14 +42,13 @@ function Overview({ product }) {
   }, [product]);
   useEffect(() => {}, [styleOpts]);
 
-  console.log('OV > styleSelected: ', styleSelected);
-
   return !ready ? <>App is not ready</> : (
 
     <Ov>
       <OVgallery styleSelected={styleSelected} />
 
       <Details>
+        <OVratings />
         <OVprodDetails product={product} styleSelected={styleSelected} />
         <OVstyles
           styleSelected={styleSelected}
@@ -60,42 +56,19 @@ function Overview({ product }) {
           setSkuOptions={setSkuOptions}
           setStyleSelected={setStyleSelected}
         />
-
-        <div>
-          <Dd>
-            <DdBttn onClick={() => { setBttnSizeActive(!bttnSizeActive); }}>
-              {bttnSize}
-              &nbsp;&nbsp;
-              <span>
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
-              </span>
-            </DdBttn>
-            {bttnSizeActive && (
-              <DdContent>
-                {skuOptions.map((skuOption) => (
-                  <DdItem onClick={(e) => {
-                    setBttnSize(e.target.textContent);
-                    setBttnSizeActive(false);
-                    setCurrentSku(skuOption);
-                  }}
-                  >
-                    {skuOption.size}
-                  </DdItem>
-                ))}
-              </DdContent>
-            )}
-          </Dd>
-
-          {currentSku && (
-            <OVquantity
-              currentSku={currentSku}
-              bttnQntyActive={bttnQntyActive}
-              setBttnQntyActive={setBttnQntyActive}
-              bttnQnty={bttnQnty}
-              setBttnQnty={setBttnQnty}
-            />
-          )}
-        </div>
+        <OVorderDetails
+          skuOptions={skuOptions}
+          currentSku={currentSku}
+          setCurrentSku={setCurrentSku}
+          bttnSizeActive={bttnSizeActive}
+          setBttnSizeActive={setBttnSizeActive}
+          bttnSize={bttnSize}
+          setBttnSize={setBttnSize}
+          bttnQntyActive={bttnQntyActive}
+          setBttnQntyActive={setBttnQntyActive}
+          bttnQnty={bttnQnty}
+          setBttnQnty={setBttnQnty}
+        />
 
         <Button>
           ADD TO CART

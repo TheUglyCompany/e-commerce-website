@@ -49,6 +49,7 @@ const AverageTitle = styled.div`
   font-size: 40px;
   font-weight: bold;
   margin-right: 25px;
+  border: solid;
 `;
 
 const GrayBar = styled(GreenBar)`
