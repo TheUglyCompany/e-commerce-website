@@ -118,7 +118,7 @@ const OVstars = styled.div`
   font-family: Poppins;
   font-weight: 200;
   line-height: 1;
-  margin: 5px;
+  margin: 5px 0px;
 
   &::before {
     content: '★★★★★';
