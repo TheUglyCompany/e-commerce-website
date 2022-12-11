@@ -24,7 +24,6 @@ const CardGroup = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 30%;
-  scroll-snap-align: center;
   justify-content: space-evenly;
   justify-items: center;
   @media (max-width: 1300px) {
@@ -37,21 +36,14 @@ const Carousel = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 100%;
-  /* gap: 30px; */
   margin: auto;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   width: 80%;
-  /* border: 2px solid black; */
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
 `;
 
 const CarouselContainer = styled.div`
   position: relative;
-  /* border: blue 2px solid; */
 `;
 
 const PlusText = styled.p`
@@ -62,7 +54,8 @@ const PlusText = styled.p`
   color: gray;
 `;
 
-const NavigationButton = styled.button`
+const NavigationButton = styled.a`
+  text-decoration: none;
   position: absolute;
   width: 80px;
   height: 100%;
@@ -77,15 +70,12 @@ const NavigationButton = styled.button`
 `;
 
 const StyledCard = styled.div`
-  /* display: inline-block; */
-  /* margin: 2px 4px;*/
   margin: 0 10px;
   height: 400px;
   min-width: 200px;
   width: 300px;
   padding: 10px;
   background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
-  /* border: 1px solid black; */
   border-radius: 5px;
   overflow: hidden;
 `;
