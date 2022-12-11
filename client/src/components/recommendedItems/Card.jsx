@@ -1,24 +1,17 @@
+/* eslint-disable max-len */
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-
 import CardImage from './CardImage';
 import API_KEY from '../../../config';
+import { StyledCard, Stars } from './RecommendedItems.style';
 
-const StyledCard = styled.div`
-  /* display: inline-block; */
-  height: 400px;
-  width: 25%;
-  border: solid;
-  border-color: #575656;
-  border-radius: 5px;
-`;
-
-function Card({ productId, cardClicked, renderStars }) {
+function Card({ productId, cardClicked }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
+  const [rating, setRating] = useState('0%');
+  const [total, setTotal] = useState(0);
 
   const [ready, setReady] = useState(false);
 
@@ -36,6 +29,21 @@ function Card({ productId, cardClicked, renderStars }) {
   }, []);
 
   useEffect(() => {
+    if (ratingObj !== null) {
+      let ratingCount = 0;
+      let ratingTotal = 0;
+      const numbers = Object.keys(ratingObj.ratings);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const number of numbers) {
+        ratingCount += parseInt(ratingObj.ratings[number]);
+        ratingTotal += parseInt(ratingObj.ratings[number]) * number;
+      }
+      setRating(`${(ratingTotal / ratingCount) * 20}%`);
+      setTotal(ratingTotal);
+    }
+  }, [ratingObj]);
+
+  useEffect(() => {
     if (cardProduct !== null && ratingObj !== null && stylesObj !== null) {
       setReady(true);
     }
@@ -49,7 +57,14 @@ function Card({ productId, cardClicked, renderStars }) {
       <p>{cardProduct.category}</p>
       <p>{cardProduct.name}</p>
       <p>{cardProduct.default_price}</p>
-      {renderStars(ratingObj.ratings)}
+      <span>
+        <Stars style={{ '--rating': rating }} />
+        out of
+        {' '}
+        {total}
+        {' '}
+        reviews
+      </span>
     </StyledCard>
   );
 }

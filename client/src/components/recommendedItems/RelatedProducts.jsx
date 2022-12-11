@@ -1,24 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
 import Card from './Card';
+import { Carousel } from './RecommendedItems.style';
 
-const StyledRelatedProducts = styled.div`
-  display: flex;
-  margin: 40px 10px 40px 10px;
-  border: 2px solid black;
-`;
-
-function RelatedProducts({ relatedProducts, cardClicked, renderStars }) {
+function RelatedProducts({ relatedProducts, cardClicked }) {
   const renderList = () => relatedProducts.map((productId) => (
-    // eslint-disable-next-line max-len
-    <Card key={productId} productId={productId} cardClicked={cardClicked} renderStars={renderStars} />
+    <Card key={productId} productId={productId} cardClicked={cardClicked} />
   ));
 
   return (
-    <StyledRelatedProducts>
-      Related Products
-      {renderList()}
-    </StyledRelatedProducts>
+    <div>
+      <h3>Related Products</h3>
+      <Carousel>
+        {renderList()}
+      </Carousel>
+    </div>
   );
 }
 

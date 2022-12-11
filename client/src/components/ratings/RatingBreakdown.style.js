@@ -19,6 +19,7 @@ const RowFormat = styled.div`
 const StarButton = styled.button`
   display: flex;
   justify-content: flex-start;
+  font-family: poppins;
   background: none;
   font-size: 16px;
   border: none;
@@ -48,6 +49,7 @@ const AverageTitle = styled.div`
   font-size: 40px;
   font-weight: bold;
   margin-right: 25px;
+  border: solid;
 `;
 
 const GrayBar = styled(GreenBar)`

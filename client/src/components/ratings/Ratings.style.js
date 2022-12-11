@@ -6,6 +6,7 @@ import {
 } from '../qAndA/QandA.style';
 
 const RatingsAndReviews = styled.div`
+font-family: poppins;
   flex: 1;
   display: flex;
   width: 100%;

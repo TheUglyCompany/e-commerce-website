@@ -1,27 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
-import OVquantity from './OVquantity';
-import OVstyleImg from './OVstyleImg';
+import OVgallery from './OVgallery';
+import OVratings from './OVratings';
+import OVprodDetails from './OVprodDetails';
 import OVsocial from './OVsocial';
+import OVstyles from './OVstyles';
+import OVorderDetails from './OVorderDetails';
 import {
   Ov,
-  Gallery,
-  GalleryBig,
-  ImageBig,
   Details,
-  Category,
-  Name,
-  Price,
-  SalePrice,
-  Desc,
-  Styles,
-  StyleHeader,
-  StyleSelected,
-  Dd,
-  DdBttn,
-  DdContent,
-  DdItem,
   Button,
   FavButton,
 } from './Overview.style';
@@ -54,101 +42,34 @@ function Overview({ product }) {
   }, [product]);
   useEffect(() => {}, [styleOpts]);
 
-  // console.log('OV > styleSelected: ', styleSelected.photos);
-
   return !ready ? <>App is not ready</> : (
 
     <Ov>
-      <Gallery>
-        <GalleryBig>
-          {styleSelected.photos !== undefined
-            ? <ImageBig src={styleSelected?.photos[0].url} alt="" /> : null}
-        </GalleryBig>
-      </Gallery>
+      <OVgallery styleSelected={styleSelected} />
+
       <Details>
-        <Category>{product.category.toUpperCase()}</Category>
-        <Name>{product.name}</Name>
-        <Price>
-          $
-          {styleSelected.sale_price
-            ? (
-              <span>
-                <strike>{styleSelected.original_price}</strike>
-                &nbsp;
-                <SalePrice>{styleSelected.sale_price}</SalePrice>
-              </span>
-            )
-            : styleSelected.original_price}
-        </Price>
-        <Desc>
-          <em>
-            &quot;
-            {product.slogan}
-            &quot;
-          </em>
-        </Desc>
-        <Desc>
-          {product.description}
-        </Desc>
-        <Styles>
-          <StyleHeader>
-            STYLE:&nbsp;
-            <StyleSelected>
-              {styleSelected && (
-                <span>
-                  {styleSelected.name?.toUpperCase()}
-                </span>
-              )}
-            </StyleSelected>
-          </StyleHeader>
-          <div>
-            {styleOpts.map((styleOpt, index) => (
-              <OVstyleImg
-                styleOpts={styleOpts}
-                styleOpt={styleOpt}
-                index={index}
-                setSkuOptions={setSkuOptions}
-                setStyleSelected={setStyleSelected}
-              />
-            ))}
-          </div>
-        </Styles>
+        <OVratings />
+        <OVprodDetails product={product} styleSelected={styleSelected} />
+        <OVstyles
+          styleSelected={styleSelected}
+          styleOpts={styleOpts}
+          setSkuOptions={setSkuOptions}
+          setStyleSelected={setStyleSelected}
+        />
+        <OVorderDetails
+          skuOptions={skuOptions}
+          currentSku={currentSku}
+          setCurrentSku={setCurrentSku}
+          bttnSizeActive={bttnSizeActive}
+          setBttnSizeActive={setBttnSizeActive}
+          bttnSize={bttnSize}
+          setBttnSize={setBttnSize}
+          bttnQntyActive={bttnQntyActive}
+          setBttnQntyActive={setBttnQntyActive}
+          bttnQnty={bttnQnty}
+          setBttnQnty={setBttnQnty}
+        />
 
-        <div>
-          <Dd>
-            <DdBttn onClick={() => { setBttnSizeActive(!bttnSizeActive); }}>
-              {bttnSize}
-              &nbsp;&nbsp;
-              <span>
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
-              </span>
-            </DdBttn>
-            {bttnSizeActive && (
-              <DdContent>
-                {skuOptions.map((skuOption) => (
-                  <DdItem onClick={(e) => {
-                    setBttnSize(e.target.textContent);
-                    setBttnSizeActive(false);
-                    setCurrentSku(skuOption);
-                  }}
-                  >
-                    {skuOption.size}
-                  </DdItem>
-                ))}
-              </DdContent>
-            )}
-          </Dd>
-
-          {currentSku && (
-            <OVquantity
-              currentSku={currentSku}
-              bttnQntyActive={bttnQntyActive}
-              setBttnQntyActive={setBttnQntyActive}
-              bttnQnty={bttnQnty}
-              setBttnQnty={setBttnQnty}
-            />
-          )}
-        </div>
         <Button>
           ADD TO CART
         </Button>

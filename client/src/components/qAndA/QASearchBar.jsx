@@ -6,14 +6,16 @@ function QASearchBar({ setCurrQuestionList, questionList }) {
 
   function handleSearch(event) {
     event.preventDefault();
-    setQuery(event.target.value);
+    setQuery(event.target.value.toLowerCase());
     if (query.length < 3) {
       setCurrQuestionList(questionList);
     } else {
       setCurrQuestionList(questionList.filter((question) => {
-        if (question.question_body.includes(query)) {
+        const questionBody = question.question_body.toLowerCase();
+        if (questionBody.includes(query)) {
           return question;
         }
+        return null;
       }));
     }
   }

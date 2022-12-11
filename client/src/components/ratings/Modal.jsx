@@ -1,8 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import API_KEY from '../../../config';
 import {
   ModalContainer,
+  ModalContent,
   ModalTitle,
   ModalDesc,
+  ImageInputUpload,
+  TextFieldinput,
+  NameFieldInput,
+  EmailFieldInput,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -21,17 +28,17 @@ import {
   ReqAst,
 } from './Ratings.style';
 
-function Modal({ setShowModal, characteristics, product }) {
+function Modal({ setShowModal, productId, characteristics }) {
   const [form, setForm] = useState({
-    body: '',
-    name: '',
-    email: '',
-    summary: '',
-    product_id: product.id,
-    characteristics: {},
-    recommend: false,
-    rating: 1,
-    photos: [],
+    name: '', // name : text
+    body: '', // body: text
+    email: '', // email: text
+    photos: [], // photos: array of text urls
+    summary: '', // summary: text
+    product_id: productId,
+    characteristics: {}, // characteristics: object of keys rep char_id and values rep the review value 1-5
+    recommend: false, // recommend: bool
+    rating: 1, // rating: int 1-5
   });
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -56,6 +63,35 @@ function Modal({ setShowModal, characteristics, product }) {
     //   .catch((err) => {
     //     console.log('error posting, review ', err.message);
     //   });
+    console.log(`
+    body: ${form.body},
+    summary: ${form.summary},
+    name: ${form.nameInput},
+    email: ${form.email},
+    product_id: ${form.product_id},
+    characteristics: ${JSON.stringify(form.characteristics)},
+    recommend: ${form.recommend},
+    rating: ${form.rating},
+    photos: ${form.photos},
+    `);
+  }
+
+  const fitEntries = Object.entries(characteristics);
+
+  // onSubmit axios post function
+  // on file upload handle file upload
+  function handleSubmit() {
+    axios.post(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+      form,
+      { headers: { Authorization: API_KEY } },
+    )
+      .then((response) => {
+        console.log('success posting, review ', response);
+      })
+      .catch((err) => {
+        console.log('error posting, review ', err.message);
+      });
     console.log(`
     body: ${form.body},
     summary: ${form.summary},

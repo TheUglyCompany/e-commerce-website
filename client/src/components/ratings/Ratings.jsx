@@ -135,8 +135,8 @@ function Ratings({ product }) {
         ? (
           <Modal
             setShowModal={setShowModal}
+            productId={product.id}
             characteristics={metaData.characteristics}
-            product={product}
           />
         ) : null}
     </OuterMostLayer>
