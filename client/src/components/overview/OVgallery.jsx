@@ -11,6 +11,7 @@ function OVgallery({
   styleSelected,
 }) {
   const [mainImg, setMainImg] = useState('');
+  // const [photoIdx, setPhotoIdx] = useState();
   const [zoom, setZoom] = useState('none');
 
   const onZoom = () => {
@@ -22,14 +23,24 @@ function OVgallery({
   };
 
   useEffect(() => {
+    console.log('');
     if (styleSelected.photos !== undefined) {
       setMainImg(styleSelected.photos[0].url);
     }
   }, [styleSelected]);
+  // useEffect(() => {
+  //   if (photoIdx !== undefined) {
+  //     setMainImg(styleSelected.photos[photoIdx].url);
+  //   }
+  // }, [photoIdx]);
 
   return (
     <Gallery>
-      <OVgallerySmall styleSelected={styleSelected} setMainImg={setMainImg} />
+      <OVgallerySmall
+        styleSelected={styleSelected}
+        setMainImg={setMainImg}
+        // setPhotoIdx={setPhotoIdx}
+      />
       <GalleryBig onClick={goZoom}>
         {styleSelected.photos !== undefined
           ? <ImageBig src={mainImg} alt="" /> : null}

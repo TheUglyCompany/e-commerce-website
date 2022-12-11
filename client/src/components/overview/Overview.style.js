@@ -26,7 +26,15 @@ const OVgalleryThumbs = styled.div`
   /* overflow: auto; */
 `;
 
-const OVgalleryArrows = styled.div`
+const OVgalleryArrowLeft = styled.div`
+  display: ${(props) => `${props.display}`};
+  align-items: center;
+  margin: 0;
+  height: 50px;
+  cursor: pointer;
+`;
+
+const OVgalleryArrowRight = styled.div`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
@@ -64,9 +72,9 @@ const GalleryZoom = styled.div`
 const ImageBig = styled.img`
   src: ${(props) => `url(${props.src})`};
   flex-shrink: 0;
-  /* height: 500px; */
   max-width: 500px;
   max-height: 500px;
+  /* border: 3px solid black; */
 `;
 
 const Details = styled.div`
@@ -287,7 +295,8 @@ export {
   Ov,
   Gallery,
   OVgalleryThumbs,
-  OVgalleryArrows,
+  OVgalleryArrowLeft,
+  OVgalleryArrowRight,
   OVgalleryThumb,
   GalleryBig,
   GalleryZoom,
