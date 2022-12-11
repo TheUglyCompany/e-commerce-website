@@ -50,7 +50,7 @@ max-width: 100%;
 const OwnerResponse = styled.div`
 border-style: solid;
 background-color: lightgray;
-width: calc(100% - 7g0px);
+width: calc(100% - 70px);
 margin: 10px;
 padding: 20px;
 `;
