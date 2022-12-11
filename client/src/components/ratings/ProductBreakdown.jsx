@@ -8,7 +8,6 @@ import {
 } from './ProductBreakdown.style';
 
 function ProductBreakdown({ metaData }) {
-  console.log(metaData);
   let attributes = [];
   /*
         1. Size
@@ -31,13 +30,12 @@ function ProductBreakdown({ metaData }) {
   return (
     <FitChart data-testid="test">
       {
-        attributes.map((attribute) => {
+        attributes.map((attribute, i) => {
           const percentage = ((attribute[1].value / 5) * 75);
           return (
-            <FitChartContent>
+            <FitChartContent key={i}>
               <DataStyle>
                 {attribute[0]}
-                {console.log(percentage)}
               </DataStyle>
               <ArrowDown inputWidth={`${percentage + 25}%`} />
               <AttributeStyle />

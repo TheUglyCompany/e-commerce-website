@@ -1,14 +1,10 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import RelatedProducts from './RelatedProducts';
-// import YourOutfit from './YourOutfit';
+import YourOutfit from './YourOutfit';
 import API_KEY from '../../../config';
-
-const CarouselContainer = styled.div`
-  /* border: 2px solid black; */
-`;
+import { CarouselContainer } from './RecommendedItems.style';
 
 function RecommendedItems({ product, cardClicked }) {
   const [relatedProducts, setRelatedProducts] = useState(null);
@@ -28,7 +24,7 @@ function RecommendedItems({ product, cardClicked }) {
   return !ready ? <>Recommended Items Lists are Loading</> : (
     <CarouselContainer>
       <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
-      {/* <YourOutfit setProduct={setProduct} cardClicked={cardClicked/> */}
+      <YourOutfit cardClicked={cardClicked} />
     </CarouselContainer>
   );
 }

@@ -22,28 +22,26 @@ function ReviewList({ reviews, renderCount, filter }) {
   }
   let count = 0;
   return (
-      <Reviews>
-        {
-        reviews.map((review) => { // map is probably the wrong tool for this,
-          // because I can't break out of the loop early, any suggestions?
-          if (count < renderCount && filter[review.rating.toString()]) {
-            count += 1;
-            return (
-              <div>
-                <ReviewListTile
-                  key={review.review_id}
-                  review={review}
-                  postFeedback={(feedbackType, reviewId) => {
-                    postFeedback(feedbackType, reviewId);
-                  }}
-                />
-              </div>
-            );
-          }
-          return null;
-        })
+    <Reviews>
+      {
+      reviews.map((review) => { // map is probably the wrong tool for this,
+        // because I can't break out of the loop early, any suggestions?
+        if (count < renderCount && filter[review.rating.toString()]) {
+          count += 1;
+          return (
+            <ReviewListTile
+              key={review.review_id}
+              review={review}
+              postFeedback={(feedbackType, reviewId) => {
+                postFeedback(feedbackType, reviewId);
+              }}
+            />
+          );
         }
-      </Reviews>
+        return null;
+      })
+      }
+    </Reviews>
 
   );
 }
