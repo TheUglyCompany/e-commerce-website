@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardImage from './CardImage';
 import API_KEY from '../../../config';
-import { StyledCard, Stars } from './RecommendedItems.style';
+import { StyledCard, Stars, RelatedAction } from './RecommendedItems.style';
 
-function Card({ productId, cardClicked, id }) {
+function Card({ productId, cardClicked, id, handleRelatedAction, related }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
@@ -65,6 +65,8 @@ function Card({ productId, cardClicked, id }) {
         {' '}
         reviews
       </span>
+      {related ? <RelatedAction onClick={(event) => { handleRelatedAction(event, productId); }} /> : null}
+      {/* <RelatedAction onClick=(/> */}
     </StyledCard>
   );
 }

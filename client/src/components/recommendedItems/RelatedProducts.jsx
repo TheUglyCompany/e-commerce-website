@@ -1,54 +1,51 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable max-len */
+import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
-import { CardGroup, Carousel, CarouselContainer, PreviousButton, NextButton } from './RecommendedItems.style';
+import { Carousel, CarouselContainer, PreviousButton, NextButton } from './RecommendedItems.style';
 
 function RelatedProducts({ relatedProducts, cardClicked }) {
-  const [groupedProducts, setGroupedProducts] = useState([]);
-  const [currentGroup, setCurrentGroup] = useState(1);
-  const [lastGroup, setLastGroup] = useState(null);
-  const [ready, setReady] = useState(false);
+  const [scrollState, setScrollState] = useState(0);
+  const [scrollMax, setScrollMax] = useState(null);
+  const ref = useRef(null);
 
+  const handleScroll = (event) => {
+    setScrollState(event.target.scrollLeft);
+  };
   useEffect(() => {
-    const groupedProductsArray = [];
-    for (let i = 0; i < relatedProducts.length; i += 3) {
-      groupedProductsArray.push(relatedProducts.slice(i, i + 3));
-    }
-    setGroupedProducts(groupedProductsArray);
-    setLastGroup(groupedProductsArray.length);
+    setTimeout(() => {
+      setScrollMax(document.getElementById('related-carousel').scrollWidth - document.getElementById('related-carousel').clientWidth);
+    }, 1000);
   }, []);
 
-  // eslint-disable-next-line max-len
-  useEffect(() => setReady(groupedProducts !== null && lastGroup !== null), [groupedProducts, lastGroup]);
+  const scroll = (scrollingRight) => {
+    const amount = scrollingRight ? 250 : -250;
+    ref.current.scrollLeft += amount;
+  };
 
-  const renderList = () => (
-    groupedProducts.map((group, groupIndex) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <CardGroup key={groupIndex} id={`related-card-group-${groupIndex + 1}`}>
-        {group.map((productId, index) => (
-          <Card key={productId} id={`related-card-${index + 1}`} productId={productId} cardClicked={cardClicked} />
-        ))}
-      </CardGroup>
-    ))
-  );
+  const handleRelatedAction = (event, cardID) => {
+    event.stopPropagation();
+  };
 
   const renderCarousel = () => (
-    <Carousel>
-      {(() => (
-        currentGroup === 1 ? null : <PreviousButton href={`#related-card-group-${currentGroup - 1}`} onClick={() => setCurrentGroup(currentGroup - 1)} />
-      ))()}
-      {renderList()}
-      {(() => (
-        currentGroup === lastGroup ? null : <NextButton href={`#related-card-group-${currentGroup + 1}`} onClick={() => setCurrentGroup(currentGroup + 1)} />
-      ))()}
-    </Carousel>
+    <CarouselContainer>
+      <Carousel onScroll={handleScroll} id="related-carousel" ref={ref}>
+        {(() => (
+          scrollState === 0 ? null : <PreviousButton onClick={() => scroll(false)} />
+        ))()}
+        {relatedProducts.map((productId, index) => (
+          <Card key={productId} id={`related-card-${index + 1}`} productId={productId} cardClicked={cardClicked} handleRelatedAction={handleRelatedAction} related />
+        ))}
+        {(() => (
+          scrollState >= scrollMax ? null : <NextButton onClick={() => scroll(true)} />
+        ))()}
+      </Carousel>
+    </CarouselContainer>
   );
 
-  return !ready ? null : (
+  return (
     <div>
       <h3>Related Products</h3>
-      <CarouselContainer>
-        {renderCarousel()}
-      </CarouselContainer>
+      {renderCarousel()}
     </div>
   );
 }

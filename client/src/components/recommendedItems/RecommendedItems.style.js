@@ -20,30 +20,87 @@ font-size: 20px;
 top: -40%
 `;
 
-const CardGroup = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 30%;
-  justify-content: space-evenly;
-  justify-items: center;
-  @media (max-width: 1300px) {
-    grid-auto-flow: row;
-    gap: 10px;
-  }
-`;
-
 const Carousel = styled.div`
+  box-sizing: border-box;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 100%;
+  grid-auto-columns: auto;
+  gap: 1.5%;
   margin: auto;
+  padding: 0 8%;
   overflow-x: auto;
   scroll-behavior: smooth;
+  scroll-snap-type: inline mandatory;
   width: 80%;
+  /* border: black 2px solid; */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CarouselContainer = styled.div`
   position: relative;
+  /* border: blue 2px solid; */
+`;
+
+const StyledCard = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  height: 400px;
+  scroll-snap-align: center;
+  width: 250px;
+  min-width: 200px;
+  padding: 10px;
+  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const RelatedAction = styled.button`
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  font-size: 15px;
+  &::{
+    content: '*'
+  }
+`;
+
+const NavigationButton = styled.button`
+position: absolute;
+width: 80px;
+height: 100%;
+border: none;
+color: rgba(0, 0, 0, 0.3);
+font-size: 30px;
+transition: color 0.1s;
+opacity: 0.4;
+transition: opacity 0.5s ease;
+&:hover{
+  opacity: 1;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+`;
+
+const PreviousButton = styled(NavigationButton)`
+  left: 10%;
+  background: linear-gradient(270deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
+  &::before{
+    content: '<'
+  }
+`;
+
+const NextButton = styled(NavigationButton)`
+right: 10%;
+background: linear-gradient(90deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
+&::before{
+  content: '>'
+}
 `;
 
 const PlusText = styled.p`
@@ -52,50 +109,7 @@ const PlusText = styled.p`
   top: 25%;
   font-size: 200px;
   color: gray;
-`;
-
-const NavigationButton = styled.a`
-  text-decoration: none;
-  position: absolute;
-  width: 80px;
-  height: 100%;
-  border: none;
-  color: rgba(0, 0, 0, 0.3);
-  font-size: 30px;
-  transition: color 0.1s;
-  &:hover{
-    color: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-  }
-`;
-
-const StyledCard = styled.div`
-  margin: 0 10px;
-  height: 400px;
-  min-width: 200px;
-  width: 300px;
-  padding: 10px;
-  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-const PreviousButton = styled(NavigationButton)`
-  left: 0;
-  background: linear-gradient(270deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
-
-  &::before{
-    content: '<'
-  }
-`;
-
-const NextButton = styled(NavigationButton)`
-  right: 0;
-  background: linear-gradient(90deg, rgba(161, 143, 162, 0), rgba(161, 143, 162, 0.8));
-  &::before{
-    content: '>'
-  }
-`;
+  `;
 
 // requires --rating css variable inside component
 const Stars = styled.div`
@@ -129,10 +143,10 @@ export {
   NextButton,
   PlusText,
   PreviousButton,
-  CardGroup,
   Carousel,
   CarouselContainer,
   Stars,
   StyledCard,
+  RelatedAction,
   ThumbnailImg,
 };
