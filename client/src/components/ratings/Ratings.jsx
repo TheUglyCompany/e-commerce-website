@@ -36,12 +36,6 @@ function Ratings({ product }) {
   const [showModal, setShowModal] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
   // initial API call
-  /*
-  page: selects the page to return
-  count: specifies how many results per page to return
-  sort: changes order of reviews
-  product_id: specifies which product to retrieve
-  */
   useEffect(() => {
     // get review metadata
     let totalReviews = 5;
@@ -85,54 +79,53 @@ function Ratings({ product }) {
   }, [reviews]);
   // dropdown
   const options = ['helpful', 'newest', 'relevant'];
-  const defaultOption = options[2];
   const onSelect = (e) => (setSort(e.value));
   let reviewCount = 0;
   reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
   return !ready ? <>Ratings are not ready</> : (
     <OuterMostLayer>
-    <RatingsAndReviews>
-      <RatingStyle>
-        <h4> Ratings & Reviews </h4>
-        <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+      <RatingsAndReviews>
+        <RatingStyle>
+          <h4> Ratings & Reviews </h4>
+          <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
 
-        <ProductBreakdown metaData={metaData} />
-      </RatingStyle>
-      <ReviewStyle>
-        <h4>
-          { reviewCount }
-          {' '}
-          total reviews, Sorted by
-        </h4>
-        <Dd>
-          <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
-            {sort}
-            {'  '}
-            <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
-          </DdBttn>
-          {dropdownActive && (
-            <DdContent>
-              {options.map((option) => (
-                <DdItem onClick={(e) => {
-                  setSort(e.target.textContent);
-                  setDropdownActive(false);
-                }}
-                >
-                  {option}
-                </DdItem>
-              ))}
-            </DdContent>
-          )}
-        </Dd>
+          <ProductBreakdown metaData={metaData} />
+        </RatingStyle>
+        <ReviewStyle>
+          <h4>
+            { reviewCount }
+            {' '}
+            total reviews, Sorted by
+          </h4>
+          <Dd>
+            <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
+              {sort}
+              {'  '}
+              <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
+            </DdBttn>
+            {dropdownActive && (
+              <DdContent>
+                {options.map((option) => (
+                  <DdItem onClick={(e) => {
+                    setSort(e.target.textContent);
+                    setDropdownActive(false);
+                  }}
+                  >
+                    {option}
+                  </DdItem>
+                ))}
+              </DdContent>
+            )}
+          </Dd>
 
-        <ReviewList
-          reviews={reviews}
-          onSelect={() => onSelect}
-          renderCount={renderCount}
-          filter={filter}
-        />
-      </ReviewStyle>
-    </RatingsAndReviews>
+          <ReviewList
+            reviews={reviews}
+            onSelect={() => onSelect}
+            renderCount={renderCount}
+            filter={filter}
+          />
+        </ReviewStyle>
+      </RatingsAndReviews>
       <ButtonContainer>
         {reviewCount <= renderCount ? null
           : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
@@ -149,36 +142,3 @@ function Ratings({ product }) {
 }
 
 export default Ratings;
-
-// {
-//   "product_id": "40344",
-//   "ratings": {
-//       "1": "94",
-//       "2": "105",
-//       "3": "276",
-//       "4": "203",
-//       "5": "471"
-//   },
-//   "recommended": {
-//       "false": "292",
-//       "true": "857"
-//   },
-//   "characteristics": {
-//       "Fit": {
-//           "id": 135219,
-//           "value": "3.2496433666191155"
-//       },
-//       "Length": {
-//           "id": 135220,
-//           "value": "3.2775330396475771"
-//       },
-//       "Comfort": {
-//           "id": 135221,
-//           "value": "3.2282091917591125"
-//       },
-//       "Quality": {
-//           "id": 135222,
-//           "value": "3.2218798151001541"
-//       }
-//   }
-// }
