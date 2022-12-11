@@ -21,12 +21,17 @@ import {
   ReqAst,
 } from './Ratings.style';
 
-function Modal({ setShowModal, characteristics }) {
+function Modal({ setShowModal, characteristics, product }) {
   const [form, setForm] = useState({
-    textInput: '',
-    nameInput: '',
-    emailInput: '',
-    imageInput: '',
+    body: '',
+    name: '',
+    email: '',
+    summary: '',
+    product_id: product.id,
+    characteristics: {},
+    recommend: false,
+    rating: 1,
+    photos: [],
   });
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
