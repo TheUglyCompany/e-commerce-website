@@ -21,7 +21,7 @@ import {
   ReqAst,
 } from './Ratings.style';
 
-function Modal({ setShowModal }) {
+function Modal({ setShowModal, characteristics }) {
   const [form, setForm] = useState({
     textInput: '',
     nameInput: '',

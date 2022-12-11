@@ -135,6 +135,7 @@ function Ratings({ product }) {
         ? (
           <Modal
             setShowModal={setShowModal}
+
           />
         ) : null}
     </OuterMostLayer>
