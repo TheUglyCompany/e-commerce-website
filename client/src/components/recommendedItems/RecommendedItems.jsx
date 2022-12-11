@@ -22,10 +22,12 @@ function RecommendedItems({ product, cardClicked }) {
   }, [relatedProducts]);
 
   return !ready ? <>Recommended Items Lists are Loading</> : (
-    <CarouselContainer>
-      <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
-      <YourOutfit cardClicked={cardClicked} />
-    </CarouselContainer>
+    <div>
+      <CarouselContainer>
+        <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
+        <YourOutfit cardClicked={cardClicked} />
+      </CarouselContainer>
+    </div>
   );
 }
 

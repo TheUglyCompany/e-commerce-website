@@ -20,21 +20,38 @@ font-size: 20px;
 top: -40%
 `;
 
-const Carousel = styled.div`
-  display: flex;
-  position: relative;
-  margin: 40px 10px 40px 10px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  /* border: 2px solid black; */
-  &::-webkit-scrollbar {
-    display: none;
+const CardGroup = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 30%;
+  scroll-snap-align: center;
+  justify-content: space-evenly;
+  justify-items: center;
+  @media (max-width: 1300px) {
+    grid-auto-flow: row;
+    gap: 10px;
   }
 `;
 
-const CarouselContainer = styled.div`
+const Carousel = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  /* gap: 30px; */
+  margin: auto;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 80%;
   /* border: 2px solid black; */
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+`;
+
+const CarouselContainer = styled.div`
+  position: relative;
+  /* border: blue 2px solid; */
 `;
 
 const PlusText = styled.p`
@@ -57,6 +74,20 @@ const NavigationButton = styled.button`
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
   }
+`;
+
+const StyledCard = styled.div`
+  /* display: inline-block; */
+  /* margin: 2px 4px;*/
+  margin: 0 10px;
+  height: 400px;
+  min-width: 200px;
+  width: 300px;
+  padding: 10px;
+  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 const PreviousButton = styled(NavigationButton)`
@@ -92,21 +123,6 @@ const Stars = styled.div`
   }
 `;
 
-const StyledCard = styled.div`
-  display: inline-block;
-  margin: 2px 4px;
-  padding: 10px;
-  height: 400px;
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
-  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
-  border: 1px solid black;
-  border-radius: 5px;
-  overflow: hidden;
-  scroll-snap-align: start;
-`;
-
 const ThumbnailImg = styled.img`
   display: block;
   margin-left: auto;
@@ -123,6 +139,7 @@ export {
   NextButton,
   PlusText,
   PreviousButton,
+  CardGroup,
   Carousel,
   CarouselContainer,
   Stars,
