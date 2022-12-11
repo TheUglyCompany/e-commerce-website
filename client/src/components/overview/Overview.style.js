@@ -13,7 +13,8 @@ const Ov = styled.div`
 const Gallery = styled.div`
   float: left;
   display: block;
-  width: 50%;
+  width: 600px;
+  min-width: 600px;
   /* border: 1px solid black; */
   padding: 0px;
 `;
@@ -29,20 +30,22 @@ const OVgalleryThumbs = styled.div`
   /* overflow: auto; */
 `;
 
-const OVgalleryArrowLeft = styled.div`
+const OVgalleryArrowLeft = styled.span`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
-  height: 50px;
+  width: 25px;
+  /* border: 1px solid; */
   cursor: pointer;
   /* float: left; */
 `;
 
-const OVgalleryArrowRight = styled.div`
+const OVgalleryArrowRight = styled.span`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
-  height: 50px;
+  width: 25px;
+  /* border: 1px solid; */
   cursor: pointer;
   /* float: right; */
 `;
@@ -61,10 +64,20 @@ const OVgalleryThumbSelect = styled.img`
   /* max-width: 100%; */
 `;
 
-const GalleryBig = styled.div`
+const GalleryContainer = styled.div`
+  display: flex;
+  /* height: 500px; */
+`;
+
+const GalleryBig = styled.span`
   display: flex;
   justify-content: center;
   overflow: hidden;
+  margin: 0px auto;
+  cursor: pointer;
+  width: 550px;
+  /* height: 500px; */
+  /* line-height:50px; */
 `;
 
 const GalleryZoom = styled.div`
@@ -338,6 +351,7 @@ export {
   OVgalleryThumb,
   OVgalleryThumbSelect,
   GalleryBig,
+  GalleryContainer,
   GalleryZoom,
   ImageBig,
   Details,

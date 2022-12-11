@@ -42,8 +42,6 @@ function Overview({ product }) {
   }, [product]);
   useEffect(() => {}, [styleOpts]);
 
-  console.log('styleSelected: ', styleSelected);
-
   return !ready ? <>App is not ready</> : (
 
     <Ov>
