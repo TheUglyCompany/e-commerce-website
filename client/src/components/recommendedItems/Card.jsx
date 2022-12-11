@@ -3,15 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardImage from './CardImage';
+import ComparisonModal from './Modals/ComparisonModal';
 import API_KEY from '../../../config';
 import { StyledCard, Stars, RelatedAction } from './RecommendedItems.style';
 
-function Card({ productId, cardClicked, id, handleRelatedAction, related }) {
+function Card({ productId, pageProduct, cardClicked, id, related }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
   const [rating, setRating] = useState('0%');
   const [total, setTotal] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
 
   const [ready, setReady] = useState(false);
 
@@ -49,24 +52,32 @@ function Card({ productId, cardClicked, id, handleRelatedAction, related }) {
     }
   }, [cardProduct, ratingObj, stylesObj]);
 
+  const handleRelatedAction = (event) => {
+    event.stopPropagation();
+    setShowModal(true);
+  };
+
   return !ready ? <>Card Loading</> : (
     // eslint-disable-next-line max-len
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <StyledCard id={id} onClick={() => cardClicked(productId)}>
-      <CardImage stylesObj={stylesObj} />
-      <p>{cardProduct.category}</p>
-      <p>{cardProduct.name}</p>
-      <p>{cardProduct.default_price}</p>
-      <span>
-        <Stars style={{ '--rating': rating }} />
-        out of
-        {' '}
-        {total}
-        {' '}
-        reviews
-      </span>
-      {related ? <RelatedAction onClick={(event) => { handleRelatedAction(event, productId); }} /> : null}
-    </StyledCard>
+    <div>
+      <StyledCard id={id} onClick={() => cardClicked(productId)}>
+        <CardImage stylesObj={stylesObj} />
+        <p>{cardProduct.category}</p>
+        <p>{cardProduct.name}</p>
+        <p>{cardProduct.default_price}</p>
+        <span>
+          <Stars style={{ '--rating': rating }} />
+          out of
+          {' '}
+          {total}
+          {' '}
+          reviews
+        </span>
+        {related ? <RelatedAction onClick={(event) => { handleRelatedAction(event); }} /> : null}
+      </StyledCard>
+      {!showModal ? null : <ComparisonModal cardProductId={productId} pageProduct={pageProduct} setShowModal={setShowModal} />}
+    </div>
   );
 }
 

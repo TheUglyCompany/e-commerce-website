@@ -1,10 +1,9 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
 import Card from './Card';
-import ComparisonModal from './ComparisonModal';
 import { Carousel, CarouselContainer, PreviousButton, NextButton } from './RecommendedItems.style';
 
-function RelatedProducts({ relatedProducts, cardClicked }) {
+function RelatedProducts({ relatedProducts, cardClicked, pageProduct }) {
   const [scrollState, setScrollState] = useState(0);
   const [scrollMax, setScrollMax] = useState(null);
   const ref = useRef(null);
@@ -23,12 +22,6 @@ function RelatedProducts({ relatedProducts, cardClicked }) {
     ref.current.scrollLeft += amount;
   };
 
-  const handleRelatedAction = (event, cardID) => {
-    event.stopPropagation();
-    console.log(cardID);
-    return <ComparisonModal cardID={cardID} />;
-  };
-
   const renderCarousel = () => (
     <CarouselContainer>
       <Carousel onScroll={handleScroll} id="related-carousel" ref={ref}>
@@ -36,7 +29,7 @@ function RelatedProducts({ relatedProducts, cardClicked }) {
           scrollState === 0 ? null : <PreviousButton onClick={() => scroll(false)} />
         ))()}
         {relatedProducts.map((productId, index) => (
-          <Card key={productId} id={`related-card-${index + 1}`} productId={productId} cardClicked={cardClicked} handleRelatedAction={handleRelatedAction} related />
+          <Card key={productId} id={`related-card-${index + 1}`} productId={productId} cardClicked={cardClicked} pageProduct={pageProduct} related />
         ))}
         {(() => (
           scrollState >= scrollMax ? null : <NextButton onClick={() => scroll(true)} />

@@ -24,7 +24,7 @@ function RecommendedItems({ product, cardClicked }) {
   return !ready ? <>Recommended Items Lists are Loading</> : (
     <div>
       <CarouselContainer>
-        <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} />
+        <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} pageProduct={product} />
         <YourOutfit cardClicked={cardClicked} />
       </CarouselContainer>
     </div>
