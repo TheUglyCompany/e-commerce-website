@@ -1,48 +1,13 @@
-/* eslint-disable max-len */
-import React, { useState, useEffect, useRef } from 'react';
-import Card from './Card';
-import { Carousel, CarouselContainer, PreviousButton, NextButton } from './RecommendedItems.style';
+import React from 'react';
+import { Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
 
-function RelatedProducts({ relatedProducts, cardClicked, pageProduct }) {
-  const [scrollState, setScrollState] = useState(0);
-  const [scrollMax, setScrollMax] = useState(null);
-  const ref = useRef(null);
-
-  const handleScroll = (event) => {
-    setScrollState(event.target.scrollLeft);
-  };
-  useEffect(() => {
-    setTimeout(() => {
-      setScrollMax(document.getElementById('related-carousel').scrollWidth - document.getElementById('related-carousel').clientWidth);
-    }, 1000);
-  }, []);
-
-  const scroll = (scrollingRight) => {
-    const amount = scrollingRight ? 250 : -250;
-    ref.current.scrollLeft += amount;
-  };
-
-  const renderCarousel = () => (
+function RelatedProducts({ renderListFromIds }) {
+  return (
     <CarouselContainer>
-      <Carousel onScroll={handleScroll} id="related-carousel" ref={ref}>
-        {(() => (
-          scrollState === 0 ? null : <PreviousButton onClick={() => scroll(false)} />
-        ))()}
-        {relatedProducts.map((productId, index) => (
-          <Card key={productId} id={`related-card-${index + 1}`} productId={productId} cardClicked={cardClicked} pageProduct={pageProduct} related />
-        ))}
-        {(() => (
-          scrollState >= scrollMax ? null : <NextButton onClick={() => scroll(true)} />
-        ))()}
+      <Carousel>
+        {renderListFromIds('related')}
       </Carousel>
     </CarouselContainer>
-  );
-
-  return (
-    <div>
-      <h3>Related Products</h3>
-      {renderCarousel()}
-    </div>
   );
 }
 
