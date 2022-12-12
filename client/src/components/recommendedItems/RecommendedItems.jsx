@@ -25,7 +25,7 @@ function RecommendedItems({ product, cardClicked }) {
     <div>
       <CarouselContainer>
         <RelatedProducts relatedProducts={relatedProducts} cardClicked={cardClicked} pageProduct={product} />
-        <YourOutfit cardClicked={cardClicked} />
+        <YourOutfit pageProductId={product.id} cardClicked={cardClicked} />
       </CarouselContainer>
     </div>
   );

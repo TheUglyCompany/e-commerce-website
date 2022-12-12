@@ -5,9 +5,9 @@ import axios from 'axios';
 import CardImage from './CardImage';
 import ComparisonModal from './Modals/ComparisonModal';
 import API_KEY from '../../../config';
-import { StyledCard, Stars, RelatedAction } from './RecommendedItems.style';
+import { StyledCard, Stars, RelatedAction, OutfitAction } from './RecommendedItems.style';
 
-function Card({ productId, pageProduct, cardClicked, id, related }) {
+function Card({ productId, pageProduct, cardClicked, id, related, outfit }) {
   const [cardProduct, setCardProduct] = useState(null);
   const [stylesObj, setStylesObj] = useState(null);
   const [ratingObj, setRatingObj] = useState(null);
@@ -56,6 +56,10 @@ function Card({ productId, pageProduct, cardClicked, id, related }) {
     event.stopPropagation();
     setShowModal(true);
   };
+  const handleOutfitAction = (event) => {
+    event.stopPropagation();
+    console.log('handleOutfitAction button has been clicked');
+  };
 
   return !ready ? <>Card Loading</> : (
     // eslint-disable-next-line max-len
@@ -75,6 +79,7 @@ function Card({ productId, pageProduct, cardClicked, id, related }) {
           reviews
         </span>
         {related ? <RelatedAction onClick={(event) => { handleRelatedAction(event); }} /> : null}
+        {outfit ? <OutfitAction onClick={(event) => { handleOutfitAction(event); }} /> : null}
       </StyledCard>
       {!showModal ? null : <ComparisonModal cardProductId={productId} pageProduct={pageProduct} setShowModal={setShowModal} />}
     </div>

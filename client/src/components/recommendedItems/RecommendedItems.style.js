@@ -57,17 +57,26 @@ const StyledCard = styled.div`
   overflow: hidden;
 `;
 
-const RelatedAction = styled.button`
+const ActionButton = styled.button`
   position: absolute;
   top: 5%;
   right: 5%;
   border: none;
   width: 20px;
   height: 20px;
-  background: yellow;
   font-size: 15px;
-  &::{
+`;
+const RelatedAction = styled(ActionButton)`
+  background: yellow;
+  &::before{
     content: '*'
+  }
+`;
+
+const OutfitAction = styled(ActionButton)`
+  background: red;
+  &::before{
+    content: 'X'
   }
 `;
 
@@ -149,5 +158,6 @@ export {
   Stars,
   StyledCard,
   RelatedAction,
+  OutfitAction,
   ThumbnailImg,
 };

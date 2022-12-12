@@ -53,9 +53,9 @@ function ComparisonModal({ cardProductId, pageProduct, setShowModal }) {
 
         <h3>Card Product</h3>
         <h3>Page Product</h3>
-        <Stars styles={{ '--rating': cardProductWithRatings.rating }} />
+        <Stars style={{ '--rating': cardProductWithRatings.rating }} />
         <h4>Rating</h4>
-        <Stars styles={{ '--rating': pageProductWithRatings.rating }} />
+        <Stars style={{ '--rating': pageProductWithRatings.rating }} />
         <p>{cardProductWithRatings.category}</p>
         <h4>Product Category</h4>
         <p>{pageProductWithRatings.category}</p>
