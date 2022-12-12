@@ -8,13 +8,14 @@ align-content: space-between;
 justify-content: space-between;
 flex: 1;
 height: 300px;
-border-style: solid;
+padding: 10px;
+// border-style: solid;
 `;
 
 const CardSummary = styled.h4`
 display: flex;
 align-items: flex-start;
-border-style: solid;
+// border-style: solid;
 font-weight: bold;
 flex-wrap: no-wrap;
 `;
@@ -31,19 +32,19 @@ const HelpfulButton = styled.button`
 
 const InteractiveLine = styled.div`
 display: flex;
-border: solid;
+// border: solid;
 `;
 
 const CardInfo = styled.div`
 display: flex;
-border-style: solid;
+// border-style: solid;
 width: 100%;
 justify-content: space-between;
 `;
 
 const Body = styled.div`
 display: flex;
-border-style: solid;
+// border-style: solid;
 flex-wrap: wrap;
 max-width: 100%;
 `;

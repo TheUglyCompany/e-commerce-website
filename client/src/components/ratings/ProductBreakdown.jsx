@@ -43,8 +43,8 @@ function ProductBreakdown({ metaData }) {
         attributes.map((attribute, i) => {
           const percentage = ((attribute[1].value / 5) * 75);
           return (
-            <div>
-              <FitChartContent key={i}>
+            <div key={i}>
+              <FitChartContent>
                 <DataStyle>
                   {attribute[0]}
                 </DataStyle>

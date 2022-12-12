@@ -6,7 +6,7 @@ const StarChart = styled.div`
   flex-direction: column;
   height: 200px;
   width: 300px;
-  border: solid;
+  // border: solid;
   margin-right: 20px;
 `;
 
@@ -22,11 +22,11 @@ const StarButton = styled.button`
   font-family: poppins;
   background: none;
   font-size: 16px;
-  border: solid;
+  border: none;
   padding: 0;
   text-decoration: underline;
   cursor: pointer;
-  width: 20%
+  width: 22%
 
 `;
 
@@ -35,7 +35,7 @@ const ResetFilter = styled(StarButton)`
   justify-content: flex-start;
   margin-bottom: 10px;
   width: 100%;
-  border: solid;
+  // border: solid;
 `;
 
 const GreenBar = styled.div`
@@ -50,7 +50,7 @@ const AverageTitle = styled.div`
   font-size: 40px;
   font-weight: bold;
   margin-right: 25px;
-  border: solid;
+  // border: solid;
 `;
 
 const GrayBar = styled(GreenBar)`
@@ -63,7 +63,7 @@ const Recommended = styled.div`
 `;
 
 const ReviewCount = styled.div`
-  width: 10%;
+  width: 8%;
   margin-left: 5px;
 `;
 
