@@ -47,7 +47,7 @@ function Card({
         <p>{cardItemObj.default_price}</p>
         {cardItemObj.percentage === 'no rating' ? <>no reviews</> : (
           <>
-            <Stars style={{'--rating': cardItemObj.percentage}} />
+            <Stars style={{ '--rating': cardItemObj.percentage }} />
             {' '}
             out of
             {' '}

@@ -74,7 +74,7 @@ function RecommendedItems({ product, cardClicked }) {
       ls('outfits', JSON.stringify(currentOutfits));
       setYourOutfitIds(currentOutfits);
     }
-  }
+  };
 
   const renderListFromIds = (type) => {
     const itemList = type === 'related' ? relatedProductsIds : yourOutfitIds;
