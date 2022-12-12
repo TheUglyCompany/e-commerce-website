@@ -40,11 +40,11 @@ function App() {
   return !ready ? <div data-testid="app">App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
       <Header dark={dark} setDark={setDark} />
-      <Overview product={product} />
-      <RecommendedItems product={product} cardClicked={cardClicked} />
+      <Overview dark={dark} product={product} />
+      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
-      <QandA product={product} />
-      <Ratings product={product} />
+      <QandA dark={dark} product={product} />
+      <Ratings dark={dark} product={product} />
     </AppWrap>
   );
 }
