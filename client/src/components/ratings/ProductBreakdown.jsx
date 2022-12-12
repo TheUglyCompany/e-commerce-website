@@ -5,6 +5,7 @@ import {
   AttributeStyle,
   DataStyle,
   ArrowDown,
+  FitChartDescriptions,
 } from './ProductBreakdown.style';
 
 function ProductBreakdown({ metaData }) {
@@ -22,6 +23,15 @@ function ProductBreakdown({ metaData }) {
     attributes = (Object.entries(metaData.characteristics));// an array of arrays
   }
 
+  const charDescriptions = {
+    Size: ['A size too small', 'A size too wide'],
+    Width: ['Too narrow', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Perfect'],
+    Quality: ['Poor', 'Perfect'],
+    Length: ['Runs short', 'Runs long'],
+    Fit: ['Runs tight', 'Runs long'],
+  };
+
   // make an array of names
   // make an equal array length of Values
   // map through them
@@ -33,13 +43,23 @@ function ProductBreakdown({ metaData }) {
         attributes.map((attribute, i) => {
           const percentage = ((attribute[1].value / 5) * 75);
           return (
-            <FitChartContent key={i}>
-              <DataStyle>
-                {attribute[0]}
-              </DataStyle>
-              <ArrowDown inputWidth={`${percentage + 25}%`} />
-              <AttributeStyle />
-            </FitChartContent>
+            <div>
+              <FitChartContent key={i}>
+                <DataStyle>
+                  {attribute[0]}
+                </DataStyle>
+                <ArrowDown inputWidth={`${percentage + 25}%`} />
+                <AttributeStyle />
+              </FitChartContent>
+              <FitChartDescriptions>
+                <span>
+                  {charDescriptions[attribute[0]][0]}
+                </span>
+                <span>
+                  {charDescriptions[attribute[0]][1]}
+                </span>
+              </FitChartDescriptions>
+            </div>
           );
         })
       }

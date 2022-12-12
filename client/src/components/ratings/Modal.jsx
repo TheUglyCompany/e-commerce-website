@@ -78,35 +78,6 @@ function Modal({ setShowModal, productId, characteristics }) {
 
   const fitEntries = Object.entries(characteristics);
 
-  // onSubmit axios post function
-  // on file upload handle file upload
-  function handleSubmit() {
-    axios.post(
-      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-      form,
-      { headers: { Authorization: API_KEY } },
-    )
-      .then((response) => {
-        console.log('success posting, review ', response);
-      })
-      .catch((err) => {
-        console.log('error posting, review ', err.message);
-      });
-    console.log(`
-    body: ${form.body},
-    summary: ${form.summary},
-    name: ${form.nameInput},
-    email: ${form.email},
-    product_id: ${form.product_id},
-    characteristics: ${JSON.stringify(form.characteristics)},
-    recommend: ${form.recommend},
-    rating: ${form.rating},
-    photos: ${form.photos},
-    `);
-  }
-
-  const fitEntries = Object.entries(characteristics);
-
   return (
     <ModalContainer>
       <RRModalContent>
