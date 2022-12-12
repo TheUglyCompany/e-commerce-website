@@ -15,7 +15,8 @@ const CardSummary = styled.h4`
 display: flex;
 align-items: flex-start;
 border-style: solid;
-flex-wrap: wrap;
+font-weight: bold;
+flex-wrap: no-wrap;
 `;
 
 const HelpfulButton = styled.button`

@@ -28,14 +28,14 @@ import {
   ReqAst,
 } from './Ratings.style';
 
-function Modal({ setShowModal, productId, characteristics }) {
+function Modal({ setShowModal, product, characteristics }) {
   const [form, setForm] = useState({
     name: '', // name : text
     body: '', // body: text
     email: '', // email: text
     photos: [], // photos: array of text urls
     summary: '', // summary: text
-    product_id: productId,
+    product_id: product.id,
     characteristics: {}, // characteristics: object of keys rep char_id and values rep the review value 1-5
     recommend: false, // recommend: bool
     rating: 1, // rating: int 1-5
@@ -88,7 +88,12 @@ function Modal({ setShowModal, productId, characteristics }) {
         >
           X
         </RRXSpan>
-        <ModalTitle>Add a review!</ModalTitle>
+        <ModalTitle>Write your review</ModalTitle>
+        <ModalDesc>
+          About the
+          {' '}
+          {product.name}
+        </ModalDesc>
         <ModalRating>
           Rate it!
           <ReqAst>*</ReqAst>

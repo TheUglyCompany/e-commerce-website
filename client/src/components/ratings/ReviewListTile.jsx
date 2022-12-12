@@ -36,7 +36,14 @@ function ReviewListTile({ review, postFeedback }) {
         {review.body}
       </Body>
 
-      {review.recommend ? <OwnerResponse>I recommend this product</OwnerResponse> : null}
+      {review.recommend ? (
+        <OwnerResponse>
+          I recommend this product
+          <span>
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" />
+          </span>
+        </OwnerResponse>
+        ) : null}
       <InteractiveLine>
         {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
         <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>

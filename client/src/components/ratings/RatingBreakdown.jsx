@@ -20,7 +20,6 @@ let avg = 0;
 function RatingBreakdown({ metaData, filter, setFilter }) {
   const [isFilter, setIsFilter] = useState(false);
   const filterEntries = Object.entries(filter);
-  console.log(filterEntries);
   function resetState(bool) { // resets filter
     const tempObj = { ...filter };
     for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {

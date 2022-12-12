@@ -135,7 +135,7 @@ function Ratings({ product }) {
         ? (
           <Modal
             setShowModal={setShowModal}
-            productId={product.id}
+            product={product}
             characteristics={metaData.characteristics}
           />
         ) : null}
