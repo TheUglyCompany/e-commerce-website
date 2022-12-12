@@ -74,12 +74,12 @@ function Answer({ answer }) {
       {answer.body}
       <div>
         {answer.photos?.length !== 0
-          ? answer.photos.map((photo) => (
+          ? answer.photos.map((photo, index) => (
             !zoom
-              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} />
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} />
+                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} />
                 </ModalContainer>
               )
           )) : null}
