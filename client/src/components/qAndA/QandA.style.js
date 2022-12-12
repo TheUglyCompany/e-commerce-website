@@ -37,7 +37,6 @@ const LoadMoreButton = styled.button`
 const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   top: 0;
   left: 0;
   right: 0;
@@ -65,17 +64,16 @@ const ModalDesc = styled.span`
 `;
 
 const ModalContent = styled.div`
-  position: absolute;
-  top: 25%;
-  left: 25%;
+  margin: auto;
+  display: inline-block;
+  justify-items: center;
   line-height: 1.4;
   background: #f1f1f1;
-  padding: 14px 35px;
   border-radius: 3px;
-  min-height: 300px;
+  min-height: 50%;
   max-height: 100%;
   max-width: 100%;
-  min-width: 500px;
+  min-width: 50%;
   font-family: poppins;
   font-weight: light;
   font-size: 15px;
@@ -96,14 +94,13 @@ const XSpan = styled.span`
   cursor: pointer;
 `;
 
-const TextFieldinput = styled.input`
-  height: 100px;
-  width: 100%;
+const TextFieldinput = styled.textarea`
+  height: 90px;
+  width: 90%;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
   font-size: 12;
-  overflow: hidden;
   resize: none;
 `;
 
@@ -198,6 +195,7 @@ const AnswerImageStyle = styled.img`
   height: 100px;
   width: 100px;
   border: 1px solid black;
+  margin: 5px;
 `;
 
 const QuestionBodySpan = styled.span`
@@ -239,6 +237,43 @@ const QATitle = styled.span`
   font-family: ROBOTO;
   font-size: 23px;
   font-weight: bold;
+`;
+
+const AnswerImageZoom = styled.img`
+  display: absolute;
+  top: 50px;
+  left: 50px;
+  width: 80%;
+  height: 90%;
+  background: black;
+  z-index: 3;
+  border: 5px solid black;
+  /* cursor: pointer; */
+`;
+
+const ErrorMessage = styled.p`
+  text-align: center;
+  font-family: ROBOTO;
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
+`;
+
+const UploadButton = styled.button`
+  background: white;
+  border-radius: 1px;
+  border: 1px solid black;
+  color: black;
+  padding: 5px;
+  margin: 10px;
+  width: 100px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 15px;
+  height: 50px;
+  text-transform: uppercase;
+  align-self: center;
 `;
 // const ModalTitle = styled.h1`
 //   margin: 0;
@@ -283,4 +318,7 @@ export {
   EmailFieldInput,
   ImageInputUpload,
   QATitle,
+  AnswerImageZoom,
+  ErrorMessage,
+  UploadButton,
 };

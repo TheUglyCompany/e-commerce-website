@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FiveStarRating from '../sharedComponents/FiveStarRating';
 import {
   StarChart,
   GreenBar,
@@ -8,7 +7,10 @@ import {
   StarButton,
   ResetFilter,
   AverageTitle,
+  Recommended,
+  ReviewCount,
 } from './RatingBreakdown.style';
+import { Stars } from '../recommendedItems/RecommendedItems.style';
 
 // TODO: say what percentage of people recommend this product
 // say current filters
@@ -17,6 +19,7 @@ let avg = 0;
 
 function RatingBreakdown({ metaData, filter, setFilter }) {
   const [isFilter, setIsFilter] = useState(false);
+  const filterEntries = Object.entries(filter);
   function resetState(bool) { // resets filter
     const tempObj = { ...filter };
     for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
@@ -71,7 +74,7 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
     avg = +avg.toFixed(1);
     // adding percentages to array
     for (let i = 1; i <= 5; i += 1) { // 75% is 100% so I only multiply by 75
-      percentages.push(((75 * Number(ratingsObj[i.toString()])) / allRatings));
+      percentages.push(((60 * Number(ratingsObj[i.toString()])) / allRatings));
     }
   }
   // converting filter to array
@@ -79,9 +82,27 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
     <div>
       <RowFormat>
         <AverageTitle>{avg}</AverageTitle>
-        <FiveStarRating />
+        {/* <FiveStarRating /> */}
+        <Stars style={{ '--rating': `${((avg / 5) * 100)}%` }} />
       </RowFormat>
-      {isFilter ? <ResetFilter onClick={() => resetState(true)}>Reset Filter</ResetFilter> : null}
+      {isFilter ? <ResetFilter onClick={() => resetState(true)}>Reset Filter</ResetFilter> : <div><br /> <br /></div>}
+      {filterEntries.map((entry) => {
+        if (entry[1] && isFilter) {
+          return (
+            <div>
+              {entry[0]}
+              {' '}
+              star rating filter applied.
+            </div>
+          );
+        }
+      })}
+      <Recommended>
+        { ((Number(metaData.recommended.true)
+        / (Number(metaData.recommended.false)
+        + Number(metaData.recommended.true))) * 100).toFixed(0) }
+        % of reviews recommend this product
+      </Recommended>
       <StarChart>
         {percentages.map((percentage, index) => (
           <RowFormat key={index}>
@@ -91,7 +112,10 @@ function RatingBreakdown({ metaData, filter, setFilter }) {
               Stars
             </StarButton>
             <GreenBar inputWidth={`${percentage}%`} />
-            <GrayBar inputWidth={`${(75 - percentage)}%`} />
+            <GrayBar inputWidth={`${(60 - percentage)}%`} />
+            <ReviewCount>
+              {metaData.ratings[index + 1]}
+            </ReviewCount>
           </RowFormat>
         ))}
       </StarChart>
