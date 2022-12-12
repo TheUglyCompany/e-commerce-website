@@ -44,7 +44,7 @@ function RecommendedItems({ product, cardClicked }) {
       })
       .catch(err => console.log(err.message));
     if (ls('outfits') === null) {
-      ls('outfits', '[40964, 40364, 40436, 40913, 41347]');
+      ls('outfits', '[]');
     }
     setYourOutfitIds(JSON.parse(ls('outfits')));
   }, []);

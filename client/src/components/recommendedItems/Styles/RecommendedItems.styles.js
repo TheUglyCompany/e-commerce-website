@@ -6,14 +6,15 @@ const Carousel = styled.div`
   grid-auto-flow: column;
   grid-auto-columns: min-content;
   gap: 1rem;
-  border: red solid 2px;
+  /* border: red solid 2px; */
   overflow-x: auto;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 `;
 const CarouselContainer = styled.div`
   position: relative;
   padding: 1rem 0;
-  border: green solid 2px;
+  /* border: green solid 2px; */
 `;
 const CarouselNavigator = styled.div`
   position: absolute;
@@ -31,12 +32,12 @@ const PreviousCard = styled(CarouselNavigator)`
 
 // Goes inside RecommendedItems
 const RIMasterContainer = styled.div`
-  border: black solid 2px;
+  /* border: black solid 2px; */
 `;
 const RICenterContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  border: blue solid 2px;
+  /* border: blue solid 2px; */
 `;
 
 // Goes inside Card
@@ -48,6 +49,7 @@ const Card = styled.div`
   background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
   border-radius: 5px;
   padding: 0.5rem;
+  scroll-snap-align: start;
 `;
 const StyledCard = styled(Card)`
 

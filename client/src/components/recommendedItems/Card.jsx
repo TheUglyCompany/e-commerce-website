@@ -28,12 +28,9 @@ function Card({
 
   useEffect(() => {
     if (cardItemObj !== null && pageItemObj !== null) {
-      console.log(cardItemObj);
-      console.log(pageItemObj);
       setReady(true);
     }
   }, [cardItemObj, pageItemObj]);
-
 
   return !ready ? null : (
     <div>
