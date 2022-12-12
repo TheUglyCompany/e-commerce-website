@@ -48,17 +48,12 @@ function Card({
         {cardItemObj.percentage === 'no rating' ? <>no reviews</> : (
           <>
             <Stars style={{ '--rating': cardItemObj.percentage }} />
-            {' '}
-            out of
-            {' '}
-            {cardItemObj.totalReviews}
-            {' '}
-            reviews
+            {` out of ${cardItemObj.totalReviews} reviews`}
           </>
         ) }
         {type === 'related' ? <RelatedAction onClick={(event) => { handleActionClick(event, type, setShowModal); }} /> : <OutfitAction onClick={(event) => { handleActionClick(event, type, () => {}, cardItemId); }} />}
       </StyledCard>
-      {!showModal ? null : <ComparisonModal closeModal={() => { setShowModal(false); }} />}
+      {!showModal ? null : <ComparisonModal closeModal={() => { setShowModal(false); }} cardItemObj={cardItemObj} pageItemObj={pageItemObj} />}
     </div>
   );
 }

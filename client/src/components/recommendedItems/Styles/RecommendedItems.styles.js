@@ -7,9 +7,9 @@ const Carousel = styled.div`
   grid-auto-columns: min-content;
   gap: 1rem;
   /* border: red solid 2px; */
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  /* scroll-snap-type: x mandatory; */
 `;
 const CarouselContainer = styled.div`
   position: relative;
@@ -40,7 +40,7 @@ const RICenterContainer = styled.div`
   /* border: blue solid 2px; */
 `;
 
-// Goes inside Card
+// Goes inside Card & Modal
 const Card = styled.div`
   position: relative;
   box-sizing: border-box;
@@ -87,10 +87,20 @@ const OutfitAction = styled(ActionButton)`
   background: red;
 `;
 
+const ComparisonContainer = styled.div`
+  position: relative;
+  top: 2rem;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
 export {
   AddToOutfitCard,
   Carousel,
   CarouselContainer,
+  ComparisonContainer,
   NextCard,
   OutfitAction,
   PreviousCard,
