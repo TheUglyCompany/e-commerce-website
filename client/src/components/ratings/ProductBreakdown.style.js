@@ -16,6 +16,14 @@ display: flex;
 align-items: center;
 `;
 
+const FitChartDescriptions = styled.div`
+display: flex;
+align-items: center;
+margin-left: 25%;
+font-size: 14px;
+justify-content: space-between;
+`;
+
 const AttributeStyle = styled.div`
 width: 75%;
 background-color: lightgray;
@@ -46,4 +54,5 @@ export {
   AttributeStyle,
   DataStyle,
   ArrowDown,
+  FitChartDescriptions,
 };

@@ -7,6 +7,7 @@ import {
   Body,
   CardInfo,
   TileStyle,
+  InteractiveLine,
 } from './ReviewListTile.style';
 import { Stars } from '../recommendedItems/RecommendedItems.style';
 
@@ -35,35 +36,29 @@ function ReviewListTile({ review, postFeedback }) {
         {review.body}
       </Body>
 
-      {review.recommend ? <OwnerResponse>I recommend this product</OwnerResponse> : null}
-
-      {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
-      <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-        Helpful?
-      </HelpfulButton>
-      Yes
-      {' ('}
-      {review.helpfulness}
-      {') '}
-      <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-        Report
-      </HelpfulButton>
-      <hr />
+      {review.recommend ? (
+        <OwnerResponse>
+          I recommend this product
+          <span>
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" />
+          </span>
+        </OwnerResponse>
+        ) : null}
+      <InteractiveLine>
+        {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
+        <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+          Helpful?
+        </HelpfulButton>
+        Yes
+        {' ('}
+        {review.helpfulness}
+        {') '}
+        <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+          Report
+        </HelpfulButton>
+      </InteractiveLine>
     </TileStyle>
   );
 }
 
 export default ReviewListTile;
-
-/*
-body: "product exksajdlkdjklsjkldjklajdkljskaldjklajskldjasd"
-date: "2022-07-26T00:00:00.000Z"
-helpfulness: 99
-photos: []
-rating: 3
-recommend: true
-response: null
-review_id: 1276009
-reviewer_name: "hello"
-summary: "vool"
-*/
