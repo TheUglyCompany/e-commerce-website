@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import {
@@ -14,6 +14,8 @@ import {
   StandardButtonSpan,
   ImageInputUpload,
   ErrorMessage,
+  UploadButton,
+  AnswerImageStyle,
 } from './QandA.style';
 
 function Modal({
@@ -28,6 +30,7 @@ function Modal({
     emailInput: '',
     imageInput: [],
   });
+  const hiddenFileInput = useRef(null);
 
   function handleQuestionSubmit() {
     settextFieldError(false);
@@ -88,17 +91,23 @@ function Modal({
   }
 
   function handleFileEvent(event) {
-    const chosenFiles = Array.from(event.target.files);
+    const chosenFiles = event.target.files;
     const fileArray = [];
-    chosenFiles.forEach((file) => {
-      fileArray.push(file.name);
-    });
+    for (let i = 0; i < chosenFiles.length; i += 1) {
+      console.log(chosenFiles[i]);
+      fileArray.push(URL.createObjectURL(chosenFiles[i]));
+    }
+    console.log('Outside of Forloop: ', chosenFiles);
     setForm({
       ...form,
       imageInput: fileArray,
     });
-    console.log(form.imageInput);
   }
+
+  function handleClick() {
+    hiddenFileInput.current.click();
+  }
+
   return (
     <ModalContainer>
       <ModalContent>
@@ -206,8 +215,22 @@ function Modal({
                 type="file"
                 required="false"
                 multiple
-                onChange={() => handleFileEvent()}
+                style={{ display: 'none' }}
+                ref={hiddenFileInput}
+                onChange={handleFileEvent}
               />
+              {form.imageInput?.length < 5
+                ? (
+                  <UploadButton
+                    onClick={() => { handleClick(); }}
+                  >
+                    Upload
+
+                  </UploadButton>
+                ) : null}
+              {form.imageInput?.map((image) => (
+                <AnswerImageStyle src={image} />
+              ))}
             </label>
           ) : null}
         <StandardButtonSpan>
