@@ -4,8 +4,10 @@ import styled from 'styled-components';
 const Carousel = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 30%;
+  grid-auto-columns: min-content;
+  gap: 1rem;
   border: red solid 2px;
+  overflow-x: auto;
 `;
 const CarouselContainer = styled.div`
   position: relative;
@@ -25,13 +27,35 @@ const RICenterContainer = styled.div`
 `;
 
 // Goes inside Card
-const StyledCard = styled.div`
+const Card = styled.div`
   position: relative;
   box-sizing: border-box;
-  height: 15rem;
-  background: green;
-  padding: 1rem;
+  height: 27rem;
+  width: 18rem;
+  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
+  border-radius: 5px;
+  padding: 0.5rem;
 `;
+const StyledCard = styled(Card)`
+
+`;
+const AddToOutfitCard = styled(Card)`
+`;
+
+const Stars = styled.div`
+  display: inline-block;
+  font-size: 20px;
+  font-family: Times;
+  line-height: 1;
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #c2bf0a var(--rating), gray var(--rating));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
 const ActionButton = styled.div`
   position: absolute;
   top: 0.5rem;
@@ -49,11 +73,13 @@ const OutfitAction = styled(ActionButton)`
 `;
 
 export {
+  AddToOutfitCard,
   Carousel,
   CarouselContainer,
   RelatedAction,
   RICenterContainer,
   RIMasterContainer,
   OutfitAction,
+  Stars,
   StyledCard,
 };
