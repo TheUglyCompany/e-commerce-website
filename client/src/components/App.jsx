@@ -14,6 +14,7 @@ function App() {
   const cardClicked = (productId) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
       .then((response) => {
+        console.log(response);
         setReady(false);
         setProduct(response.data);
       })
@@ -32,7 +33,7 @@ function App() {
     }
   }, [product]);
 
-  return !ready ? <div data-testid="app">App is not ready</div> : (
+  return !ready ? <div>App is not ready</div> : (
     <div data-testid="app">
       <h2>Taco Bell&apos;s FEC Project</h2>
       <h3>
