@@ -4,7 +4,7 @@ const Ov = styled.div`
   overflow: visible;
   display: flex;
   width: 80%;
-  margin: 30px auto;
+  margin: 10px auto;
   font-family: Poppins;
   font-size: 12px;
   font-weight: light;
@@ -15,7 +15,6 @@ const Gallery = styled.div`
   display: block;
   width: 600px;
   min-width: 600px;
-  /* border: 1px solid black; */
   padding: 0px;
 `;
 
@@ -60,7 +59,7 @@ const OVgalleryThumbSelect = styled.img`
   margin: 2px;
   height: 48px;
   opacity: 0.5;
-  border: 1px solid black;
+  border: 1px solid;
   /* max-width: 100%; */
 `;
 
@@ -89,9 +88,8 @@ const GalleryZoom = styled.div`
   left: 50px;
   width: 90%;
   height: 90%;
-  background: black;
   z-index: 2;
-  border: 5px solid black;
+  border: 5px solid;
   /* cursor: pointer; */
 `;
 
@@ -100,15 +98,13 @@ const ImageBig = styled.img`
   flex-shrink: 0;
   max-width: 500px;
   max-height: 500px;
-  /* border: 3px solid black; */
 `;
 
 const Details = styled.div`
   float: right;
   display: block;
   width: 40%;
-  background: white;
-  /* border: 1px solid black; */
+  background: transparent;
   padding: 10px;
 `;
 
@@ -118,7 +114,7 @@ const OVstars = styled.div`
   font-family: Poppins;
   font-weight: 200;
   line-height: 1;
-  margin: 5px;
+  margin: 5px 0px;
 
   &::before {
     content: '★★★★★';
@@ -177,7 +173,6 @@ const Styles = styled.div`
   font-size: 15px;
   font-weight: bold;
   padding: 5px 0px 10px 0px;
-  /* border: 1px solid black; */
 `;
 
 const StyleImg = styled.img`
@@ -187,7 +182,6 @@ const StyleImg = styled.img`
   height: 75px;
   cursor: pointer;
   position: relative;
-  /* border: 0px solid black; */
 `;
 
 const StyleImgPad = styled.span`
@@ -210,7 +204,7 @@ const Check = styled.span`
 
 const StyleImgThumb = styled.div`
   flex: 1;
-  border: 1px solid black;
+  border: 1px solid;
 `;
 
 const StyleHeader = styled.div`
@@ -232,14 +226,11 @@ const Purchase = styled.div`
   font-weight: bold;
   padding: 5px 0px 0px 0px;
   display: block;
-  /* border: 1px solid black; */
 `;
 
 const Button = styled.button`
-  background: white;
-  border-radius: 1px;
-  border: 1px solid black;
-  color: black;
+  background: transparent;
+  border: 1px solid;
   padding: 5px;
   margin: 10px;
   width: 220px;
@@ -249,14 +240,12 @@ const Button = styled.button`
   font-size: 15px;
   height: 40px;
   text-transform: uppercase;
-  /* display: block; */
 `;
 
 const FavButton = styled.button`
-  background: white;
-  border-radius: 1px;
-  border: 1px solid black;
-  color: black;
+  background: transparent;
+  /* border-radius: 1px; */
+  border: 1px solid;
   padding: 5px;
   margin: 10px;
   width: 50px;
@@ -274,14 +263,14 @@ const Dd = styled.div`
   margin: 10px;
   position: relative;
   display: inline-block;
-  background: #ffffff;
+  background: transparent;
   /* user-select: none; */
 `;
 
 const DdBttn = styled.div`
-  border: 1px solid black;
+  border: 1px solid;
   padding: 10px;
-  background: #ffffff;
+  background: transparent;
   display: flex;
   font-family: Roboto;
   font-size: 15px;
@@ -290,7 +279,7 @@ const DdBttn = styled.div`
 `;
 
 const DdContent = styled.div`
-  border: 1px solid black;
+  border: 1px solid;
   position: absolute;
   top: 110%;
   left: 0;
@@ -300,12 +289,13 @@ const DdContent = styled.div`
   z-index: 1;
   max-height: 200px;
   overflow: auto;
+  color: black;
   /* overflow-clip-margin: 20px; */
 `;
 
 const DdItem = styled.div`
   padding: 10px;
-  background: #ffffff;
+  background: transparent;
   cursor: pointer;
   transition: all 0.2s;
   z-index: 1;
@@ -323,7 +313,6 @@ const Slogan = styled.div`
   width: 100%;
   margin: 15px;
   text-align: center;
-  /* border: 1px solid black; */
   /* position: relative; */
 `;
 
