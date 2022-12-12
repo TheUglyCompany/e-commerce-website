@@ -12,34 +12,57 @@ import {
   EmailFieldInput,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
+import {
+  RRModalContent,
+  ModalData,
+  ModalLabel,
+  ModalLine,
+  ModalGroup,
+  SingleLineTextField,
+  ModalLabelText,
+  ModalDataText,
+  MultiLineTextField,
+  RRXSpan,
+  CharGroup,
+  ModalRating,
+  ReqAst,
+} from './Ratings.style';
 
-function Modal({ setShowModal, productId, characteristics }) {
+function Modal({ setShowModal, product, characteristics }) {
   const [form, setForm] = useState({
     name: '', // name : text
     body: '', // body: text
     email: '', // email: text
     photos: [], // photos: array of text urls
     summary: '', // summary: text
-    product_id: productId,
+    product_id: product.id,
     characteristics: {}, // characteristics: object of keys rep char_id and values rep the review value 1-5
     recommend: false, // recommend: bool
     rating: 1, // rating: int 1-5
   });
+  const charDescriptions = {
+    Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
+    Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
+    Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
+  };
 
   // onSubmit axios post function
   // on file upload handle file upload
   function handleSubmit() {
-    axios.post(
-      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-      form,
-      { headers: { Authorization: API_KEY } },
-    )
-      .then((response) => {
-        console.log('success posting, review ', response);
-      })
-      .catch((err) => {
-        console.log('error posting, review ', err.message);
-      });
+    // axios.post(
+    //   'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+    //   form,
+    //   { headers: { Authorization: API_KEY } },
+    // )
+    //   .then((response) => {
+    //     console.log('success posting, review ', response);
+    //   })
+    //   .catch((err) => {
+    //     console.log('error posting, review ', err.message);
+    //   });
     console.log(`
     body: ${form.body},
     summary: ${form.summary},
@@ -57,135 +80,199 @@ function Modal({ setShowModal, productId, characteristics }) {
 
   return (
     <ModalContainer>
-      <ModalContent>
-        <span onClick={() => setShowModal(false)}>
+      <RRModalContent>
+        <RRXSpan
+          onClick={() => {
+            setShowModal(false);
+          }}
+        >
           X
-        </span>
-        <ModalTitle>Add a review!</ModalTitle>
-        Rate it!
-        <div onChange={(event) => {
-          setForm({
-            ...form,
-            rating: Number(event.target.id),
-          });
-        }}
-        >
-          1
-          <input type="radio" id="1" name="rating" />
-          2
-          <input type="radio" id="2" name="rating" />
-          3
-          <input type="radio" id="3" name="rating" />
-          4
-          <input type="radio" id="4" name="rating" />
-          5
-          <input type="radio" id="5" name="rating" />
-        </div>
-        recommend?
-        <div onChange={(event) => {
-          if (event.target.id === 'Yes') {
-            setForm({
-              ...form,
-              recommend: true,
-            });
-          } else {
-            setForm({
-              ...form,
-              recommend: false,
-            });
-          }
-        }}
-        >
-          yes
-          <input type="radio" id="Yes" name="recommend" />
-          no
-          <input type="radio" id="No" name="recommend" />
-
-        </div>
-        Characteristics
-        {
-          fitEntries.map((attribute, i) => (
-            <div
-              key={i}
-              onChange={(event) => {
-                const newFit = { ...form };
-                newFit.characteristics[attribute[1].id] = Number(event.target.id);
-                setForm(newFit);
-              }}
-            >
-              {attribute[0]}
-              {' : '}
-              1
-              <input type="radio" id="1" name={attribute[0]} />
-              2
-              <input type="radio" id="2" name={attribute[0]} />
-              3
-              <input type="radio" id="3" name={attribute[0]} />
-              4
-              <input type="radio" id="4" name={attribute[0]} />
-              5
-              <input type="radio" id="5" name={attribute[0]} />
-            </div>
-          ))
-        }
-        <label>
-          Enter your name
+        </RRXSpan>
+        <ModalTitle>Write your review</ModalTitle>
+        <ModalDesc>
+          About the
           {' '}
-          <NameFieldInput
-            value={form.nameInput}
-            type="text"
-            maxLength="60"
-            required="true"
-            placeholder="Example: jackson11!"
-            onChange={(e) => {
+          {product.name}
+        </ModalDesc>
+        <ModalRating>
+          Rate it!
+          <ReqAst>*</ReqAst>
+          <div onChange={(event) => {
+            setForm({
+              ...form,
+              rating: Number(event.target.id),
+            });
+          }}
+          >
+            1
+            <input type="radio" id="1" name="rating" />
+            2
+            <input type="radio" id="2" name="rating" />
+            3
+            <input type="radio" id="3" name="rating" />
+            4
+            <input type="radio" id="4" name="rating" />
+            5
+            <input type="radio" id="5" name="rating" />
+          </div>
+        </ModalRating>
+        <ModalRating>
+          Do you recommend this product?
+          <ReqAst>*</ReqAst>
+        <div>
+          <div onChange={(event) => {
+            if (event.target.id === 'Yes') {
               setForm({
                 ...form,
-                nameInput: e.target.value,
+                recommend: true,
               });
-            }}
-          />
+            } else {
+              setForm({
+                ...form,
+                recommend: false,
+              });
+            }
+          }}
+          >
+            yes
+            <input type="radio" id="Yes" name="recommend" />
+            no
+            <input type="radio" id="No" name="recommend" />
+        </div>
+        </div>
+        </ModalRating>
+        <ModalLine>
+          Characteristics:
+          <ReqAst>*</ReqAst>
+        </ModalLine>
+        {
+          fitEntries.map((attribute, i) => (
+            <ModalGroup>
+              <ModalLine
+                key={i}
+                onChange={(event) => {
+                  const newFit = { ...form };
+                  newFit.characteristics[attribute[1].id] = Number(event.target.id);
+                  setForm(newFit);
+                }}
+              >
+                <ModalLabel>
+                  {attribute[0]}
+                  {': '}
+                </ModalLabel>
+                <ModalData>
+                  <CharGroup>
+                    1
+                    <input type="radio" id="1" name={attribute[0]} />
+                    {charDescriptions[attribute[0]][0]}
+                    {' '}
+                  </CharGroup>
+                  <CharGroup>
+                    2
+                    <input type="radio" id="2" name={attribute[0]} />
+                    {charDescriptions[attribute[0]][1]}
+                    {' '}
+                  </CharGroup>
+                  <CharGroup>
+                    3
+                    <input type="radio" id="3" name={attribute[0]} />
+                    {charDescriptions[attribute[0]][2]}
+                    {' '}
+                  </CharGroup>
+                  <CharGroup>
+                    4
+                    <input type="radio" id="4" name={attribute[0]} />
+                    {charDescriptions[attribute[0]][3]}
+                    {' '}
+                  </CharGroup>
+                  <CharGroup>
+                    5
+                    <input type="radio" id="5" name={attribute[0]} />
+                    {charDescriptions[attribute[0]][4]}
+                    {' '}
+                  </CharGroup>
+                </ModalData>
+              </ModalLine>
+            </ModalGroup>
+          ))
+        }
+        <ModalGroup>
+          <ModalLine>
+            <ModalLabelText>
+              Enter your name:
+              <ReqAst>*</ReqAst>
+            </ModalLabelText>
+            <ModalDataText>
+              <SingleLineTextField
+                value={form.nameInput}
+                type="text"
+                maxLength="60"
+                required="true"
+                placeholder="Example: jackson11!"
+                onChange={(e) => {
+                  setForm({
+                    ...form,
+                    nameInput: e.target.value,
+                  });
+                }}
+              />
+            </ModalDataText>
+          </ModalLine>
           <ModalDesc>
             For privacy reasons, don&apos;t use your fullname or email
           </ModalDesc>
-        </label>
-        <label>
-          Email:
-          {' '}
-          <EmailFieldInput
-            value={form.email}
-            maxLength="60"
-            required="true"
-            placeholder="Example: jackson11@email.com"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                email: event.target.value,
-              });
-            }}
-          />
+        </ModalGroup>
+        <ModalGroup>
+          <ModalLine>
+            <ModalLabelText>
+              Email:
+              <ReqAst>*</ReqAst>
+            </ModalLabelText>
+            <ModalDataText>
+              <SingleLineTextField
+                value={form.email}
+                maxLength="60"
+                required="true"
+                placeholder="Example: jackson11@email.com"
+                onChange={(event) => {
+                  setForm({
+                    ...form,
+                    email: event.target.value,
+                  });
+                }}
+              />
+            </ModalDataText>
+          </ModalLine>
           <ModalDesc>
             For authentication reasons, you will not be emailed
           </ModalDesc>
-        </label>
-        <label>
-          Summary:
-          {' '}
-          <EmailFieldInput
-            value={form.summary}
-            maxLength="60"
-            placeholder="Example: Best purchase ever!"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                summary: event.target.value,
-              });
-            }}
-          />
-        </label>
-        <label>
+        </ModalGroup>
+        <ModalGroup>
+          <ModalLine>
+            <ModalLabelText>
+              Summary:
+              {' '}
+            </ModalLabelText>
+            <ModalDataText>
+              <SingleLineTextField
+                value={form.summary}
+                maxLength="60"
+                placeholder="Example: Best purchase ever!"
+                onChange={(event) => {
+                  setForm({
+                    ...form,
+                    summary: event.target.value,
+                  });
+                }}
+              />
+            </ModalDataText>
+          </ModalLine>
+        </ModalGroup>
+        <ModalGroup>
           Write a review:
+          <ReqAst>*</ReqAst>
           {' '}
-          <TextFieldinput
+          <MultiLineTextField
             value={form.body}
             maxLength="1000"
             required="true"
@@ -205,7 +292,7 @@ function Modal({ setShowModal, productId, characteristics }) {
               50 - (form.body.length) <= 0 ? '0' : 50 - (form.body.length)
             }
           </ModalDesc>
-        </label>
+        </ModalGroup>
 
 
         <Button
@@ -216,7 +303,7 @@ function Modal({ setShowModal, productId, characteristics }) {
         >
           Submit
         </Button>
-      </ModalContent>
+      </RRModalContent>
     </ModalContainer>
   );
 }
