@@ -17,6 +17,8 @@ function OVgallery({
   const [photoIdx, setPhotoIdx] = useState(0);
   const [zoom, setZoom] = useState('none');
   const [arrLength, setArrLength] = useState(0);
+  const [galLeftArrow, setGalLeftArrow] = useState('none');
+  const [galRightArrow, setGalRightArrow] = useState('flex');
 
   const onZoom = () => {
     setZoom('none');
@@ -42,11 +44,26 @@ function OVgallery({
     if (styleSelected.photos !== undefined) {
       setMainImg(styleSelected.photos[photoIdx].url);
       setArrLength(styleSelected.photos.length);
+      setGalLeftArrow('none');
+      setGalRightArrow('flex');
+      setPhotoIdx(0);
     }
   }, [styleSelected]);
   useEffect(() => {
     if (styleSelected.photos !== undefined) {
       setMainImg(styleSelected.photos[photoIdx].url);
+    }
+    if (photoIdx === 0) {
+      setGalLeftArrow('none');
+    }
+    if (photoIdx !== 0) {
+      setGalLeftArrow('flex');
+    }
+    if (photoIdx === arrLength - 1) {
+      setGalRightArrow('none');
+    }
+    if (photoIdx !== arrLength - 1) {
+      setGalRightArrow('flex');
     }
   }, [photoIdx]);
 
@@ -55,11 +72,12 @@ function OVgallery({
       <OVgallerySmall
         styleSelected={styleSelected}
         setMainImg={setMainImg}
+        setPhotoIdx={setPhotoIdx}
         mainImg={mainImg}
       />
 
       <GalleryContainer>
-        <OVgalleryArrowLeft display="flex" onClick={galleryLeft}>
+        <OVgalleryArrowLeft display={galLeftArrow} onClick={galleryLeft}>
           <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
         </OVgalleryArrowLeft>
 
@@ -68,7 +86,7 @@ function OVgallery({
             ? <ImageBig src={mainImg} alt="" /> : null}
         </GalleryBig>
 
-        <OVgalleryArrowRight display="flex" onClick={galleryRight}>
+        <OVgalleryArrowRight display={galRightArrow} onClick={galleryRight}>
           <img src="https://cdn-icons-png.flaticon.com/512/7185/7185281.png" height="30px" alt="" />
         </OVgalleryArrowRight>
       </GalleryContainer>
