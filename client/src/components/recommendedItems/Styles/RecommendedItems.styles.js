@@ -8,12 +8,25 @@ const Carousel = styled.div`
   gap: 1rem;
   border: red solid 2px;
   overflow-x: auto;
+  scroll-behavior: smooth;
 `;
 const CarouselContainer = styled.div`
   position: relative;
   padding: 1rem 0;
   border: green solid 2px;
-
+`;
+const CarouselNavigator = styled.div`
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  background: maroon;
+  top: 45%;
+`;
+const NextCard = styled(CarouselNavigator)`
+  right: -5rem;
+`;
+const PreviousCard = styled(CarouselNavigator)`
+  left: -5rem;
 `;
 
 // Goes inside RecommendedItems
@@ -76,10 +89,12 @@ export {
   AddToOutfitCard,
   Carousel,
   CarouselContainer,
+  NextCard,
+  OutfitAction,
+  PreviousCard,
   RelatedAction,
   RICenterContainer,
   RIMasterContainer,
-  OutfitAction,
   Stars,
   StyledCard,
 };

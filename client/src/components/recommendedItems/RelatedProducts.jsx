@@ -1,5 +1,7 @@
 import React from 'react';
-import { Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
+import {
+  Carousel, CarouselContainer, NextCard, PreviousCard,
+} from './Styles/RecommendedItems.styles';
 
 function RelatedProducts({ renderListFromIds }) {
   return (
@@ -7,6 +9,8 @@ function RelatedProducts({ renderListFromIds }) {
       <Carousel>
         {renderListFromIds('related')}
       </Carousel>
+      <PreviousCard />
+      <NextCard />
     </CarouselContainer>
   );
 }

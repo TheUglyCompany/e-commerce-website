@@ -1,5 +1,7 @@
 import React from 'react';
-import { AddToOutfitCard, Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
+import {
+  AddToOutfitCard, Carousel, CarouselContainer, NextCard, PreviousCard,
+} from './Styles/RecommendedItems.styles';
 
 function YourOutfit({ renderListFromIds, addToOutfits }) {
   return (
@@ -11,6 +13,8 @@ function YourOutfit({ renderListFromIds, addToOutfits }) {
         </AddToOutfitCard>
         {renderListFromIds('outfit')}
       </Carousel>
+      <PreviousCard />
+      <NextCard />
     </CarouselContainer>
   );
 }
