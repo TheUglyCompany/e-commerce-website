@@ -6,7 +6,9 @@ import {
   LoadMoreButton, AnswerStyle, LoadMoreButtonSpan, NoAnswerStyle,
 } from './QandA.style';
 
-function AnswerList({ questionId, productName, currQuestionList }) {
+function AnswerList({
+  questionId, productName, currQuestionList, dark, productId,
+}) {
   const [answerList, setAnswerList] = useState([]);
   const [showMoreAnswers, setShowMoreAnswers] = useState(false);
   const [renderCount, setRenderCount] = useState(2);
@@ -22,8 +24,9 @@ function AnswerList({ questionId, productName, currQuestionList }) {
         console.log('There is an error in AnswerList: ', error);
       });
   }, [currQuestionList]);
+
   return (
-    <AnswerStyle>
+    <AnswerStyle dark={dark}>
       {answerList?.length !== 0
         ? answerList.map((answer, index) => {
           count += 1;
@@ -31,9 +34,10 @@ function AnswerList({ questionId, productName, currQuestionList }) {
           if (count <= renderCount) {
             return (
               <Answer
-              answer={answer}
-              key={index}
-              productName={productName}
+                answer={answer}
+                key={index}
+                productName={productName}
+                dark={dark}
               />
             );
           }
@@ -48,6 +52,7 @@ function AnswerList({ questionId, productName, currQuestionList }) {
                 setRenderCount(renderCount + 2);
                 setShowMoreAnswers(true);
               }}
+              dark={dark}
             >
               LOAD MORE ANSWERS
             </LoadMoreButton>
@@ -62,6 +67,7 @@ function AnswerList({ questionId, productName, currQuestionList }) {
               setRenderCount(2);
               setShowMoreAnswers(false);
             }}
+            dark={dark}
           >
             HIDE MORE ANSWERS
 

@@ -8,7 +8,7 @@ import {
 } from './QandA.style';
 
 function Question({
-  question, productName, currQuestionList, setCurrQuestionList,
+  question, productName, currQuestionList, setCurrQuestionList, dark, productId
 }) {
   const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState('');
@@ -71,12 +71,13 @@ function Question({
         <HelpfulButton
           type="button"
           onClick={() => handleHelpfullQuestions()}
+          dark={dark}
         >
           Helpful?
 
         </HelpfulButton>
         &nbsp;
-        <YesStyle>
+        <YesStyle dark={dark}>
           <u>Yes</u>
           {' '}
           (
@@ -90,11 +91,12 @@ function Question({
         &nbsp;
         &nbsp;
         {reported
-          ? <YesStyle>Reported!</YesStyle>
+          ? <YesStyle dark={dark}>Reported!</YesStyle>
           : (
             <UnderlineTextButton
               type="button"
               onClick={() => handleQuestionReport()}
+              dark={dark}
             >
               Report
 
@@ -102,7 +104,7 @@ function Question({
           )}
         &nbsp;
         &nbsp;
-        <YesStyle>
+        <YesStyle dark={dark}>
           |
         </YesStyle>
         &nbsp;
@@ -113,6 +115,7 @@ function Question({
             setShowModal(true);
             setLocation('answer');
           }}
+          dark={dark}
         >
           Add Answer
         </UnderlineTextButton>
@@ -125,6 +128,7 @@ function Question({
             questionBody={question.question_body}
             productName={productName}
             setShowModal={setShowModal}
+            dark={dark}
           />
         )
         : null}
@@ -136,6 +140,8 @@ function Question({
           setShowModal={setShowModal}
           currQuestionList={currQuestionList}
           setCurrQuestionList={setCurrQuestionList}
+          dark={dark}
+          productId={productId}
         />
       </div>
     </QuestionStyle>
