@@ -6,7 +6,13 @@ import {
 } from './Overview.style';
 
 function OVstyleImg({
-  styleOpts, styleOpt, index, setSkuOptions, setStyleSelected, styleSelected,
+  styleOpts,
+  styleOpt,
+  index,
+  setSkuOptions,
+  setStyleSelected,
+  styleSelected,
+  dark,
 }) {
   return (
     <StyleImgPad>
@@ -19,7 +25,7 @@ function OVstyleImg({
         }}
       />
       {styleSelected.name === styleOpt.name
-        ? <Check><img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /></Check>
+        ? <Check dark={dark}><img src="https://i.imgur.com/5bqYJip.png" width="10px" alt="" /></Check>
         : null}
     </StyleImgPad>
   );

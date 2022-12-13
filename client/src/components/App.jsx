@@ -9,6 +9,7 @@ import API_KEY from '../../config';
 import { QATitle } from './qAndA/QandA.style';
 import {
   AppWrap,
+  GlobalStyle,
 } from './Header.style';
 
 function App() {
@@ -41,9 +42,10 @@ function App() {
 
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
+      <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} />
-      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
+      {/* <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} /> */}
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} />
       <div id="ratings"> </div>
