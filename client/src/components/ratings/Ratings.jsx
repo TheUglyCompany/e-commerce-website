@@ -20,7 +20,7 @@ import {
   DdItem,
 } from '../overview/Overview.style';
 
-function Ratings({ product }) {
+function Ratings({ product, dark }) {
   const [renderCount, setRenderCount] = useState(2);
   const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
@@ -87,9 +87,9 @@ function Ratings({ product }) {
       <RatingsAndReviews>
         <RatingStyle>
           <h4> Ratings & Reviews </h4>
-          <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+          <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} dark={dark} />
 
-          <ProductBreakdown metaData={metaData} />
+          <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>
           <h4>
@@ -123,12 +123,13 @@ function Ratings({ product }) {
             onSelect={() => onSelect}
             renderCount={renderCount}
             filter={filter}
+            dark={dark}
           />
         </ReviewStyle>
       </RatingsAndReviews>
       <ButtonContainer>
         {reviewCount <= renderCount ? null
-          : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
+          : <Button dark={dark} type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
         <Button type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
       </ButtonContainer>
       {showModal

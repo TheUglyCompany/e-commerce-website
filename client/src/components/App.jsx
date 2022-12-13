@@ -41,10 +41,10 @@ function App() {
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
       <Header dark={dark} setDark={setDark} />
-      <Overview dark={dark} product={product} />
+      {/* <Overview dark={dark} product={product} />
       <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
-      <QandA dark={dark} product={product} />
+      <QandA dark={dark} product={product} /> */}
       <Ratings dark={dark} product={product} />
     </AppWrap>
   );
