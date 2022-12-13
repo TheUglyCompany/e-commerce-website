@@ -60,9 +60,6 @@ function App() {
     }
   }, [product]);
 
-  console.log('product avg', prodAvg);
-  console.log('meta data', metaData);
-
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />

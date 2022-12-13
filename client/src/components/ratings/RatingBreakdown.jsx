@@ -16,7 +16,6 @@ import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 // TODO: say what percentage of people recommend this product
 // say current filters
 // have a link to reset filters
-let avg = 0;
 
 function RatingBreakdown({ metaData, filter, setFilter, dark, prodAvg }) {
   const [isFilter, setIsFilter] = useState(false);
