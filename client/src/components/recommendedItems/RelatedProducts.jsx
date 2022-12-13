@@ -1,19 +1,17 @@
 import React from 'react';
-import Card from './Card';
-import { Carousel } from './RecommendedItems.style';
+import {
+  Carousel, CarouselContainer, NextCard, PreviousCard,
+} from './Styles/RecommendedItems.styles';
 
-function RelatedProducts({ relatedProducts, cardClicked }) {
-  const renderList = () => relatedProducts.map((productId) => (
-    <Card key={productId} productId={productId} cardClicked={cardClicked} />
-  ));
-
+function RelatedProducts({ renderListFromIds }) {
   return (
-    <div>
-      <h3>Related Products</h3>
+    <CarouselContainer>
       <Carousel>
-        {renderList()}
+        {renderListFromIds('related')}
       </Carousel>
-    </div>
+      <PreviousCard />
+      <NextCard />
+    </CarouselContainer>
   );
 }
 

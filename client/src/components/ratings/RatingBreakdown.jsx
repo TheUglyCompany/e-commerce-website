@@ -10,7 +10,7 @@ import {
   Recommended,
   ReviewCount,
 } from './RatingBreakdown.style';
-import { Stars } from '../recommendedItems/RecommendedItems.style';
+import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 // TODO: say what percentage of people recommend this product
 // say current filters

@@ -8,7 +8,12 @@ import {
   OVgalleryArrowRight,
 } from './Overview.style';
 
-function OVgallerySmall({ styleSelected, setMainImg, mainImg }) {
+function OVgallerySmall({
+  styleSelected,
+  setPhotoIdx,
+  setMainImg,
+  mainImg,
+}) {
   const [leftArrow, setLeftArrow] = useState('none');
   const [rightArrow, setRightArrow] = useState('none');
   const [masterPhotoArr, setMasterPhotoArr] = useState([]);
@@ -16,9 +21,11 @@ function OVgallerySmall({ styleSelected, setMainImg, mainImg }) {
   const [arrStart, setArrStart] = useState(0);
   const [arrEnd, setArrEnd] = useState(7);
 
-  const changeMain = (photo) => {
+  const changeMain = (photo, index) => {
     // console.log('photo: ', photo.url);
     setMainImg(photo.url);
+    setPhotoIdx(index);
+    // console.log('index: ', photo.url);
   };
 
   const goLeft = () => {
@@ -76,8 +83,8 @@ function OVgallerySmall({ styleSelected, setMainImg, mainImg }) {
       {photoArr.length !== 0
         ? photoArr.map((photo, index) => (
           photo.url === mainImg
-            ? <OVgalleryThumbSelect key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo); }} alt="" />
-            : <OVgalleryThumb key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo); }} alt="" />
+            ? <OVgalleryThumbSelect key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo, index); }} alt="" />
+            : <OVgalleryThumb key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo, index); }} alt="" />
         ))
         : null}
       <OVgalleryArrowRight display={rightArrow} onClick={() => { goRight(); }}>

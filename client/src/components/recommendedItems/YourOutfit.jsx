@@ -1,27 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
-import { AddToOutfitCard, AddToOutfitText, PlusText, Carousel } from './RecommendedItems.style';
-// import Card from './Card';
+import {
+  AddToOutfitCard, Carousel, CarouselContainer, NextCard, PreviousCard,
+} from './Styles/RecommendedItems.styles';
 
-function YourOutfit({ cardClicked }) {
-  // const renderList = () => {
-  //   if ()
-  //   relatedProducts.map((productId) => (
-  //     <Card key={productId} productId={productId} cardClicked={cardClicked} />
-  //   ));
-  // }
-
+function YourOutfit({ renderListFromIds, addToOutfits }) {
   return (
-    <div>
-      <h3>Your Outfit</h3>
+    <CarouselContainer>
       <Carousel>
-        <AddToOutfitCard>
-          <PlusText>+</PlusText>
-          <AddToOutfitText>Add to Outfit</AddToOutfitText>
+        <AddToOutfitCard onClick={addToOutfits}>
+          <h2>+</h2>
+          <p>Add To Your Outfit</p>
         </AddToOutfitCard>
-        {/* {renderList()} */}
+        {renderListFromIds('outfit')}
       </Carousel>
-    </div>
+      <PreviousCard />
+      <NextCard />
+    </CarouselContainer>
   );
 }
 
