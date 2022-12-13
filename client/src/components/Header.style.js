@@ -13,7 +13,7 @@ const HeaderDiv = styled.div`
   overflow: visible;
   display: block;
   width: 70%;
-  padding: 10px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
   margin: 10px auto;
   font-family: Roboto;
   font-size: 50px;
