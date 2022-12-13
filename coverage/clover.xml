@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1670471308536" clover="3.2.0">
-  <project timestamp="1670471308536" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1670891635741" clover="3.2.0">
+  <project timestamp="1670891635742" name="All files">
+    <metrics statements="61" coveredstatements="42" conditionals="14" coveredconditionals="4" methods="12" coveredmethods="2" elements="87" coveredelements="48" complexity="0" loc="61" ncloc="61" packages="2" files="3" classes="3"/>
+    <package name="client">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="config.js" path="/Users/elizabeth/front-end-capstone/client/config.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.qAndA">
+      <metrics statements="60" coveredstatements="41" conditionals="14" coveredconditionals="4" methods="12" coveredmethods="2"/>
+      <file name="Answer.jsx" path="/Users/elizabeth/front-end-capstone/client/src/components/qAndA/Answer.jsx">
+        <metrics statements="29" coveredstatements="10" conditionals="14" coveredconditionals="4" methods="12" coveredmethods="2"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="63" count="4" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="71" count="4" type="stmt"/>
+        <line num="78" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+      </file>
+      <file name="QandA.style.js" path="/Users/elizabeth/front-end-capstone/client/src/components/qAndA/QandA.style.js">
+        <metrics statements="31" coveredstatements="31" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="138" count="1" type="stmt"/>
+        <line num="145" count="1" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="163" count="1" type="stmt"/>
+        <line num="168" count="1" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
+        <line num="189" count="1" type="stmt"/>
+        <line num="194" count="1" type="stmt"/>
+        <line num="201" count="1" type="stmt"/>
+        <line num="207" count="1" type="stmt"/>
+        <line num="214" count="1" type="stmt"/>
+        <line num="219" count="1" type="stmt"/>
+        <line num="226" count="1" type="stmt"/>
+        <line num="234" count="1" type="stmt"/>
+        <line num="242" count="1" type="stmt"/>
+        <line num="254" count="1" type="stmt"/>
+        <line num="262" count="1" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>
