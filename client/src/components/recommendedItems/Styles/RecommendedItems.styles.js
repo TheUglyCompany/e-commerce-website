@@ -4,12 +4,12 @@ import styled from 'styled-components';
 const Carousel = styled.div`
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: min-content;
-  gap: 1rem;
-  /* border: red solid 2px; */
+  gap: 20px;
+  /* white-space: nowrap; */
   overflow-x: hidden;
   scroll-behavior: smooth;
-  /* scroll-snap-type: x mandatory; */
+  scroll-snap-type: x mandatory;
+  /* overscroll-behavior: contain; */
 `;
 const CarouselContainer = styled.div`
   position: relative;
@@ -42,13 +42,15 @@ const RICenterContainer = styled.div`
 
 // Goes inside Card & Modal
 const Card = styled.div`
+  display: inline-block;
   position: relative;
   box-sizing: border-box;
-  height: 27rem;
-  width: 18rem;
+  height: 450px;
+  width: 300px;
   background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
   border-radius: 5px;
   padding: 0.5rem;
+  /* margin: 0 10px; */
   scroll-snap-align: start;
 `;
 const StyledCard = styled(Card)`
