@@ -5,7 +5,6 @@ const AppWrap = styled.div`
   height: 100%
   border: 1px solid;
   margin: 0px;
-  /* padding: 0px */
   background: ${(props) => (props.dark ? 'grey' : 'white')};
   color: ${(props) => (props.dark ? 'white' : 'black')};
 `;
@@ -13,7 +12,8 @@ const AppWrap = styled.div`
 const HeaderDiv = styled.div`
   overflow: visible;
   display: block;
-  width: 80%;
+  width: 70%;
+  padding: 10px 0px 0px 0px;
   margin: 10px auto;
   font-family: Roboto;
   font-size: 50px;
@@ -27,6 +27,8 @@ const Title = styled.span`
   font-size: 30px;
   font-weight: Bold;
   vertical-align: top;
+  margin: 15px 0px 0px 0px;
+  /* border: 1px solid; */
 `;
 
 const Cart = styled.span`
@@ -39,7 +41,8 @@ const Cart = styled.span`
 const DarkButton = styled.button`
   border-radius: 1px;
   border: 1px solid;
-  color: black;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
+  background-color: transparent;
   padding: 5px;
   width: 100px;
   cursor: pointer;
