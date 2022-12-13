@@ -20,6 +20,7 @@ function App() {
   const cardClicked = (productId) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
       .then((response) => {
+        // console.log('response is', response);
         setReady(false);
         setProduct(response.data);
       })
@@ -38,7 +39,7 @@ function App() {
     }
   }, [product]);
 
-  return !ready ? <div data-testid="app">App is not ready</div> : (
+  return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} />

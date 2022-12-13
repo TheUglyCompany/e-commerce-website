@@ -9,7 +9,7 @@ import {
   TileStyle,
   InteractiveLine,
 } from './ReviewListTile.style';
-import { Stars } from '../recommendedItems/RecommendedItems.style';
+import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 // convert the below to HelpfulButtons
 
