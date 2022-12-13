@@ -8,6 +8,8 @@ import {
   ImageBig,
   ImageZoomSpan,
   GalleryZoom,
+  GalleryArrowL,
+  GalleryArrowR,
   OVgalleryArrowRight,
   OVgalleryArrowLeft,
 } from './Overview.style';
@@ -96,17 +98,17 @@ function OVgallery({
       </GalleryContainer>
 
       <GalleryZoom display={zoom} dark={dark}>
-        <OVgalleryArrowLeft display={galLeftArrow} onClick={galleryLeft}>
+        <GalleryArrowL display={galLeftArrow} onClick={galleryLeft}>
           <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
-        </OVgalleryArrowLeft>
+        </GalleryArrowL>
 
         <ImageZoomSpan onClick={onZoom}>
           <ImageZoom src={mainImg} alt="" />
         </ImageZoomSpan>
 
-        <OVgalleryArrowRight display={galRightArrow} onClick={galleryRight}>
+        <GalleryArrowR display={galRightArrow} onClick={galleryRight}>
           <img src="https://cdn-icons-png.flaticon.com/512/7185/7185281.png" height="30px" alt="" />
-        </OVgalleryArrowRight>
+        </GalleryArrowR>
       </GalleryZoom>
     </Gallery>
   );

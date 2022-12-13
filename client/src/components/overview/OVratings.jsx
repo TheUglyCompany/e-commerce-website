@@ -5,12 +5,22 @@ import {
   RatingsLink,
 } from './Overview.style';
 
-function OVratings({ dark }) {
+function OVratings({
+  dark,
+  revAvg,
+  revCount,
+}) {
   return (
     <div>
       <OVstars style={{ '--rating': '50%' }} />
       <OVstarsReview>
-        <RatingsLink dark={dark} href="#ratings">Read all reviews.</RatingsLink>
+        <RatingsLink dark={dark} href="#ratings">
+          Read
+          {' '}
+          {revCount}
+          {' '}
+          reviews.
+        </RatingsLink>
       </OVstarsReview>
     </div>
   );
