@@ -26,6 +26,7 @@ const HelpfulButton = styled.button`
   background: none;
   font-size: 16px;
   border: none;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -50,7 +51,7 @@ flex-wrap: wrap;
 `;
 
 const OwnerResponse = styled.div`
-border-style: solid;
+// border-style: solid;
 background-color: lightgray;
 width: calc(100% - 70px);
 margin: 10px;

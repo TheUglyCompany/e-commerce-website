@@ -26,7 +26,7 @@ import {
   CharGroup,
   ModalRating,
   ReqAst,
-} from './Ratings.style';
+} from './Styles/Ratings.style';
 
 function Modal({ setShowModal, product, characteristics }) {
   const [form, setForm] = useState({

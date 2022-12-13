@@ -4,9 +4,9 @@ import ReviewListTile from './ReviewListTile';
 import API_KEY from '../../../config';
 import {
   Reviews,
-} from './ReviewList.style';
+} from './Styles/ReviewList.style';
 
-function ReviewList({ reviews, renderCount, filter }) {
+function ReviewList({ reviews, renderCount, filter, dark }) {
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
@@ -30,6 +30,7 @@ function ReviewList({ reviews, renderCount, filter }) {
           count += 1;
           return (
             <ReviewListTile
+              dark={dark}
               key={review.review_id}
               review={review}
               postFeedback={(feedbackType, reviewId) => {

@@ -8,20 +8,20 @@ import {
   CardInfo,
   TileStyle,
   InteractiveLine,
-} from './ReviewListTile.style';
-import { Button } from '../overview/Overview.style';
+} from './Styles/ReviewListTile.style';
+import { Check } from '../overview/Overview.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 // convert the below to HelpfulButtons
 
-function ReviewListTile({ review, postFeedback }) {
+function ReviewListTile({ review, postFeedback, dark }) {
   const [isShortened, setIsShortened] = useState(true);
   return (
     <TileStyle>
       {' '}
       <CardInfo>
         <div>
-          <Stars style={{ '--rating': `${((review.rating / 5) * 100)}%` }} />
+          <Stars dark={dark} style={{ '--rating': `${((review.rating / 5) * 100)}%` }} />
         </div>
         <div>
           {' '}
@@ -47,12 +47,22 @@ function ReviewListTile({ review, postFeedback }) {
             ? (
               <Body>
                 {review.body.slice(0, 250)}
-                <Button onClick={() => setIsShortened(false)}>Show More</Button>
+                <HelpfulButton
+                  dark={dark}
+                  onClick={() => setIsShortened(false)}
+                >
+                  Show More
+                </HelpfulButton>
               </Body>
             ) : (
               <Body>
                 {review.body}
-                <Button onClick={() => setIsShortened(true)}>Show Less</Button>
+                <HelpfulButton
+                  dark={dark}
+                  onClick={() => setIsShortened(true)}
+                >
+                  Show Less
+                </HelpfulButton>
               </Body>
             )
 
@@ -60,7 +70,7 @@ function ReviewListTile({ review, postFeedback }) {
       {review.recommend ? (
         <OwnerResponse>
           <span>
-            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" />
+            <Check dark={dark}><img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /></Check>
           </span>
           {' '}
           I recommend this product
@@ -68,14 +78,26 @@ function ReviewListTile({ review, postFeedback }) {
       ) : null}
       <InteractiveLine>
         {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
-        <HelpfulButton value="helpful" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        <HelpfulButton
+          value="helpful"
+          id={review.review_id}
+          onClick={(e) => { postFeedback(e.target.value, e.target.id); }}
+          style={{ cursor: 'pointer', textDecoration: 'underline' }}
+          dark={dark}
+        >
           Helpful?
         </HelpfulButton>
         Yes
         {' ('}
         {review.helpfulness}
         {') '}
-        <HelpfulButton value="report" id={review.review_id} onClick={(e) => { postFeedback(e.target.value, e.target.id); }} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+        <HelpfulButton
+          value="report"
+          id={review.review_id}
+          onClick={(e) => { postFeedback(e.target.value, e.target.id); }}
+          style={{ cursor: 'pointer', textDecoration: 'underline' }}
+          dark={dark}
+        >
           Report
         </HelpfulButton>
       </InteractiveLine>

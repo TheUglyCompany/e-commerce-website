@@ -3,7 +3,7 @@ import {
   ModalContainer,
   ModalContent,
   XSpan,
-} from '../qAndA/QandA.style';
+} from '../../qAndA/QandA.style';
 
 const RatingsAndReviews = styled.div`
 font-family: poppins;
@@ -41,7 +41,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 align-content: space-around;
-width: 1000px;
+width: 800px;
+height: 80vh;
 padding: 10px;
 top: 10%;
 overflow: auto;

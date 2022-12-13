@@ -11,7 +11,7 @@ import {
   ReviewStyle,
   OuterMostLayer,
   ButtonContainer,
-} from './Ratings.style';
+} from './Styles/Ratings.style';
 import {
   Button,
   Dd,
@@ -86,7 +86,6 @@ function Ratings({ product, dark }) {
     <OuterMostLayer>
       <RatingsAndReviews>
         <RatingStyle>
-          <h4> Ratings & Reviews </h4>
           <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} dark={dark} />
 
           <ProductBreakdown metaData={metaData} dark={dark} />
@@ -98,10 +97,10 @@ function Ratings({ product, dark }) {
             total reviews, Sorted by
           </h4>
           <Dd>
-            <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
+            <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }}>
               {sort}
               {'  '}
-              <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
+              <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
             </DdBttn>
             {dropdownActive && (
               <DdContent>
@@ -117,7 +116,6 @@ function Ratings({ product, dark }) {
               </DdContent>
             )}
           </Dd>
-
           <ReviewList
             reviews={reviews}
             onSelect={() => onSelect}

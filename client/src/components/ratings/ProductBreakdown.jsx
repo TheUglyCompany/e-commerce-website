@@ -6,9 +6,9 @@ import {
   DataStyle,
   ArrowDown,
   FitChartDescriptions,
-} from './ProductBreakdown.style';
+} from './Styles/ProductBreakdown.style';
 
-function ProductBreakdown({ metaData }) {
+function ProductBreakdown({ metaData, dark}) {
   let attributes = [];
   /*
         1. Size
@@ -48,7 +48,7 @@ function ProductBreakdown({ metaData }) {
                 <DataStyle>
                   {attribute[0]}
                 </DataStyle>
-                <ArrowDown inputWidth={`${percentage + 25}%`} />
+                <ArrowDown dark={dark} inputWidth={`${percentage + 25}%`} />
                 <AttributeStyle />
               </FitChartContent>
               <FitChartDescriptions>
