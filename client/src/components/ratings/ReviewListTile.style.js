@@ -5,19 +5,20 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 align-content: space-between;
-justify-content: space-between;
 flex: 1;
-height: 300px;
+overflow: auto;
+margin: 10px;
 padding: 10px;
-// border-style: solid;
+border: 1px solid;
 `;
 
 const CardSummary = styled.h4`
 display: flex;
 align-items: flex-start;
+height: 40px;
 // border-style: solid;
-font-weight: bold;
 flex-wrap: no-wrap;
+font-weight: 800;
 `;
 
 const HelpfulButton = styled.button`
@@ -25,7 +26,6 @@ const HelpfulButton = styled.button`
   background: none;
   font-size: 16px;
   border: none;
-  padding: 0 10px 0 10px;
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -39,6 +39,7 @@ const CardInfo = styled.div`
 display: flex;
 // border-style: solid;
 width: 100%;
+height: 20px;
 justify-content: space-between;
 `;
 
@@ -46,7 +47,6 @@ const Body = styled.div`
 display: flex;
 // border-style: solid;
 flex-wrap: wrap;
-max-width: 100%;
 `;
 
 const OwnerResponse = styled.div`

@@ -20,13 +20,14 @@ const RatingStyle = styled.div`
 
 const ReviewStyle = styled.div`
   flex: 1;
-  margin-right: 5%
   margin-bottom: 30px;
 `;
 
 const OuterMostLayer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
 `;
 
 const ButtonContainer = styled.span`

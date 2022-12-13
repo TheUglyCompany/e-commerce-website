@@ -130,7 +130,7 @@ function Ratings({ product, dark }) {
       <ButtonContainer>
         {reviewCount <= renderCount ? null
           : <Button dark={dark} type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
-        <Button type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
+        <Button dark={dark} type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
       </ButtonContainer>
       {showModal
         ? (
