@@ -31,6 +31,11 @@ function Overview({
   const [bttnQnty, setBttnQnty] = useState('QUANTITY');
 
   const addToCart = () => {
+    if (bttnSize === 'SELECT SIZE') {
+      setBttnSizeActive(true);
+      return;
+    }
+
     axios.post(
       'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/',
       {
@@ -77,6 +82,7 @@ function Overview({
           styleOpts={styleOpts}
           setSkuOptions={setSkuOptions}
           setStyleSelected={setStyleSelected}
+          dark={dark}
         />
         <OVorderDetails
           skuOptions={skuOptions}
