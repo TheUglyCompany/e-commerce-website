@@ -247,11 +247,12 @@ const QATitle = styled.span`
 `;
 
 const AnswerImageZoom = styled.img`
-  display: absolute;
+  display: flex;
+  position: fixed;
   top: 50px;
-  left: 50px;
+  // left: 50px;
   width: 80%;
-  height: 90%;
+  height: 80%;
   background: black;
   z-index: 3;
   border: 5px solid;
