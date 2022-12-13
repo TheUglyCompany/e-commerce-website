@@ -45,7 +45,7 @@ function App() {
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} />
-      {/* <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} /> */}
+      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} />
       <div id="ratings"> </div>

@@ -93,7 +93,7 @@ const GalleryZoom = styled.div`
   /* align-items: center; */
   z-index: 2;
   border: 5px solid;
-  background-color: ${(props) => (props.dark ? 'grey' : 'white')};
+  background-color: ${(props) => (props.dark ? 'white' : 'grey')};
   /* cursor: pointer; */
 `;
 
@@ -118,7 +118,7 @@ const GalleryArrowR = styled.div`
   /* border: 1px solid; */
   cursor: pointer;
   /* float: right; */
-  flex-shrink: 0;;
+  flex-shrink: 0;
 `;
 
 const ImageZoomSpan = styled.div`
@@ -126,6 +126,7 @@ const ImageZoomSpan = styled.div`
   align-items: flex-start;
   overflow: auto;
   flex-grow: 1;
+  cursor: pointer;
 `;
 
 const ImageZoom = styled.img`
@@ -141,6 +142,7 @@ const ImageBig = styled.img`
   flex-shrink: 0;
   max-width: 500px;
   max-height: 500px;
+  cursor: zoom-in;
 `;
 
 const Details = styled.div`
@@ -333,7 +335,7 @@ const DdContent = styled.div`
   top: 110%;
   left: 0;
   padding: 10px;
-  background: ${(props) => (props.dark ? 'grey' : 'white')};
+  background: ${(props) => (props.dark ? 'grey' : '#f4f3ef')};
   width: 85%;
   z-index: 1;
   max-height: 200px;
