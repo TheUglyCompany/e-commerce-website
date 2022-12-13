@@ -4,14 +4,19 @@ import {
   Gallery,
   GalleryBig,
   GalleryContainer,
+  ImageZoom,
   ImageBig,
+  ImageZoomSpan,
   GalleryZoom,
+  GalleryArrowL,
+  GalleryArrowR,
   OVgalleryArrowRight,
   OVgalleryArrowLeft,
 } from './Overview.style';
 
 function OVgallery({
   styleSelected,
+  dark,
 }) {
   const [mainImg, setMainImg] = useState('');
   const [photoIdx, setPhotoIdx] = useState(0);
@@ -25,7 +30,7 @@ function OVgallery({
   };
 
   const goZoom = () => {
-    setZoom('absolute');
+    setZoom('flex');
   };
 
   const galleryLeft = () => {
@@ -74,11 +79,12 @@ function OVgallery({
         setMainImg={setMainImg}
         setPhotoIdx={setPhotoIdx}
         mainImg={mainImg}
+        dark={dark}
       />
 
       <GalleryContainer>
         <OVgalleryArrowLeft display={galLeftArrow} onClick={galleryLeft}>
-          <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
+          <img src={dark ? 'https://i.imgur.com/EbWJrAK.png' : 'https://i.imgur.com/NuTyVPZ.png'} height="30px" alt="" />
         </OVgalleryArrowLeft>
 
         <GalleryBig onClick={goZoom}>
@@ -87,12 +93,22 @@ function OVgallery({
         </GalleryBig>
 
         <OVgalleryArrowRight display={galRightArrow} onClick={galleryRight}>
-          <img src="https://cdn-icons-png.flaticon.com/512/7185/7185281.png" height="30px" alt="" />
+          <img src={dark ? 'https://i.imgur.com/YAMtrZW.png' : 'https://i.imgur.com/GYCaEcb.png'} height="30px" alt="" />
         </OVgalleryArrowRight>
       </GalleryContainer>
 
-      <GalleryZoom display={zoom} onClick={onZoom}>
-        <img src={mainImg} width="100%" alt="" />
+      <GalleryZoom display={zoom} dark={dark}>
+        <GalleryArrowL display={galLeftArrow} onClick={galleryLeft}>
+          <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
+        </GalleryArrowL>
+
+        <ImageZoomSpan onClick={onZoom}>
+          <ImageZoom src={mainImg} alt="" />
+        </ImageZoomSpan>
+
+        <GalleryArrowR display={galRightArrow} onClick={galleryRight}>
+          <img src="https://cdn-icons-png.flaticon.com/512/7185/7185281.png" height="30px" alt="" />
+        </GalleryArrowR>
       </GalleryZoom>
     </Gallery>
   );

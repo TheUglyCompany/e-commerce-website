@@ -13,6 +13,7 @@ function OVgallerySmall({
   setPhotoIdx,
   setMainImg,
   mainImg,
+  dark,
 }) {
   const [leftArrow, setLeftArrow] = useState('none');
   const [rightArrow, setRightArrow] = useState('none');
@@ -22,10 +23,8 @@ function OVgallerySmall({
   const [arrEnd, setArrEnd] = useState(7);
 
   const changeMain = (photo, index) => {
-    // console.log('photo: ', photo.url);
     setMainImg(photo.url);
     setPhotoIdx(index);
-    // console.log('index: ', photo.url);
   };
 
   const goLeft = () => {
@@ -78,7 +77,7 @@ function OVgallerySmall({
   return (
     <OVgalleryThumbs>
       <OVgalleryArrowLeft display={leftArrow} onClick={() => { goLeft(); }}>
-        <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
+        <img src={dark ? 'https://i.imgur.com/EbWJrAK.png' : 'https://i.imgur.com/NuTyVPZ.png'} height="30px" alt="" />
       </OVgalleryArrowLeft>
       {photoArr.length !== 0
         ? photoArr.map((photo, index) => (
@@ -88,7 +87,7 @@ function OVgallerySmall({
         ))
         : null}
       <OVgalleryArrowRight display={rightArrow} onClick={() => { goRight(); }}>
-        <img src="https://cdn-icons-png.flaticon.com/512/7185/7185281.png" height="30px" alt="" />
+        <img src={dark ? 'https://i.imgur.com/YAMtrZW.png' : 'https://i.imgur.com/GYCaEcb.png'} height="30px" alt="" />
       </OVgalleryArrowRight>
     </OVgalleryThumbs>
   );

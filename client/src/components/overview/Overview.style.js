@@ -4,7 +4,7 @@ const Ov = styled.div`
   overflow: visible;
   display: flex;
   width: 80%;
-  margin: 10px auto;
+  margin: 50px auto;
   font-family: Poppins;
   font-size: 12px;
   font-weight: light;
@@ -13,8 +13,8 @@ const Ov = styled.div`
 const Gallery = styled.div`
   float: left;
   display: block;
-  width: 600px;
-  min-width: 600px;
+  width: 65%;
+  min-width: 500px;
   padding: 0px;
 `;
 
@@ -34,6 +34,7 @@ const OVgalleryArrowLeft = styled.span`
   align-items: center;
   margin: 0;
   width: 25px;
+  height: auto;
   /* border: 1px solid; */
   cursor: pointer;
   /* float: left; */
@@ -44,6 +45,7 @@ const OVgalleryArrowRight = styled.span`
   align-items: center;
   margin: 0;
   width: 25px;
+  height: auto;
   /* border: 1px solid; */
   cursor: pointer;
   /* float: right; */
@@ -60,6 +62,7 @@ const OVgalleryThumbSelect = styled.img`
   height: 48px;
   opacity: 0.5;
   border: 1px solid;
+  z-index: 1;
   /* max-width: 100%; */
 `;
 
@@ -81,16 +84,57 @@ const GalleryBig = styled.span`
 
 const GalleryZoom = styled.div`
   display: ${(props) => `${props.display}`};
-  /* display: absolute; */
   position: absolute;
   overflow: auto;
   top: 50px;
   left: 50px;
   width: 90%;
   height: 90%;
+  /* align-items: center; */
   z-index: 2;
   border: 5px solid;
+  background-color: ${(props) => (props.dark ? 'white' : 'grey')};
   /* cursor: pointer; */
+`;
+
+const GalleryArrowL = styled.div`
+  display: ${(props) => `${props.display}`};
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  width: 25px;
+  height: 100%;
+  cursor: pointer;
+  flex-shrink: 0;
+`;
+
+const GalleryArrowR = styled.div`
+  display: ${(props) => `${props.display}`};
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  width: 25px;
+  height: 100%;
+  /* border: 1px solid; */
+  cursor: pointer;
+  /* float: right; */
+  flex-shrink: 0;
+`;
+
+const ImageZoomSpan = styled.div`
+  width: 600px;
+  align-items: flex-start;
+  overflow: auto;
+  flex-grow: 1;
+  cursor: pointer;
+`;
+
+const ImageZoom = styled.img`
+  src: ${(props) => `url(${props.src})`};
+  /* flex-shrink: 0; */
+  width: 100%;
+  min-width: 100%;
+  /* max-height: 500px; */
 `;
 
 const ImageBig = styled.img`
@@ -98,12 +142,14 @@ const ImageBig = styled.img`
   flex-shrink: 0;
   max-width: 500px;
   max-height: 500px;
+  cursor: zoom-in;
 `;
 
 const Details = styled.div`
   float: right;
   display: block;
-  width: 40%;
+  width: 35%;
+  /* max-width: 300px; */
   background: transparent;
   padding: 10px;
 `;
@@ -119,10 +165,14 @@ const OVstars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
-    background: linear-gradient(90deg, #000000 var(--rating), #D3D3D3 var(--rating));
+    background: linear-gradient(90deg, #14453D var(--rating), #D3D3D3 var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+`;
+
+const RatingsLink = styled.a`
+  color: ${(props) => (props.dark ? 'white' : 'black')};
 `;
 
 const OVstarsReview = styled.span`
@@ -138,7 +188,7 @@ const Category = styled.div`
   font-size: 12px;
   font-weight: light;
   padding: 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const Name = styled.div`
@@ -153,7 +203,7 @@ const Price = styled.div`
   font-size: 15px;
   font-weight: light;
   padding: 5px 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const SalePrice = styled.span`
@@ -165,7 +215,7 @@ const Desc = styled.div`
   font-size: 15px;
   font-weight: 200;
   padding: 5px 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const Styles = styled.div`
@@ -194,7 +244,7 @@ const Check = styled.span`
   top: -50px;
   left: 60px;
   display: flex;
-  background-color: red;
+  background-color: ${(props) => (props.dark ? '#14453D' : '#52489C')};
   border-radius: 50%;
   height: 25px;
   width: 25px;
@@ -231,6 +281,7 @@ const Purchase = styled.div`
 const Button = styled.button`
   background: transparent;
   border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 220px;
@@ -244,8 +295,8 @@ const Button = styled.button`
 
 const FavButton = styled.button`
   background: transparent;
-  /* border-radius: 1px; */
   border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 50px;
@@ -284,12 +335,12 @@ const DdContent = styled.div`
   top: 110%;
   left: 0;
   padding: 10px;
-  background: #ffffff;
+  background: ${(props) => (props.dark ? 'grey' : '#f4f3ef')};
   width: 85%;
   z-index: 1;
   max-height: 200px;
   overflow: auto;
-  color: black;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   /* overflow-clip-margin: 20px; */
 `;
 
@@ -341,10 +392,15 @@ export {
   OVgalleryThumbSelect,
   GalleryBig,
   GalleryContainer,
+  ImageZoomSpan,
   GalleryZoom,
+  GalleryArrowL,
+  GalleryArrowR,
+  ImageZoom,
   ImageBig,
   Details,
   OVstars,
+  RatingsLink,
   OVstarsReview,
   Category,
   Name,

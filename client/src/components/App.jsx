@@ -9,12 +9,14 @@ import API_KEY from '../../config';
 import { QATitle } from './qAndA/QandA.style';
 import {
   AppWrap,
+  GlobalStyle,
 } from './Header.style';
 
 function App() {
   const [product, setProduct] = useState(null);
   const [ready, setReady] = useState(false);
   const [dark, setDark] = useState(false);
+  const [prodAvg, setProdAvg] = useState(0);
 
   const cardClicked = (productId) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
@@ -40,12 +42,14 @@ function App() {
 
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
+      <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
-      <Overview dark={dark} product={product} />
+      <Overview dark={dark} product={product} prodAvg={prodAvg} />
       <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} />
-      <Ratings dark={dark} product={product} />
+      <div id="ratings"> </div>
+      <Ratings dark={dark} product={product} setProdAvg={setProdAvg} />
     </AppWrap>
   );
 }

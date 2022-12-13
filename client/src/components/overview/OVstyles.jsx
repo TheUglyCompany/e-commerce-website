@@ -7,7 +7,7 @@ import {
 } from './Overview.style';
 
 function OVstyles({
-  styleSelected, styleOpts, setSkuOptions, setStyleSelected,
+  styleSelected, styleOpts, setSkuOptions, setStyleSelected, dark,
 }) {
   return (
     <Styles>
@@ -32,6 +32,7 @@ function OVstyles({
             setSkuOptions={setSkuOptions}
             styleSelected={styleSelected}
             setStyleSelected={setStyleSelected}
+            dark={dark}
           />
         ))}
       </div>

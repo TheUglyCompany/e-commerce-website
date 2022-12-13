@@ -1,12 +1,26 @@
 import React from 'react';
-import { OVstars, OVstarsReview } from './Overview.style';
+import {
+  OVstars,
+  OVstarsReview,
+  RatingsLink,
+} from './Overview.style';
 
-function OVratings() {
+function OVratings({
+  dark,
+  revAvg,
+  revCount,
+}) {
   return (
     <div>
       <OVstars style={{ '--rating': '50%' }} />
       <OVstarsReview>
-        <a href="#ratings">Read all reviews.</a>
+        <RatingsLink dark={dark} href="#ratings">
+          Read
+          {' '}
+          {revCount}
+          {' '}
+          reviews.
+        </RatingsLink>
       </OVstarsReview>
     </div>
   );
