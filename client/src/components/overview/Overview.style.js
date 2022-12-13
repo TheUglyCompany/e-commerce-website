@@ -244,7 +244,7 @@ const Check = styled.span`
   top: -50px;
   left: 60px;
   display: flex;
-  background-color: ${(props) => (props.dark ? '#14453D' : '#52489C')};
+  background-color: ${(props) => (props.dark ? '#14453D' : '#6e66ab')};
   border-radius: 50%;
   height: 25px;
   width: 25px;
