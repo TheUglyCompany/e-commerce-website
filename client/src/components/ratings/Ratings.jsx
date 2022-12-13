@@ -127,17 +127,18 @@ function Ratings({ product, dark }) {
       </RatingsAndReviews>
       <ButtonContainer>
         {reviewCount <= renderCount ? null
-          : <Button dark={dark} type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
+          : <Button dark={dark} type="button" onClick={() => { setRenderCount(reviewCount); }}>All Reviews</Button>}
         <Button dark={dark} type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
+        {showModal
+          ? (
+            <Modal
+              setShowModal={setShowModal}
+              product={product}
+              characteristics={metaData.characteristics}
+              dark={dark}
+            />
+          ) : null}
       </ButtonContainer>
-      {showModal
-        ? (
-          <Modal
-            setShowModal={setShowModal}
-            product={product}
-            characteristics={metaData.characteristics}
-          />
-        ) : null}
     </OuterMostLayer>
   );
 }

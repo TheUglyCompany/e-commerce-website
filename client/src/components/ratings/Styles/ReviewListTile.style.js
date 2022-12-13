@@ -5,8 +5,8 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 align-content: space-between;
-flex: 1;
 overflow: auto;
+width: 650px;
 margin: 10px;
 padding: 10px;
 border: 1px solid;
@@ -45,9 +45,9 @@ justify-content: space-between;
 `;
 
 const Body = styled.div`
-display: flex;
 // border-style: solid;
-flex-wrap: wrap;
+word-wrap: break-word;
+width: 100%;
 `;
 
 const OwnerResponse = styled.div`

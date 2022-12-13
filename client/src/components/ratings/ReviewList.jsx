@@ -6,7 +6,9 @@ import {
   Reviews,
 } from './Styles/ReviewList.style';
 
-function ReviewList({ reviews, renderCount, filter, dark }) {
+function ReviewList({
+  reviews, renderCount, filter, dark,
+}) {
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,

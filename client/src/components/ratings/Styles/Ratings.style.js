@@ -32,10 +32,12 @@ const OuterMostLayer = styled.div`
 
 const ButtonContainer = styled.span`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 15%;
+  margin-left: 50%;
 `;
-// Modal Styles
 
+// Modal Styles
 const RRModalContent = styled(ModalContent)`
 display: flex;
 flex-direction: column;

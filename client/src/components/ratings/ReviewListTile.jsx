@@ -16,6 +16,9 @@ import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 function ReviewListTile({ review, postFeedback, dark }) {
   const [isShortened, setIsShortened] = useState(true);
+  const [reported, setReported] = useState(false);
+  const [helpfulled, setHelpfulled] = useState(false);
+
   return (
     <TileStyle>
       {' '}
@@ -81,7 +84,14 @@ function ReviewListTile({ review, postFeedback, dark }) {
         <HelpfulButton
           value="helpful"
           id={review.review_id}
-          onClick={(e) => { postFeedback(e.target.value, e.target.id); }}
+          onClick={(e) => {
+            if (!helpfulled) {
+              postFeedback(e.target.value, e.target.id);
+              setHelpfulled(true);
+            } else {
+              console.log('Already helpfulled!');
+            }
+          }}
           style={{ cursor: 'pointer', textDecoration: 'underline' }}
           dark={dark}
         >
@@ -94,7 +104,14 @@ function ReviewListTile({ review, postFeedback, dark }) {
         <HelpfulButton
           value="report"
           id={review.review_id}
-          onClick={(e) => { postFeedback(e.target.value, e.target.id); }}
+          onClick={(e) => {
+            if (!reported) {
+              postFeedback(e.target.value, e.target.id);
+              setReported(true);
+            } else {
+              console.log('already reported');
+            }
+          }}
           style={{ cursor: 'pointer', textDecoration: 'underline' }}
           dark={dark}
         >
