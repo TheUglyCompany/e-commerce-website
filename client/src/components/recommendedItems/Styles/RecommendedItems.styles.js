@@ -16,7 +16,7 @@ const CarouselContainer = styled.div`
   padding: 1rem 0;
   /* border: green solid 2px; */
 `;
-const CarouselNavigator = styled.div`
+const CarouselNavigator = styled.a`
   position: absolute;
   width: 4rem;
   height: 4rem;

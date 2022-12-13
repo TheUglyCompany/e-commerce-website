@@ -6,7 +6,7 @@ import ComparisonModal from './Modals/ComparisonModal';
 import API_KEY from '../../../config';
 
 function Card({
-  cardItemId, pageItem, type, handleCardClick, handleActionClick, getRatingObject, ratingObj, styles,
+  cardItemId, pageItem, type, handleCardClick, handleActionClick, getRatingObject, ratingObj, styles, id
 }) {
   const [showModal, setShowModal] = useState(false);
   const [cardItemObj, setCardItemObj] = useState(null);
@@ -34,7 +34,7 @@ function Card({
 
   return !ready ? null : (
     <div>
-      <StyledCard onClick={() => handleCardClick(cardItemId)}>
+      <StyledCard id={id} onClick={() => handleCardClick(cardItemId)}>
         <img
           src={cardItemObj.styles[0].photos[0].thumbnail_url || 'https://via.placeholder.com/300?text=No+Product+Image'}
           alt="card thumbnail"
