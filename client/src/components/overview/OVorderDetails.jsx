@@ -38,6 +38,7 @@ function OVorderDetails({
                 setBttnSize(e.target.textContent);
                 setBttnSizeActive(false);
                 setCurrentSku(skuOption);
+                setBttnQnty(1);
               }}
               >
                 {skuOption.size}
