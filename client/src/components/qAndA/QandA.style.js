@@ -4,7 +4,7 @@ const UnderlineTextButton = styled.button`
   background: none;
   border: none;
   padding: 0;
-  color: grey;
+  color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
   cursor: pointer;
   text-decoration: underline;
   font-family: poppins;
@@ -16,11 +16,11 @@ const HelpfulButton = styled.button`
   background: none;
   border: none;
   padding: 0;
-  color: grey;
   cursor: pointer;
   font-family: poppins;
   font-weight: light;
   font-size: 16px;
+  color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 
 const LoadMoreButton = styled.button`
@@ -28,7 +28,7 @@ const LoadMoreButton = styled.button`
   border: none;
   font-weight: bold;
   padding: 0;
-  color: black;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   cursor: pointer;
   font-family: ROBOTO;
   font-size: 16px;
@@ -48,11 +48,12 @@ const ModalContainer = styled.div`
   font-weight: light;
   font-size: 15px;
 `;
+
 const ModalTitle = styled.span`
   display: flex;
   justify-content: center;
   font-family: ROBOTO;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 `;
 
@@ -61,6 +62,7 @@ const ModalDesc = styled.span`
   display: flex;
   justify-content: center;
   font-size: 15px;
+  width: 500px;
 `;
 
 const ModalContent = styled.div`
@@ -68,16 +70,18 @@ const ModalContent = styled.div`
   display: inline-block;
   justify-items: center;
   line-height: 1.4;
-  background: #f1f1f1;
+  background: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
   border-radius: 3px;
-  min-height: 50%;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
+  min-height: 70%;
   max-height: 100%;
   max-width: 100%;
-  min-width: 50%;
+  min-width: 80%;
   font-family: poppins;
   font-weight: light;
   font-size: 15px;
   border: 1px solid black;
+  padding: 60px;
 `;
 
 const ImageInputUpload = styled.input`
@@ -89,14 +93,15 @@ const ImageInputUpload = styled.input`
 const XSpan = styled.span`
   position: absolute;
   display: flex;
-  font-family: poppins;
-  font-size: 10px;
+  font-family: ROBOTO;
+  font-size: 13px;
+  font-weight: bold;
   cursor: pointer;
 `;
 
 const TextFieldinput = styled.textarea`
   height: 90px;
-  width: 90%;
+  width: 100%;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
@@ -157,7 +162,9 @@ const SearchBarInput = styled.input`
   height: 35px;
   font-size: 15px;
   line-height: 3;
-  border: 1px solid black;
+  border: ${(props) => (props.dark ? '1px solid white' : '1px solid black')};
+  background-color: trasnparent;
+  color: black;
 `;
 
 const ButtonSpan = styled.span`
@@ -166,10 +173,10 @@ const ButtonSpan = styled.span`
 `;
 
 const StandardButton = styled.button`
-  background: white;
+  background: transparent;
   border-radius: 1px;
-  border: 1px solid black;
-  color: black;
+  border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 200px;
@@ -194,7 +201,7 @@ const StandardButtonSpan = styled.div`
 const AnswerImageStyle = styled.img`
   height: 100px;
   width: 100px;
-  border: 1px solid black;
+  border: 1px solid;
   margin: 5px;
 `;
 
@@ -208,7 +215,7 @@ const YesStyle = styled.span`
   font-weight: light;
   font-family: poppins;
   font-size: 15px;
-  color: grey;
+  color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 
 const LoadMoreButtonSpan = styled.span`
@@ -247,7 +254,7 @@ const AnswerImageZoom = styled.img`
   height: 90%;
   background: black;
   z-index: 3;
-  border: 5px solid black;
+  border: 5px solid;
   /* cursor: pointer; */
 `;
 
@@ -256,14 +263,14 @@ const ErrorMessage = styled.p`
   font-family: ROBOTO;
   font-size: 15px;
   font-weight: bold;
-  color: red;
+  color: #8b0000;
 `;
 
 const UploadButton = styled.button`
-  background: white;
+  background: transparent;
   border-radius: 1px;
-  border: 1px solid black;
-  color: black;
+  border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 100px;
@@ -271,9 +278,36 @@ const UploadButton = styled.button`
   font-family: Roboto;
   font-weight: bold;
   font-size: 15px;
-  height: 50px;
+  height: 40px;
   text-transform: uppercase;
   align-self: center;
+`;
+
+const ModalWrap = styled.div`
+  margin: auto;
+`;
+
+const SubmitButton = styled.button`
+  background: transparent;
+  border-radius: 1px;
+  border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
+  padding: 5px;
+  margin: 10px;
+  margin-top: 30px;
+  width: 200px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 15px;
+  height: 40px;
+  text-transform: uppercase;
+`;
+
+const ImgUploadSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 // const ModalTitle = styled.h1`
 //   margin: 0;
@@ -321,4 +355,7 @@ export {
   AnswerImageZoom,
   ErrorMessage,
   UploadButton,
+  ModalWrap,
+  SubmitButton,
+  ImgUploadSpan,
 };

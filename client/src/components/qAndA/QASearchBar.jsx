@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SearchBarStyle, SearchBarInput } from './QandA.style';
 
-function QASearchBar({ setCurrQuestionList, questionList }) {
-  const [query, setQuery] = useState('');
-
+function QASearchBar({ setCurrQuestionList, questionList, dark }) {
   function handleSearch(event) {
     event.preventDefault();
-    setQuery(event.target.value.toLowerCase());
-    if (query.length < 3) {
+    const query = event.target.value.toLowerCase().trim();
+    if (query.length < 3 || query === '') {
       setCurrQuestionList(questionList);
     } else {
       setCurrQuestionList(questionList.filter((question) => {
@@ -24,7 +22,8 @@ function QASearchBar({ setCurrQuestionList, questionList }) {
     <SearchBarStyle>
       <SearchBarInput
         placeholder="Have a question? Search for answers..."
-        onChange={handleSearch}
+        onChange={(event) => handleSearch(event)}
+        dark={dark}
       />
     </SearchBarStyle>
   );

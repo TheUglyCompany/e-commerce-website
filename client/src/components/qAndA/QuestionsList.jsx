@@ -8,7 +8,7 @@ import {
   OutermostLayer, StandardButton, StandardButtonSpan, NoQuestionsFoundStyle,
 } from './QandA.style';
 
-function QuestionsList({ productId, productName }) {
+function QuestionsList({ productId, productName, dark }) {
   const [questionList, setQuestionList] = useState([]);
   const [renderCount, setRenderCount] = useState(4);
   const [currQuestionList, setCurrQuestionList] = useState([]);
@@ -37,6 +37,7 @@ function QuestionsList({ productId, productName }) {
       <QASearchBar
         setCurrQuestionList={setCurrQuestionList}
         questionList={questionList}
+        dark={dark}
       />
       <OutermostLayer>
         {currQuestionList?.length !== 0
@@ -50,6 +51,8 @@ function QuestionsList({ productId, productName }) {
                   productName={productName}
                   setShowModal={setShowModal}
                   currQuestionList={currQuestionList}
+                  dark={dark}
+                  productId={productId}
                 />
               );
             }
@@ -62,6 +65,7 @@ function QuestionsList({ productId, productName }) {
             <StandardButton
               type="button"
               onClick={() => { setRenderCount(renderCount + 2); }}
+              dark={dark}
             >
               {' '}
               More Questions
@@ -75,6 +79,7 @@ function QuestionsList({ productId, productName }) {
             setShowModal(true);
             setLocation('question');
           }}
+          dark={dark}
         >
           Add a Question
         </StandardButton>
@@ -85,6 +90,9 @@ function QuestionsList({ productId, productName }) {
               productId={productId}
               productName={productName}
               location={location}
+              dark={dark}
+              setCurrQuestionList={setCurrQuestionList}
+              setQuestionList={setQuestionList}
             />
           ) : null}
       </StandardButtonSpan>
