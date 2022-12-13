@@ -163,7 +163,7 @@ const SearchBarInput = styled.input`
   font-size: 15px;
   line-height: 3;
   border: ${(props) => (props.dark ? '1px solid white' : '1px solid black')};
-  background-color: trasnparent;
+  background-color: #f4f3ef;
   color: black;
 `;
 
