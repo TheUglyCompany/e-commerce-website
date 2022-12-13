@@ -14,7 +14,12 @@ import {
   FavButton,
 } from './Overview.style';
 
-function Overview({ product }) {
+function Overview({
+  product,
+  revAvg,
+  revCount,
+  dark,
+}) {
   const [styleOpts, setStyleOpts] = useState([]);
   const [ready, setReady] = useState(false);
   const [styleSelected, setStyleSelected] = useState('');
@@ -24,6 +29,23 @@ function Overview({ product }) {
   const [bttnSize, setBttnSize] = useState('SELECT SIZE');
   const [bttnQntyActive, setBttnQntyActive] = useState(false);
   const [bttnQnty, setBttnQnty] = useState('QUANTITY');
+
+  const addToCart = () => {
+    axios.post(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/',
+      {
+        sku_id: styleSelected.style_id,
+        // count: bttnQnty,
+      },
+      { headers: { Authorization: API_KEY } },
+    )
+      .then(() => {
+        console.log('Add to cart SUCCESS!');
+      })
+      .catch((error) => {
+        console.log('There is an error adding to cart: ', error);
+      });
+  };
 
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
@@ -45,10 +67,10 @@ function Overview({ product }) {
   return !ready ? <>App is not ready</> : (
 
     <Ov>
-      <OVgallery styleSelected={styleSelected} />
+      <OVgallery styleSelected={styleSelected} dark={dark} />
 
       <Details>
-        <OVratings />
+        <OVratings dark={dark} revAvg={revAvg} revCount={revCount} />
         <OVprodDetails product={product} styleSelected={styleSelected} />
         <OVstyles
           styleSelected={styleSelected}
@@ -68,15 +90,16 @@ function Overview({ product }) {
           setBttnQntyActive={setBttnQntyActive}
           bttnQnty={bttnQnty}
           setBttnQnty={setBttnQnty}
+          dark={dark}
         />
 
-        <Button>
+        <Button dark={dark} onClick={addToCart}>
           ADD TO CART
         </Button>
-        <FavButton>
-          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" width="15px" alt="" />
+        <FavButton dark={dark}>
+          <img src={dark ? 'https://i.imgur.com/c7ntcX2.png' : 'https://i.imgur.com/NVBo2k2.png'} width="15px" alt="" />
         </FavButton>
-        <OVsocial />
+        <OVsocial dark={dark} />
       </Details>
     </Ov>
   );

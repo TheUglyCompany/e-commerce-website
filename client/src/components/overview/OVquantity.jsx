@@ -12,6 +12,7 @@ function OVquantity({
   setBttnQntyActive,
   bttnQnty,
   setBttnQnty,
+  dark,
 }) {
   const changeQntyArr = (num) => {
     const result = [];
@@ -35,17 +36,20 @@ function OVquantity({
 
   const qntyArr = changeQntyArr(currentSku.quantity);
 
+  // https://i.imgur.com/fPN5x5Y.png
+  // dark https://i.imgur.com/qNLEmCH.png
+
   return (
     <Dd>
       <DdBttn onClick={() => { setBttnQntyActive(!bttnQntyActive); }}>
         {bttnQnty}
         &nbsp;&nbsp;
         <span>
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
+          <img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" />
         </span>
       </DdBttn>
       {bttnQntyActive && (
-        <DdContent>
+        <DdContent dark={dark}>
           {qntyArr.map((qntyNum) => (
             <DdItem onClick={(e) => {
               setBttnQnty(e.target.textContent);

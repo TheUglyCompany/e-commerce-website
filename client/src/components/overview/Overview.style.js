@@ -34,6 +34,7 @@ const OVgalleryArrowLeft = styled.span`
   align-items: center;
   margin: 0;
   width: 25px;
+  height: auto;
   /* border: 1px solid; */
   cursor: pointer;
   /* float: left; */
@@ -44,6 +45,7 @@ const OVgalleryArrowRight = styled.span`
   align-items: center;
   margin: 0;
   width: 25px;
+  height: auto;
   /* border: 1px solid; */
   cursor: pointer;
   /* float: right; */
@@ -90,7 +92,20 @@ const GalleryZoom = styled.div`
   height: 90%;
   z-index: 2;
   border: 5px solid;
+  background-color: ${(props) => (props.dark ? 'grey' : 'white')};
   /* cursor: pointer; */
+`;
+
+const ImageZoomSpan = styled.span`
+  min-width: 95%;
+`;
+
+const ImageZoom = styled.img`
+  src: ${(props) => `url(${props.src})`};
+  /* flex-shrink: 0; */
+  width: 100%;
+  min-width: 100%;
+  /* max-height: 500px; */
 `;
 
 const ImageBig = styled.img`
@@ -125,6 +140,10 @@ const OVstars = styled.div`
   }
 `;
 
+const RatingsLink = styled.a`
+  color: ${(props) => (props.dark ? 'white' : 'black')};
+`;
+
 const OVstarsReview = styled.span`
   font-size: 10px;
   font-family: Poppins;
@@ -138,7 +157,7 @@ const Category = styled.div`
   font-size: 12px;
   font-weight: light;
   padding: 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const Name = styled.div`
@@ -153,7 +172,7 @@ const Price = styled.div`
   font-size: 15px;
   font-weight: light;
   padding: 5px 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const SalePrice = styled.span`
@@ -165,7 +184,7 @@ const Desc = styled.div`
   font-size: 15px;
   font-weight: 200;
   padding: 5px 0px;
-  color: #3a3a3a;
+  /* color: #3a3a3a; */
 `;
 
 const Styles = styled.div`
@@ -231,6 +250,7 @@ const Purchase = styled.div`
 const Button = styled.button`
   background: transparent;
   border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 220px;
@@ -244,8 +264,8 @@ const Button = styled.button`
 
 const FavButton = styled.button`
   background: transparent;
-  /* border-radius: 1px; */
   border: 1px solid;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   padding: 5px;
   margin: 10px;
   width: 50px;
@@ -284,12 +304,12 @@ const DdContent = styled.div`
   top: 110%;
   left: 0;
   padding: 10px;
-  background: #ffffff;
+  background: ${(props) => (props.dark ? 'grey' : 'white')};
   width: 85%;
   z-index: 1;
   max-height: 200px;
   overflow: auto;
-  color: black;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   /* overflow-clip-margin: 20px; */
 `;
 
@@ -341,10 +361,13 @@ export {
   OVgalleryThumbSelect,
   GalleryBig,
   GalleryContainer,
+  ImageZoomSpan,
   GalleryZoom,
+  ImageZoom,
   ImageBig,
   Details,
   OVstars,
+  RatingsLink,
   OVstarsReview,
   Category,
   Name,
