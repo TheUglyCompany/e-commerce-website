@@ -38,8 +38,17 @@ function App() {
           headers: { Authorization: API_KEY },
           params: { product_id: response.data[0].id },
         }).then((metaDataResponse) => {
+          const totalReviews = Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']);
           setMetaData(metaDataResponse.data);
-          setReviewCount(Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']));
+          setReviewCount(totalReviews);
+          setProdAvg((
+            (Number(metaDataResponse.data.ratings['1'])
+            + (Number(metaDataResponse.data.ratings['2']) * 2)
+            + (Number(metaDataResponse.data.ratings['3']) * 3)
+            + (Number(metaDataResponse.data.ratings['4']) * 4)
+            + (Number(metaDataResponse.data.ratings['5']) * 5))
+            / totalReviews
+          ).toFixed(1));
         });
       })
       .catch((err) => console.log(err.message));
@@ -50,6 +59,9 @@ function App() {
       setReady(true);
     }
   }, [product]);
+
+  console.log('product avg', prodAvg);
+  console.log('meta data', metaData);
 
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
@@ -63,7 +75,7 @@ function App() {
       <Ratings
         dark={dark}
         product={product}
-        setProdAvg={setProdAvg}
+        prodAvg={prodAvg}
         metaData={metaData}
         reviewCount={reviewCount}
       />

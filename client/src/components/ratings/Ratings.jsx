@@ -20,10 +20,9 @@ import {
   DdItem,
 } from '../overview/Overview.style';
 
-function Ratings({ product, dark, reviewCount, metaData }) {
+function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
-  const [ready, setReady] = useState(false);
   const [sort, setSort] = useState('RELEVANT');
   const [filter, setFilter] = useState({
     1: true,
@@ -51,25 +50,25 @@ function Ratings({ product, dark, reviewCount, metaData }) {
     )
       .then((response) => {
         setReviews(response.data.results);
-        console.log('reviews', reviews);
         // response.data contains count, page, product_id, and results
       })
       .catch((err) => console.log(err.message));
   }, [sort, reviewCount]);// this makes mulitple gets on startup
-  useEffect(() => {
-    if (reviews !== null) {
-      setReady(true);
-    }
-  }, [reviews]);
   // dropdown
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
-  return !ready ? <>Ratings are not ready</> : (
+  return (
     <OuterMostLayer>
       <RatingsAndReviews>
         <RatingStyle>
-          <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} dark={dark} />
+          <RatingBreakdown
+            metaData={metaData}
+            filter={filter}
+            setFilter={setFilter}
+            dark={dark}
+            prodAvg={prodAvg}
+          />
 
           <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
