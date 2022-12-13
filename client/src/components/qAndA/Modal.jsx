@@ -10,16 +10,27 @@ import {
   TextFieldinput,
   NameFieldInput,
   EmailFieldInput,
-  StandardButton,
   StandardButtonSpan,
   ImageInputUpload,
   ErrorMessage,
   UploadButton,
   AnswerImageStyle,
+  ModalWrap,
+  SubmitButton,
+  ImgUploadSpan,
 } from './QandA.style';
 
 function Modal({
-  setShowModal, productId, productName, location, questionId, questionBody,
+  setShowModal,
+  productId,
+  productName,
+  location,
+  questionId,
+  questionBody,
+  dark,
+  setCurrQuestionList,
+  setQuestionList,
+  getAnswers,
 }) {
   const [textFieldError, settextFieldError] = useState(false);
   const [nameError, setNameError] = useState(false);
@@ -53,7 +64,22 @@ function Modal({
         },
         { headers: { Authorization: API_KEY } },
       )
-        .then(() => {})
+        .then(() => {
+          axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions', {
+            headers: { Authorization: API_KEY },
+            params: {
+              product_id: productId,
+              count: 200,
+            },
+          })
+            .then((response) => {
+              setQuestionList(response.data.results);
+              setCurrQuestionList(response.data.results);
+            })
+            .catch((error) => {
+              console.log('There is an error in QuestionsList: ', error);
+            });
+        })
         .catch((error) => {
           console.log('There is an error in Question Modal: ', error);
         });
@@ -82,7 +108,9 @@ function Modal({
         },
         { headers: { Authorization: API_KEY } },
       )
-        .then(() => {})
+        .then(() => {
+          getAnswers();
+        })
         .catch((error) => {
           console.log('There is an error in Answer Modal: ', error);
         });
@@ -110,149 +138,157 @@ function Modal({
 
   return (
     <ModalContainer>
-      <ModalContent>
-        <XSpan
-          onClick={() => {
-            setShowModal(false);
-          }}
-        >
-          X
-        </XSpan>
-        {location === 'question'
-          ? (
-            <div>
-              <ModalTitle>Ask Your Question</ModalTitle>
-              <ModalDesc>
-                About the
-                {' '}
-                {productName}
-              </ModalDesc>
-            </div>
-          )
-          : (
-            <div>
-              <ModalTitle>Submit Your Answer</ModalTitle>
-              <ModalDesc>
-                {productName}
-                {' '}
-                :
-                {' '}
-                {questionBody}
-              </ModalDesc>
-            </div>
-          )}
-        <br />
-        <label>
-          Question:
-          &nbsp;
-          <TextFieldinput
-            value={form.textInput}
-            type="body"
-            maxLength="1000"
-            required="true"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                textInput: event.target.value,
-              });
+      <ModalWrap>
+        <ModalContent dark={dark}>
+          <XSpan
+            onClick={() => {
+              setShowModal(false);
             }}
-          />
-          {textFieldError ? <ErrorMessage>Please input a valid question</ErrorMessage> : null}
-        </label>
-        <label>
-          <br />
-          Name:
-          &nbsp;
-          <NameFieldInput
-            value={form.nameInput}
-            type="text"
-            maxLength="60"
-            required="true"
-            placeholder="Example: jack543!"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                nameInput: event.target.value,
-              });
-            }}
-          />
-          <br />
-          {nameError ? <ErrorMessage>Please input a valid name</ErrorMessage> : null}
-          <ModalDesc>
-            For privacy reasons, don&apos;t use your full name or email
-          </ModalDesc>
-          <br />
-        </label>
-        <label>
-          Email:
-          &nbsp;
-          <EmailFieldInput
-            value={form.emailInput}
-            type="text"
-            maxLength="60"
-            required="true"
-            placeholder="Example: jack@email.com"
-            onChange={(event) => {
-              setForm({
-                ...form,
-                emailInput: event.target.value,
-              });
-            }}
-          />
-          <br />
-          {emailError ? <ErrorMessage>Please input a valid email</ErrorMessage> : null}
-          <ModalDesc>
-            For authentication reasons, you will not be emailed
-          </ModalDesc>
-          <br />
-        </label>
-        {location === 'answer'
-          ? (
-            <label>
-              Image Upload:
-              &nbsp;
-              <ImageInputUpload
-                type="file"
-                required="false"
-                multiple
-                style={{ display: 'none' }}
-                ref={hiddenFileInput}
-                onChange={handleFileEvent}
-              />
-              {form.imageInput?.length < 5
-                ? (
-                  <UploadButton
-                    onClick={() => { handleClick(); }}
-                  >
-                    Upload
-
-                  </UploadButton>
-                ) : null}
-              {form.imageInput?.map((image) => (
-                <AnswerImageStyle src={image} />
-              ))}
-            </label>
-          ) : null}
-        <StandardButtonSpan>
+          >
+            X
+          </XSpan>
           {location === 'question'
             ? (
-              <StandardButton
-                type="submit"
-                onClick={() => handleQuestionSubmit()}
-              >
-                Submit
-              </StandardButton>
+              <div>
+                <ModalTitle>Ask Your Question</ModalTitle>
+                <ModalDesc>
+                  About the
+                  {' '}
+                  {productName}
+                </ModalDesc>
+              </div>
             )
             : (
-              <StandardButton
-                type="submit"
-                onClick={() => handleAnswerSubmit()}
-              >
-                Submit
-              </StandardButton>
+              <div>
+                <ModalTitle>Submit Your Answer</ModalTitle>
+                <ModalDesc>
+                  {productName}
+                  {' '}
+                  :
+                  {' '}
+                  {questionBody}
+                </ModalDesc>
+              </div>
             )}
-        </StandardButtonSpan>
-      </ModalContent>
+          <br />
+          <label>
+            Question:
+            &nbsp;
+            <TextFieldinput
+              value={form.textInput}
+              type="body"
+              maxLength="1000"
+              required="true"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  textInput: event.target.value,
+                });
+              }}
+            />
+            {textFieldError ? <ErrorMessage>Please input a valid question</ErrorMessage> : null}
+          </label>
+          <label>
+            <br />
+            Name:
+            &nbsp;
+            <NameFieldInput
+              value={form.nameInput}
+              type="text"
+              maxLength="60"
+              required="true"
+              placeholder="Example: jack543!"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  nameInput: event.target.value,
+                });
+              }}
+            />
+            <br />
+            {nameError ? <ErrorMessage>Please input a valid name</ErrorMessage> : null}
+            <ModalDesc>
+              For privacy reasons, don&apos;t use your full name or email
+            </ModalDesc>
+            <br />
+          </label>
+          <label>
+            Email:
+            &nbsp;
+            <EmailFieldInput
+              value={form.emailInput}
+              type="text"
+              maxLength="60"
+              required="true"
+              placeholder="Example: jack@email.com"
+              onChange={(event) => {
+                setForm({
+                  ...form,
+                  emailInput: event.target.value,
+                });
+              }}
+            />
+            <br />
+            {emailError ? <ErrorMessage>Please input a valid email</ErrorMessage> : null}
+            <ModalDesc>
+              For authentication reasons, you will not be emailed
+            </ModalDesc>
+            <br />
+          </label>
+          {location === 'answer'
+            ? (
+              <label>
+                <ImgUploadSpan>
+                  Image Upload:
+                  &nbsp;
+                  <ImageInputUpload
+                    type="file"
+                    required="false"
+                    multiple
+                    style={{ display: 'none' }}
+                    ref={hiddenFileInput}
+                    onChange={handleFileEvent}
+                  />
+                  {form.imageInput?.length < 5
+                    ? (
+                      <UploadButton
+                        onClick={() => { handleClick(); }}
+                        dark={dark}
+                      >
+                        Upload
+
+                      </UploadButton>
+                    ) : null}
+                </ImgUploadSpan>
+                {form.imageInput?.map((image) => (
+                  <AnswerImageStyle src={image} dark={dark} />
+                ))}
+              </label>
+            ) : null}
+          <StandardButtonSpan>
+            <br />
+            {location === 'question'
+              ? (
+                <SubmitButton
+                  type="submit"
+                  onClick={() => handleQuestionSubmit()}
+                  dark={dark}
+                >
+                  Submit
+                </SubmitButton>
+              )
+              : (
+                <SubmitButton
+                  type="submit"
+                  onClick={() => handleAnswerSubmit()}
+                  dark={dark}
+                >
+                  Submit
+                </SubmitButton>
+              )}
+          </StandardButtonSpan>
+        </ModalContent>
+      </ModalWrap>
     </ModalContainer>
   );
 }
