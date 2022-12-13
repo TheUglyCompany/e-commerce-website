@@ -15,10 +15,11 @@ border: 1px solid;
 const CardSummary = styled.h4`
 display: flex;
 align-items: flex-start;
+font-family: roboto;
+font-weight: bold;
 height: 40px;
 // border-style: solid;
 flex-wrap: no-wrap;
-font-weight: 800;
 `;
 
 const HelpfulButton = styled.button`

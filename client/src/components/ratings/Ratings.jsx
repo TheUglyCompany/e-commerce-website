@@ -20,12 +20,11 @@ import {
   DdItem,
 } from '../overview/Overview.style';
 
-function Ratings({ product, dark }) {
+function Ratings({ product, dark, reviewCount, metaData }) {
   const [renderCount, setRenderCount] = useState(2);
-  const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
   const [ready, setReady] = useState(false);
-  const [sort, setSort] = useState('relevant');
+  const [sort, setSort] = useState('RELEVANT');
   const [filter, setFilter] = useState({
     1: true,
     2: true,
@@ -37,51 +36,35 @@ function Ratings({ product, dark }) {
   const [dropdownActive, setDropdownActive] = useState(false);
   // initial API call
   useEffect(() => {
-    // get review metadata
-    let totalReviews = 5;
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
-      headers: { Authorization: API_KEY },
-      params: { product_id: product.id },
-    }).then((response) => {
-      // console.log(response);
-      setMetaData(metaData);
-      totalReviews = (Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']));
-      // response.data.ratings is an object with a number in the form of a string
-      setMetaData(response.data);
-      return totalReviews;
-    })
-      .catch((err) => (console.log(err.message)))
-      .then((reviewCount) => {
-        axios.get(
-          'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-          {
-            headers: { Authorization: API_KEY },
-            params: {
-              product_id: product.id,
-              sort, // if count is 5 and page is 1 this only serves the first 5
-              count: reviewCount, // this does not wait for the first get function
-              page: 1,
-            },
-          },
-        )
-          .then((response) => {
-            setReviews(response.data.results);
-            // response.data contains count, page, product_id, and results
-          })
-          .catch((err) => console.log(err.message));
+    // get reviews
+    axios.get(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+      {
+        headers: { Authorization: API_KEY },
+        params: {
+          product_id: product.id,
+          sort: sort.toLowerCase(), // if count is 5 and page is 1 this only serves the first 5
+          count: reviewCount, // this does not wait for the first get function
+          page: 1,
+        },
+      },
+    )
+      .then((response) => {
+        setReviews(response.data.results);
+        console.log('reviews', reviews);
+        // response.data contains count, page, product_id, and results
       })
       .catch((err) => console.log(err.message));
-  }, [sort]);
+  }, [sort, reviewCount]);// this makes mulitple gets on startup
   useEffect(() => {
     if (reviews !== null) {
       setReady(true);
     }
   }, [reviews]);
   // dropdown
-  const options = ['helpful', 'newest', 'relevant'];
+  const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
-  let reviewCount = 0;
-  reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
+  // if (metaData.ratings) {
   return !ready ? <>Ratings are not ready</> : (
     <OuterMostLayer>
       <RatingsAndReviews>
@@ -99,7 +82,7 @@ function Ratings({ product, dark }) {
           <Dd>
             <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }}>
               {sort}
-              {'  '}
+              &nbsp;
               <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
             </DdBttn>
             {dropdownActive && (

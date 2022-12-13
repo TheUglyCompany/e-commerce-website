@@ -68,7 +68,6 @@ function ReviewListTile({ review, postFeedback, dark }) {
                 </HelpfulButton>
               </Body>
             )
-
         )}
       {review.recommend ? (
         <OwnerResponse>
