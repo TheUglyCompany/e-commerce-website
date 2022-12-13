@@ -77,6 +77,7 @@ function Overview({
           styleOpts={styleOpts}
           setSkuOptions={setSkuOptions}
           setStyleSelected={setStyleSelected}
+          dark={dark}
         />
         <OVorderDetails
           skuOptions={skuOptions}
