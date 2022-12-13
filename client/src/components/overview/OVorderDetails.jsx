@@ -19,6 +19,7 @@ function OVorderDetails({
   setBttnQntyActive,
   bttnQnty,
   setBttnQnty,
+  dark,
 }) {
   return (
     <div>
@@ -27,11 +28,11 @@ function OVorderDetails({
           {bttnSize}
           &nbsp;&nbsp;
           <span>
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" />
+            <img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" />
           </span>
         </DdBttn>
         {bttnSizeActive && (
-          <DdContent>
+          <DdContent dark={dark}>
             {skuOptions.map((skuOption) => (
               <DdItem onClick={(e) => {
                 setBttnSize(e.target.textContent);
@@ -53,6 +54,7 @@ function OVorderDetails({
           setBttnQntyActive={setBttnQntyActive}
           bttnQnty={bttnQnty}
           setBttnQnty={setBttnQnty}
+          dark={dark}
         />
       )}
     </div>

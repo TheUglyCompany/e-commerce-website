@@ -16,15 +16,15 @@ function Header({ dark, setDark }) {
       <div>
         <Title>
           <div>
-            shop name here.
+            sillylittlesite.com
           </div>
           <span>
             {dark
-              ? <DarkButton onClick={onDark}>Light Mode</DarkButton>
-              : <DarkButton onClick={onDark}>Dark Mode</DarkButton>}
+              ? <DarkButton dark={dark} onClick={onDark}>Light Mode</DarkButton>
+              : <DarkButton dark={dark} onClick={onDark}>Dark Mode</DarkButton>}
           </span>
           <Cart>
-            <img src="https://i.imgur.com/2ATWGe4.png" width="175px" alt="" />
+            <img src={dark ? 'https://i.imgur.com/36BcuVx.png' : 'https://i.imgur.com/REiDGQT.png'} width="175px" alt="" />
           </Cart>
         </Title>
       </div>
