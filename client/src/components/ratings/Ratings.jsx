@@ -75,8 +75,8 @@ function Ratings({
             setFilter={setFilter}
             dark={dark}
             prodAvg={prodAvg}
+            reviewCount={reviewCount}
           />
-
           <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>

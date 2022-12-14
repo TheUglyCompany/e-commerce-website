@@ -86,7 +86,7 @@ function Modal({
 
   return (
     <ModalContainer>
-      <RRModalContent dark={dark} >
+      <RRModalContent dark={dark}>
         <RRXSpan
           onClick={() => {
             setShowModal(false);

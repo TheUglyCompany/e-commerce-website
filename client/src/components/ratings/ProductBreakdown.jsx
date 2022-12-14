@@ -8,7 +8,7 @@ import {
   FitChartDescriptions,
 } from './Styles/ProductBreakdown.style';
 
-function ProductBreakdown({ metaData, dark}) {
+function ProductBreakdown({ metaData, dark }) {
   let attributes = [];
   /*
         1. Size
