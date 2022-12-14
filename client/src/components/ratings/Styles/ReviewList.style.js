@@ -5,7 +5,6 @@ diplay: inline-flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: flex-start;
-width: 100%;
 max-height: 100vh;
 overflow: auto;
 `;

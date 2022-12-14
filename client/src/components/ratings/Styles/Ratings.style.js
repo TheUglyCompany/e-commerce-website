@@ -3,7 +3,7 @@ import {
   ModalContainer,
   ModalContent,
   XSpan,
-} from '../qAndA/QandA.style';
+} from '../../qAndA/QandA.style';
 
 const RatingsAndReviews = styled.div`
 font-family: poppins;
@@ -20,27 +20,31 @@ const RatingStyle = styled.div`
 
 const ReviewStyle = styled.div`
   flex: 1;
-  margin-right: 5%
   margin-bottom: 30px;
 `;
 
 const OuterMostLayer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
 `;
 
 const ButtonContainer = styled.span`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 15%;
+  margin-left: 50%;
 `;
-// Modal Styles
 
+// Modal Styles
 const RRModalContent = styled(ModalContent)`
 display: flex;
 flex-direction: column;
 align-items: center;
 align-content: space-around;
-width: 1000px;
+width: 800px;
+height: 80vh;
 padding: 10px;
 top: 10%;
 overflow: auto;

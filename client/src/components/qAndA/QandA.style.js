@@ -163,7 +163,7 @@ const SearchBarInput = styled.input`
   font-size: 15px;
   line-height: 3;
   border: ${(props) => (props.dark ? '1px solid white' : '1px solid black')};
-  background-color: trasnparent;
+  background-color: #f4f3ef;
   color: black;
 `;
 
@@ -247,11 +247,12 @@ const QATitle = styled.span`
 `;
 
 const AnswerImageZoom = styled.img`
-  display: absolute;
+  display: flex;
+  position: fixed;
   top: 50px;
-  left: 50px;
+  // left: 50px;
   width: 80%;
-  height: 90%;
+  height: 80%;
   background: black;
   z-index: 3;
   border: 5px solid;

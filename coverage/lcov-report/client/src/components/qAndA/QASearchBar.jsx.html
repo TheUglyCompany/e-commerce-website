@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for client/src/components/overview/OVstyleImg.jsx</title>
+    <title>Code coverage report for client/src/components/qAndA/QASearchBar.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">client/src/components/overview</a> OVstyleImg.jsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">client/src/components/qAndA</a> QASearchBar.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -91,12 +91,29 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,46 +124,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import {
-  StyleImg,
-  StyleImgPad,
-  Check,
-} from './Overview.style';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import { SearchBarStyle, SearchBarInput } from './QandA.style';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >OVstyleImg(</span>{
-  styleOpts, styleOpt, index, setSkuOptions, setStyleSelected, styleSelected,
-}) {
+function <span class="fstat-no" title="function not covered" >QASearchBar(</span>{ setCurrQuestionList, questionList }) {
+  const [query, setQuery] = <span class="cstat-no" title="statement not covered" >useState('');</span>
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >handleSearch(</span>event) {
+<span class="cstat-no" title="statement not covered" >    event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >    setQuery(event.target.value.toLowerCase());</span>
+<span class="cstat-no" title="statement not covered" >    if (query.length &lt; 3) {</span>
+<span class="cstat-no" title="statement not covered" >      setCurrQuestionList(questionList);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      setCurrQuestionList(questionList.filter(<span class="fstat-no" title="function not covered" >(q</span>uestion) =&gt; {</span>
+        const questionBody = <span class="cstat-no" title="statement not covered" >question.question_body.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >        if (questionBody.includes(query)) {</span>
+<span class="cstat-no" title="statement not covered" >          return question;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return null;</span>
+      }));
+    }
+  }
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;StyleImgPad&gt;
-      &lt;StyleImg
-        index={index}
-        src={styleOpt.photos[0].thumbnail_url}
-        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >          setStyleSelected(styleOpt);</span>
-<span class="cstat-no" title="statement not covered" >          setSkuOptions(Object.values(styleOpts[index].skus));</span>
-        }}
+    &lt;SearchBarStyle&gt;
+      &lt;SearchBarInput
+        placeholder="Have a question? Search for answers..."
+        onChange={handleSearch}
       /&gt;
-      {styleSelected.name === styleOpt.name
-        ? &lt;Check&gt;&lt;img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /&gt;&lt;/Check&gt;
-        : null}
-    &lt;/StyleImgPad&gt;
+    &lt;/SearchBarStyle&gt;
   );
 }
 &nbsp;
-export default OVstyleImg;
+export default QASearchBar;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -154,11 +169,7 @@ export default OVstyleImg;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
                 at 2022-12-13T00:37:56.063Z
-=======
-                at 2022-12-13T02:20:37.004Z
->>>>>>> master
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
