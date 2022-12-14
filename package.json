@@ -13,6 +13,9 @@
   "author": "William Park, Jonathan Sindorf, Charlie Um, Matthew Sigler",
   "license": "UNLICENSED",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.2.0",
     "date-fns": "^2.29.3",
     "local-storage": "^2.0.0",
