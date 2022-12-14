@@ -33,6 +33,7 @@ height: 7px;
 const DataStyle = styled.div`
 display: flex;
 align-items: center;
+justify-content: center;
 width: 20%;
 margin-right: 5%;
 height: 40px;
@@ -45,7 +46,8 @@ const ArrowDown = styled.span`
   position: absolute;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-top: 12px solid #52489C;
+  border-top: 12px solid;
+  color: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
 `;
 
 export {

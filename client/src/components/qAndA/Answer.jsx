@@ -10,7 +10,7 @@ import {
   ModalContainer,
 } from './QandA.style';
 
-function Answer({ answer }) {
+function Answer({ answer, dark }) {
   const [zoom, setZoom] = useState(false);
   const [reported, setReported] = useState(false);
   const [helpful, setHelpful] = useState(false);
@@ -76,15 +76,15 @@ function Answer({ answer }) {
         {answer.photos?.length !== 0
           ? answer.photos.map((photo, index) => (
             !zoom
-              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} />
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} dark={dark} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} />
+                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} dark={dark} />
                 </ModalContainer>
               )
           )) : null}
       </div>
-      <YesStyle>
+      <YesStyle dark={dark}>
         by
         {' '}
         {answer.answerer_name}
@@ -99,6 +99,7 @@ function Answer({ answer }) {
         <HelpfulButton
           type="button"
           onClick={() => handleHelpfulAnswer()}
+          dark={dark}
         >
           Helpful?
         </HelpfulButton>
@@ -118,11 +119,12 @@ function Answer({ answer }) {
             <UnderlineTextButton
               type="button"
               onClick={() => handleAnswerReport()}
+              dark={dark}
             >
               Report
             </UnderlineTextButton>
           )
-          : <YesStyle>Reported!</YesStyle>}
+          : <YesStyle dark={dark}>Reported!</YesStyle>}
         <hr />
       </YesStyle>
     </div>

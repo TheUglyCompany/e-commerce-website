@@ -11,7 +11,7 @@ import {
   ReviewStyle,
   OuterMostLayer,
   ButtonContainer,
-} from './Ratings.style';
+} from './Styles/Ratings.style';
 import {
   Button,
   Dd,
@@ -20,12 +20,10 @@ import {
   DdItem,
 } from '../overview/Overview.style';
 
-function Ratings({ product }) {
+function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
   const [renderCount, setRenderCount] = useState(2);
-  const [metaData, setMetaData] = useState({});
   const [reviews, setReviews] = useState([]);
-  const [ready, setReady] = useState(false);
-  const [sort, setSort] = useState('relevant');
+  const [sort, setSort] = useState('RELEVANT');
   const [filter, setFilter] = useState({
     1: true,
     2: true,
@@ -37,59 +35,42 @@ function Ratings({ product }) {
   const [dropdownActive, setDropdownActive] = useState(false);
   // initial API call
   useEffect(() => {
-    // get review metadata
-    let totalReviews = 5;
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
-      headers: { Authorization: API_KEY },
-      params: { product_id: product.id },
-    }).then((response) => {
-      // console.log(response);
-      setMetaData(metaData);
-      totalReviews = (Number(response.data.ratings['1']) + Number(response.data.ratings['2']) + Number(response.data.ratings['3']) + Number(response.data.ratings['4']) + Number(response.data.ratings['5']));
-      // response.data.ratings is an object with a number in the form of a string
-      setMetaData(response.data);
-      return totalReviews;
-    })
-      .catch((err) => (console.log(err.message)))
-      .then((reviewCount) => {
-        axios.get(
-          'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-          {
-            headers: { Authorization: API_KEY },
-            params: {
-              product_id: product.id,
-              sort, // if count is 5 and page is 1 this only serves the first 5
-              count: reviewCount, // this does not wait for the first get function
-              page: 1,
-            },
-          },
-        )
-          .then((response) => {
-            setReviews(response.data.results);
-            // response.data contains count, page, product_id, and results
-          })
-          .catch((err) => console.log(err.message));
+    // get reviews
+    axios.get(
+      'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+      {
+        headers: { Authorization: API_KEY },
+        params: {
+          product_id: product.id,
+          sort: sort.toLowerCase(), // if count is 5 and page is 1 this only serves the first 5
+          count: reviewCount, // this does not wait for the first get function
+          page: 1,
+        },
+      },
+    )
+      .then((response) => {
+        setReviews(response.data.results);
+        // response.data contains count, page, product_id, and results
       })
       .catch((err) => console.log(err.message));
-  }, [sort]);
-  useEffect(() => {
-    if (reviews !== null) {
-      setReady(true);
-    }
-  }, [reviews]);
+  }, [sort, reviewCount]);// this makes mulitple gets on startup
   // dropdown
-  const options = ['helpful', 'newest', 'relevant'];
+  const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
-  let reviewCount = 0;
-  reviewCount = metaData.ratings ? Number(metaData.ratings['1']) + Number(metaData.ratings['2']) + Number(metaData.ratings['3']) + Number(metaData.ratings['4']) + Number(metaData.ratings['5']) : null;
-  return !ready ? <>Ratings are not ready</> : (
+  // if (metaData.ratings) {
+  return (
     <OuterMostLayer>
       <RatingsAndReviews>
         <RatingStyle>
-          <h4> Ratings & Reviews </h4>
-          <RatingBreakdown metaData={metaData} filter={filter} setFilter={setFilter} />
+          <RatingBreakdown
+            metaData={metaData}
+            filter={filter}
+            setFilter={setFilter}
+            dark={dark}
+            prodAvg={prodAvg}
+          />
 
-          <ProductBreakdown metaData={metaData} />
+          <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>
           <h4>
@@ -98,10 +79,10 @@ function Ratings({ product }) {
             total reviews, Sorted by
           </h4>
           <Dd>
-            <DdBttn onClick={() => { setDropdownActive(!dropdownActive); }}>
+            <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }}>
               {sort}
-              {'  '}
-              <span><img src="https://cdn-icons-png.flaticon.com/512/25/25243.png" width="10px" alt="" /></span>
+              &nbsp;
+              <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
             </DdBttn>
             {dropdownActive && (
               <DdContent>
@@ -117,28 +98,29 @@ function Ratings({ product }) {
               </DdContent>
             )}
           </Dd>
-
           <ReviewList
             reviews={reviews}
             onSelect={() => onSelect}
             renderCount={renderCount}
             filter={filter}
+            dark={dark}
           />
         </ReviewStyle>
       </RatingsAndReviews>
       <ButtonContainer>
         {reviewCount <= renderCount ? null
-          : <Button type="button" onClick={() => { setRenderCount(renderCount + 2); }}>More Reviews</Button>}
-        <Button type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
+          : <Button dark={dark} type="button" onClick={() => { setRenderCount(reviewCount); }}>All Reviews</Button>}
+        <Button dark={dark} type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
+        {showModal
+          ? (
+            <Modal
+              setShowModal={setShowModal}
+              product={product}
+              characteristics={metaData.characteristics}
+              dark={dark}
+            />
+          ) : null}
       </ButtonContainer>
-      {showModal
-        ? (
-          <Modal
-            setShowModal={setShowModal}
-            product={product}
-            characteristics={metaData.characteristics}
-          />
-        ) : null}
     </OuterMostLayer>
   );
 }

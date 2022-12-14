@@ -14,8 +14,8 @@ const AppWrap = styled.div`
   height: 100%
   border: 1px solid;
   margin: 0px;
-  background: ${(props) => (props.dark ? 'grey' : 'white')};
-  color: ${(props) => (props.dark ? 'white' : 'black')};
+  background: ${(props) => (props.dark ? 'grey' : '#f4f3ef')};
+  color: ${(props) => (props.dark ? '#f4f3ef' : 'black')};
 `;
 
 const HeaderDiv = styled.div`
@@ -30,7 +30,7 @@ const HeaderDiv = styled.div`
   vertical-align: top;
   position: sticky;
   top: 0px;
-  background: ${(props) => (props.dark ? '#14453D' : '#52489C')};
+  background: ${(props) => (props.dark ? '#14453D' : '#6e66ab')}; // 52489C
   z-index: 2;
   /* border: 1px solid; */
 `;
