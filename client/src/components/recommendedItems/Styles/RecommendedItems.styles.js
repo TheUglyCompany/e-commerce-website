@@ -5,11 +5,13 @@ const Carousel = styled.div`
   /* display: grid;
   grid-auto-flow: column; */
   display: flex;
-  gap: 20px;
+  gap: 5rem;
   /* white-space: nowrap; */
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  /* border: 1px dotted gray; */
+  padding: 2rem;
   /* overscroll-behavior: contain; */
 `;
 const CarouselContainer = styled.div`
@@ -53,6 +55,7 @@ const Card = styled.div`
   /* margin: 0 10px; */
   scroll-snap-align: start;
   font-family: poppins;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 const StyledCard = styled(Card)`
   background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
