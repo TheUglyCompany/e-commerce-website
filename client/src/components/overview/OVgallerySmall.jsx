@@ -21,16 +21,18 @@ function OVgallerySmall({
   const [photoArr, setPhotoArr] = useState([]);
   const [arrStart, setArrStart] = useState(0);
   const [arrEnd, setArrEnd] = useState(7);
+  const [imgIndex, setImgIndex] = useState(0);
 
   const changeMain = (photo, index) => {
     setMainImg(photo.url);
-    setPhotoIdx(index);
+    setPhotoIdx(index + imgIndex);
   };
 
   const goLeft = () => {
     if (arrStart !== 0) {
       setArrStart(arrStart - 1);
       setArrEnd(arrEnd - 1);
+      setImgIndex(imgIndex - 1);
     }
   };
 
@@ -38,6 +40,7 @@ function OVgallerySmall({
     if (arrEnd !== masterPhotoArr.length) {
       setArrStart(arrStart + 1);
       setArrEnd(arrEnd + 1);
+      setImgIndex(imgIndex + 1);
     }
   };
 
