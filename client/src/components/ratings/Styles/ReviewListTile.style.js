@@ -5,10 +5,9 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 align-content: space-between;
-overflow: auto;
-width: 650px;
-margin: 10px;
+justify-content: space-between;
 padding: 10px;
+margin: 10px;
 border: 1px solid;
 `;
 
@@ -17,7 +16,7 @@ display: flex;
 align-items: flex-start;
 font-family: roboto;
 font-weight: bold;
-height: 40px;
+height: 2rem;
 // border-style: solid;
 // flex-wrap: no-wrap;
 `;
@@ -34,6 +33,7 @@ const HelpfulButton = styled.button`
 
 const InteractiveLine = styled.div`
 display: flex;
+height: 1rem;
 // border: solid;
 `;
 
@@ -41,7 +41,7 @@ const CardInfo = styled.div`
 display: flex;
 // border-style: solid;
 width: 100%;
-height: 20px;
+height: 2em;
 justify-content: space-between;
 `;
 

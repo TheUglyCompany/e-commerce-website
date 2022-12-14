@@ -7,7 +7,6 @@ import {
 
 const RatingsAndReviews = styled.div`
 font-family: poppins;
-  flex: 1;
   display: flex;
   width: 100%;
   align-content: space-apart;
@@ -19,6 +18,8 @@ const RatingStyle = styled.div`
 `;
 
 const ReviewStyle = styled.div`
+  display: flex;
+  flex-direction: column;
   flex: 1;
   margin-bottom: 30px;
 `;
