@@ -7,8 +7,9 @@ import { RICenterContainer, RIMasterContainer } from './Styles/RecommendedItems.
 import RelatedProducts from './RelatedProducts';
 import YourOutfit from './YourOutfit';
 import Card from './Card';
+import NavigationButtons from './NavigationButtons';
 
-function RecommendedItems({ product, cardClicked }) {
+function RecommendedItems({ product, cardClicked, dark }) {
   const [relatedProductsIds, setRelatedProductsIds] = useState([]);
   const [ratingObj, setRatingObj] = useState(null);
   const [yourOutfitIds, setYourOutfitIds] = useState([]);
@@ -74,18 +75,36 @@ function RecommendedItems({ product, cardClicked }) {
       ls('outfits', JSON.stringify(currentOutfits));
       setYourOutfitIds(currentOutfits);
     }
-  }
+  };
 
   const renderListFromIds = (type) => {
     const itemList = type === 'related' ? relatedProductsIds : yourOutfitIds;
-    return itemList.map((item) => <Card key={item} cardItemId={item} pageItem={product} type={type} handleCardClick={cardClicked} handleActionClick={handleActionClick} getRatingObject={getRatingObject} ratingObj={ratingObj} styles={styles} />);
+    return itemList.map((item, index) => (
+      <Card
+        key={item}
+        id={`${type}-Card-${type === 'related' ? index : index + 1}`}
+        cardItemId={item}
+        pageItem={product}
+        type={type}
+        handleCardClick={cardClicked}
+        handleActionClick={handleActionClick}
+        getRatingObject={getRatingObject}
+        ratingObj={ratingObj}
+        styles={styles}
+        dark={dark}
+      />
+    ));
   };
+  const renderButtons = (type) => {
+    const lastCardIndex = type === 'related' ? relatedProductsIds.length - 1 : yourOutfitIds.length;
+    return <NavigationButtons type={type} lastCardIndex={lastCardIndex} />;
+  }
 
   return !ready ? null : (
     <RIMasterContainer>
       <RICenterContainer>
-        <RelatedProducts renderListFromIds={renderListFromIds} />
-        <YourOutfit renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} />
+        <RelatedProducts renderButtons={renderButtons} renderListFromIds={renderListFromIds} />
+        <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} dark={dark} />
       </RICenterContainer>
     </RIMasterContainer>
   );

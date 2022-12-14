@@ -2,25 +2,25 @@ import styled from 'styled-components';
 
 // Goes inside Related Product and YourOutfit
 const Carousel = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: min-content;
-  gap: 1rem;
-  /* border: red solid 2px; */
-  overflow-x: auto;
+  /* display: grid;
+  grid-auto-flow: column; */
+  display: flex;
+  gap: 20px;
+  /* white-space: nowrap; */
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  /* overscroll-behavior: contain; */
 `;
 const CarouselContainer = styled.div`
   position: relative;
   padding: 1rem 0;
   /* border: green solid 2px; */
 `;
-const CarouselNavigator = styled.div`
+const CarouselNavigator = styled.img`
   position: absolute;
   width: 4rem;
   height: 4rem;
-  background: maroon;
   top: 45%;
 `;
 const NextCard = styled(CarouselNavigator)`
@@ -40,21 +40,25 @@ const RICenterContainer = styled.div`
   /* border: blue solid 2px; */
 `;
 
-// Goes inside Card
+// Goes inside Card & Modal
 const Card = styled.div`
+  display: inline-block;
   position: relative;
   box-sizing: border-box;
-  height: 27rem;
-  width: 18rem;
-  background: linear-gradient( #d3c9dd8f, #bcb0f19f 80%);
+  height: 450px;
+  width: 300px;
   border-radius: 5px;
+  overflow: hidden;
   padding: 0.5rem;
+  /* margin: 0 10px; */
   scroll-snap-align: start;
+  font-family: poppins;
 `;
 const StyledCard = styled(Card)`
-
-`;
+  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+ `;
 const AddToOutfitCard = styled(Card)`
+  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
 `;
 
 const Stars = styled.div`
@@ -73,24 +77,34 @@ const Stars = styled.div`
 
 const ActionButton = styled.div`
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0;
+  top: 0.8rem;
+  right: 0.8rem;
+  padding: 0.3rem;
   width: 1rem;
   height: 1rem;
-  border-radius: 0.5rem;
-`;
+  border-radius: 0.35rem;
+  opacity: 0.7;
+  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+  `;
 const RelatedAction = styled(ActionButton)`
-  background: yellow;
-`;
+  `;
 const OutfitAction = styled(ActionButton)`
-  background: red;
+`;
+
+const ComparisonContainer = styled.div`
+  position: relative;
+  top: 2rem;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 export {
   AddToOutfitCard,
   Carousel,
   CarouselContainer,
+  ComparisonContainer,
   NextCard,
   OutfitAction,
   PreviousCard,
