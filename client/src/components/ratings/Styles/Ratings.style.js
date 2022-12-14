@@ -135,6 +135,17 @@ const ReqAst = styled.span`
 color: red !important;
 `;
 
+const RadioButtons = styled.input`
+display: none;
+`;
+
+const RadioButtonLabels = styled.label`
+display: inline-block;
+font-size: 20px;
+font-family: Times;
+color: ${(props) => (props.isClicked ? '#c2bf0a' : 'gray')};
+`;
+
 export {
   RatingsAndReviews,
   RatingStyle,
@@ -154,4 +165,6 @@ export {
   CharGroup,
   ModalRating,
   ReqAst,
+  RadioButtons,
+  RadioButtonLabels,
 };

@@ -26,13 +26,15 @@ import {
   CharGroup,
   ModalRating,
   ReqAst,
+  RadioButtons,
+  RadioButtonLabels,
 } from './Styles/Ratings.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 function Modal({
   setShowModal, product, characteristics, dark,
 }) {
-  const [starWidth, setStarWidth] = useState(0);
+  const [starSelection, setStarSelection] = useState(0);
   const [form, setForm] = useState({
     name: '', // name : text
     body: '', // body: text
@@ -102,24 +104,33 @@ function Modal({
           Rate it!
           <ReqAst>*</ReqAst>
           <div onChange={(event) => {
-            setStarWidth(((event.target.id / 5) * 100));
+            setStarSelection(event.target.id);
             setForm({
               ...form,
               rating: Number(event.target.id),
             });
           }}
           >
-            1
-            <input type="radio" id="1" name="rating" />
-            2
-            <input type="radio" id="2" name="rating" />
-            3
-            <input type="radio" id="3" name="rating" />
-            4
-            <input type="radio" id="4" name="rating" />
-            5
-            <input type="radio" id="5" name="rating" />
-            <Stars dark={dark} style={{ '--rating': `${starWidth}%` }} />
+            <RadioButtonLabels isClicked={starSelection >= 1}>
+              ★
+              <RadioButtons type="radio" id="1" name="rating" />
+            </RadioButtonLabels>
+            <RadioButtonLabels isClicked={starSelection >= 2}>
+              ★
+              <RadioButtons type="radio" id="2" name="rating" />
+            </RadioButtonLabels>
+            <RadioButtonLabels isClicked={starSelection >= 3}>
+              ★
+              <RadioButtons type="radio" id="3" name="rating" />
+            </RadioButtonLabels>
+            <RadioButtonLabels isClicked={starSelection >= 4}>
+              ★
+              <RadioButtons type="radio" id="4" name="rating" />
+            </RadioButtonLabels>
+            <RadioButtonLabels isClicked={starSelection >= 5}>
+              ★
+              <RadioButtons type="radio" id="5" name="rating" />
+            </RadioButtonLabels>
           </div>
         </ModalRating>
         <ModalRating>
