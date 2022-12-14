@@ -26,9 +26,13 @@ import {
   CharGroup,
   ModalRating,
   ReqAst,
-} from './Ratings.style';
+} from './Styles/Ratings.style';
+import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
-function Modal({ setShowModal, product, characteristics }) {
+function Modal({
+  setShowModal, product, characteristics, dark,
+}) {
+  const [starWidth, setStarWidth] = useState(0);
   const [form, setForm] = useState({
     name: '', // name : text
     body: '', // body: text
@@ -80,7 +84,7 @@ function Modal({ setShowModal, product, characteristics }) {
 
   return (
     <ModalContainer>
-      <RRModalContent>
+      <RRModalContent dark={dark} >
         <RRXSpan
           onClick={() => {
             setShowModal(false);
@@ -98,6 +102,7 @@ function Modal({ setShowModal, product, characteristics }) {
           Rate it!
           <ReqAst>*</ReqAst>
           <div onChange={(event) => {
+            setStarWidth(((event.target.id / 5) * 100));
             setForm({
               ...form,
               rating: Number(event.target.id),
@@ -114,6 +119,7 @@ function Modal({ setShowModal, product, characteristics }) {
             <input type="radio" id="4" name="rating" />
             5
             <input type="radio" id="5" name="rating" />
+            <Stars dark={dark} style={{ '--rating': `${starWidth}%` }} />
           </div>
         </ModalRating>
         <ModalRating>

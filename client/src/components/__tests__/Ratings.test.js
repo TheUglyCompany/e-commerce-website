@@ -10,31 +10,39 @@ jest.mock('axios');
 
 describe('ReviewListTile', () => {
   const testReview = {
-    review_id: 1275813,
-    rating: 5,
-    summary: 'wow',
+    review_id: 1277644,
+    rating: 4,
+    summary: 'looks great, NOT, go to SUNNY SIDE UP to get some real DRIP',
     recommend: false,
     response: null,
-    body: 'woooooooooooooooooooooooooooooooooooooooooooooooooowww',
-    date: '2022-07-21T00:00:00.000Z',
-    reviewer_name: 'wow',
-    helpfulness: 12,
+    body: 'random text jake is cool fr, but also chefs it up it the kitchen',
+    date: '2022-12-05T00:00:00.000Z',
+    reviewer_name: 'james',
+    helpfulness: 7,
     photos: [],
   };
 
-  beforeAll(async () => {
+  it('should render a review list body', async () => {
+    // arrange
     await act(async () => render(<ReviewListTile
       review={testReview}
       postFeedback={() => { console.log('postFeedbaack'); }}
     />));
+    // act
+    const bodyElement = screen.getByText(/random text jake is cool fr, but also chefs it up it the kitchen/);
+    // assert
+    expect(bodyElement).toBeInTheDocument();
   });
 
-  it('should render a review list tile', async () => {
+  it('should render a review list summary', async () => {
     // arrange
-
+    await act(async () => render(<ReviewListTile
+      review={testReview}
+      postFeedback={() => { console.log('postFeedbaack'); }}
+    />));
     // act
-    const reviewListElement = screen.getByText(/woooooooooooooooooooooooooooooooooooooooooooooooooowww/);
+    const summaryElement = screen.getByText(/looks great, NOT, go to SUNNY SIDE UP to get some real DRIP/);
     // assert
-    expect(reviewListElement).toBeInTheDocument();
+    expect(summaryElement).toBeInTheDocument();
   });
 });

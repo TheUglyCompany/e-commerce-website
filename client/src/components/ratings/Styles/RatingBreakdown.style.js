@@ -10,10 +10,15 @@ const StarChart = styled.div`
   margin-right: 20px;
 `;
 
+const RatingOverall = styled.div`
+margin-top: 30px;
+`;
+
 const RowFormat = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  align-items: center;
 `;
 
 const StarButton = styled.button`
@@ -24,6 +29,7 @@ const StarButton = styled.button`
   font-size: 16px;
   border: none;
   padding: 0;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   text-decoration: underline;
   cursor: pointer;
   width: 22%
@@ -40,8 +46,9 @@ const ResetFilter = styled(StarButton)`
 
 const GreenBar = styled.div`
   box-sizing: border-box;
-  background-color: #14453D;
+  // background-color: #14453D;
   width: ${(p) => (p.inputWidth ? p.inputWidth : '25%')};
+  background-color: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
   margin-left: 5%;
   height: 20px;
 `;
@@ -60,11 +67,14 @@ const GrayBar = styled(GreenBar)`
 
 const Recommended = styled.div`
   font-size: 14px;
+  margin-bottom: 10px;
 `;
 
 const ReviewCount = styled.div`
+  display: flex;
   width: 8%;
   margin-left: 5px;
+  justify-content: center;
 `;
 
 export {
@@ -77,4 +87,5 @@ export {
   AverageTitle,
   Recommended,
   ReviewCount,
+  RatingOverall,
 };
