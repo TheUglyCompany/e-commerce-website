@@ -7,17 +7,17 @@ import {
 
 function OVratings({
   dark,
-  revAvg,
-  revCount,
+  prodAvg,
+  reviewCount,
 }) {
   return (
     <div>
-      <OVstars style={{ '--rating': '50%' }} />
+      <OVstars style={{ '--rating': `${prodAvg * 20}%` }} />
       <OVstarsReview>
         <RatingsLink dark={dark} href="#ratings">
           Read
           {' '}
-          {revCount}
+          {reviewCount}
           {' '}
           reviews.
         </RatingsLink>

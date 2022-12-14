@@ -55,10 +55,10 @@ const Card = styled.div`
   font-family: poppins;
 `;
 const StyledCard = styled(Card)`
-  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')}
  `;
 const AddToOutfitCard = styled(Card)`
-  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')}
 `;
 
 const Stars = styled.div`

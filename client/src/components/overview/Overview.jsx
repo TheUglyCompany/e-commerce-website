@@ -16,9 +16,9 @@ import {
 
 function Overview({
   product,
-  revAvg,
-  revCount,
   dark,
+  prodAvg,
+  reviewCount,
 }) {
   const [styleOpts, setStyleOpts] = useState([]);
   const [ready, setReady] = useState(false);
@@ -75,7 +75,7 @@ function Overview({
       <OVgallery styleSelected={styleSelected} dark={dark} />
 
       <Details>
-        <OVratings dark={dark} revAvg={revAvg} revCount={revCount} />
+        <OVratings dark={dark} prodAvg={prodAvg} reviewCount={reviewCount} />
         <OVprodDetails product={product} styleSelected={styleSelected} />
         <OVstyles
           styleSelected={styleSelected}
