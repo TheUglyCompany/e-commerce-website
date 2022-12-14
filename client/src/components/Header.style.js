@@ -14,7 +14,7 @@ const AppWrap = styled.div`
   height: 100%
   border: 1px solid;
   margin: 0px;
-  background: ${(props) => (props.dark ? 'grey' : '#f4f3ef')};
+  background: ${(props) => (props.dark ? '#555555' : '#f4f3ef')};
   color: ${(props) => (props.dark ? '#f4f3ef' : 'black')};
 `;
 

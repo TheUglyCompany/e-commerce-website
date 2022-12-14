@@ -58,10 +58,10 @@ const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 const StyledCard = styled(Card)`
-  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')}
  `;
 const AddToOutfitCard = styled(Card)`
-  background: ${(props) => (props.dark ? '#84A98C' : '#A594F9')}
+  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')}
 `;
 
 const Stars = styled.div`
@@ -72,7 +72,7 @@ const Stars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
-    background: linear-gradient(90deg, #c2bf0a var(--rating), gray var(--rating));
+    background: linear-gradient(90deg, #c2bf0a var(--rating), #9e9e9e var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

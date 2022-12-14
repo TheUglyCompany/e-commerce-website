@@ -19,8 +19,15 @@ import {
   DdContent,
   DdItem,
 } from '../overview/Overview.style';
+import { SearchBarStyle, SearchBarInput } from '../qAndA/QandA.style';
 
-function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
+function Ratings({
+  product,
+  dark,
+  reviewCount,
+  metaData,
+  prodAvg,
+}) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('RELEVANT');
@@ -33,6 +40,16 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
   });
   const [showModal, setShowModal] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
+  const [curQuery, setCurQuery] = useState('');
+  function handleSearch(event) {
+    event.preventDefault();
+    const query = event.target.value.toLowerCase().trim();
+    if (query.length < 3 || query === '') {
+      setCurQuery('');
+    } else {
+      setCurQuery(query);
+    }
+  }
   // initial API call
   useEffect(() => {
     // get reviews
@@ -55,11 +72,19 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
       .catch((err) => console.log(err.message));
   }, [sort, reviewCount]);// this makes mulitple gets on startup
   // dropdown
+  console.log(reviews);
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
   return (
-    <OuterMostLayer>
+    <OuterMostLayer href="#ratings">
+      <SearchBarStyle>
+        <SearchBarInput
+          placeholder="Search for Reviews!"
+          onChange={(event) => handleSearch(event)}
+          dark={dark}
+        />
+      </SearchBarStyle>
       <RatingsAndReviews>
         <RatingStyle>
           <RatingBreakdown
@@ -68,8 +93,8 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
             setFilter={setFilter}
             dark={dark}
             prodAvg={prodAvg}
+            reviewCount={reviewCount}
           />
-
           <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>
@@ -104,6 +129,7 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
             renderCount={renderCount}
             filter={filter}
             dark={dark}
+            curQuery={curQuery}
           />
         </ReviewStyle>
       </RatingsAndReviews>

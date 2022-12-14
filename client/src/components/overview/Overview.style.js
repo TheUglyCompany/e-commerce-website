@@ -156,7 +156,7 @@ const Details = styled.div`
 
 const OVstars = styled.div`
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-family: Poppins;
   font-weight: 200;
   line-height: 1;
@@ -244,7 +244,7 @@ const Check = styled.span`
   top: -50px;
   left: 60px;
   display: flex;
-  background-color: ${(props) => (props.dark ? '#14453D' : '#52489C')};
+  background-color: ${(props) => (props.dark ? '#14453D' : '#6e66ab')};
   border-radius: 50%;
   height: 25px;
   width: 25px;
