@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-  Carousel, CarouselContainer, NextCard, PreviousCard,
-} from './Styles/RecommendedItems.styles';
+import { Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
 
-function RelatedProducts({ renderListFromIds }) {
+function RelatedProducts({ renderButtons, renderListFromIds }) {
   return (
     <CarouselContainer>
-      <Carousel>
+      <Carousel id="related-carousel">
         {renderListFromIds('related')}
       </Carousel>
-      <PreviousCard />
-      <NextCard />
+      {renderButtons('related')}
     </CarouselContainer>
   );
 }
