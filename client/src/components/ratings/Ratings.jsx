@@ -20,7 +20,13 @@ import {
   DdItem,
 } from '../overview/Overview.style';
 
-function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
+function Ratings({
+  product,
+  dark,
+  reviewCount,
+  metaData,
+  prodAvg,
+}) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('RELEVANT');
@@ -55,11 +61,12 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
       .catch((err) => console.log(err.message));
   }, [sort, reviewCount]);// this makes mulitple gets on startup
   // dropdown
+  console.log(reviews);
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
   return (
-    <OuterMostLayer>
+    <OuterMostLayer href="#ratings">
       <RatingsAndReviews>
         <RatingStyle>
           <RatingBreakdown
@@ -68,8 +75,8 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
             setFilter={setFilter}
             dark={dark}
             prodAvg={prodAvg}
+            reviewCount={reviewCount}
           />
-
           <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>

@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 const Reviews = styled.div`
-diplay: inline-flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items: flex-start;
+height: 100%;
 max-height: 100vh;
+max-width: 100vh;
 overflow: auto;
 `;
 

@@ -7,7 +7,6 @@ import {
 
 const RatingsAndReviews = styled.div`
 font-family: poppins;
-  flex: 1;
   display: flex;
   width: 100%;
   align-content: space-apart;
@@ -19,6 +18,8 @@ const RatingStyle = styled.div`
 `;
 
 const ReviewStyle = styled.div`
+  display: flex;
+  flex-direction: column;
   flex: 1;
   margin-bottom: 30px;
 `;
@@ -36,7 +37,6 @@ const ButtonContainer = styled.span`
   margin-right: 15%;
   margin-left: 50%;
 `;
-
 // Modal Styles
 const RRModalContent = styled(ModalContent)`
 display: flex;
@@ -136,6 +136,17 @@ const ReqAst = styled.span`
 color: red !important;
 `;
 
+const RadioButtons = styled.input`
+display: none;
+`;
+
+const RadioButtonLabels = styled.label`
+display: inline-block;
+font-size: 20px;
+font-family: Times;
+color: ${(props) => (props.isClicked ? '#c2bf0a' : 'gray')};
+`;
+
 export {
   RatingsAndReviews,
   RatingStyle,
@@ -155,4 +166,6 @@ export {
   CharGroup,
   ModalRating,
   ReqAst,
+  RadioButtons,
+  RadioButtonLabels,
 };
