@@ -19,6 +19,7 @@ import {
   DdContent,
   DdItem,
 } from '../overview/Overview.style';
+import { SearchBarStyle, SearchBarInput } from '../qAndA/QandA.style';
 
 function Ratings({
   product,
@@ -39,6 +40,16 @@ function Ratings({
   });
   const [showModal, setShowModal] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
+  const [curQuery, setCurQuery] = useState('');
+  function handleSearch(event) {
+    event.preventDefault();
+    const query = event.target.value.toLowerCase().trim();
+    if (query.length < 3 || query === '') {
+      setCurQuery('');
+    } else {
+      setCurQuery(query);
+    }
+  }
   // initial API call
   useEffect(() => {
     // get reviews
@@ -67,6 +78,13 @@ function Ratings({
   // if (metaData.ratings) {
   return (
     <OuterMostLayer href="#ratings">
+      <SearchBarStyle>
+        <SearchBarInput
+          placeholder="Search for Reviews!"
+          onChange={(event) => handleSearch(event)}
+          dark={dark}
+        />
+      </SearchBarStyle>
       <RatingsAndReviews>
         <RatingStyle>
           <RatingBreakdown
@@ -111,6 +129,7 @@ function Ratings({
             renderCount={renderCount}
             filter={filter}
             dark={dark}
+            curQuery={curQuery}
           />
         </ReviewStyle>
       </RatingsAndReviews>
