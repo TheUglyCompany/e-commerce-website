@@ -36,7 +36,6 @@ const ButtonContainer = styled.span`
   margin-right: 15%;
   margin-left: 50%;
 `;
-
 // Modal Styles
 const RRModalContent = styled(ModalContent)`
 display: flex;

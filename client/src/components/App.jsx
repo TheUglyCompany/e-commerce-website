@@ -64,11 +64,11 @@ function App() {
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
-      <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
+      {/* <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
       <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} />
-      <QATitle id="ratings">Ratings & Reviews </QATitle>
+      <QATitle id="ratings">Ratings & Reviews </QATitle> */}
       <Ratings
         dark={dark}
         product={product}

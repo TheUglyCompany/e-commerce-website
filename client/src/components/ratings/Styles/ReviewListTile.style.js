@@ -6,7 +6,6 @@ flex-direction: column;
 align-items: flex-start;
 align-content: space-between;
 overflow: auto;
-width: 650px;
 margin: 10px;
 padding: 10px;
 border: 1px solid;
@@ -19,7 +18,7 @@ font-family: roboto;
 font-weight: bold;
 height: 40px;
 // border-style: solid;
-flex-wrap: no-wrap;
+// flex-wrap: no-wrap;
 `;
 
 const HelpfulButton = styled.button`
