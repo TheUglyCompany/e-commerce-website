@@ -156,7 +156,7 @@ const Details = styled.div`
 
 const OVstars = styled.div`
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   font-family: Poppins;
   font-weight: 200;
   line-height: 1;
