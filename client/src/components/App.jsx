@@ -26,6 +26,22 @@ function App() {
         // console.log('response is', response);
         setReady(false);
         setProduct(response.data);
+        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
+          headers: { Authorization: API_KEY },
+          params: { product_id: response.data.id },
+        }).then((metaDataResponse) => {
+          const totalReviews = Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']);
+          setMetaData(metaDataResponse.data);
+          setReviewCount(totalReviews);
+          setProdAvg((
+            (Number(metaDataResponse.data.ratings['1'])
+            + (Number(metaDataResponse.data.ratings['2']) * 2)
+            + (Number(metaDataResponse.data.ratings['3']) * 3)
+            + (Number(metaDataResponse.data.ratings['4']) * 4)
+            + (Number(metaDataResponse.data.ratings['5']) * 5))
+            / totalReviews
+          ).toFixed(1));
+        });
       })
       .catch((err) => console.log(err.message));
   };
@@ -64,11 +80,11 @@ function App() {
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
-      {/* <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
+      <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
       <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} />
-      <QATitle id="ratings">Ratings & Reviews </QATitle> */}
+      <QATitle id="ratings">Ratings & Reviews </QATitle>
       <Ratings
         dark={dark}
         product={product}
