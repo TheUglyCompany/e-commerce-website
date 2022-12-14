@@ -8,6 +8,7 @@ function NavigationButtons({ type, lastCardIndex }) {
     <div>
       {focusedCardIndex > 0 ? (
         <PreviousCard
+          src="https://i.imgur.com/NuTyVPZ.png"
           // href={`#${type}-Card-${focusedCardIndex - 1}`}
           onClick={() => {
             document.getElementById(`${type}-Card-${focusedCardIndex - 1}`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
@@ -17,6 +18,7 @@ function NavigationButtons({ type, lastCardIndex }) {
       ) : null}
       {focusedCardIndex < lastCardIndex ? (
         <NextCard
+          src="https://i.imgur.com/GYCaEcb.png"
           // href={`#${type}-Card-${focusedCardIndex + 1}`}
           onClick={() => {
             document.getElementById(`${type}-Card-${focusedCardIndex + 1}`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });

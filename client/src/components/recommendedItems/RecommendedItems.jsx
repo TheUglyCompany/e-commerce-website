@@ -9,7 +9,7 @@ import YourOutfit from './YourOutfit';
 import Card from './Card';
 import NavigationButtons from './NavigationButtons';
 
-function RecommendedItems({ product, cardClicked }) {
+function RecommendedItems({ product, cardClicked, dark }) {
   const [relatedProductsIds, setRelatedProductsIds] = useState([]);
   const [ratingObj, setRatingObj] = useState(null);
   const [yourOutfitIds, setYourOutfitIds] = useState([]);
@@ -91,6 +91,7 @@ function RecommendedItems({ product, cardClicked }) {
         getRatingObject={getRatingObject}
         ratingObj={ratingObj}
         styles={styles}
+        dark={dark}
       />
     ));
   };
@@ -103,7 +104,7 @@ function RecommendedItems({ product, cardClicked }) {
     <RIMasterContainer>
       <RICenterContainer>
         <RelatedProducts renderButtons={renderButtons} renderListFromIds={renderListFromIds} />
-        <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} />
+        <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} dark={dark} />
       </RICenterContainer>
     </RIMasterContainer>
   );
