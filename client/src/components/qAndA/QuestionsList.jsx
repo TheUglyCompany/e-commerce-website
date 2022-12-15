@@ -41,7 +41,7 @@ function QuestionsList({ productId, productName, dark }) {
       />
       <OutermostLayer>
         {currQuestionList?.length !== 0
-          ? currQuestionList?.map((question, key) => {
+          ? currQuestionList.map((question, key) => {
             count += 1;
             if (count <= renderCount) {
               return (

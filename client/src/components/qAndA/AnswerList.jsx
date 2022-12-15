@@ -7,7 +7,7 @@ import {
 } from './QandA.style';
 
 function AnswerList({
-  questionId, productName, currQuestionList, dark, productId,
+  questionId, productName, currQuestionList, dark,
 }) {
   const [answerList, setAnswerList] = useState([]);
   const [showMoreAnswers, setShowMoreAnswers] = useState(false);
@@ -38,6 +38,7 @@ function AnswerList({
                 key={index}
                 productName={productName}
                 dark={dark}
+                answerList={answerList}
               />
             );
           }
