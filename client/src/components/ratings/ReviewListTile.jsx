@@ -11,13 +11,23 @@ import {
 } from './Styles/ReviewListTile.style';
 import { Check } from '../overview/Overview.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
+import { AnswerImageStyle, AnswerImageZoom, ModalContainer } from '../qAndA/QandA.style';
 
 // convert the below to HelpfulButtons
 
 function ReviewListTile({ review, postFeedback, dark }) {
+  const [zoom, setZoom] = useState(false);
   const [isShortened, setIsShortened] = useState(true);
   const [reported, setReported] = useState(false);
   const [helpfulled, setHelpfulled] = useState(false);
+
+  const zoomIn = () => {
+    setZoom(true);
+  };
+
+  const zoomOut = () => {
+    setZoom(false);
+  };
 
   return (
     <TileStyle>
@@ -78,6 +88,18 @@ function ReviewListTile({ review, postFeedback, dark }) {
           I recommend this product
         </OwnerResponse>
       ) : null}
+      <div>
+        {review.photos?.length !== 0
+          ? review.photos.map((photo, index) => (
+            !zoom
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} dark={dark} />
+              : (
+                <ModalContainer>
+                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} dark={dark} />
+                </ModalContainer>
+              )
+          )) : null}
+      </div>
       <InteractiveLine>
         {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
         <HelpfulButton

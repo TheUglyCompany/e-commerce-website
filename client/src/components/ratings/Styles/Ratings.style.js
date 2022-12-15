@@ -22,6 +22,7 @@ const ReviewStyle = styled.div`
   flex-direction: column;
   flex: 1;
   margin-bottom: 30px;
+  // border: solid;
 `;
 
 const ReviewStyleHeader = styled.div`
@@ -30,6 +31,8 @@ const ReviewStyleHeader = styled.div`
   justify-content: space-between;
   font-family: poppins;
   width: 100%;
+  max-width: 100vh;
+  // border: solid;
 `;
 
 const OuterMostLayer = styled.div`
@@ -143,7 +146,6 @@ text-align: center;
 const Dd = styled.div`
   // width: 135px;
   margin-right: 10px;
-  display: inline-block;
   background: transparent;
   /* user-select: none; */
 `;

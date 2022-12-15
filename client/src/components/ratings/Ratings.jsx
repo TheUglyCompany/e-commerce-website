@@ -93,16 +93,14 @@ function Ratings({
         <ReviewStyle>
           <ReviewStyleHeader>
             <SearchBarInput
-              style={{ margin: '10px', width: '25em' }}
+              style={{ margin: '10px', width: '65%' }}
               placeholder="Search for Reviews!"
               onChange={(event) => handleSearch(event)}
               dark={dark}
             />
-            <span>
-              { reviewCount }
-              {' '}
-              total reviews, sorted by
-            </span>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              Sorted by
+              &nbsp;
             <Dd>
               <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
                 {sort}
@@ -123,6 +121,7 @@ function Ratings({
                 </DdContent>
               )}
             </Dd>
+            </span>
           </ReviewStyleHeader>
           <ReviewList
             reviews={reviews}
