@@ -73,7 +73,6 @@ function Ratings({
       .catch((err) => console.log(err.message));
   }, [sort, reviewCount]);// this makes mulitple gets on startup
   // dropdown
-  console.log(reviews);
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {

@@ -143,7 +143,6 @@ text-align: center;
 const Dd = styled.div`
   // width: 135px;
   margin-right: 10px;
-  position: relative;
   display: inline-block;
   background: transparent;
   /* user-select: none; */

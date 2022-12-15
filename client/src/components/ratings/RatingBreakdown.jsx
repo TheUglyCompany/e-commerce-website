@@ -21,7 +21,6 @@ function RatingBreakdown({
   prodAvg,
   reviewCount,
 }) {
-  console.log(metaData);
   const [isFilter, setIsFilter] = useState(false);
   const filterEntries = Object.entries(filter);
   function resetState(bool) { // resets filter
