@@ -36,9 +36,6 @@ function OVquantity({
 
   const qntyArr = changeQntyArr(currentSku.quantity);
 
-  // https://i.imgur.com/fPN5x5Y.png
-  // dark https://i.imgur.com/qNLEmCH.png
-
   return (
     <Dd>
       <DdBttn onClick={() => { setBttnQntyActive(!bttnQntyActive); }}>

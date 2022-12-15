@@ -33,6 +33,7 @@ function OVstyles({
             styleSelected={styleSelected}
             setStyleSelected={setStyleSelected}
             dark={dark}
+            async
           />
         ))}
       </div>
