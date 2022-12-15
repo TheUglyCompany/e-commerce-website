@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ls from 'local-storage';
 import API_KEY from '../../../config';
-import { RICenterContainer, RIMasterContainer } from './Styles/RecommendedItems.styles';
+import { RIContainer } from './Styles/RecommendedItems.styles';
 import RelatedProducts from './RelatedProducts';
 import YourOutfit from './YourOutfit';
 import Card from './Card';
@@ -101,12 +101,10 @@ function RecommendedItems({ product, cardClicked, dark }) {
   };
 
   return !ready ? null : (
-    <RIMasterContainer>
-      <RICenterContainer>
-        <RelatedProducts renderButtons={renderButtons} renderListFromIds={renderListFromIds} />
-        <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} dark={dark} />
-      </RICenterContainer>
-    </RIMasterContainer>
+    <RIContainer>
+      <RelatedProducts renderButtons={renderButtons} renderListFromIds={renderListFromIds} />
+      <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} dark={dark} />
+    </RIContainer>
   );
 }
 

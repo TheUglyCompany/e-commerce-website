@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
+// Goes inside RecommendedItems
+const RIContainer = styled.div`
+  width: 70%;
+  margin: 0 auto;
+`;
+
 // Goes inside Related Product and YourOutfit
+const CarouselContainer = styled.div`
+  position: relative;
+`;
 const Carousel = styled.div`
   display: grid;
   grid-auto-flow: column;
@@ -11,14 +20,11 @@ const Carousel = styled.div`
   scroll-snap-type: x mandatory;
   padding: 2rem;
 `;
-const CarouselContainer = styled.div`
-  position: relative;
-`;
 const CarouselNavigator = styled.img`
   position: absolute;
-  width: 4rem;
-  height: 4rem;
-  top: 45%;
+  width: 2rem;
+  height: 2rem;
+  top: 48%;
   cursor: pointer;
 `;
 const NextCard = styled(CarouselNavigator)`
@@ -26,14 +32,6 @@ const NextCard = styled(CarouselNavigator)`
 `;
 const PreviousCard = styled(CarouselNavigator)`
   left: -5rem;
-`;
-
-// Goes inside RecommendedItems
-const RIMasterContainer = styled.div`
-`;
-const RICenterContainer = styled.div`
-  width: 70%;
-  margin: 0 auto;
 `;
 
 // Goes inside Card & Modal
@@ -47,8 +45,21 @@ const Card = styled.div`
   overflow: hidden;
   scroll-snap-align: start;
   font-family: poppins;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+`;
+const StyledCard = styled(Card)`
+  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')};
+  .card-image {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+  }
+  &:hover .action-button {
+    opacity: 0.7;
+  }
   .action-button {
     position: absolute;
     top: 0.5rem;
@@ -56,13 +67,12 @@ const Card = styled.div`
     width: 2rem;
     height: 2rem;
     border-radius: 0.35rem;
-    opacity: 0;
-    /* cursor: pointer; */
+    opacity: 0.2;
     display: flex;
-  }
-  &:hover .action-button {
-      opacity: 0.9;
+    &:hover {
+      opacity: 1;
     }
+  }
   .icon {
     margin: 0.7rem auto 0;
   }
@@ -74,7 +84,6 @@ const Card = styled.div`
     word-wrap: break-word;
   }
   .category {
-    font-family: 'poppins';
     font-weight: 300;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -87,21 +96,11 @@ const Card = styled.div`
     padding-bottom: 0.4rem;
   }
   .price {
-    font-family: 'poppins';
     padding-bottom: 0.6rem;
   }
   .ratings {
-    font-family: 'poppins';
     font-weight: 500;
     font-size: 0.8rem;
-  }
-`;
-const StyledCard = styled(Card)`
-  background: ${(props) => (props.dark ? '#84A98C' : '#9387c9')};
-  .card-image {
-    width: 100%;
-    height: 60%;
-    object-fit: cover;
   }
  `;
 const AddToOutfitCard = styled(Card)`
@@ -126,13 +125,13 @@ const AddToOutfitCard = styled(Card)`
   }
   p {
     font-family: 'ROBOTO';
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center;
-    padding-top: 1.8rem;
+    padding-top: 1.5rem;
   }
 `;
-
 const Stars = styled.div`
   display: inline-block;
   font-size: 20px;
@@ -146,7 +145,6 @@ const Stars = styled.div`
     -webkit-text-fill-color: transparent;
   }
 `;
-
 const ComparisonContainer = styled.div`
   position: relative;
   top: 2rem;
@@ -163,8 +161,7 @@ export {
   ComparisonContainer,
   NextCard,
   PreviousCard,
-  RICenterContainer,
-  RIMasterContainer,
+  RIContainer,
   Stars,
   StyledCard,
 };
