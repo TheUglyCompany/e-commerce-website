@@ -44,38 +44,39 @@ function AnswerList({
           }
           return null;
         }) : <NoAnswerStyle>No Answers Found</NoAnswerStyle>}
-      <LoadMoreButtonSpan>
-        {answerList.length >= 2 && count > renderCount
-          ? (
+      {answerList.length >= 2 ? (
+        <LoadMoreButtonSpan>
+          {answerList.length >= 2 && count > renderCount
+            ? (
+              <LoadMoreButton
+                type="button"
+                onClick={() => {
+                  setRenderCount(renderCount + 2);
+                  setShowMoreAnswers(true);
+                }}
+                dark={dark}
+              >
+                LOAD MORE ANSWERS
+              </LoadMoreButton>
+            )
+            : null}
+        &nbsp;
+        &nbsp;
+          {showMoreAnswers ? (
             <LoadMoreButton
               type="button"
               onClick={() => {
-                setRenderCount(renderCount + 2);
-                setShowMoreAnswers(true);
+                setRenderCount(2);
+                setShowMoreAnswers(false);
               }}
               dark={dark}
             >
-              LOAD MORE ANSWERS
-            </LoadMoreButton>
-          )
-          : null}
-        &nbsp;
-        &nbsp;
-        {showMoreAnswers ? (
-          <LoadMoreButton
-            type="button"
-            onClick={() => {
-              setRenderCount(2);
-              setShowMoreAnswers(false);
-            }}
-            dark={dark}
-          >
-            HIDE MORE ANSWERS
+              HIDE MORE ANSWERS
 
-          </LoadMoreButton>
-        ) : null}
-      </LoadMoreButtonSpan>
-      &nbsp;
+            </LoadMoreButton>
+          ) : null}
+        </LoadMoreButtonSpan>
+      ) : null}
     </AnswerStyle>
   );
 }

@@ -1,14 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faX } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { OutfitAction, RelatedAction, StyledCard, Stars } from './Styles/RecommendedItems.styles';
+import {
+  // OutfitAction, RelatedAction,
+  StyledCard, Stars,
+} from './Styles/RecommendedItems.styles';
 import ComparisonModal from './Modals/ComparisonModal';
 import API_KEY from '../../../config';
 
 function Card({
-  cardItemId, pageItem, type, handleCardClick, handleActionClick, getRatingObject, ratingObj, styles, id, dark
+  cardItemId, pageItem, type, handleCardClick, handleActionClick, getRatingObject, ratingObj, styles, id, dark,
 }) {
   const [showModal, setShowModal] = useState(false);
   const [cardItemObj, setCardItemObj] = useState(null);
@@ -40,20 +45,28 @@ function Card({
         <img
           src={cardItemObj.styles[0].photos[0].thumbnail_url || 'https://via.placeholder.com/300?text=No+Product+Image'}
           alt="card thumbnail"
-          style={{
-            width: '100%', height: '60%', objectFit: 'cover', borderRadius: '0.4rem',
-          }}
+          className="card-image"
         />
-        <p>{cardItemObj.category}</p>
-        <p style={{ fontFamily: 'ROBOTO', fontWeight: 600 }}>{cardItemObj.name}</p>
-        <p>{cardItemObj.default_price}</p>
-        {cardItemObj.percentage === 'no rating' ? <>no reviews</> : (
-          <>
-            <Stars style={{ '--rating': cardItemObj.percentage }} />
-            {` out of ${cardItemObj.totalReviews} reviews`}
-          </>
-        ) }
-        {type === 'related' ? <RelatedAction dark={dark} onClick={(event) => { handleActionClick(event, type, setShowModal); }}><FontAwesomeIcon icon={faStar} style={{color: 'white', transform: 'translateY(-0.25rem)' }} /></RelatedAction> : <OutfitAction dark={dark} onClick={(event) => { handleActionClick(event, type, () => {}, cardItemId); }}><FontAwesomeIcon icon={faX} style={{color: 'red', transform: 'translateY(-0.25rem)' }} /></OutfitAction>}
+        <div className="card-information-container">
+          <p className="category card-information">{cardItemObj.category}</p>
+          <p className="name card-information">{cardItemObj.name}</p>
+          <p className="price card-information">{`$${cardItemObj.default_price}`}</p>
+          {cardItemObj.percentage === 'no rating' ? <>no reviews</> : (
+            <div className="ratings card-information">
+              <Stars style={{ '--rating': cardItemObj.percentage }} />
+              {` out of ${cardItemObj.totalReviews} reviews`}
+            </div>
+          ) }
+          {type === 'related' ? (
+            <div className="action-button" style={{ background: dark ? '#84A98C' : '#9387c9' }} onClick={(event) => { handleActionClick(event, type, setShowModal); }}>
+              <FontAwesomeIcon className="icon" icon={faStar} style={{ color: 'white', transform: 'translateY(-0.25rem)' }} />
+            </div>
+          ) : (
+            <div className="action-button" style={{ background: dark ? '#84A98C' : '#9387c9' }} onClick={(event) => { handleActionClick(event, type, () => {}, cardItemId); }}>
+              <FontAwesomeIcon className="icon" icon={faX} style={{ color: 'red', transform: 'translateY(-0.25rem)' }} />
+            </div>
+          )}
+        </div>
       </StyledCard>
       {!showModal ? null : <ComparisonModal dark={dark} closeModal={() => { setShowModal(false); }} cardItemObj={cardItemObj} pageItemObj={pageItemObj} />}
     </div>
