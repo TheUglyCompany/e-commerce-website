@@ -70,7 +70,7 @@ const ModalContent = styled.div`
   display: inline-block;
   justify-items: center;
   line-height: 1.4;
-  background: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
+  background: ${(props) => (props.dark ? '#14453D' : '#8B7DD1')};
   border-radius: 3px;
   color: ${(props) => (props.dark ? 'white' : 'black')};
   min-height: 70%;
@@ -123,7 +123,7 @@ const EmailFieldInput = styled.input`
 
 const OutermostLayer = styled.div`
   max-height: 100vh;
-  min-width: 70vw;
+  min-width: 60vw;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
@@ -136,12 +136,12 @@ const OutermostLayer = styled.div`
 const QuestionStyle = styled.div`
   justify-content: space-around;
   padding: 10px;
-  margin: 5px 5px;
+  margin: 10px;
   font-size: 15px;
+  border: 1px solid;
 `;
 
 const AnswerStyle = styled.div`
-  border: 1px solid;
   padding: 10px;
   max-height: 50vh;
   overflow: auto;
@@ -165,6 +165,7 @@ const SearchBarInput = styled.input`
   border: ${(props) => (props.dark ? '1px solid white' : '1px solid black')};
   background-color: #f4f3ef;
   color: black;
+  margin: 10px;
 `;
 
 const ButtonSpan = styled.span`
@@ -196,6 +197,7 @@ const QandAStyle = styled.div`
 const StandardButtonSpan = styled.div`
   display: flex;
   justify-content: center;
+  margin: 5px 5px 15px 5px;
 `;
 
 const AnswerImageStyle = styled.img`
@@ -244,6 +246,7 @@ const QATitle = styled.span`
   font-family: ROBOTO;
   font-size: 23px;
   font-weight: bold;
+  margin: 5px;
 `;
 
 const AnswerImageZoom = styled.img`

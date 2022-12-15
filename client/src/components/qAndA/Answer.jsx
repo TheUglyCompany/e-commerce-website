@@ -14,6 +14,7 @@ function Answer({ answer, dark }) {
   const [zoom, setZoom] = useState(false);
   const [reported, setReported] = useState(false);
   const [helpful, setHelpful] = useState(false);
+  const [imageSource, setImageSource] = useState('');
   const answerId = answer.answer_id;
 
   const { date } = answer;
@@ -60,14 +61,6 @@ function Answer({ answer, dark }) {
     }
   }
 
-  const zoomIn = () => {
-    setZoom(true);
-  };
-
-  const zoomOut = () => {
-    setZoom(false);
-  };
-
   return (
     <div id="answer">
       <strong>A: </strong>
@@ -76,10 +69,10 @@ function Answer({ answer, dark }) {
         {answer.photos?.length !== 0
           ? answer.photos.map((photo, index) => (
             !zoom
-              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} dark={dark} />
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={(event) => { setZoom(!zoom); setImageSource(event.target.src); }} key={index} dark={dark} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} dark={dark} />
+                  <AnswerImageZoom src={imageSource} alt="" onClick={() => setZoom(!zoom)} key={index} dark={dark} />
                 </ModalContainer>
               )
           )) : null}
