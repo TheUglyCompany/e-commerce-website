@@ -20,14 +20,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
   const [isShortened, setIsShortened] = useState(true);
   const [reported, setReported] = useState(false);
   const [helpfulled, setHelpfulled] = useState(false);
-
-  const zoomIn = () => {
-    setZoom(true);
-  };
-
-  const zoomOut = () => {
-    setZoom(false);
-  };
+  const [imageSource, setImageSource] = useState('');
 
   return (
     <TileStyle>
@@ -92,10 +85,10 @@ function ReviewListTile({ review, postFeedback, dark }) {
         {review.photos?.length !== 0
           ? review.photos.map((photo, index) => (
             !zoom
-              ? <AnswerImageStyle src={photo.url} alt="" onClick={zoomIn} key={index} dark={dark} />
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={(e) => { setZoom(!zoom); setImageSource(e.target.src); }} key={index} dark={dark} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={photo.url} alt="" onClick={zoomOut} key={index} dark={dark} />
+                  <AnswerImageZoom src={imageSource} alt="" onClick={() => { setZoom(!zoom); }} key={index} dark={dark} />
                 </ModalContainer>
               )
           )) : null}
