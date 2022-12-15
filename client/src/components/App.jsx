@@ -49,10 +49,10 @@ function App() {
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
       .then((response) => {
-        setProduct(response.data[0]);
+        setProduct(response.data[2]);
         axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
           headers: { Authorization: API_KEY },
-          params: { product_id: response.data[0].id },
+          params: { product_id: response.data[2].id },
         }).then((metaDataResponse) => {
           const totalReviews = Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']);
           setMetaData(metaDataResponse.data);
@@ -83,7 +83,7 @@ function App() {
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
       <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
       <QATitle>Questions & Answers</QATitle>
-      <QandA dark={dark} product={product} />
+      <QandA dark={dark} product={product} defer />
       <QATitle id="ratings">Ratings & Reviews </QATitle>
       <Ratings
         dark={dark}
@@ -91,6 +91,7 @@ function App() {
         prodAvg={prodAvg}
         metaData={metaData}
         reviewCount={reviewCount}
+        defer
       />
     </AppWrap>
   );
