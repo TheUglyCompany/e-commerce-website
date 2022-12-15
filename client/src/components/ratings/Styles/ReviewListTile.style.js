@@ -9,6 +9,7 @@ justify-content: space-between;
 padding: 10px;
 margin: 10px;
 border: 1px solid;
+border-radius: 2px;
 `;
 
 const CardSummary = styled.h4`
@@ -24,9 +25,9 @@ height: 2rem;
 const HelpfulButton = styled.button`
   font-family: poppins;
   background: none;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
-  color: ${(props) => (props.dark ? 'white' : 'black')};
+  color: ${(props) => (props.dark ? 'white' : 'gray')};
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -34,6 +35,8 @@ const HelpfulButton = styled.button`
 const InteractiveLine = styled.div`
 display: flex;
 height: 1rem;
+font-size: 14px;
+color: ${(props) => (props.dark ? 'white' : 'gray')};
 // border: solid;
 `;
 
@@ -53,7 +56,8 @@ width: 100%;
 
 const OwnerResponse = styled.div`
 // border-style: solid;
-background-color: lightgray;
+background-color: ${(props) => (props.dark ? 'gray' : 'lightgray')};
+
 width: calc(100% - 70px);
 margin: 10px;
 padding: 20px;

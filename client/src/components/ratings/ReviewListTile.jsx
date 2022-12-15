@@ -73,7 +73,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
             )
         )}
       {review.recommend ? (
-        <OwnerResponse>
+        <OwnerResponse dark={dark}>
           <span>
             <Check dark={dark}><img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /></Check>
           </span>
@@ -93,7 +93,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
               )
           )) : null}
       </div>
-      <InteractiveLine>
+      <InteractiveLine dark={dark}>
         {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
         <HelpfulButton
           value="helpful"
