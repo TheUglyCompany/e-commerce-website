@@ -75,9 +75,19 @@ function ReviewListTile({ review, postFeedback, dark }) {
         )}
       {review.recommend ? (
         <Recommended dark={dark}>
-          <span>
-            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" />
-          </span>
+          <Check
+            style={{
+              position: 'relative',
+              top: '0',
+              left: '0',
+              marginRight: '6px',
+              height: '20px',
+              width: '20px',
+            }}
+            dark={dark}
+          >
+            <img src="https://i.imgur.com/5bqYJip.png" width="10px" alt="" />
+          </Check>
           {' '}
           I recommend this product
         </Recommended>

@@ -69,6 +69,8 @@ padding: 20px;
 
 const Recommended = styled.div`
 // border: solid;
+display: flex;
+justify-content: space-between;
 margin: 5px;
 font-size: 14px;
 `;

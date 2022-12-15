@@ -141,7 +141,7 @@ function Ratings({
             type="button"
             onClick={() => { setRenderCount(2); }}
           >
-            Collapse Reviews
+            Hide Reviews
           </Button>
         ) : (
           <Button
