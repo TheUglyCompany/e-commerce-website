@@ -11,7 +11,7 @@ const StarChart = styled.div`
 `;
 
 const RatingOverall = styled.div`
-margin-top: 30px;
+margin-top: 0px;
 `;
 
 const RowFormat = styled.div`
