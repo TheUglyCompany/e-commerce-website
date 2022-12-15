@@ -24,6 +24,14 @@ const ReviewStyle = styled.div`
   margin-bottom: 30px;
 `;
 
+const ReviewStyleHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: poppins;
+  width: 100%;
+`;
+
 const OuterMostLayer = styled.div`
   display: flex;
   flex-direction: column;
@@ -132,6 +140,15 @@ width: 20%;
 text-align: center;
 `;
 
+const Dd = styled.div`
+  // width: 135px;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  /* user-select: none; */
+`;
+
 const ReqAst = styled.span`
 color: red !important;
 `;
@@ -168,4 +185,6 @@ export {
   ReqAst,
   RadioButtons,
   RadioButtonLabels,
+  ReviewStyleHeader,
+  Dd,
 };

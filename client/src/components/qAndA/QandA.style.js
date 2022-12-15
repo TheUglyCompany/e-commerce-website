@@ -241,6 +241,7 @@ const NoQuestionsFoundStyle = styled.div`
 const QATitle = styled.span`
   display: flex;
   justify-content: center;
+  margin: 10px;
   font-family: ROBOTO;
   font-size: 23px;
   font-weight: bold;
