@@ -9,7 +9,7 @@ const UnderlineTextButton = styled.button`
   text-decoration: underline;
   font-family: poppins;
   font-weight: light;
-  font-size: 16px;
+  font-size: 12px;
 `;
 
 const HelpfulButton = styled.button`
@@ -123,7 +123,8 @@ const EmailFieldInput = styled.input`
 
 const OutermostLayer = styled.div`
   max-height: 100vh;
-  min-width: 80vw;
+  min-width: 60vw;
+  max-width: 60vw;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
@@ -145,6 +146,7 @@ const AnswerStyle = styled.div`
   padding: 10px 10px 0px 10px;
   max-height: 50vh;
   overflow: auto;
+  font-size: 15px;
 `;
 
 const SearchBarStyle = styled.div`
@@ -170,7 +172,7 @@ const SearchBarInput = styled.input`
 `;
 
 const ButtonSpan = styled.span`
-  display: flex;
+  display: inline-block;
   float: right;
 `;
 
