@@ -72,6 +72,11 @@ function RatingBreakdown({
         <AverageTitle>{prodAvg}</AverageTitle>
         <Stars style={{ '--rating': `${((prodAvg / 5) * 100)}%` }} />
       </RowFormat>
+      <div style={{ display: 'flex', fontFamily: 'roboto', fontWeight: 'bold' }}>
+        { reviewCount }
+        {' '}
+        total reviews
+      </div>
       {isFilter
         ? (
           <ResetFilter

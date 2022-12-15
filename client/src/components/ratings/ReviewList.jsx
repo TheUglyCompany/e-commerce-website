@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import ReviewListTile from './ReviewListTile';
 import API_KEY from '../../../config';
