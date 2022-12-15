@@ -52,13 +52,13 @@ const OVgalleryArrowRight = styled.div`
 `;
 
 const OVgalleryThumb = styled.img`
-  margin: 2px;
+  margin: 5px;
   height: 50px;
   /* max-width: 100%; */
 `;
 
 const OVgalleryThumbSelect = styled.img`
-  margin: 2px;
+  margin: 5px;
   height: 48px;
   opacity: 0.5;
   border: 1px solid;
@@ -167,6 +167,7 @@ const OVstars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
+    /* background: linear-gradient(90deg, #6e66ab var(--rating), #D3D3D3 var(--rating)); */
     background: linear-gradient(90deg, #14453D var(--rating), #D3D3D3 var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
