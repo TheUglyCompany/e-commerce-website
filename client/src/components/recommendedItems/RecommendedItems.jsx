@@ -97,8 +97,8 @@ function RecommendedItems({ product, cardClicked, dark }) {
   };
   const renderButtons = (type) => {
     const lastCardIndex = type === 'related' ? relatedProductsIds.length - 1 : yourOutfitIds.length;
-    return <NavigationButtons type={type} lastCardIndex={lastCardIndex} />;
-  }
+    return <NavigationButtons dark={dark} type={type} lastCardIndex={lastCardIndex} />;
+  };
 
   return !ready ? null : (
     <RIMasterContainer>
