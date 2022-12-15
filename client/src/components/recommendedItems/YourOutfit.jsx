@@ -1,26 +1,19 @@
 import React from 'react';
+import { QATitle } from '../qAndA/QandA.style';
 import { AddToOutfitCard, Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
 
 function YourOutfit({ renderButtons, renderListFromIds, addToOutfits, dark }) {
   return (
     <CarouselContainer>
+      <QATitle>Your Outfit</QATitle>
       <Carousel id="outfit-carousel">
         <AddToOutfitCard id="outfit-Card-0" onClick={addToOutfits} dark={dark}>
-          <h2 style={{
-            textAlign: 'center',
-            verticalAlign: 'bottom',
-            fontSize: '6rem',
-            fontWeight: '300',
-          }}
-          >
-            +
-          </h2>
-          <p
-            style={{
-              fontFamily: 'ROBOTO',
-              fontWeight: 600,
-            }}
-          >Add To Your Outfit</p>
+          <div className="plus-container">
+            <h2 className="plus">
+              +
+            </h2>
+          </div>
+          <p>Add To Your Outfit</p>
         </AddToOutfitCard>
         {renderListFromIds('outfit')}
       </Carousel>

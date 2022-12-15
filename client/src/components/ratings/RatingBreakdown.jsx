@@ -70,7 +70,7 @@ function RatingBreakdown({
     <RatingOverall>
       <RowFormat>
         <AverageTitle>{prodAvg}</AverageTitle>
-        <Stars style={{ '--rating': `${((prodAvg / 5) * 100)}%` }} />
+        <Stars color={dark ? 'green' : 'purple'} style={{ '--rating': `${((prodAvg / 5) * 100)}%` }} />
       </RowFormat>
       <div style={{ display: 'flex', fontFamily: 'roboto', fontWeight: 'bold' }}>
         { reviewCount }

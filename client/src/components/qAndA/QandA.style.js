@@ -27,11 +27,14 @@ const LoadMoreButton = styled.button`
   background: none;
   border: none;
   font-weight: bold;
-  padding: 0;
+  padding: 16px 0;
   color: ${(props) => (props.dark ? 'white' : 'black')};
   cursor: pointer;
   font-family: ROBOTO;
   font-size: 16px;
+  &:hover {
+    color: gray;
+  }
 `;
 
 const ModalContainer = styled.div`
