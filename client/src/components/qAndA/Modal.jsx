@@ -18,6 +18,7 @@ import {
   ModalWrap,
   SubmitButton,
   ImgUploadSpan,
+  WarningMsg,
 } from './QandA.style';
 
 function Modal({
@@ -207,9 +208,9 @@ function Modal({
             />
             <br />
             {nameError ? <ErrorMessage>Please input a valid name</ErrorMessage> : null}
-            <ModalDesc>
+            <WarningMsg>
               For privacy reasons, don&apos;t use your full name or email
-            </ModalDesc>
+            </WarningMsg>
             <br />
           </label>
           <label>
@@ -230,9 +231,9 @@ function Modal({
             />
             <br />
             {emailError ? <ErrorMessage>Please input a valid email</ErrorMessage> : null}
-            <ModalDesc>
+            <WarningMsg>
               For authentication reasons, you will not be emailed
-            </ModalDesc>
+            </WarningMsg>
             <br />
           </label>
           {location === 'answer'
@@ -292,109 +293,5 @@ function Modal({
     </ModalContainer>
   );
 }
-// return (
-//   <ModalContainer>
-//     <ModalContent>
-//       <XSpan
-//         onClick={() => {
-//           setShowModal(false);
-//         }}
-//       >
-//         X
-//       </XSpan>
-//       <br />
-//       <ModalTitle>Submit Your Answer</ModalTitle>
-//       <ModalDesc>
-//         {productName}
-//         {' '}
-//         :
-//         {' '}
-//         {questionBody}
-//       </ModalDesc>
-//       <br />
-//       <label>
-//         Answer:
-//         &nbsp;
-//         <TextFieldinput
-//           value={form.textInput}
-//           type="text"
-//           maxLength="1000"
-//           required="true"
-//           onChange={(event) => {
-//             setForm({
-//               ...form,
-//               textInput: event.target.value,
-//             });
-//           }}
-//         />
-//         {textFieldError ? <ErrorMessage>Please input a valid answer</ErrorMessage> : null}
-//       </label>
-//       <br />
-//       <br />
-//       <label>
-//         Name:
-//         &nbsp;
-//         <NameFieldInput
-//           value={form.nameInput}
-//           type="text"
-//           maxLength="60"
-//           placeholder="Example: jackson11!"
-//           required="true"
-//           onChange={(event) => {
-//             setForm({
-//               ...form,
-//               nameInput: event.target.value,
-//             });
-//           }}
-//         />
-//         {nameError ? <ErrorMessage>Please input a valid name</ErrorMessage> : null}
-//         <ModalDesc>
-//           For privacy reasons, don&apos;t use your full name or email
-//         </ModalDesc>
-//       </label>
-//       <br />
-//       <label>
-//         Email:
-//         &nbsp;
-//         <EmailFieldInput
-//           value={form.emailInput}
-//           type="text"
-//           maxLength="60"
-//           placeholder="Why did you like the product or not?"
-//           required="true"
-//           onChange={(event) => {
-//             setForm({
-//               ...form,
-//               emailInput: event.target.value,
-//             });
-//           }}
-//         />
-//         {emailError ? <ErrorMessage>Please input a valid email</ErrorMessage> : null}
-//         <ModalDesc>
-//           For authentication reasons, you will not be emailed
-//         </ModalDesc>
-//         <br />
-//       </label>
-// <label>
-//   Image Upload:
-//   &nbsp;
-//   <ImageInputUpload
-//     type="file"
-//     required="false"
-//     multiple
-//     onChange={handleFileEvent}
-//   />
-// </label>
-//       <StandardButtonSpan>
-//         <StandardButton
-//           type="submit"
-//           onClick={handleAnswerSubmit}
-//         >
-//           Submit
-//         </StandardButton>
-//       </StandardButtonSpan>
-//     </ModalContent>
-//   </ModalContainer>
-// );
 
 export default Modal;

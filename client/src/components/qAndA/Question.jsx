@@ -8,7 +8,7 @@ import {
 } from './QandA.style';
 
 function Question({
-  question, productName, currQuestionList, setCurrQuestionList, dark, productId
+  question, productName, currQuestionList, setCurrQuestionList, dark, productId,
 }) {
   const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState('');
@@ -27,9 +27,7 @@ function Question({
       Authorization: API_KEY,
     },
       })
-        .then((response) => {
-          console.log('This is the response in handleHelpful: ', response);
-        })
+        .then(() => {})
         .catch((error) => {
           console.log('There is an error in handleHelpful: ', error);
         });
@@ -47,9 +45,7 @@ function Question({
       Authorization: API_KEY,
     },
       })
-        .then((response) => {
-          console.log('This is the response in handleQuestionReport: ', response);
-        })
+        .then(() => {})
         .catch((error) => {
           console.log('There is an error in handleQuestionReport: ', error);
         });
@@ -63,9 +59,7 @@ function Question({
     <QuestionStyle>
       {' '}
       <QuestionBodySpan>
-        Q:
-        &nbsp;
-        {question.question_body}
+        Q: {question.question_body}
       </QuestionBodySpan>
       <ButtonSpan>
         <HelpfulButton

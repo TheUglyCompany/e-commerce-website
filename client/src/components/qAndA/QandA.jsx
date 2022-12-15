@@ -5,12 +5,7 @@ import { QandAStyle } from './QandA.style';
 function QandA({ product, dark }) {
   return (
     <QandAStyle>
-      {/* <div>
-        <h3>Questions & Answers</h3>
-      </div> */}
-      <div>
-        <QuestionsList productId={product.id} productName={product.name} dark={dark} />
-      </div>
+      <QuestionsList productId={product.id} productName={product.name} dark={dark} />
     </QandAStyle>
   );
 }
