@@ -79,8 +79,9 @@ const GalleryBig = styled.div`
   overflow: hidden;
   margin: 0px auto;
   cursor: pointer;
-  width: 550px;
+  width: 100%;
   height: 550px;
+  /* border: 1px solid; */
 `;
 
 const GalleryZoom = styled.div`
@@ -142,7 +143,7 @@ const ImageZoom = styled.img`
 const ImageBig = styled.img`
   src: ${(props) => `url(${props.src})`};
   flex-shrink: 0;
-  max-width: 550px;
+  max-width: 100%;
   max-height: 550px;
   height: auto;
   cursor: zoom-in;
