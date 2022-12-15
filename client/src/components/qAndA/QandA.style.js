@@ -123,7 +123,7 @@ const EmailFieldInput = styled.input`
 
 const OutermostLayer = styled.div`
   max-height: 100vh;
-  min-width: 60vw;
+  min-width: 80vw;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
@@ -142,7 +142,7 @@ const QuestionStyle = styled.div`
 `;
 
 const AnswerStyle = styled.div`
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   max-height: 50vh;
   overflow: auto;
 `;
@@ -223,6 +223,7 @@ const YesStyle = styled.span`
 const LoadMoreButtonSpan = styled.span`
   display: flex;
   justify-content: flex-start;
+  margin: auto;
 `;
 
 const NoAnswerStyle = styled.span`
@@ -314,19 +315,10 @@ const ImgUploadSpan = styled.span`
   flex-direction: column;
   align-items: center;
 `;
-// const ModalTitle = styled.h1`
-//   margin: 0;
-// `;
 
-// const ModalHeaderFooter = styled.div`
-//   padding: 10px;
-// `;
-
-// const ModalBody = styled.div`
-// padding: 10px;
-// border-top: 1px solid #eee;
-// border-bottom: 1px solid #eee;
-// `;
+const WarningMsg = styled(ModalDesc)`
+  font-size: 10px;
+`;
 
 export {
   UnderlineTextButton,
@@ -363,4 +355,5 @@ export {
   ModalWrap,
   SubmitButton,
   ImgUploadSpan,
+  WarningMsg,
 };

@@ -10,27 +10,25 @@ import {
   ModalContainer,
 } from './QandA.style';
 
-function Answer({ answer, dark }) {
+function Answer({ answer, dark, answerList }) {
   const [zoom, setZoom] = useState(false);
   const [reported, setReported] = useState(false);
   const [helpful, setHelpful] = useState(false);
   const [imageSource, setImageSource] = useState('');
+  const [lastElement, setLastElement] = useState(false);
   const answerId = answer.answer_id;
-
   const { date } = answer;
   const formatDate = format(new Date(date), 'MMMM d, yyyy');
   function handleHelpfulAnswer() {
     const helpfulNum = answer.helpfulness + 1;
     if (helpful === false && localStorage[answerId] === undefined) {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answer.answer_id}/helpful`, helpfulNum, {
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answerId}/helpful`, helpfulNum, {
         headers:
     {
       Authorization: API_KEY,
     },
       })
-        .then((response) => {
-          console.log('This is the response in handleHelpful: ', response);
-        })
+        .then(() => {})
         .catch((error) => {
           console.log('There is an error in handleHelpful: ', error);
         });
@@ -60,7 +58,10 @@ function Answer({ answer, dark }) {
       window.alert('You\'ve already reported this answer!');
     }
   }
-
+  if ((answerList.length === 1 && lastElement === false)
+  || (answerList[answerList.length - 1].answer_id === answerId && lastElement === false)) {
+    setLastElement(true);
+  }
   return (
     <div id="answer">
       <strong>A: </strong>
@@ -118,7 +119,7 @@ function Answer({ answer, dark }) {
             </UnderlineTextButton>
           )
           : <YesStyle dark={dark}>Reported!</YesStyle>}
-        <hr />
+        {!lastElement ? <hr /> : null}
       </YesStyle>
     </div>
   );
