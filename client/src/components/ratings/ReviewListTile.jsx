@@ -100,7 +100,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
               ? <AnswerImageStyle src={photo.url} alt="" onClick={(e) => { setZoom(!zoom); setImageSource(e.target.src); }} key={index} dark={dark} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={imageSource} alt="" onClick={() => { setZoom(!zoom); }} key={index} dark={dark} />
+                  <AnswerImageZoom src={imageSource} alt="" onClick={() => { setZoom(!zoom); }} key={index} dark={dark} defer />
                 </ModalContainer>
               )
           )) : null}
