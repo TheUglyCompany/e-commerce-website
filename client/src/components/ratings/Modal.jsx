@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import API_KEY from '../../../config';
 import {
   ModalContainer,
-  ModalContent,
   ModalTitle,
   ModalDesc,
-  ImageInputUpload,
-  TextFieldinput,
-  NameFieldInput,
-  EmailFieldInput,
+  ErrorMessage,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -29,7 +23,6 @@ import {
   RadioButtons,
   RadioButtonLabels,
 } from './Styles/Ratings.style';
-import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 function Modal({
   setShowModal, product, characteristics, dark,
@@ -43,9 +36,19 @@ function Modal({
     summary: '', // summary: text
     product_id: product.id,
     characteristics: {}, // characteristics: object of keys rep char_id and values rep the review value 1-5
-    recommend: false, // recommend: bool
-    rating: 1, // rating: int 1-5
+    recommend: null, // recommend: bool
+    rating: 0, // rating: int 1-5
   });
+  const [errorCheck, setErrorCheck] = useState({
+    checked: false,
+    rating: true,
+    recommend: true,
+    characteristics: {},
+    name: true,
+    email: true,
+    reviewBody: true,
+  });
+  const fitEntries = Object.entries(characteristics);
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
     Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
@@ -69,6 +72,35 @@ function Modal({
     //   .catch((err) => {
     //     console.log('error posting, review ', err.message);
     //   });
+    if (form.rating !== 0) {
+      errorCheck.rating = false;
+    }
+    if (form.recommend !== null) {
+      errorCheck.recommend = false;
+    }
+
+    if (form.name.length !== 0) {
+      errorCheck.name = false;
+    }
+    if (form.emailInput?.includes('@') && form.emailInput?.includes('.com')) {
+      errorCheck.email = false;
+    }
+    if (form.body.length >= 50) {
+      errorCheck.body = false;
+    }
+    fitEntries.map((entry) => {
+      console.log('form charact', form.characteristics[entry[1].id]);
+      console.log('form entries', entry[0]);
+      if (form.characteristics[entry[1].id]) {
+        errorCheck.characteristics[entry[0]] = false;
+        console.log('it was entered', errorCheck.characteristics[entry[0]]);
+      }
+      return null;
+    });
+    setErrorCheck({
+      ...errorCheck,
+      checked: true,
+    });
     console.log(`
     body: ${form.body},
     summary: ${form.summary},
@@ -79,10 +111,11 @@ function Modal({
     recommend: ${form.recommend},
     rating: ${form.rating},
     photos: ${form.photos},
+    errors: ${JSON.stringify(errorCheck)},
     `);
   }
 
-  const fitEntries = Object.entries(characteristics);
+  console.log('This is the whole charateristic', errorCheck.characteristics.Quality);
 
   return (
     <ModalContainer>
@@ -136,82 +169,88 @@ function Modal({
         <ModalRating>
           Do you recommend this product?
           <ReqAst>*</ReqAst>
-        <div>
-          <div onChange={(event) => {
-            if (event.target.id === 'Yes') {
-              setForm({
-                ...form,
-                recommend: true,
-              });
-            } else {
-              setForm({
-                ...form,
-                recommend: false,
-              });
-            }
-          }}
-          >
-            yes
-            <input type="radio" id="Yes" name="recommend" />
-            no
-            <input type="radio" id="No" name="recommend" />
-        </div>
-        </div>
+          <div>
+            <div onChange={(event) => {
+              if (event.target.id === 'Yes') {
+                setForm({
+                  ...form,
+                  recommend: true,
+                });
+              } else {
+                setForm({
+                  ...form,
+                  recommend: false,
+                });
+              }
+            }}
+            >
+              yes
+              <input type="radio" id="Yes" name="recommend" />
+              no
+              <input type="radio" id="No" name="recommend" />
+            </div>
+          </div>
         </ModalRating>
         <ModalLine>
           Characteristics:
           <ReqAst>*</ReqAst>
         </ModalLine>
         {
-          fitEntries.map((attribute, i) => (
-            <ModalGroup>
-              <ModalLine
-                key={i}
-                onChange={(event) => {
-                  const newFit = { ...form };
-                  newFit.characteristics[attribute[1].id] = Number(event.target.id);
-                  setForm(newFit);
-                }}
-              >
-                <ModalLabel>
-                  {attribute[0]}
-                  {': '}
-                </ModalLabel>
-                <ModalData>
-                  <CharGroup>
-                    1
-                    <input type="radio" id="1" name={attribute[0]} />
-                    {charDescriptions[attribute[0]][0]}
-                    {' '}
-                  </CharGroup>
-                  <CharGroup>
-                    2
-                    <input type="radio" id="2" name={attribute[0]} />
-                    {charDescriptions[attribute[0]][1]}
-                    {' '}
-                  </CharGroup>
-                  <CharGroup>
-                    3
-                    <input type="radio" id="3" name={attribute[0]} />
-                    {charDescriptions[attribute[0]][2]}
-                    {' '}
-                  </CharGroup>
-                  <CharGroup>
-                    4
-                    <input type="radio" id="4" name={attribute[0]} />
-                    {charDescriptions[attribute[0]][3]}
-                    {' '}
-                  </CharGroup>
-                  <CharGroup>
-                    5
-                    <input type="radio" id="5" name={attribute[0]} />
-                    {charDescriptions[attribute[0]][4]}
-                    {' '}
-                  </CharGroup>
-                </ModalData>
-              </ModalLine>
-            </ModalGroup>
-          ))
+          fitEntries.map((attribute, i) => {
+            if (errorCheck.characteristics[attribute[0]] === undefined) {
+              errorCheck.characteristics[attribute[0]] = true;
+            }
+
+            return (
+              <ModalGroup>
+                <ModalLine
+                  key={i}
+                  onChange={(event) => {
+                    const newFit = { ...form };
+                    newFit.characteristics[attribute[1].id] = Number(event.target.id);
+                    setForm(newFit);
+                  }}
+                >
+                  <ModalLabel>
+                    {attribute[0]}
+                    {': '}
+                  </ModalLabel>
+                  <ModalData>
+                    <CharGroup>
+                      1
+                      <input type="radio" id="1" name={attribute[0]} />
+                      {charDescriptions[attribute[0]][0]}
+                      {' '}
+                    </CharGroup>
+                    <CharGroup>
+                      2
+                      <input type="radio" id="2" name={attribute[0]} />
+                      {charDescriptions[attribute[0]][1]}
+                      {' '}
+                    </CharGroup>
+                    <CharGroup>
+                      3
+                      <input type="radio" id="3" name={attribute[0]} />
+                      {charDescriptions[attribute[0]][2]}
+                      {' '}
+                    </CharGroup>
+                    <CharGroup>
+                      4
+                      <input type="radio" id="4" name={attribute[0]} />
+                      {charDescriptions[attribute[0]][3]}
+                      {' '}
+                    </CharGroup>
+                    <CharGroup>
+                      5
+                      <input type="radio" id="5" name={attribute[0]} />
+                      {charDescriptions[attribute[0]][4]}
+                      {' '}
+                    </CharGroup>
+                  </ModalData>
+                </ModalLine>
+              </ModalGroup>
+            );
+          })
         }
         <ModalGroup>
           <ModalLine>
@@ -310,17 +349,50 @@ function Modal({
             }
           </ModalDesc>
         </ModalGroup>
+        {errorCheck.checked ? (
+          <ErrorMessage>
+            <hr />
+            {errorCheck.rating ? <p>Please rate the product</p> : null}
+            {errorCheck.recommend ? <p>Please say whether you recommend this product</p> : null}
+            {errorCheck.name ? <p>Please enter a name</p> : null}
+            {fitEntries.map((entry) => {
+              console.log('this is cur char', errorCheck.characteristics[entry[0]]);
+              return (
+                errorCheck.characteristics[entry[0]]
+                  ? (
+                    <p>
+                      Please put a rating for
+                      {' '}
+                      {entry[0]}
+                    </p>
+                  ) : null
+              );
+            })}
 
-
-        <Button
-          type="submit"
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          Submit
-        </Button>
+            {errorCheck.email ? <p> The email you entered is not valid</p> : null}
+            {errorCheck.reviewBody ? <p>The body must be at least 50 characters</p> : null}
+          </ErrorMessage>
+        ) : null}
+        <div>
+          <Button
+            type="button"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Submit
+          </Button>
+        </div>
       </RRModalContent>
+
     </ModalContainer>
   );
 }
