@@ -11,16 +11,24 @@ import {
   ReviewStyle,
   OuterMostLayer,
   ButtonContainer,
+  ReviewStyleHeader,
+  Dd,
 } from './Styles/Ratings.style';
 import {
   Button,
-  Dd,
   DdBttn,
   DdContent,
   DdItem,
 } from '../overview/Overview.style';
+import { SearchBarStyle, SearchBarInput } from '../qAndA/QandA.style';
 
-function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
+function Ratings({
+  product,
+  dark,
+  reviewCount,
+  metaData,
+  prodAvg,
+}) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('RELEVANT');
@@ -33,6 +41,16 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
   });
   const [showModal, setShowModal] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
+  const [curQuery, setCurQuery] = useState('');
+  function handleSearch(event) {
+    event.preventDefault();
+    const query = event.target.value.toLowerCase().trim();
+    if (query.length < 3 || query === '') {
+      setCurQuery('');
+    } else {
+      setCurQuery(query);
+    }
+  }
   // initial API call
   useEffect(() => {
     // get reviews
@@ -59,7 +77,7 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
   return (
-    <OuterMostLayer>
+    <OuterMostLayer href="#ratings">
       <RatingsAndReviews>
         <RatingStyle>
           <RatingBreakdown
@@ -68,42 +86,50 @@ function Ratings({ product, dark, reviewCount, metaData, prodAvg }) {
             setFilter={setFilter}
             dark={dark}
             prodAvg={prodAvg}
+            reviewCount={reviewCount}
           />
-
           <ProductBreakdown metaData={metaData} dark={dark} />
         </RatingStyle>
         <ReviewStyle>
-          <h4>
-            { reviewCount }
-            {' '}
-            total reviews, Sorted by
-          </h4>
-          <Dd>
-            <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }}>
-              {sort}
+          <ReviewStyleHeader>
+            <SearchBarInput
+              style={{ margin: '10px', width: '65%' }}
+              placeholder="Search for Reviews!"
+              onChange={(event) => handleSearch(event)}
+              dark={dark}
+            />
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              Sorted by
               &nbsp;
-              <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
-            </DdBttn>
-            {dropdownActive && (
-              <DdContent>
-                {options.map((option) => (
-                  <DdItem onClick={(e) => {
-                    setSort(e.target.textContent);
-                    setDropdownActive(false);
-                  }}
-                  >
-                    {option}
-                  </DdItem>
-                ))}
-              </DdContent>
-            )}
-          </Dd>
+            <Dd>
+              <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
+                {sort}
+                &nbsp;
+                <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
+              </DdBttn>
+              {dropdownActive && (
+                <DdContent>
+                  {options.map((option) => (
+                    <DdItem onClick={(e) => {
+                      setSort(e.target.textContent);
+                      setDropdownActive(false);
+                    }}
+                    >
+                      {option}
+                    </DdItem>
+                  ))}
+                </DdContent>
+              )}
+            </Dd>
+            </span>
+          </ReviewStyleHeader>
           <ReviewList
             reviews={reviews}
             onSelect={() => onSelect}
             renderCount={renderCount}
             filter={filter}
             dark={dark}
+            curQuery={curQuery}
           />
         </ReviewStyle>
       </RatingsAndReviews>

@@ -47,7 +47,7 @@ const ArrowDown = styled.span`
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-top: 12px solid;
-  color: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
+  color: ${(props) => (props.dark ? '#14453D' : '#6e66ab')};
 `;
 
 export {

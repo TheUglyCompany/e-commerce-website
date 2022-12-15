@@ -11,7 +11,7 @@ const StarChart = styled.div`
 `;
 
 const RatingOverall = styled.div`
-margin-top: 30px;
+margin-top: 0px;
 `;
 
 const RowFormat = styled.div`
@@ -48,7 +48,7 @@ const GreenBar = styled.div`
   box-sizing: border-box;
   // background-color: #14453D;
   width: ${(p) => (p.inputWidth ? p.inputWidth : '25%')};
-  background-color: ${(props) => (props.dark ? '#14453D' : '#A594F9')};
+  background-color: ${(props) => (props.dark ? '#14453D' : '#6e66ab')};
   margin-left: 5%;
   height: 20px;
 `;

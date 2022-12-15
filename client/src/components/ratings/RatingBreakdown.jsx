@@ -13,11 +13,14 @@ import {
 } from './Styles/RatingBreakdown.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
-// TODO: say what percentage of people recommend this product
-// say current filters
-// have a link to reset filters
-
-function RatingBreakdown({ metaData, filter, setFilter, dark, prodAvg }) {
+function RatingBreakdown({
+  metaData,
+  filter,
+  setFilter,
+  dark,
+  prodAvg,
+  reviewCount,
+}) {
   const [isFilter, setIsFilter] = useState(false);
   const filterEntries = Object.entries(filter);
   function resetState(bool) { // resets filter
@@ -57,23 +60,23 @@ function RatingBreakdown({ metaData, filter, setFilter, dark, prodAvg }) {
   }
 
   const percentages = [];
-  // object with 1-5 as keys and a string of number of ratings
-  const ratingsObj = metaData.ratings;
-  if (metaData.ratings) { // calculating total amount of ratings
-    const allRatings = (Number(ratingsObj['1']) + Number(ratingsObj['2']) + Number(ratingsObj['3']) + Number(ratingsObj['4']) + Number(ratingsObj['5']));
-    // calulating average
+  if (metaData.ratings) {
     // adding percentages to array
-    for (let i = 1; i <= 5; i += 1) { // 75% is 100% so I only multiply by 75
-      percentages.push(((58 * Number(ratingsObj[i.toString()])) / allRatings));
+    for (let i = 1; i <= 5; i += 1) { // 58% is the total width of the bar
+      percentages.push(((58 * Number(metaData.ratings[i.toString()])) / reviewCount));
     }
   }
   return !metaData.ratings ? null : (
     <RatingOverall>
       <RowFormat>
         <AverageTitle>{prodAvg}</AverageTitle>
-        {/* <FiveStarRating /> */}
         <Stars style={{ '--rating': `${((prodAvg / 5) * 100)}%` }} />
       </RowFormat>
+      <div style={{ display: 'flex', fontFamily: 'roboto', fontWeight: 'bold' }}>
+        { reviewCount }
+        {' '}
+        total reviews
+      </div>
       {isFilter
         ? (
           <ResetFilter
@@ -95,8 +98,8 @@ function RatingBreakdown({ metaData, filter, setFilter, dark, prodAvg }) {
       })}
       <Recommended>
         { ((Number(metaData.recommended.true)
-        / (Number(metaData.recommended.false)
-        + Number(metaData.recommended.true))) * 100).toFixed(0) }
+        / (Number(metaData.recommended.false) + Number(metaData.recommended.true)))
+        * 100).toFixed(0) }
         % of reviews recommend this product
       </Recommended>
       <StarChart>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import ReviewListTile from './ReviewListTile';
 import API_KEY from '../../../config';
@@ -7,7 +7,7 @@ import {
 } from './Styles/ReviewList.style';
 
 function ReviewList({
-  reviews, renderCount, filter, dark,
+  reviews, renderCount, filter, dark, curQuery,
 }) {
   function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
     axios.put(
@@ -26,8 +26,24 @@ function ReviewList({
   return (
     <Reviews>
       {
-      reviews.map((review) => { // map is probably the wrong tool for this,
-        // because I can't break out of the loop early, any suggestions?
+      reviews.map((review) => {
+        if (curQuery.length > 0) {
+          if ((count < renderCount && filter[review.rating.toString()])
+              && (review.body.includes(curQuery) || review.summary.includes(curQuery))) {
+            count += 1;
+            return (
+              <ReviewListTile
+                dark={dark}
+                key={review.review_id}
+                review={review}
+                postFeedback={(feedbackType, reviewId) => {
+                  postFeedback(feedbackType, reviewId);
+                }}
+              />
+            );
+          }
+          return null;
+        }
         if (count < renderCount && filter[review.rating.toString()]) {
           count += 1;
           return (

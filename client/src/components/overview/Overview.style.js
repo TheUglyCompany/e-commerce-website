@@ -29,7 +29,7 @@ const OVgalleryThumbs = styled.div`
   /* overflow: auto; */
 `;
 
-const OVgalleryArrowLeft = styled.span`
+const OVgalleryArrowLeft = styled.div`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
@@ -40,7 +40,7 @@ const OVgalleryArrowLeft = styled.span`
   /* float: left; */
 `;
 
-const OVgalleryArrowRight = styled.span`
+const OVgalleryArrowRight = styled.div`
   display: ${(props) => `${props.display}`};
   align-items: center;
   margin: 0;
@@ -71,15 +71,15 @@ const GalleryContainer = styled.div`
   /* height: 500px; */
 `;
 
-const GalleryBig = styled.span`
+const GalleryBig = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   margin: 0px auto;
   cursor: pointer;
   width: 550px;
-  /* height: 500px; */
-  /* line-height:50px; */
+  height: 550px;
 `;
 
 const GalleryZoom = styled.div`
@@ -94,6 +94,7 @@ const GalleryZoom = styled.div`
   z-index: 2;
   border: 5px solid;
   background-color: ${(props) => (props.dark ? 'white' : 'grey')};
+  align-content: flex-start;
   /* cursor: pointer; */
 `;
 
@@ -133,15 +134,16 @@ const ImageZoom = styled.img`
   src: ${(props) => `url(${props.src})`};
   /* flex-shrink: 0; */
   width: 100%;
-  min-width: 100%;
+  /* min-width: 100%; */
   /* max-height: 500px; */
 `;
 
 const ImageBig = styled.img`
   src: ${(props) => `url(${props.src})`};
   flex-shrink: 0;
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 550px;
+  max-height: 550px;
+  height: auto;
   cursor: zoom-in;
 `;
 
