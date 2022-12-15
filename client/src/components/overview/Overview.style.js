@@ -15,6 +15,7 @@ const Gallery = styled.div`
   display: block;
   width: 65%;
   min-width: 500px;
+  flex-grow: 1;
   padding: 0px;
 `;
 
@@ -151,9 +152,11 @@ const Details = styled.div`
   float: right;
   display: block;
   width: 35%;
+  max-width: 400px;
   /* max-width: 300px; */
   background: transparent;
   padding: 10px;
+  flex-shrink: 0;
 `;
 
 const OVstars = styled.div`
