@@ -75,7 +75,6 @@ function App() {
       setReady(true);
     }
   }, [product]);
-
   return !ready ? <div>App is not ready</div> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
