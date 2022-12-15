@@ -8,6 +8,7 @@ import {
   CardInfo,
   TileStyle,
   InteractiveLine,
+  Recommended,
 } from './Styles/ReviewListTile.style';
 import { Check } from '../overview/Overview.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
@@ -73,14 +74,25 @@ function ReviewListTile({ review, postFeedback, dark }) {
             )
         )}
       {review.recommend ? (
-        <OwnerResponse>
-          <span>
-            <Check dark={dark}><img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /></Check>
-          </span>
+        <Recommended dark={dark}>
+          <Check
+            style={{
+              position: 'relative',
+              top: '0',
+              left: '0',
+              marginRight: '6px',
+              height: '20px',
+              width: '20px',
+            }}
+            dark={dark}
+          >
+            <img src="https://i.imgur.com/5bqYJip.png" width="10px" alt="" />
+          </Check>
           {' '}
           I recommend this product
-        </OwnerResponse>
+        </Recommended>
       ) : null}
+      {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
       <div>
         {review.photos?.length !== 0
           ? review.photos.map((photo, index) => (
@@ -88,13 +100,12 @@ function ReviewListTile({ review, postFeedback, dark }) {
               ? <AnswerImageStyle src={photo.url} alt="" onClick={(e) => { setZoom(!zoom); setImageSource(e.target.src); }} key={index} dark={dark} />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={imageSource} alt="" onClick={() => { setZoom(!zoom); }} key={index} dark={dark} />
+                  <AnswerImageZoom src={imageSource} alt="" onClick={() => { setZoom(!zoom); }} key={index} dark={dark} defer />
                 </ModalContainer>
               )
           )) : null}
       </div>
-      <InteractiveLine>
-        {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
+      <InteractiveLine dark={dark}>
         <HelpfulButton
           value="helpful"
           id={review.review_id}
