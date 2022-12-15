@@ -46,6 +46,7 @@ function Card({
           src={cardItemObj.styles[0].photos[0].thumbnail_url || 'https://via.placeholder.com/300?text=No+Product+Image'}
           alt="card thumbnail"
           className="card-image"
+          async
         />
         <div className="card-information-container">
           <p className="category card-information">{cardItemObj.category}</p>
