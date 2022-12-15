@@ -126,13 +126,11 @@ const EmailFieldInput = styled.input`
 
 const OutermostLayer = styled.div`
   max-height: 100vh;
-  min-width: 60vw;
-  max-width: 60vw;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
   font-size: 10px;
-  width: 100%;
+  width: 65vw;
   justify-content: center;
   align-content: center;
 `;
