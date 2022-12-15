@@ -19,7 +19,7 @@ const HelpfulButton = styled.button`
   cursor: pointer;
   font-family: poppins;
   font-weight: light;
-  font-size: 16px;
+  font-size: 12px;
   color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 
@@ -153,6 +153,7 @@ const SearchBarStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
 `;
 
 const SearchBarInput = styled.input`
@@ -216,7 +217,7 @@ const QuestionBodySpan = styled.span`
 const YesStyle = styled.span`
   font-weight: light;
   font-family: poppins;
-  font-size: 15px;
+  font-size: 12px;
   color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 

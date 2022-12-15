@@ -70,10 +70,10 @@ function Answer({ answer, dark, answerList }) {
         {answer.photos?.length !== 0
           ? answer.photos.map((photo, index) => (
             !zoom
-              ? <AnswerImageStyle src={photo.url} alt="" onClick={(event) => { setZoom(!zoom); setImageSource(event.target.src); }} key={index} dark={dark} />
+              ? <AnswerImageStyle src={photo.url} alt="" onClick={(event) => { setZoom(!zoom); setImageSource(event.target.src); }} key={index} dark={dark} defer />
               : (
                 <ModalContainer>
-                  <AnswerImageZoom src={imageSource} alt="" onClick={() => setZoom(!zoom)} key={index} dark={dark} />
+                  <AnswerImageZoom src={imageSource} alt="" onClick={() => setZoom(!zoom)} key={index} dark={dark} defer />
                 </ModalContainer>
               )
           )) : null}
