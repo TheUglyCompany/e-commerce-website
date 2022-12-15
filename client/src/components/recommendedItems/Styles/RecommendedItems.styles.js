@@ -141,7 +141,7 @@ const Stars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
-    background: linear-gradient(90deg, #c2bf0a var(--rating), #9e9e9e var(--rating));
+    background: linear-gradient(90deg, ${(props) => (props.color ? props.color : '#c2bf0a')} var(--rating), #9e9e9e var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
