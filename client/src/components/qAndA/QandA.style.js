@@ -9,7 +9,7 @@ const UnderlineTextButton = styled.button`
   text-decoration: underline;
   font-family: poppins;
   font-weight: light;
-  font-size: 16px;
+  font-size: 12px;
 `;
 
 const HelpfulButton = styled.button`
@@ -19,7 +19,7 @@ const HelpfulButton = styled.button`
   cursor: pointer;
   font-family: poppins;
   font-weight: light;
-  font-size: 16px;
+  font-size: 12px;
   color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 
@@ -126,12 +126,11 @@ const EmailFieldInput = styled.input`
 
 const OutermostLayer = styled.div`
   max-height: 100vh;
-  min-width: 80vw;
   overflow: auto;
   font-family: poppins;
   font-weight: light;
   font-size: 10px;
-  width: 100%;
+  width: 65vw;
   justify-content: center;
   align-content: center;
 `;
@@ -148,6 +147,7 @@ const AnswerStyle = styled.div`
   padding: 10px 10px 0px 10px;
   max-height: 50vh;
   overflow: auto;
+  font-size: 15px;
 `;
 
 const SearchBarStyle = styled.div`
@@ -156,6 +156,7 @@ const SearchBarStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
 `;
 
 const SearchBarInput = styled.input`
@@ -172,7 +173,7 @@ const SearchBarInput = styled.input`
 `;
 
 const ButtonSpan = styled.span`
-  display: flex;
+  display: inline-block;
   float: right;
 `;
 
@@ -219,7 +220,7 @@ const QuestionBodySpan = styled.span`
 const YesStyle = styled.span`
   font-weight: light;
   font-family: poppins;
-  font-size: 15px;
+  font-size: 12px;
   color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
 `;
 
