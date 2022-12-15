@@ -8,6 +8,7 @@ import {
   CardInfo,
   TileStyle,
   InteractiveLine,
+  Recommended,
 } from './Styles/ReviewListTile.style';
 import { Check } from '../overview/Overview.style';
 import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
@@ -73,14 +74,15 @@ function ReviewListTile({ review, postFeedback, dark }) {
             )
         )}
       {review.recommend ? (
-        <OwnerResponse dark={dark}>
+        <Recommended dark={dark}>
           <span>
-            <Check dark={dark}><img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" /></Check>
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055183.png" width="10px" alt="" />
           </span>
           {' '}
           I recommend this product
-        </OwnerResponse>
+        </Recommended>
       ) : null}
+      {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
       <div>
         {review.photos?.length !== 0
           ? review.photos.map((photo, index) => (
@@ -94,7 +96,6 @@ function ReviewListTile({ review, postFeedback, dark }) {
           )) : null}
       </div>
       <InteractiveLine dark={dark}>
-        {review.response ? <OwnerResponse>{review.response}</OwnerResponse> : null}
         <HelpfulButton
           value="helpful"
           id={review.review_id}

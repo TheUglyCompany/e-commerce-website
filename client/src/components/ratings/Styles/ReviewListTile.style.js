@@ -17,7 +17,9 @@ display: flex;
 align-items: flex-start;
 font-family: roboto;
 font-weight: bold;
-height: 2rem;
+font-size: 18px;
+margin-top: 5px;
+margin-bottom: 30px;
 // border-style: solid;
 // flex-wrap: no-wrap;
 `;
@@ -45,6 +47,7 @@ display: flex;
 // border-style: solid;
 width: 100%;
 height: 2em;
+font-size: 14px;
 justify-content: space-between;
 `;
 
@@ -52,15 +55,22 @@ const Body = styled.div`
 // border-style: solid;
 word-wrap: break-word;
 width: 100%;
+margin-bottom: 5px;
+font-size: 16px;
 `;
 
 const OwnerResponse = styled.div`
 // border-style: solid;
 background-color: ${(props) => (props.dark ? 'gray' : 'lightgray')};
-
 width: calc(100% - 70px);
 margin: 10px;
 padding: 20px;
+`;
+
+const Recommended = styled.div`
+// border: solid;
+margin: 5px;
+font-size: 14px;
 `;
 
 export {
@@ -71,4 +81,5 @@ export {
   CardInfo,
   TileStyle,
   InteractiveLine,
+  Recommended,
 };

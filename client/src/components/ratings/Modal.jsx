@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import API_KEY from '../../../config';
 import {
   ModalContainer,
-  ModalContent,
   ModalTitle,
   ModalDesc,
-  ImageInputUpload,
-  TextFieldinput,
-  NameFieldInput,
-  EmailFieldInput,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -29,7 +22,6 @@ import {
   RadioButtons,
   RadioButtonLabels,
 } from './Styles/Ratings.style';
-import { Stars } from '../recommendedItems/Styles/RecommendedItems.styles';
 
 function Modal({
   setShowModal, product, characteristics, dark,
@@ -136,27 +128,27 @@ function Modal({
         <ModalRating>
           Do you recommend this product?
           <ReqAst>*</ReqAst>
-        <div>
-          <div onChange={(event) => {
-            if (event.target.id === 'Yes') {
-              setForm({
-                ...form,
-                recommend: true,
-              });
-            } else {
-              setForm({
-                ...form,
-                recommend: false,
-              });
-            }
-          }}
-          >
-            yes
-            <input type="radio" id="Yes" name="recommend" />
-            no
-            <input type="radio" id="No" name="recommend" />
-        </div>
-        </div>
+          <div>
+            <div onChange={(event) => {
+              if (event.target.id === 'Yes') {
+                setForm({
+                  ...form,
+                  recommend: true,
+                });
+              } else {
+                setForm({
+                  ...form,
+                  recommend: false,
+                });
+              }
+            }}
+            >
+              yes
+              <input type="radio" id="Yes" name="recommend" />
+              no
+              <input type="radio" id="No" name="recommend" />
+            </div>
+          </div>
         </ModalRating>
         <ModalLine>
           Characteristics:
@@ -310,16 +302,24 @@ function Modal({
             }
           </ModalDesc>
         </ModalGroup>
-
-
-        <Button
-          type="submit"
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          Submit
-        </Button>
+        <div>
+          <Button
+            type="button"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Submit
+          </Button>
+        </div>
       </RRModalContent>
     </ModalContainer>
   );
