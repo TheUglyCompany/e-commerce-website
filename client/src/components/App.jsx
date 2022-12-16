@@ -7,6 +7,7 @@ import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
 import API_KEY from '../../config';
 import { QATitle } from './qAndA/QandA.style';
+import LoadingPage from './LoadingPage';
 import {
   AppWrap,
   GlobalStyle,
@@ -54,7 +55,7 @@ function App() {
     }
   }, [product]);
 
-  return !ready ? <div>loading...</div> : (
+  return !ready ? <LoadingPage /> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
