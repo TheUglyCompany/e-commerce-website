@@ -30,6 +30,8 @@ function Overview({
   const [bttnQntyActive, setBttnQntyActive] = useState(false);
   const [bttnQnty, setBttnQnty] = useState('QUANTITY');
 
+  console.log('product: ', product);
+
   const addToCart = () => {
     if (bttnSize === 'SELECT SIZE') {
       setBttnSizeActive(true);
