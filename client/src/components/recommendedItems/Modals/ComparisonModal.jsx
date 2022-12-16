@@ -10,8 +10,8 @@ function ComparisonModal({ cardItemObj, pageItemObj, closeModal, dark }) {
           X
         </XSpan>
         <ComparisonContainer>
-          <h4>This Item</h4>
-          <h3>COMPARISON</h3>
+          <h3>Comparing</h3>
+          <h4>Current Product Name</h4>
           <h4>Page Item</h4>
           <p>{cardItemObj.name}</p>
           <h5>Title</h5>

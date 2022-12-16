@@ -7,9 +7,8 @@ import {
 } from './QandA.style';
 
 function AnswerList({
-  questionId, productName, currQuestionList, dark,
+  questionId, productName, currQuestionList, dark, setAnswerList, answerList,
 }) {
-  const [answerList, setAnswerList] = useState([]);
   const [showMoreAnswers, setShowMoreAnswers] = useState(false);
   const [renderCount, setRenderCount] = useState(2);
   let count = 0;

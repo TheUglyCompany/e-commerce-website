@@ -9,7 +9,6 @@ import Card from './Card';
 import NavigationButtons from './NavigationButtons';
 
 function RecommendedItems({
-  productId,
   cardClicked,
   dark,
   pageItemObj,
@@ -18,10 +17,10 @@ function RecommendedItems({
   const [yourOutfitIds, setYourOutfitIds] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/related`, { headers: { Authorization: API_KEY } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${pageItemObj.id}/related`, { headers: { Authorization: API_KEY } })
       .then((response) => {
         for (let i = 0; i < response.data.length; i += 1) {
-          if (response.data[i] === productId) {
+          if (response.data[i] === pageItemObj.id) {
             response.data.splice(i, 1);
           }
         }
@@ -32,7 +31,7 @@ function RecommendedItems({
       ls('outfits', '[]');
     }
     setYourOutfitIds(JSON.parse(ls('outfits')));
-  }, []);
+  }, [pageItemObj]);
 
   const getRatingObject = (ratingsObj) => {
     if (JSON.stringify(ratingsObj) === '{}') return { percentage: 'no rating' };
@@ -76,8 +75,8 @@ function RecommendedItems({
   };
   const addToOutfits = () => {
     const currentOutfits = [...yourOutfitIds];
-    if (!currentOutfits.includes(productId)) {
-      currentOutfits.unshift(productId);
+    if (!currentOutfits.includes(pageItemObj.id)) {
+      currentOutfits.unshift(pageItemObj.id);
       ls('outfits', JSON.stringify(currentOutfits));
       setYourOutfitIds(currentOutfits);
     }

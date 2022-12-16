@@ -9,10 +9,10 @@ import {
 } from './QandA.style';
 
 function QuestionsList({ productId, productName, dark }) {
+  const [showModal, setShowModal] = useState(false);
   const [questionList, setQuestionList] = useState([]);
   const [renderCount, setRenderCount] = useState(4);
   const [currQuestionList, setCurrQuestionList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const [location, setLocation] = useState('');
   let count = 0;
 
@@ -31,7 +31,7 @@ function QuestionsList({ productId, productName, dark }) {
       .catch((error) => {
         console.log('There is an error in QuestionsList: ', error);
       });
-  }, []);
+  }, [productId]);
   return (
     <div id="QuestionsList">
       <QASearchBar
