@@ -375,6 +375,7 @@ function Modal({
         ) : null}
         <div>
           <Button
+            dark={dark}
             type="button"
             onClick={() => {
               setShowModal(false);
@@ -383,6 +384,7 @@ function Modal({
             Cancel
           </Button>
           <Button
+            dark={dark}
             type="submit"
             onClick={() => {
               handleSubmit();
