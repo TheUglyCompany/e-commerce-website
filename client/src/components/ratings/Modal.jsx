@@ -4,6 +4,7 @@ import {
   ModalTitle,
   ModalDesc,
   ErrorMessage,
+  WarningMsg,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -19,7 +20,6 @@ import {
   RRXSpan,
   CharGroup,
   ModalRating,
-  ReqAst,
   RadioButtons,
   RadioButtonLabels,
 } from './Styles/Ratings.style';
@@ -292,9 +292,9 @@ function Modal({
               />
             </ModalDataText>
           </ModalLine>
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             For privacy reasons, don&apos;t use your fullname or email
-          </ModalDesc>
+          </WarningMsg>
           {errorCheck.checked && errorCheck.name
             ? (
               <ErrorMessage dark={dark}>
@@ -322,9 +322,9 @@ function Modal({
               />
             </ModalDataText>
           </ModalLine>
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             For authentication reasons, you will not be emailed
-          </ModalDesc>
+          </WarningMsg>
           {errorCheck.checked && errorCheck.email
             ? (
               <ErrorMessage dark={dark}>
@@ -368,14 +368,14 @@ function Modal({
               });
             }}
           />
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             {
             'Minimum required characters left: '
             }
             {
               50 - (form.body.length) <= 0 ? '0' : 50 - (form.body.length)
             }
-          </ModalDesc>
+          </WarningMsg>
         </ModalGroup>
         {errorCheck.checked && errorCheck.reviewBody ? (
           <ErrorMessage dark={dark}>

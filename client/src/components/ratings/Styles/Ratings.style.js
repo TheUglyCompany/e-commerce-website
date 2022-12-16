@@ -152,10 +152,6 @@ const Dd = styled.div`
   /* user-select: none; */
 `;
 
-const ReqAst = styled.span`
-color: red !important;
-`;
-
 const RadioButtons = styled.input`
 display: none;
 `;
@@ -185,7 +181,6 @@ export {
   RRXSpan,
   CharGroup,
   ModalRating,
-  ReqAst,
   RadioButtons,
   RadioButtonLabels,
   ReviewStyleHeader,

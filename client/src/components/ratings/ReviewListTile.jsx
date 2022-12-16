@@ -114,7 +114,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
               postFeedback(e.target.value, e.target.id);
               setHelpfulled(true);
             } else {
-              console.log('Already helpfulled!');
+              alert('Already helpfulled!');
             }
           }}
           style={{ cursor: 'pointer', textDecoration: 'underline' }}
@@ -122,6 +122,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
         >
           Helpful?
         </HelpfulButton>
+        {'  |  '}
         Yes
         {' ('}
         {helpfulled ? review.helpfulness + 1 : review.helpfulness}
@@ -134,12 +135,13 @@ function ReviewListTile({ review, postFeedback, dark }) {
               postFeedback(e.target.value, e.target.id);
               setReported(true);
             } else {
-              console.log('already reported');
+              alert('already reported');
             }
           }}
           style={{ cursor: 'pointer', textDecoration: 'underline' }}
           dark={dark}
         >
+          {'  |  '}
           Report
         </HelpfulButton>
       </InteractiveLine>
