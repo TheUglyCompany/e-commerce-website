@@ -85,12 +85,12 @@ function OVgallerySmall({
       {photoArr.length !== 0
         ? photoArr.map((photo, index) => (
           photo.url === mainImg
-            ? <OVgalleryThumbSelect key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo, index); }} alt="" />
+            ? <OVgalleryThumbSelect key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo, index); }} alt="" async />
             : <OVgalleryThumb key={index} src={photo.thumbnail_url} onClick={() => { changeMain(photo, index); }} alt="" />
         ))
         : null}
       <OVgalleryArrowRight display={rightArrow} onClick={() => { goRight(); }}>
-        <img src={dark ? 'https://i.imgur.com/YAMtrZW.png' : 'https://i.imgur.com/GYCaEcb.png'} height="30px" alt="" />
+        <img src={dark ? 'https://i.imgur.com/YAMtrZW.png' : 'https://i.imgur.com/GYCaEcb.png'} height="30px" alt="" async />
       </OVgalleryArrowRight>
     </OVgalleryThumbs>
   );

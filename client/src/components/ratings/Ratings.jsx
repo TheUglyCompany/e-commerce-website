@@ -134,8 +134,23 @@ function Ratings({
         </ReviewStyle>
       </RatingsAndReviews>
       <ButtonContainer>
-        {reviewCount <= renderCount ? null
-          : <Button dark={dark} type="button" onClick={() => { setRenderCount(reviewCount); }}>All Reviews</Button>}
+        {reviewCount <= renderCount ? (
+          <Button
+            dark={dark}
+            type="button"
+            onClick={() => { setRenderCount(2); }}
+          >
+            Hide Reviews
+          </Button>
+        ) : (
+          <Button
+            dark={dark}
+            type="button"
+            onClick={() => { setRenderCount(reviewCount); }}
+          >
+            All Reviews
+          </Button>
+        )}
         <Button dark={dark} type="button" onClick={() => { setShowModal(true); }}>Add Review</Button>
         {showModal
           ? (
