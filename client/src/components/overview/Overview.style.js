@@ -36,9 +36,7 @@ const OVgalleryArrowLeft = styled.div`
   margin: 0;
   width: 25px;
   height: auto;
-  /* border: 1px solid; */
   cursor: pointer;
-  /* float: left; */
 `;
 
 const OVgalleryArrowRight = styled.div`
@@ -47,15 +45,12 @@ const OVgalleryArrowRight = styled.div`
   margin: 0;
   width: 25px;
   height: auto;
-  /* border: 1px solid; */
   cursor: pointer;
-  /* float: right; */
 `;
 
 const OVgalleryThumb = styled.img`
   margin: 5px;
   height: 50px;
-  /* max-width: 100%; */
 `;
 
 const OVgalleryThumbSelect = styled.img`
@@ -64,12 +59,10 @@ const OVgalleryThumbSelect = styled.img`
   opacity: 0.5;
   border: 1px solid;
   z-index: 1;
-  /* max-width: 100%; */
 `;
 
 const GalleryContainer = styled.div`
   display: flex;
-  /* height: 500px; */
 `;
 
 const GalleryBig = styled.div`
@@ -80,8 +73,7 @@ const GalleryBig = styled.div`
   margin: 0px auto;
   cursor: pointer;
   width: 100%;
-  height: 550px;
-  /* border: 1px solid; */
+  height: 600px;
 `;
 
 const GalleryZoom = styled.div`
@@ -92,12 +84,10 @@ const GalleryZoom = styled.div`
   left: 50px;
   width: 90%;
   height: 90%;
-  /* align-items: center; */
   z-index: 2;
   border: 5px solid;
   background-color: ${(props) => (props.dark ? 'white' : 'grey')};
   align-content: flex-start;
-  /* cursor: pointer; */
 `;
 
 const GalleryArrowL = styled.div`
@@ -118,9 +108,7 @@ const GalleryArrowR = styled.div`
   margin: 0;
   width: 25px;
   height: 100%;
-  /* border: 1px solid; */
   cursor: pointer;
-  /* float: right; */
   flex-shrink: 0;
 `;
 
@@ -134,18 +122,14 @@ const ImageZoomSpan = styled.div`
 
 const ImageZoom = styled.img`
   src: ${(props) => `url(${props.src})`};
-  /* flex-shrink: 0; */
   width: 100%;
-  /* min-width: 100%; */
-  /* max-height: 500px; */
 `;
 
 const ImageBig = styled.img`
   src: ${(props) => `url(${props.src})`};
   flex-shrink: 0;
   max-width: 100%;
-  max-height: 550px;
-  height: auto;
+  max-height: 600px;
   cursor: zoom-in;
 `;
 
@@ -154,7 +138,6 @@ const Details = styled.div`
   display: block;
   width: 35%;
   max-width: 400px;
-  /* max-width: 300px; */
   background: transparent;
   padding: 10px;
   flex-shrink: 0;
@@ -171,7 +154,6 @@ const OVstars = styled.div`
   &::before {
     content: '★★★★★';
     letter-spacing: 2px;
-    /* background: linear-gradient(90deg, #6e66ab var(--rating), #D3D3D3 var(--rating)); */
     background: linear-gradient(90deg, #14453D var(--rating), #D3D3D3 var(--rating));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -195,7 +177,6 @@ const Category = styled.div`
   font-size: 12px;
   font-weight: light;
   padding: 0px;
-  /* color: #3a3a3a; */
 `;
 
 const Name = styled.div`
@@ -210,7 +191,6 @@ const Price = styled.div`
   font-size: 15px;
   font-weight: light;
   padding: 5px 0px;
-  /* color: #3a3a3a; */
 `;
 
 const SalePrice = styled.span`
@@ -222,7 +202,6 @@ const Desc = styled.div`
   font-size: 15px;
   font-weight: 200;
   padding: 5px 0px;
-  /* color: #3a3a3a; */
 `;
 
 const Styles = styled.div`
@@ -313,7 +292,6 @@ const FavButton = styled.button`
   font-size: 15px;
   height: 40px;
   text-transform: uppercase;
-  /* display: block; */
 `;
 
 const Dd = styled.div`
@@ -322,7 +300,6 @@ const Dd = styled.div`
   position: relative;
   display: inline-block;
   background: transparent;
-  /* user-select: none; */
 `;
 
 const DdBttn = styled.div`
@@ -348,7 +325,6 @@ const DdContent = styled.div`
   max-height: 200px;
   overflow: auto;
   color: ${(props) => (props.dark ? 'white' : 'black')};
-  /* overflow-clip-margin: 20px; */
 `;
 
 const DdItem = styled.div`
@@ -371,15 +347,12 @@ const Slogan = styled.div`
   width: 100%;
   margin: 15px;
   text-align: center;
-  /* position: relative; */
 `;
 
 const Social = styled.div`
   display: flex;
   width: 100%;
   margin: 10px;
-  /* justify-content: center; */
-  /* text-align: center; */
 `;
 
 const SocialIcons = styled.span`
