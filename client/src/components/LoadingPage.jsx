@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LoadingStyles = styled.div`
-align-self: center;
+display: flex;
+justify-content: center;
 font-family: ROBOTO;
+vertical-align: center;
 font-size: 20px;
 font-weight: bold;
 `;
