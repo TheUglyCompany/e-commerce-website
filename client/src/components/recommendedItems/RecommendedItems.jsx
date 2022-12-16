@@ -31,7 +31,7 @@ function RecommendedItems({ product, cardClicked, dark }) {
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, { headers: { Authorization: API_KEY } })
       .then((response) => {
-        setRelatedProductsIds(new Set(response.data));
+        setRelatedProductsIds(response.data);
       })
       .catch((err) => console.log(err.message));
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: product.id } })
