@@ -102,7 +102,7 @@ function Ratings({
               Sorted by
               &nbsp;
             <Dd>
-              <DdBttn dark={dark} onClick={() => { console.log(dropdownActive); setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
+              <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
                 {sort}
                 &nbsp;
                 <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
