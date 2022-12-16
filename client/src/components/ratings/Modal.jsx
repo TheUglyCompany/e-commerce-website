@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import API_KEY from '../../../config';
 import {
   ModalContainer,
   ModalTitle,
@@ -48,6 +50,7 @@ function Modal({
     email: true,
     reviewBody: true,
   });
+  const [noError, setNoError] = useState(false);
   const fitEntries = Object.entries(characteristics);
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -61,6 +64,46 @@ function Modal({
   // onSubmit axios post function
   // on file upload handle file upload
   function handleSubmit() {
+    setNoError(false);
+    if (form.rating !== 0) {
+      errorCheck.rating = false;
+    } else {
+      setNoError(true);
+    }
+    if (form.recommend !== null) {
+      errorCheck.recommend = false;
+    } else {
+      setNoError(true);
+    }
+    console.log('form name length',form.name.length);
+    if (form.name.length !== 0) {
+      errorCheck.name = false;
+    } else {
+      setNoError(true);
+    }
+    console.log('form email input', form.email);
+    if (form.email?.includes('@') && form.email?.includes('.com')) {
+      errorCheck.email = false;
+    } else {
+      setNoError(true);
+    }
+    if (form.body.length >= 50) {
+      errorCheck.reviewBody = false;
+    } else {
+      setNoError(true);
+    }
+    fitEntries.map((entry) => {
+      if (form.characteristics[entry[1].id]) {
+        errorCheck.characteristics[entry[0]] = false;
+      } else {
+        setNoError(true);
+      }
+      return null;
+    });
+    setErrorCheck({
+      ...errorCheck,
+      checked: true,
+    });
     // axios.post(
     //   'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
     //   form,
@@ -72,47 +115,21 @@ function Modal({
     //   .catch((err) => {
     //     console.log('error posting, review ', err.message);
     //   });
-    if (form.rating !== 0) {
-      errorCheck.rating = false;
+    console.log('noError', noError);
+    if (!noError) {
+      console.log(`
+      body: ${form.body},
+      summary: ${form.summary},
+      name: ${form.nameInput},
+      email: ${form.email},
+      product_id: ${form.product_id},
+      characteristics: ${JSON.stringify(form.characteristics)},
+      recommend: ${form.recommend},
+      rating: ${form.rating},
+      photos: ${form.photos},
+      errors: ${JSON.stringify(errorCheck)},
+      `);
     }
-    if (form.recommend !== null) {
-      errorCheck.recommend = false;
-    }
-
-    if (form.name.length !== 0) {
-      errorCheck.name = false;
-    }
-    if (form.emailInput?.includes('@') && form.emailInput?.includes('.com')) {
-      errorCheck.email = false;
-    }
-    if (form.body.length >= 50) {
-      errorCheck.body = false;
-    }
-    fitEntries.map((entry) => {
-      console.log('form charact', form.characteristics[entry[1].id]);
-      console.log('form entries', entry[0]);
-      if (form.characteristics[entry[1].id]) {
-        errorCheck.characteristics[entry[0]] = false;
-        console.log('it was entered', errorCheck.characteristics[entry[0]]);
-      }
-      return null;
-    });
-    setErrorCheck({
-      ...errorCheck,
-      checked: true,
-    });
-    console.log(`
-    body: ${form.body},
-    summary: ${form.summary},
-    name: ${form.nameInput},
-    email: ${form.email},
-    product_id: ${form.product_id},
-    characteristics: ${JSON.stringify(form.characteristics)},
-    recommend: ${form.recommend},
-    rating: ${form.rating},
-    photos: ${form.photos},
-    errors: ${JSON.stringify(errorCheck)},
-    `);
   }
   return (
     <ModalContainer>
@@ -275,7 +292,7 @@ function Modal({
             </ModalLabelText>
             <ModalDataText>
               <SingleLineTextField
-                value={form.nameInput}
+                value={form.name}
                 type="text"
                 maxLength="60"
                 required="true"
@@ -283,7 +300,7 @@ function Modal({
                 onChange={(e) => {
                   setForm({
                     ...form,
-                    nameInput: e.target.value,
+                    name: e.target.value,
                   });
                 }}
               />
