@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
+import LoadingPage from './LoadingPage';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
 import API_KEY from '../../config';
@@ -53,8 +54,7 @@ function App() {
       setReady(true);
     }
   }, [product]);
-
-  return !ready ? <div>loading...</div> : (
+  return !ready ? <LoadingPage ready={ready} /> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />

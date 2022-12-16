@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     margin: -20px;
     padding: -20px;
     border: 0;
+    overflow-x: hidden;
 }`;
 
 const AppWrap = styled.div`
