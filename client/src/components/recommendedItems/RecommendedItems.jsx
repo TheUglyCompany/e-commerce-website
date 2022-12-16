@@ -38,12 +38,12 @@ function RecommendedItems({ product, cardClicked, dark }) {
       .then((response) => {
         setRatingObj(getRatingObject(response.data.ratings));
       })
-      .catch(err => console.log(err.message));
+      .catch((err) => console.log(err.message));
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
       .then((response) => {
         setStyles(response.data.results);
       })
-      .catch(err => console.log(err.message));
+      .catch((err) => console.log(err.message));
     if (ls('outfits') === null) {
       ls('outfits', '[]');
     }
