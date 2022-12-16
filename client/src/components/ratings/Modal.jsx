@@ -110,7 +110,7 @@ function Modal({
     console.log('Outside of Forloop: ', chosenFiles);
     setForm({
       ...form,
-      imageInput: fileArray,
+      photos: fileArray,
     });
   }
 
