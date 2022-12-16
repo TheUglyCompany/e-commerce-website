@@ -41,6 +41,7 @@ const ResetFilter = styled(StarButton)`
   justify-content: flex-start;
   margin-bottom: 10px;
   width: 100%;
+  color: ${(props) => (props.dark ? 'white' : 'black')};
   // border: solid;
 `;
 
