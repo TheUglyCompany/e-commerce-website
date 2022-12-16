@@ -22,37 +22,11 @@ function App() {
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const cardClicked = (productId) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
-      .then((response) => {
-        // console.log('response is', response);
-        setReady(false);
-        setProduct(response.data);
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
-          headers: { Authorization: API_KEY },
-          params: { product_id: response.data.id },
-        }).then((metaDataResponse) => {
-          const totalReviews = Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']);
-          setMetaData(metaDataResponse.data);
-          setReviewCount(totalReviews);
-          setProdAvg((
-            (Number(metaDataResponse.data.ratings['1'])
-            + (Number(metaDataResponse.data.ratings['2']) * 2)
-            + (Number(metaDataResponse.data.ratings['3']) * 3)
-            + (Number(metaDataResponse.data.ratings['4']) * 4)
-            + (Number(metaDataResponse.data.ratings['5']) * 5))
-            / totalReviews
-          ).toFixed(1));
-        });
-      })
-      .catch((err) => console.log(err.message));
-  };
-
-  useEffect(() => {
+  const updatePage = (productId) => {
     Promise.all([
-      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346', { headers: { Authorization: API_KEY } }),
-      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: 40346 } }),
-      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346/styles', { headers: { Authorization: API_KEY } })])
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } }),
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: productId } }),
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`, { headers: { Authorization: API_KEY } })])
       .then((response) => {
         setProduct(response[0].data);
         setMetaData(response[1].data);
@@ -69,14 +43,18 @@ function App() {
         setStyles(response[2].data);
       })
       .catch((err) => console.log(err.message));
-  }, []);
+  };
 
+  useEffect(() => {
+    updatePage(40346);
+  }, []);
   useEffect(() => {
     if (product !== null) {
       setReady(true);
     }
   }, [product]);
-  return !ready ? <div>App is not ready</div> : (
+
+  return !ready ? <div>loading...</div> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
@@ -84,7 +62,7 @@ function App() {
       <RecommendedItems
         dark={dark}
         pageItemObj={{ ...product, ...{ percentage: `${prodAvg * 20}%`, totalReviews: reviewCount }, ...{ styles } }}
-        cardClicked={cardClicked}
+        cardClicked={updatePage}
         productId={product.id}
       />
       <QATitle>Questions & Answers</QATitle>
