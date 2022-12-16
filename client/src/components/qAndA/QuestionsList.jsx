@@ -31,7 +31,7 @@ function QuestionsList({ productId, productName, dark }) {
       .catch((error) => {
         console.log('There is an error in QuestionsList: ', error);
       });
-  }, []);
+  }, [productId]);
   return (
     <div id="QuestionsList">
       <QASearchBar

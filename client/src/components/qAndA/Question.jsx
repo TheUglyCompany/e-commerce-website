@@ -55,7 +55,6 @@ function Question({
       window.alert('You\'ve already reported this question!');
     }
   }
-
   return (
     <QuestionStyle dark={dark}>
       {' '}
