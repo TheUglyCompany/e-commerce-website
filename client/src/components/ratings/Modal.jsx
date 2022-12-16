@@ -114,9 +114,6 @@ function Modal({
     errors: ${JSON.stringify(errorCheck)},
     `);
   }
-
-  console.log('This is the whole charateristic', errorCheck.characteristics.Quality);
-
   return (
     <ModalContainer>
       <RRModalContent dark={dark}>
