@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import API_KEY from '../../../config';
 import {
   ModalContainer,
   ModalTitle,
   ModalDesc,
   ErrorMessage,
   WarningMsg,
+  ImgUploadSpan,
+  UploadButton,
+  ImageInputUpload,
+  AnswerImageStyle,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -25,7 +31,12 @@ import {
 } from './Styles/Ratings.style';
 
 function Modal({
-  setShowModal, product, characteristics, dark,
+  setShowModal,
+  product,
+  characteristics,
+  dark,
+  setSort,
+  sort,
 }) {
   const [starSelection, setStarSelection] = useState(0);
   const [form, setForm] = useState({
@@ -48,6 +59,7 @@ function Modal({
     email: true,
     reviewBody: true,
   });
+  const hiddenFileInput = useRef(null);
   const fitEntries = Object.entries(characteristics);
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -58,42 +70,88 @@ function Modal({
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
 
+  function postCall(bool) {
+    if (!bool) {
+      axios.post(
+        'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+        form,
+        { headers: { Authorization: API_KEY } },
+      )
+        .then((response) => {
+          console.log('success posting, review ', response);
+        })
+        .catch((err) => {
+          console.log('error posting, review ', err.message);
+        });
+      console.log(`
+      body: ${form.body},
+      summary: ${form.summary},
+      name: ${form.nameInput},
+      email: ${form.email},
+      product_id: ${form.product_id},
+      characteristics: ${JSON.stringify(form.characteristics)},
+      recommend: ${form.recommend},
+      rating: ${form.rating},
+      photos: ${form.photos},
+      errors: ${JSON.stringify(errorCheck)},
+      `);
+      setShowModal(false);
+      setSort(sort.slice());
+    }
+  }
+
+  function handleFileEvent(event) {
+    const chosenFiles = event.target.files;
+    const fileArray = [];
+    for (let i = 0; i < chosenFiles.length; i += 1) {
+      console.log(chosenFiles[i]);
+      fileArray.push(URL.createObjectURL(chosenFiles[i]));
+    }
+    console.log('Outside of Forloop: ', chosenFiles);
+    setForm({
+      ...form,
+      photos: fileArray,
+    });
+  }
+
+  function handleClick() {
+    hiddenFileInput.current.click();
+  }
+
   // onSubmit axios post function
   // on file upload handle file upload
   function handleSubmit() {
-    // axios.post(
-    //   'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-    //   form,
-    //   { headers: { Authorization: API_KEY } },
-    // )
-    //   .then((response) => {
-    //     console.log('success posting, review ', response);
-    //   })
-    //   .catch((err) => {
-    //     console.log('error posting, review ', err.message);
-    //   });
+    let noError = false;
     if (form.rating !== 0) {
       errorCheck.rating = false;
+    } else {
+      noError = true;
     }
     if (form.recommend !== null) {
       errorCheck.recommend = false;
+    } else {
+      noError = true;
     }
-
     if (form.name.length !== 0) {
       errorCheck.name = false;
+    } else {
+      noError = true;
     }
-    if (form.emailInput?.includes('@') && form.emailInput?.includes('.com')) {
+    if (form.email?.includes('@') && form.email?.includes('.com')) {
       errorCheck.email = false;
+    } else {
+      noError = true;
     }
     if (form.body.length >= 50) {
-      errorCheck.body = false;
+      errorCheck.reviewBody = false;
+    } else {
+      noError = true;
     }
     fitEntries.map((entry) => {
-      console.log('form charact', form.characteristics[entry[1].id]);
-      console.log('form entries', entry[0]);
       if (form.characteristics[entry[1].id]) {
         errorCheck.characteristics[entry[0]] = false;
-        console.log('it was entered', errorCheck.characteristics[entry[0]]);
+      } else {
+        noError = true;
       }
       return null;
     });
@@ -101,19 +159,9 @@ function Modal({
       ...errorCheck,
       checked: true,
     });
-    console.log(`
-    body: ${form.body},
-    summary: ${form.summary},
-    name: ${form.nameInput},
-    email: ${form.email},
-    product_id: ${form.product_id},
-    characteristics: ${JSON.stringify(form.characteristics)},
-    recommend: ${form.recommend},
-    rating: ${form.rating},
-    photos: ${form.photos},
-    errors: ${JSON.stringify(errorCheck)},
-    `);
+    postCall(noError);
   }
+
   return (
     <ModalContainer>
       <RRModalContent dark={dark}>
@@ -275,7 +323,7 @@ function Modal({
             </ModalLabelText>
             <ModalDataText>
               <SingleLineTextField
-                value={form.nameInput}
+                value={form.name}
                 type="text"
                 maxLength="60"
                 required="true"
@@ -283,7 +331,7 @@ function Modal({
                 onChange={(e) => {
                   setForm({
                     ...form,
-                    nameInput: e.target.value,
+                    name: e.target.value,
                   });
                 }}
               />
@@ -379,6 +427,33 @@ function Modal({
             <p>The body must be at least 50 characters</p>
           </ErrorMessage>
         ) : null}
+        <ModalGroup>
+          <ImgUploadSpan>
+            Image Upload:
+            &nbsp;
+            <ImageInputUpload
+              type="file"
+              required="false"
+              multiple
+              style={{ display: 'none' }}
+              ref={hiddenFileInput}
+              onChange={handleFileEvent}
+            />
+            {form.photos?.length < 5
+              ? (
+                <UploadButton
+                  onClick={() => { handleClick(); }}
+                  dark={dark}
+                >
+                  Upload
+
+                </UploadButton>
+              ) : null}
+          </ImgUploadSpan>
+          {form.photos?.map((image) => (
+            <AnswerImageStyle src={image} dark={dark} />
+          ))}
+        </ModalGroup>
         <div>
           <Button
             dark={dark}
