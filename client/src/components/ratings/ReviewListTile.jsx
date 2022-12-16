@@ -124,7 +124,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
         </HelpfulButton>
         Yes
         {' ('}
-        {review.helpfulness}
+        {helpfulled ? review.helpfulness + 1 : review.helpfulness}
         {') '}
         <HelpfulButton
           value="report"
