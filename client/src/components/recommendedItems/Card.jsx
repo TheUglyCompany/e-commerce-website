@@ -27,7 +27,11 @@ function Card({
       axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: cardItemId } }),
       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${cardItemId}/styles`, { headers: { Authorization: API_KEY } })])
       .then((response) => {
-        setCardItemObj({ ...response[0].data, ...getRatingObject(response[1].data.ratings), ...{ styles: response[2].data.results } });
+        setCardItemObj({
+          ...response[0].data,
+          ...getRatingObject(response[1].data.ratings),
+          ...{ styles: response[2].data.results },
+        });
       })
       .catch((err) => console.log(err.message));
   }, []);

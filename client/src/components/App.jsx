@@ -63,7 +63,6 @@ function App() {
         dark={dark}
         pageItemObj={{ ...product, ...{ percentage: `${prodAvg * 20}%`, totalReviews: reviewCount }, ...{ styles } }}
         cardClicked={updatePage}
-        productId={product.id}
       />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} defer />
