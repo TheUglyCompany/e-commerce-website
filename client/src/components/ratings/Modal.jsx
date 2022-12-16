@@ -7,6 +7,8 @@ import {
   ModalDesc,
   ErrorMessage,
   WarningMsg,
+  ImgUploadSpan,
+  UploadButton,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -66,7 +68,6 @@ function Modal({
   };
 
   function postCall(bool) {
-    console.log('noError', bool);
     if (!bool) {
       axios.post(
         'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
@@ -92,7 +93,6 @@ function Modal({
       errors: ${JSON.stringify(errorCheck)},
       `);
       setShowModal(false);
-      console.log('sort', sort.slice());
       setSort(sort.slice());
     }
   }
@@ -111,13 +111,11 @@ function Modal({
     } else {
       noError = true;
     }
-    console.log('form name length', form.name.length);
     if (form.name.length !== 0) {
       errorCheck.name = false;
     } else {
       noError = true;
     }
-    console.log('form email input', form.email);
     if (form.email?.includes('@') && form.email?.includes('.com')) {
       errorCheck.email = false;
     } else {

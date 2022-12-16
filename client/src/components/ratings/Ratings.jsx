@@ -76,7 +76,7 @@ function Ratings({
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
-    // console.log('sort', sort);
+  // console.log('sort', sort);
   return (
     <OuterMostLayer href="#ratings">
       <RatingsAndReviews>
