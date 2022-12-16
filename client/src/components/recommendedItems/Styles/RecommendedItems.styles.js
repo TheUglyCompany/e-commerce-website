@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // Goes inside RecommendedItems
 const RIContainer = styled.div`
   width: 70%;
-  margin: 0 auto;
+  margin: 0 auto 7rem;
 `;
 
 // Goes inside Related Product and YourOutfit

@@ -4,9 +4,6 @@ import { SocialIcons, Social } from './Overview.style';
 function OVsocial({ dark }) {
   return (
     <Social>
-      <span>
-        {/* SHARE: */}
-      </span>
       <SocialIcons>
         <img src={dark ? 'https://i.imgur.com/mQLqczM.png' : 'https://i.imgur.com/Oiw9r1x.png'} width="20px" alt="" />
       </SocialIcons>

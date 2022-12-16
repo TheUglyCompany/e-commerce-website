@@ -6,9 +6,11 @@ flex-direction: column;
 align-items: flex-start;
 align-content: space-between;
 justify-content: space-between;
-padding: 10px;
+padding: 20px;
 margin: 10px;
-border: 1px solid;
+margin-bottom: 20px;
+/* border: 1px solid; */
+background-color: lightgrey;
 border-radius: 2px;
 `;
 
