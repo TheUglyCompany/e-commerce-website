@@ -9,7 +9,6 @@ function NavigationButtons({ dark, type, lastCardIndex }) {
       {focusedCardIndex > 0 ? (
         <PreviousCard
           src={dark ? 'https://i.imgur.com/EbWJrAK.png' : 'https://i.imgur.com/NuTyVPZ.png'}
-          // href={`#${type}-Card-${focusedCardIndex - 1}`}
           onClick={() => {
             document.getElementById(`${type}-Card-${focusedCardIndex - 1}`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
             setFocusedCardIndex(focusedCardIndex - 1);
@@ -20,7 +19,6 @@ function NavigationButtons({ dark, type, lastCardIndex }) {
         <NextCard
           dark={dark}
           src={dark ? 'https://i.imgur.com/YAMtrZW.png' : 'https://i.imgur.com/GYCaEcb.png'}
-          // href={`#${type}-Card-${focusedCardIndex + 1}`}
           onClick={() => {
             document.getElementById(`${type}-Card-${focusedCardIndex + 1}`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
             setFocusedCardIndex(focusedCardIndex + 1);
