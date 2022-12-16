@@ -76,6 +76,7 @@ const ModalLine = styled.div`
 display: flex;
 width 100%;
 margin: 10px;
+align-items: center;
 `;
 
 const ModalLabel = styled.div`
@@ -138,7 +139,7 @@ const CharGroup = styled.span`
 display: flex;
 flex-direction: column;
 align-items: center;
-margin: 5px;
+justify-content: center;
 font-size: 12px;
 width: 20%;
 text-align: center;
@@ -148,11 +149,8 @@ const Dd = styled.div`
   // width: 135px;
   margin-right: 10px;
   background: transparent;
+  position: relative;
   /* user-select: none; */
-`;
-
-const ReqAst = styled.span`
-color: red !important;
 `;
 
 const RadioButtons = styled.input`
@@ -184,7 +182,6 @@ export {
   RRXSpan,
   CharGroup,
   ModalRating,
-  ReqAst,
   RadioButtons,
   RadioButtonLabels,
   ReviewStyleHeader,
