@@ -17,6 +17,7 @@ function App() {
   const [metaData, setMetaData] = useState({});
   const [prodAvg, setProdAvg] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
+  const [styles, setStyles] = useState(null);
 
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
@@ -51,7 +52,7 @@ function App() {
     Promise.all([
       axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346', { headers: { Authorization: API_KEY } }),
       axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: 40346 } }),
-    ])
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346/styles', { headers: { Authorization: API_KEY } })])
       .then((response) => {
         setProduct(response[0].data);
         setMetaData(response[1].data);
@@ -65,6 +66,7 @@ function App() {
           + (Number(response[1].data.ratings['5']) * 5))
           / totalReviews
         ).toFixed(1));
+        setStyles(response[2].data);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -79,7 +81,7 @@ function App() {
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
-      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
+      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} prodAvg={prodAvg} reviewCount={reviewCount} styles={styles} />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} defer />
       <QATitle id="ratings">Ratings & Reviews </QATitle>

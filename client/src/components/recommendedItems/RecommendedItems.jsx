@@ -9,12 +9,9 @@ import YourOutfit from './YourOutfit';
 import Card from './Card';
 import NavigationButtons from './NavigationButtons';
 
-function RecommendedItems({ product, cardClicked, dark }) {
+function RecommendedItems({ product, cardClicked, dark, prodAvg, reviewCount, styles }) {
   const [relatedProductsIds, setRelatedProductsIds] = useState([]);
-  const [ratingObj, setRatingObj] = useState(null);
   const [yourOutfitIds, setYourOutfitIds] = useState([]);
-  const [styles, setStyles] = useState(null);
-  const [ready, setReady] = useState(false);
 
   const getRatingObject = (ratingsObj) => {
     if (JSON.stringify(ratingsObj) === '{}') return { percentage: 'no rating' };
@@ -31,17 +28,12 @@ function RecommendedItems({ product, cardClicked, dark }) {
   useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/related`, { headers: { Authorization: API_KEY } })
       .then((response) => {
-        setRelatedProductsIds(response.data);
-      })
-      .catch((err) => console.log(err.message));
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: product.id } })
-      .then((response) => {
-        setRatingObj(getRatingObject(response.data.ratings));
-      })
-      .catch((err) => console.log(err.message));
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, { headers: { Authorization: API_KEY } })
-      .then((response) => {
-        setStyles(response.data.results);
+        for (let i = 0; i < response.data.length; i += 1) {
+          if (response.data[i] === product.id) {
+            response.data.splice(i, 1);
+          }
+        }
+        setRelatedProductsIds([...new Set(response.data)]);
       })
       .catch((err) => console.log(err.message));
     if (ls('outfits') === null) {
@@ -49,11 +41,6 @@ function RecommendedItems({ product, cardClicked, dark }) {
     }
     setYourOutfitIds(JSON.parse(ls('outfits')));
   }, []);
-  useEffect(() => {
-    if (ratingObj !== null && styles !== null) {
-      setReady(true);
-    }
-  }, [ratingObj, styles]);
 
   const handleActionClick = (event, type, callback, cardItemId) => {
     event.stopPropagation();
@@ -84,14 +71,12 @@ function RecommendedItems({ product, cardClicked, dark }) {
         key={item}
         id={`${type}-Card-${type === 'related' ? index : index + 1}`}
         cardItemId={item}
-        pageItem={product}
         type={type}
+        dark={dark}
+        pageItemObj={{ ...product, ...{ percentage: `${prodAvg * 20}%`, totalReviews: reviewCount }, ...{ styles } }}
+        getRatingObject={getRatingObject}
         handleCardClick={cardClicked}
         handleActionClick={handleActionClick}
-        getRatingObject={getRatingObject}
-        ratingObj={ratingObj}
-        styles={styles}
-        dark={dark}
       />
     ));
   };
@@ -100,7 +85,7 @@ function RecommendedItems({ product, cardClicked, dark }) {
     return <NavigationButtons dark={dark} type={type} lastCardIndex={lastCardIndex} />;
   };
 
-  return !ready ? null : (
+  return (
     <RIContainer>
       <RelatedProducts renderButtons={renderButtons} renderListFromIds={renderListFromIds} />
       <YourOutfit renderButtons={renderButtons} renderListFromIds={renderListFromIds} addToOutfits={addToOutfits} dark={dark} />
