@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
+import LoadingPage from './LoadingPage';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
 import API_KEY from '../../config';
@@ -18,7 +19,6 @@ function App() {
   const [prodAvg, setProdAvg] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [styles, setStyles] = useState(null);
-
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -54,7 +54,7 @@ function App() {
     }
   }, [product]);
 
-  return !ready ? <div>loading...</div> : (
+  return !ready ? <LoadingPage /> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
@@ -65,7 +65,11 @@ function App() {
         cardClicked={updatePage}
       />
       <QATitle>Questions & Answers</QATitle>
-      <QandA dark={dark} product={product} defer />
+      <QandA
+        dark={dark}
+        product={product}
+        defer
+      />
       <QATitle id="ratings">Ratings & Reviews </QATitle>
       <Ratings
         dark={dark}
