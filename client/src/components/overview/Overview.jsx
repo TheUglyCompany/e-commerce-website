@@ -61,7 +61,7 @@ function Overview({
         setCurrentSku(Object.values(response.data.results[0].skus)[0]);
       })
       .catch((err) => console.log(err.message));
-  }, []);
+  }, [product]);
   useEffect(() => {
     if (product !== null) {
       setReady(true);
