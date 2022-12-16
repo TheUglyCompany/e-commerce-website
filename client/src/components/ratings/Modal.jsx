@@ -27,7 +27,12 @@ import {
 } from './Styles/Ratings.style';
 
 function Modal({
-  setShowModal, product, characteristics, dark,
+  setShowModal,
+  product,
+  characteristics,
+  dark,
+  setSort,
+  sort,
 }) {
   const [starSelection, setStarSelection] = useState(0);
   const [form, setForm] = useState({
@@ -50,7 +55,6 @@ function Modal({
     email: true,
     reviewBody: true,
   });
-  const [noError, setNoError] = useState(false);
   const fitEntries = Object.entries(characteristics);
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -61,62 +65,20 @@ function Modal({
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
 
-  // onSubmit axios post function
-  // on file upload handle file upload
-  function handleSubmit() {
-    setNoError(false);
-    if (form.rating !== 0) {
-      errorCheck.rating = false;
-    } else {
-      setNoError(true);
-    }
-    if (form.recommend !== null) {
-      errorCheck.recommend = false;
-    } else {
-      setNoError(true);
-    }
-    console.log('form name length',form.name.length);
-    if (form.name.length !== 0) {
-      errorCheck.name = false;
-    } else {
-      setNoError(true);
-    }
-    console.log('form email input', form.email);
-    if (form.email?.includes('@') && form.email?.includes('.com')) {
-      errorCheck.email = false;
-    } else {
-      setNoError(true);
-    }
-    if (form.body.length >= 50) {
-      errorCheck.reviewBody = false;
-    } else {
-      setNoError(true);
-    }
-    fitEntries.map((entry) => {
-      if (form.characteristics[entry[1].id]) {
-        errorCheck.characteristics[entry[0]] = false;
-      } else {
-        setNoError(true);
-      }
-      return null;
-    });
-    setErrorCheck({
-      ...errorCheck,
-      checked: true,
-    });
-    // axios.post(
-    //   'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
-    //   form,
-    //   { headers: { Authorization: API_KEY } },
-    // )
-    //   .then((response) => {
-    //     console.log('success posting, review ', response);
-    //   })
-    //   .catch((err) => {
-    //     console.log('error posting, review ', err.message);
-    //   });
-    console.log('noError', noError);
-    if (!noError) {
+  function postCall(bool) {
+    console.log('noError', bool);
+    if (!bool) {
+      axios.post(
+        'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/',
+        form,
+        { headers: { Authorization: API_KEY } },
+      )
+        .then((response) => {
+          console.log('success posting, review ', response);
+        })
+        .catch((err) => {
+          console.log('error posting, review ', err.message);
+        });
       console.log(`
       body: ${form.body},
       summary: ${form.summary},
@@ -129,8 +91,58 @@ function Modal({
       photos: ${form.photos},
       errors: ${JSON.stringify(errorCheck)},
       `);
+      setShowModal(false);
+      console.log('sort', sort.slice());
+      setSort(sort.slice());
     }
   }
+
+  // onSubmit axios post function
+  // on file upload handle file upload
+  function handleSubmit() {
+    let noError = false;
+    if (form.rating !== 0) {
+      errorCheck.rating = false;
+    } else {
+      noError = true;
+    }
+    if (form.recommend !== null) {
+      errorCheck.recommend = false;
+    } else {
+      noError = true;
+    }
+    console.log('form name length', form.name.length);
+    if (form.name.length !== 0) {
+      errorCheck.name = false;
+    } else {
+      noError = true;
+    }
+    console.log('form email input', form.email);
+    if (form.email?.includes('@') && form.email?.includes('.com')) {
+      errorCheck.email = false;
+    } else {
+      noError = true;
+    }
+    if (form.body.length >= 50) {
+      errorCheck.reviewBody = false;
+    } else {
+      noError = true;
+    }
+    fitEntries.map((entry) => {
+      if (form.characteristics[entry[1].id]) {
+        errorCheck.characteristics[entry[0]] = false;
+      } else {
+        noError = true;
+      }
+      return null;
+    });
+    setErrorCheck({
+      ...errorCheck,
+      checked: true,
+    });
+    postCall(noError);
+  }
+
   return (
     <ModalContainer>
       <RRModalContent dark={dark}>
