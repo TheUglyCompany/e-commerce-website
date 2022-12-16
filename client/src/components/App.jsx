@@ -3,11 +3,11 @@ import axios from 'axios';
 import Header from './Header';
 import Ratings from './ratings/Ratings';
 import Overview from './overview/Overview';
+import LoadingPage from './LoadingPage';
 import QandA from './qAndA/QandA';
 import RecommendedItems from './recommendedItems/RecommendedItems';
 import API_KEY from '../../config';
 import { QATitle } from './qAndA/QandA.style';
-import LoadingPage from './LoadingPage';
 import {
   AppWrap,
   GlobalStyle,
@@ -19,6 +19,7 @@ function App() {
   const [prodAvg, setProdAvg] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [styles, setStyles] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
@@ -55,10 +56,9 @@ function App() {
     }
   }, [product]);
 
-<<<<<<< HEAD
   return !ready ? <LoadingPage /> : (
     <AppWrap dark={dark} data-testid="app">
-      <GlobalStyle />
+      <GlobalStyle showModal={showModal} />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
       <RecommendedItems
@@ -68,7 +68,13 @@ function App() {
         productId={product.id}
       />
       <QATitle>Questions & Answers</QATitle>
-      <QandA dark={dark} product={product} defer />
+      <QandA
+        dark={dark}
+        product={product}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        defer
+      />
       <QATitle id="ratings">Ratings & Reviews </QATitle>
       <Ratings
         dark={dark}
