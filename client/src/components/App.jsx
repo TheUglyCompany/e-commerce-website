@@ -81,7 +81,12 @@ function App() {
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
-      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} prodAvg={prodAvg} reviewCount={reviewCount} styles={styles} />
+      <RecommendedItems
+        dark={dark}
+        pageItemObj={{ ...product, ...{ percentage: `${prodAvg * 20}%`, totalReviews: reviewCount }, ...{ styles } }}
+        cardClicked={cardClicked}
+        productId={product.id}
+      />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} defer />
       <QATitle id="ratings">Ratings & Reviews </QATitle>

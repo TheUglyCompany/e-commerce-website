@@ -2,7 +2,12 @@ import React from 'react';
 import { QATitle } from '../qAndA/QandA.style';
 import { AddToOutfitCard, Carousel, CarouselContainer } from './Styles/RecommendedItems.styles';
 
-function YourOutfit({ renderButtons, renderListFromIds, addToOutfits, dark }) {
+function YourOutfit({
+  renderButtons,
+  renderListFromIds,
+  addToOutfits,
+  dark,
+}) {
   return (
     <CarouselContainer>
       <QATitle>Your Outfit</QATitle>
