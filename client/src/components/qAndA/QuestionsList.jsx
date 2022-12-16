@@ -8,7 +8,8 @@ import {
   OutermostLayer, StandardButton, StandardButtonSpan, NoQuestionsFoundStyle,
 } from './QandA.style';
 
-function QuestionsList({ productId, productName, dark, showModal, setShowModal }) {
+function QuestionsList({ productId, productName, dark }) {
+  const [showModal, setShowModal] = useState(false);
   const [questionList, setQuestionList] = useState([]);
   const [renderCount, setRenderCount] = useState(4);
   const [currQuestionList, setCurrQuestionList] = useState([]);

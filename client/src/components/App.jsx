@@ -19,8 +19,6 @@ function App() {
   const [prodAvg, setProdAvg] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [styles, setStyles] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -58,7 +56,7 @@ function App() {
 
   return !ready ? <LoadingPage /> : (
     <AppWrap dark={dark} data-testid="app">
-      <GlobalStyle showModal={showModal} />
+      <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
       <RecommendedItems
@@ -71,8 +69,6 @@ function App() {
       <QandA
         dark={dark}
         product={product}
-        showModal={showModal}
-        setShowModal={setShowModal}
         defer
       />
       <QATitle id="ratings">Ratings & Reviews </QATitle>
