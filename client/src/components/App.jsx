@@ -55,6 +55,7 @@ function App() {
     }
   }, [product]);
 
+<<<<<<< HEAD
   return !ready ? <LoadingPage /> : (
     <AppWrap dark={dark} data-testid="app">
       <GlobalStyle />

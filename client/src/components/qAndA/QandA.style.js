@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import GlobalStyle from '../Header.style';
 
 const UnderlineTextButton = styled.button`
   background: none;

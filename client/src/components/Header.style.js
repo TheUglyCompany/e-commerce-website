@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
     margin: -20px;
     padding: -20px;
     border: 0;
+    overflow-x: hidden;
+    overflow-y: ${(props) => (props.showModal ? 'hidden' : 'auto')};
 }`;
 
 const AppWrap = styled.div`
