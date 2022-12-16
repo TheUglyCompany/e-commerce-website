@@ -4,6 +4,7 @@ import {
   ModalTitle,
   ModalDesc,
   ErrorMessage,
+  WarningMsg,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -19,7 +20,6 @@ import {
   RRXSpan,
   CharGroup,
   ModalRating,
-  ReqAst,
   RadioButtons,
   RadioButtonLabels,
 } from './Styles/Ratings.style';
@@ -114,9 +114,6 @@ function Modal({
     errors: ${JSON.stringify(errorCheck)},
     `);
   }
-
-  console.log('This is the whole charateristic', errorCheck.characteristics.Quality);
-
   return (
     <ModalContainer>
       <RRModalContent dark={dark}>
@@ -135,7 +132,6 @@ function Modal({
         </ModalDesc>
         <ModalRating>
           Rate it!
-          <ReqAst>*</ReqAst>
           <div onChange={(event) => {
             setStarSelection(event.target.id);
             setForm({
@@ -165,10 +161,15 @@ function Modal({
               <RadioButtons type="radio" id="5" name="rating" />
             </RadioButtonLabels>
           </div>
+          {errorCheck.checked && errorCheck.rating
+            ? (
+              <ErrorMessage dark={dark}>
+                <p>You must rate the product</p>
+              </ErrorMessage>
+            ) : null}
         </ModalRating>
         <ModalRating>
           Do you recommend this product?
-          <ReqAst>*</ReqAst>
           <div>
             <div onChange={(event) => {
               if (event.target.id === 'Yes') {
@@ -190,17 +191,21 @@ function Modal({
               <input type="radio" id="No" name="recommend" />
             </div>
           </div>
+          {errorCheck.checked && errorCheck.recommend
+            ? (
+              <ErrorMessage dark={dark}>
+                <p>Do you recommend this product?</p>
+              </ErrorMessage>
+            ) : null}
         </ModalRating>
         <ModalLine>
           Characteristics:
-          <ReqAst>*</ReqAst>
         </ModalLine>
         {
           fitEntries.map((attribute, i) => {
             if (errorCheck.characteristics[attribute[0]] === undefined) {
               errorCheck.characteristics[attribute[0]] = true;
             }
-
             return (
               <ModalGroup>
                 <ModalLine
@@ -248,7 +253,18 @@ function Modal({
                     </CharGroup>
                   </ModalData>
                 </ModalLine>
+                {errorCheck.checked && errorCheck.characteristics[attribute[0]]
+                  ? (
+                    <ErrorMessage dark={dark}>
+                      <p>
+                        You must rate the
+                        {' '}
+                        {attribute[0]}
+                      </p>
+                    </ErrorMessage>
+                  ) : null}
               </ModalGroup>
+
             );
           })
         }
@@ -256,7 +272,6 @@ function Modal({
           <ModalLine>
             <ModalLabelText>
               Enter your name:
-              <ReqAst>*</ReqAst>
             </ModalLabelText>
             <ModalDataText>
               <SingleLineTextField
@@ -274,15 +289,20 @@ function Modal({
               />
             </ModalDataText>
           </ModalLine>
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             For privacy reasons, don&apos;t use your fullname or email
-          </ModalDesc>
+          </WarningMsg>
+          {errorCheck.checked && errorCheck.name
+            ? (
+              <ErrorMessage dark={dark}>
+                <p>You must enter a name</p>
+              </ErrorMessage>
+            ) : null}
         </ModalGroup>
         <ModalGroup>
           <ModalLine>
             <ModalLabelText>
               Email:
-              <ReqAst>*</ReqAst>
             </ModalLabelText>
             <ModalDataText>
               <SingleLineTextField
@@ -299,9 +319,15 @@ function Modal({
               />
             </ModalDataText>
           </ModalLine>
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             For authentication reasons, you will not be emailed
-          </ModalDesc>
+          </WarningMsg>
+          {errorCheck.checked && errorCheck.email
+            ? (
+              <ErrorMessage dark={dark}>
+                <p>You must enter a valid email address</p>
+              </ErrorMessage>
+            ) : null}
         </ModalGroup>
         <ModalGroup>
           <ModalLine>
@@ -326,7 +352,6 @@ function Modal({
         </ModalGroup>
         <ModalGroup>
           Write a review:
-          <ReqAst>*</ReqAst>
           {' '}
           <MultiLineTextField
             value={form.body}
@@ -340,41 +365,23 @@ function Modal({
               });
             }}
           />
-          <ModalDesc>
+          <WarningMsg style={{ marginLeft: '50%' }}>
             {
             'Minimum required characters left: '
             }
             {
               50 - (form.body.length) <= 0 ? '0' : 50 - (form.body.length)
             }
-          </ModalDesc>
+          </WarningMsg>
         </ModalGroup>
-        {errorCheck.checked ? (
-          <ErrorMessage>
-            <hr />
-            {errorCheck.rating ? <p>Please rate the product</p> : null}
-            {errorCheck.recommend ? <p>Please say whether you recommend this product</p> : null}
-            {errorCheck.name ? <p>Please enter a name</p> : null}
-            {fitEntries.map((entry) => {
-              console.log('this is cur char', errorCheck.characteristics[entry[0]]);
-              return (
-                errorCheck.characteristics[entry[0]]
-                  ? (
-                    <p>
-                      Please put a rating for
-                      {' '}
-                      {entry[0]}
-                    </p>
-                  ) : null
-              );
-            })}
-
-            {errorCheck.email ? <p> The email you entered is not valid</p> : null}
-            {errorCheck.reviewBody ? <p>The body must be at least 50 characters</p> : null}
+        {errorCheck.checked && errorCheck.reviewBody ? (
+          <ErrorMessage dark={dark}>
+            <p>The body must be at least 50 characters</p>
           </ErrorMessage>
         ) : null}
         <div>
           <Button
+            dark={dark}
             type="button"
             onClick={() => {
               setShowModal(false);
@@ -383,6 +390,7 @@ function Modal({
             Cancel
           </Button>
           <Button
+            dark={dark}
             type="submit"
             onClick={() => {
               handleSubmit();

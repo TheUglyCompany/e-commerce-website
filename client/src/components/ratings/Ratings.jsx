@@ -107,7 +107,7 @@ function Ratings({
                 &nbsp;
                 <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
               </DdBttn>
-              {dropdownActive && (
+              {dropdownActive ? (
                 <DdContent>
                   {options.map((option) => (
                     <DdItem onClick={(e) => {
@@ -119,7 +119,7 @@ function Ratings({
                     </DdItem>
                   ))}
                 </DdContent>
-              )}
+              ) : null}
             </Dd>
             </span>
           </ReviewStyleHeader>
