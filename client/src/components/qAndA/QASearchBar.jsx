@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchBarStyle, SearchBarInput } from './QandA.style';
+import { SearchBarStyle, SearchBarInput, SearchDiv } from './QandA.style';
 
 function QASearchBar({ setCurrQuestionList, questionList, dark }) {
   function handleSearch(event) {
@@ -19,13 +19,15 @@ function QASearchBar({ setCurrQuestionList, questionList, dark }) {
   }
 
   return (
-    <SearchBarStyle>
-      <SearchBarInput
-        placeholder="Have a question? Search for answers..."
-        onChange={(event) => handleSearch(event)}
-        dark={dark}
-      />
-    </SearchBarStyle>
+    <SearchDiv>
+      <SearchBarStyle>
+        <SearchBarInput
+          placeholder="Have a question? Search for answers..."
+          onChange={(event) => handleSearch(event)}
+          dark={dark}
+        />
+      </SearchBarStyle>
+    </SearchDiv>
   );
 }
 

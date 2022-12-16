@@ -14,6 +14,7 @@ function Question({
   const [location, setLocation] = useState('');
   const [reported, setReported] = useState(false);
   const [helpful, setHelpful] = useState(false);
+  const [answerList, setAnswerList] = useState([]);
   const questionId = question.question_id;
   const currQuestionInfo = localStorage[questionId];
 
@@ -56,10 +57,12 @@ function Question({
   }
 
   return (
-    <QuestionStyle>
+    <QuestionStyle dark={dark}>
       {' '}
       <QuestionBodySpan>
-        Q: {question.question_body}
+        Q:
+        {' '}
+        {question.question_body}
       </QuestionBodySpan>
       <ButtonSpan>
         <HelpfulButton
@@ -123,6 +126,8 @@ function Question({
             productName={productName}
             setShowModal={setShowModal}
             dark={dark}
+            setAnswerList={setAnswerList}
+            currQuestionList={currQuestionList}
           />
         )
         : null}
@@ -136,6 +141,8 @@ function Question({
           setCurrQuestionList={setCurrQuestionList}
           dark={dark}
           productId={productId}
+          setAnswerList={setAnswerList}
+          answerList={answerList}
         />
       </div>
     </QuestionStyle>

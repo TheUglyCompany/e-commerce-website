@@ -21,6 +21,7 @@ const HelpfulButton = styled.button`
   font-weight: light;
   font-size: 12px;
   color: ${(props) => (props.dark ? '#D3D3D3' : 'grey')};
+  text-decoration: underline;
 `;
 
 const LoadMoreButton = styled.button`
@@ -47,9 +48,6 @@ const ModalContainer = styled.div`
   position: fixed;
   background: rgba(0,0,0, 0.5);
   z-index: 1000;
-  font-family: poppins;
-  font-weight: light;
-  font-size: 15px;
 `;
 
 const ModalTitle = styled.span`
@@ -77,7 +75,7 @@ const ModalContent = styled.div`
   border-radius: 3px;
   color: ${(props) => (props.dark ? 'white' : 'black')};
   min-height: 70%;
-  max-height: 100%;
+  max-height: 60%;
   max-width: 100%;
   min-width: 80%;
   font-family: poppins;
@@ -140,7 +138,7 @@ const QuestionStyle = styled.div`
   padding: 10px;
   margin: 10px;
   font-size: 15px;
-  border: 1px solid;
+  background-color: ${(props) => (props.dark ? '#616161' : '#e0e0e0')};
 `;
 
 const AnswerStyle = styled.div`
@@ -201,7 +199,7 @@ const QandAStyle = styled.div`
 const StandardButtonSpan = styled.div`
   display: flex;
   justify-content: center;
-  margin: 5px 5px 15px 5px;
+  margin: 5px 5px 7rem 5px;
 `;
 
 const AnswerImageStyle = styled.img`
@@ -260,22 +258,21 @@ const AnswerImageZoom = styled.img`
   position: fixed;
   top: 50px;
   // left: 50px;
-  width: 80%;
   height: 80%;
   background: black;
   z-index: 3;
   border: 5px solid;
   /* cursor: pointer; */
+  object-fit: fill;
 `;
 
 const ErrorMessage = styled.p`
   text-align: center;
-  margin: 0;
-  padding: 0;
   font-family: ROBOTO;
   font-size: 15px;
   font-weight: bold;
   color: #8b0000;
+  color: ${(props) => (props.dark ? 'red' : '#8b0000')};
 `;
 
 const UploadButton = styled.button`
@@ -326,6 +323,16 @@ const WarningMsg = styled(ModalDesc)`
   font-size: 10px;
 `;
 
+const SearchDiv = styled.div`
+  position: sticky;
+  display: block;
+  top: 0px;
+`;
+
+const ModalButtonSpan = styled(StandardButtonSpan)`
+  margin: 5px 5px 15px 5px;
+`;
+
 export {
   UnderlineTextButton,
   HelpfulButton,
@@ -362,4 +369,6 @@ export {
   SubmitButton,
   ImgUploadSpan,
   WarningMsg,
+  SearchDiv,
+  ModalButtonSpan,
 };

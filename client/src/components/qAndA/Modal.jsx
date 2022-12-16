@@ -10,7 +10,7 @@ import {
   TextFieldinput,
   NameFieldInput,
   EmailFieldInput,
-  StandardButtonSpan,
+  ModalButtonSpan,
   ImageInputUpload,
   ErrorMessage,
   UploadButton,
@@ -31,7 +31,8 @@ function Modal({
   dark,
   setCurrQuestionList,
   setQuestionList,
-  getAnswers,
+  setAnswerList,
+  currQuestionList,
 }) {
   const [textFieldError, settextFieldError] = useState(false);
   const [nameError, setNameError] = useState(false);
@@ -110,8 +111,17 @@ function Modal({
         { headers: { Authorization: API_KEY } },
       )
         .then(() => {
-          getAnswers();
-        })
+          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`, {
+            headers: { Authorization: API_KEY },
+          })
+            .then((response) => {
+              setAnswerList(response.data.results);
+            })
+            .catch((error) => {
+              console.log('There is an error in AnswerList: ', error);
+            });
+        }, [currQuestionList])
+
         .catch((error) => {
           console.log('There is an error in Answer Modal: ', error);
         });
@@ -173,7 +183,7 @@ function Modal({
             )}
           <br />
           <label>
-            Question:
+            {location === 'question' ? 'Question:' : 'Your Answer: '}
             &nbsp;
             <TextFieldinput
               value={form.textInput}
@@ -187,7 +197,8 @@ function Modal({
                 });
               }}
             />
-            {textFieldError ? <ErrorMessage>Please input a valid question</ErrorMessage> : null}
+            {textFieldError ? <ErrorMessage dark={dark}>Please input a valid question</ErrorMessage>
+              : null}
           </label>
           <label>
             <br />
@@ -207,7 +218,7 @@ function Modal({
               }}
             />
             <br />
-            {nameError ? <ErrorMessage>Please input a valid name</ErrorMessage> : null}
+            {nameError ? <ErrorMessage dark={dark}>Please input a valid name</ErrorMessage> : null}
             <WarningMsg>
               For privacy reasons, don&apos;t use your full name or email
             </WarningMsg>
@@ -230,7 +241,8 @@ function Modal({
               }}
             />
             <br />
-            {emailError ? <ErrorMessage>Please input a valid email</ErrorMessage> : null}
+            {emailError ? <ErrorMessage dark={dark}>Please input a valid email</ErrorMessage>
+              : null}
             <WarningMsg>
               For authentication reasons, you will not be emailed
             </WarningMsg>
@@ -266,7 +278,7 @@ function Modal({
                 ))}
               </label>
             ) : null}
-          <StandardButtonSpan>
+          <ModalButtonSpan>
             <br />
             {location === 'question'
               ? (
@@ -287,7 +299,7 @@ function Modal({
                   Submit
                 </SubmitButton>
               )}
-          </StandardButtonSpan>
+          </ModalButtonSpan>
         </ModalContent>
       </ModalWrap>
     </ModalContainer>
