@@ -51,11 +51,13 @@ const OVgalleryArrowRight = styled.div`
 const OVgalleryThumb = styled.img`
   margin: 5px;
   height: 50px;
+  width: 50px;
 `;
 
 const OVgalleryThumbSelect = styled.img`
   margin: 5px;
   height: 48px;
+  width: 50px;
   opacity: 0.5;
   border: 1px solid;
   z-index: 1;
@@ -145,7 +147,7 @@ const Details = styled.div`
 
 const OVstars = styled.div`
   display: inline-block;
-  font-size: 12px;
+  font-size: 10px;
   font-family: Poppins;
   font-weight: 200;
   line-height: 1;
@@ -162,6 +164,7 @@ const OVstars = styled.div`
 
 const RatingsLink = styled.a`
   color: ${(props) => (props.dark ? 'white' : 'black')};
+  font-size: 11px;
 `;
 
 const OVstarsReview = styled.span`
@@ -221,7 +224,7 @@ const StyleImg = styled.img`
 `;
 
 const StyleImgPad = styled.span`
-  padding: 10px;
+  padding: 5px;
   position: relative;
 `;
 
