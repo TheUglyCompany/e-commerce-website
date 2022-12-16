@@ -25,14 +25,6 @@ function OVgallery({
   const [galLeftArrow, setGalLeftArrow] = useState('none');
   const [galRightArrow, setGalRightArrow] = useState('flex');
 
-  const onZoom = () => {
-    setZoom('none');
-  };
-
-  const goZoom = () => {
-    setZoom('flex');
-  };
-
   const galleryLeft = () => {
     if (photoIdx !== 0) {
       setPhotoIdx(photoIdx - 1);
@@ -87,9 +79,9 @@ function OVgallery({
           <img src={dark ? 'https://i.imgur.com/EbWJrAK.png' : 'https://i.imgur.com/NuTyVPZ.png'} height="30px" alt="" />
         </OVgalleryArrowLeft>
 
-        <GalleryBig onClick={goZoom}>
+        <GalleryBig onClick={() => setZoom('flex')}>
           {styleSelected.photos !== undefined
-            ? <ImageBig src={mainImg} alt="" /> : null}
+            ? <ImageBig src={mainImg} alt="" async /> : null}
         </GalleryBig>
 
         <OVgalleryArrowRight display={galRightArrow} onClick={galleryRight}>
@@ -102,8 +94,8 @@ function OVgallery({
           <img src="https://cdn-icons-png.flaticon.com/512/7185/7185277.png" height="30px" alt="" />
         </GalleryArrowL>
 
-        <ImageZoomSpan onClick={onZoom}>
-          <ImageZoom src={mainImg} alt="" />
+        <ImageZoomSpan onClick={() => setZoom('none')}>
+          <ImageZoom src={mainImg} alt="" defer />
         </ImageZoomSpan>
 
         <GalleryArrowR display={galRightArrow} onClick={galleryRight}>
