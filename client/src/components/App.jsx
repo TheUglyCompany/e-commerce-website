@@ -14,11 +14,13 @@ import {
 
 function App() {
   const [product, setProduct] = useState(null);
-  const [ready, setReady] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [metaData, setMetaData] = useState({});
   const [prodAvg, setProdAvg] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
-  const [metaData, setMetaData] = useState({});
+  const [styles, setStyles] = useState(null);
+
+  const [dark, setDark] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const cardClicked = (productId) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, { headers: { Authorization: API_KEY } })
@@ -47,25 +49,24 @@ function App() {
   };
 
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: API_KEY } })
+    Promise.all([
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346', { headers: { Authorization: API_KEY } }),
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', { headers: { Authorization: API_KEY }, params: { product_id: 40346 } }),
+      axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40346/styles', { headers: { Authorization: API_KEY } })])
       .then((response) => {
-        setProduct(response.data[2]);
-        axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta', {
-          headers: { Authorization: API_KEY },
-          params: { product_id: response.data[2].id },
-        }).then((metaDataResponse) => {
-          const totalReviews = Number(metaDataResponse.data.ratings['1']) + Number(metaDataResponse.data.ratings['2']) + Number(metaDataResponse.data.ratings['3']) + Number(metaDataResponse.data.ratings['4']) + Number(metaDataResponse.data.ratings['5']);
-          setMetaData(metaDataResponse.data);
-          setReviewCount(totalReviews);
-          setProdAvg((
-            (Number(metaDataResponse.data.ratings['1'])
-            + (Number(metaDataResponse.data.ratings['2']) * 2)
-            + (Number(metaDataResponse.data.ratings['3']) * 3)
-            + (Number(metaDataResponse.data.ratings['4']) * 4)
-            + (Number(metaDataResponse.data.ratings['5']) * 5))
-            / totalReviews
-          ).toFixed(1));
-        });
+        setProduct(response[0].data);
+        setMetaData(response[1].data);
+        const totalReviews = Number(response[1].data.ratings['1']) + Number(response[1].data.ratings['2']) + Number(response[1].data.ratings['3']) + Number(response[1].data.ratings['4']) + Number(response[1].data.ratings['5']);
+        setReviewCount(totalReviews);
+        setProdAvg((
+          (Number(response[1].data.ratings['1'])
+          + (Number(response[1].data.ratings['2']) * 2)
+          + (Number(response[1].data.ratings['3']) * 3)
+          + (Number(response[1].data.ratings['4']) * 4)
+          + (Number(response[1].data.ratings['5']) * 5))
+          / totalReviews
+        ).toFixed(1));
+        setStyles(response[2].data);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -80,7 +81,12 @@ function App() {
       <GlobalStyle />
       <Header dark={dark} setDark={setDark} />
       <Overview dark={dark} product={product} prodAvg={prodAvg} reviewCount={reviewCount} />
-      <RecommendedItems dark={dark} product={product} cardClicked={cardClicked} />
+      <RecommendedItems
+        dark={dark}
+        pageItemObj={{ ...product, ...{ percentage: `${prodAvg * 20}%`, totalReviews: reviewCount }, ...{ styles } }}
+        cardClicked={cardClicked}
+        productId={product.id}
+      />
       <QATitle>Questions & Answers</QATitle>
       <QandA dark={dark} product={product} defer />
       <QATitle id="ratings">Ratings & Reviews </QATitle>
