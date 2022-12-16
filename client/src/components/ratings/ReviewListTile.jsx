@@ -24,9 +24,9 @@ function ReviewListTile({ review, postFeedback, dark }) {
   const [imageSource, setImageSource] = useState('');
 
   return (
-    <TileStyle>
+    <TileStyle dark={dark}>
       {' '}
-      <CardInfo>
+      <CardInfo dark={dark}>
         <div>
           <Stars color={dark ? '#14453D' : '#6e66ab'} style={{ '--rating': `${(review.rating * 20)}%` }} />
         </div>
