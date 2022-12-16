@@ -4,7 +4,6 @@ import {
   HeaderContentDiv,
   ButtonHeader,
   SiteName,
-  Period,
   Cart,
   DarkButton,
 } from './Header.style';
