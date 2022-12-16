@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
+    "start": "node server/index.js",
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint ./client/src/"
@@ -18,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.2.0",
     "date-fns": "^2.29.3",
+    "express": "^4.18.2",
     "local-storage": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
