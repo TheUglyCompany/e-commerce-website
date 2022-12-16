@@ -30,7 +30,6 @@ function AnswerList({
       {answerList?.length !== 0
         ? answerList.map((answer, index) => {
           count += 1;
-          console.log(answer);
           if (count <= renderCount) {
             return (
               <Answer

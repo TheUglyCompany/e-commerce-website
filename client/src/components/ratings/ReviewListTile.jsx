@@ -28,7 +28,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
       {' '}
       <CardInfo>
         <div>
-          <Stars dark={dark} style={{ '--rating': `${((review.rating / 5) * 100)}%` }} />
+          <Stars color={dark ? '#14453D' : '#6e66ab'} style={{ '--rating': `${(review.rating * 20)}%` }} />
         </div>
         <div>
           {' '}
@@ -124,7 +124,7 @@ function ReviewListTile({ review, postFeedback, dark }) {
         </HelpfulButton>
         Yes
         {' ('}
-        {review.helpfulness}
+        {helpfulled ? review.helpfulness + 1 : review.helpfulness}
         {') '}
         <HelpfulButton
           value="report"
