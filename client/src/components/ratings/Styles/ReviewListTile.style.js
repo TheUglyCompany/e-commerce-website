@@ -8,9 +8,9 @@ align-content: space-between;
 justify-content: space-between;
 padding: 20px;
 margin: 10px;
-margin-bottom: 20px;
+margin-bottom: 30px 20px 30px 20px;
 /* border: 1px solid; */
-background-color: lightgrey;
+background-color: ${(props) => (props.dark ? '#616161' : '#e0e0e0')};
 border-radius: 2px;
 `;
 
@@ -49,6 +49,7 @@ display: flex;
 // border-style: solid;
 width: 100%;
 height: 2em;
+color:  ${(props) => (props.dark ? 'white' : 'gray')};
 font-size: 14px;
 justify-content: space-between;
 `;

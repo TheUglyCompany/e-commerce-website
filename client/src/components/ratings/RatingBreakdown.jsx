@@ -80,6 +80,7 @@ function RatingBreakdown({
       {isFilter
         ? (
           <ResetFilter
+            dark={dark}
             onClick={() => resetState(true)}
           >
             Reset Filter

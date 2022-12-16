@@ -270,6 +270,8 @@ const AnswerImageZoom = styled.img`
 
 const ErrorMessage = styled.p`
   text-align: center;
+  margin: 0;
+  padding: 0;
   font-family: ROBOTO;
   font-size: 15px;
   font-weight: bold;
