@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import API_KEY from '../../../config';
 import {
@@ -9,6 +9,8 @@ import {
   WarningMsg,
   ImgUploadSpan,
   UploadButton,
+  ImageInputUpload,
+  AnswerImageStyle,
 } from '../qAndA/QandA.style';
 import { Button } from '../overview/Overview.style';
 import {
@@ -57,6 +59,7 @@ function Modal({
     email: true,
     reviewBody: true,
   });
+  const hiddenFileInput = useRef(null);
   const fitEntries = Object.entries(characteristics);
   const charDescriptions = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
@@ -95,6 +98,24 @@ function Modal({
       setShowModal(false);
       setSort(sort.slice());
     }
+  }
+
+  function handleFileEvent(event) {
+    const chosenFiles = event.target.files;
+    const fileArray = [];
+    for (let i = 0; i < chosenFiles.length; i += 1) {
+      console.log(chosenFiles[i]);
+      fileArray.push(URL.createObjectURL(chosenFiles[i]));
+    }
+    console.log('Outside of Forloop: ', chosenFiles);
+    setForm({
+      ...form,
+      imageInput: fileArray,
+    });
+  }
+
+  function handleClick() {
+    hiddenFileInput.current.click();
   }
 
   // onSubmit axios post function
@@ -406,6 +427,33 @@ function Modal({
             <p>The body must be at least 50 characters</p>
           </ErrorMessage>
         ) : null}
+        <ModalGroup>
+          <ImgUploadSpan>
+            Image Upload:
+            &nbsp;
+            <ImageInputUpload
+              type="file"
+              required="false"
+              multiple
+              style={{ display: 'none' }}
+              ref={hiddenFileInput}
+              onChange={handleFileEvent}
+            />
+            {form.photos?.length < 5
+              ? (
+                <UploadButton
+                  onClick={() => { handleClick(); }}
+                  dark={dark}
+                >
+                  Upload
+
+                </UploadButton>
+              ) : null}
+          </ImgUploadSpan>
+          {form.photos?.map((image) => (
+            <AnswerImageStyle src={image} dark={dark} />
+          ))}
+        </ModalGroup>
         <div>
           <Button
             dark={dark}
