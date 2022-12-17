@@ -14,19 +14,6 @@ function ReviewList({
   curQuery,
   postFeedback,
 }) {
-  // function postFeedback(feedbackType, reviewId) { // handles report and helpfulness
-  //   axios.put(
-  //     `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/${feedbackType}`,
-  //     { review_id: reviewId },
-  //     { headers: { Authorization: API_KEY } },
-  //   )
-  //     .then(() => {
-  //       console.log('successful', feedbackType);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }
   let count = 0;
   return (
     <Reviews>
