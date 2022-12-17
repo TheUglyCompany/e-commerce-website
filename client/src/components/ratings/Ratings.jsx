@@ -20,7 +20,7 @@ import {
   DdContent,
   DdItem,
 } from '../overview/Overview.style';
-import { SearchBarStyle, SearchBarInput } from '../qAndA/QandA.style';
+import { SearchBarInput } from '../qAndA/QandA.style';
 
 function Ratings({
   product,
@@ -28,6 +28,7 @@ function Ratings({
   reviewCount,
   metaData,
   prodAvg,
+  postFeedback,
 }) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
@@ -42,6 +43,7 @@ function Ratings({
   const [showModal, setShowModal] = useState(false);
   const [dropdownActive, setDropdownActive] = useState(false);
   const [curQuery, setCurQuery] = useState('');
+
   function handleSearch(event) {
     event.preventDefault();
     const query = event.target.value.toLowerCase().trim();
@@ -60,8 +62,8 @@ function Ratings({
         headers: { Authorization: API_KEY },
         params: {
           product_id: product.id,
-          sort: sort.toLowerCase(), // if count is 5 and page is 1 this only serves the first 5
-          count: reviewCount, // this does not wait for the first get function
+          sort: sort.toLowerCase(),
+          count: reviewCount,
           page: 1,
         },
       },
@@ -71,12 +73,9 @@ function Ratings({
         // response.data contains count, page, product_id, and results
       })
       .catch((err) => console.log(err.message));
-  }, [sort, reviewCount]);// this makes mulitple gets on startup
-  // dropdown
+  }, [sort, reviewCount]);
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
-  // if (metaData.ratings) {
-  // console.log('sort', sort);
   return (
     <OuterMostLayer href="#ratings">
       <RatingsAndReviews>
@@ -102,29 +101,32 @@ function Ratings({
             <span style={{ display: 'flex', alignItems: 'center' }}>
               Sorted by
               &nbsp;
-            <Dd>
-              <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
-                {sort}
-                &nbsp;
-                <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
-              </DdBttn>
-              {dropdownActive ? (
-                <DdContent>
-                  {options.map((option) => (
-                    <DdItem onClick={(e) => {
-                      setSort(e.target.textContent);
-                      setDropdownActive(false);
-                    }}
-                    >
-                      {option}
-                    </DdItem>
-                  ))}
-                </DdContent>
-              ) : null}
-            </Dd>
+              <Dd>
+                <DdBttn dark={dark} onClick={() => { setDropdownActive(!dropdownActive); }} style={{ width: '6em' }}>
+                  {sort}
+                  &nbsp;
+                  <span><img src={dark ? 'https://i.imgur.com/fPN5x5Y.png' : 'https://i.imgur.com/qNLEmCH.png'} width="10px" alt="" /></span>
+                </DdBttn>
+                {dropdownActive ? (
+                  <DdContent>
+                    {options.map((option) => (
+                      <DdItem onClick={(e) => {
+                        setSort(e.target.textContent);
+                        setDropdownActive(false);
+                      }}
+                      >
+                        {option}
+                      </DdItem>
+                    ))}
+                  </DdContent>
+                ) : null}
+              </Dd>
             </span>
           </ReviewStyleHeader>
           <ReviewList
+            postFeedback={(destination, id, feedbackType) => {
+              postFeedback(destination, id, feedbackType);
+            }}
             reviews={reviews}
             onSelect={() => onSelect}
             renderCount={renderCount}

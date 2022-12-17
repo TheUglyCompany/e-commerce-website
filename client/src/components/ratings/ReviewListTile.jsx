@@ -110,8 +110,8 @@ function ReviewListTile({ review, postFeedback, dark }) {
           value="helpful"
           id={review.review_id}
           onClick={(e) => {
-            if (!helpfulled) {
-              postFeedback(e.target.value, e.target.id);
+            if (!helpfulled && localStorage[review.review_id] !== undefined) {
+              postFeedback(['reviews', e.target.id, e.target.value]);
               setHelpfulled(true);
             } else {
               alert('Already helpfulled!');
@@ -132,7 +132,8 @@ function ReviewListTile({ review, postFeedback, dark }) {
           id={review.review_id}
           onClick={(e) => {
             if (!reported) {
-              postFeedback(e.target.value, e.target.id);
+              postFeedback(['reviews', e.target.id, e.target.value]);
+              console.log('target value', e.target.value);
               setReported(true);
             } else {
               alert('already reported');
