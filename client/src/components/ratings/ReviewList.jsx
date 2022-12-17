@@ -27,9 +27,11 @@ function ReviewList({
     <Reviews>
       {
       reviews.map((review) => {
+        const summary = review.summary.toLowerCase();
+        const body = review.body.toLowerCase();
         if (curQuery.length > 0) {
           if ((count < renderCount && filter[review.rating.toString()])
-              && (review.body.includes(curQuery) || review.summary.includes(curQuery))) {
+              && (body.includes(curQuery) || summary.includes(curQuery))) {
             count += 1;
             return (
               <ReviewListTile

@@ -10,14 +10,6 @@ import {
 
 function ProductBreakdown({ metaData, dark }) {
   let attributes = [];
-  /*
-        1. Size
-        2. Width
-        3. Comfort
-        4. Quality
-        5. Length
-        6. Fit
-  */
 
   if (metaData.characteristics) {
     attributes = (Object.entries(metaData.characteristics));// an array of arrays
