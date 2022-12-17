@@ -9,12 +9,7 @@ import {
 } from './Styles/ProductBreakdown.style';
 
 function ProductBreakdown({ metaData, dark }) {
-  let attributes = [];
-
-  if (metaData.characteristics) {
-    attributes = (Object.entries(metaData.characteristics));// an array of arrays
-  }
-
+  const attributes = metaData.characteristics ? Object.entries(metaData.characteristics) : [];
   const charDescriptions = {
     Size: ['A size too small', 'A size too wide'],
     Width: ['Too narrow', 'Too wide'],
@@ -24,11 +19,6 @@ function ProductBreakdown({ metaData, dark }) {
     Fit: ['Runs tight', 'Runs long'],
   };
 
-  // make an array of names
-  // make an equal array length of Values
-  // map through them
-  // attribute name
-  // percentage of attribute value passed as width
   return (
     <FitChart data-testid="test">
       {
@@ -55,7 +45,6 @@ function ProductBreakdown({ metaData, dark }) {
           );
         })
       }
-
     </FitChart>
   );
 }

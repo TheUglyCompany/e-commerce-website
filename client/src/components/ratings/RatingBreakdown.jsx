@@ -23,7 +23,8 @@ function RatingBreakdown({
 }) {
   const [isFilter, setIsFilter] = useState(false);
   const filterEntries = Object.entries(filter);
-  function resetState(bool) { // resets filter
+  // resets filter
+  function resetState(bool) {
     const tempObj = { ...filter };
     for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
       tempObj[i.toString()] = bool;
@@ -35,7 +36,7 @@ function RatingBreakdown({
     return tempObj;
   }
   // function for onclick of star rating
-  function filterBy(event) {
+  function filterBy(value) {
     let isAllTrue = true;
     let tempObj = { ...filter };
     for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
@@ -46,7 +47,7 @@ function RatingBreakdown({
     if (isAllTrue) {
       tempObj = resetState(false);
     }
-    tempObj[event.target.value] = !tempObj[event.target.value];
+    tempObj[value] = !tempObj[value];
     let isAllFalse = true;
     for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
       if (tempObj[i.toString()]) {
@@ -106,7 +107,7 @@ function RatingBreakdown({
       <StarChart>
         {percentages.map((percentage, index) => (
           <RowFormat key={index}>
-            <StarButton dark={dark} value={index + 1} onClick={(e) => filterBy(e)}>
+            <StarButton dark={dark} value={index + 1} onClick={(e) => filterBy(e.target.value)}>
               {index + 1}
               {' '}
               Stars
