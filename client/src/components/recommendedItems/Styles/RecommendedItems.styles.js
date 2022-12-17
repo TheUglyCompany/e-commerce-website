@@ -100,7 +100,7 @@ const StyledCard = styled(Card)`
   }
   .ratings {
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 1rem;
   }
  `;
@@ -146,13 +146,46 @@ const Stars = styled.div`
     -webkit-text-fill-color: transparent;
   }
 `;
+const ModalContent = styled.div`
+  line-height: 1.4;
+  margin: auto;
+  background: ${(props) => (props.dark ? '#14453D' : '#8B7DD1')};
+  color: ${(props) => (props.dark ? 'white' : 'black')};
+  border-radius: 3px;
+  min-height: 30%;
+  max-height: 60%;
+  min-width: 35%;
+  font-family: poppins;
+  font-size: 15px;
+  border: 1px solid black;
+  padding: 60px;
+`;
 const ComparisonContainer = styled.div`
-  position: relative;
-  top: 2rem;
-  display: grid;
-  justify-items: center;
-  align-items: end;
-  grid-template-columns: repeat(3, 1fr);
+  padding-top: 2rem;
+
+  table {
+    text-align: center;
+    margin: 'auto';
+    width: '100%';
+    border: collapse;
+  }
+  thead {
+    font-size: 1.1rem;
+  }
+  thead::after {
+    content: "";
+    display: block;
+    height: 1.4rem;
+    background: transparent;
+  }
+  tr {
+    height: 3.5rem;
+    border: 1rem solid red;
+    vertical-align: middle;
+  }
+  td {
+    padding: 0 1.5rem;
+  }
 `;
 
 export {
@@ -161,6 +194,7 @@ export {
   CarouselContainer,
   ComparisonContainer,
   NextCard,
+  ModalContent,
   PreviousCard,
   RIContainer,
   Stars,

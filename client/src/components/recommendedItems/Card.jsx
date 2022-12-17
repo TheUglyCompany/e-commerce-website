@@ -85,7 +85,7 @@ function Card({
           {cardItemObj.percentage === 'no rating' ? <>no reviews</> : (
             <div className="ratings card-information">
               <Stars style={{ '--rating': cardItemObj.percentage }} />
-              {` out of ${cardItemObj.totalReviews} reviews`}
+              {` from ${cardItemObj.totalReviews} reviews`}
             </div>
           ) }
 
