@@ -76,6 +76,7 @@ function Ratings({
   const options = ['HELPFUL', 'NEWEST', 'RELEVANT'];
   const onSelect = (e) => (setSort(e.value));
   // if (metaData.ratings) {
+  // console.log('sort', sort);
   return (
     <OuterMostLayer href="#ratings">
       <RatingsAndReviews>
@@ -157,6 +158,8 @@ function Ratings({
             <Modal
               setShowModal={setShowModal}
               product={product}
+              setSort={setSort}
+              sort={sort}
               characteristics={metaData.characteristics}
               dark={dark}
             />
