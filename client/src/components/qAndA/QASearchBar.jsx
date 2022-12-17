@@ -13,7 +13,7 @@ function QASearchBar({ setCurrQuestionList, questionList, dark }) {
         if (questionBody.includes(query)) {
           return question;
         }
-        // return null;
+        return null;
       }));
     }
   }
