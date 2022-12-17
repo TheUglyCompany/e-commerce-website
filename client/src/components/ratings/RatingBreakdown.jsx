@@ -37,24 +37,25 @@ function RatingBreakdown({
   }
   // function for onclick of star rating
   function filterBy(value) {
+    // console.log('value', typeof(value));
     let isAllTrue = true;
     let tempObj = { ...filter };
-    for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
+    for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) { // if any of the filters are false
       if (!filter[i.toString()]) {
         isAllTrue = false;
       }
     }
-    if (isAllTrue) {
-      tempObj = resetState(false);
+    if (isAllTrue) { // reset all filters to false
+      tempObj = resetState(false); // this happens on initial filter click
     }
-    tempObj[value] = !tempObj[value];
+    tempObj[value] = !tempObj[value]; // activate filter
     let isAllFalse = true;
-    for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) {
+    for (let i = 1; i < Object.keys(tempObj).length + 1; i += 1) { // if any of the filters are true
       if (tempObj[i.toString()]) {
         isAllFalse = false;
       }
     }
-    if (isAllFalse) {
+    if (isAllFalse) { // reset all filters to true
       tempObj = resetState(true);
     }
     setFilter(tempObj);

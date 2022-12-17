@@ -28,6 +28,7 @@ function Ratings({
   reviewCount,
   metaData,
   prodAvg,
+  postFeedback,
 }) {
   const [renderCount, setRenderCount] = useState(2);
   const [reviews, setReviews] = useState([]);
@@ -123,6 +124,9 @@ function Ratings({
             </span>
           </ReviewStyleHeader>
           <ReviewList
+            postFeedback={(destination, id, feedbackType) => {
+              postFeedback(destination, id, feedbackType);
+            }}
             reviews={reviews}
             onSelect={() => onSelect}
             renderCount={renderCount}
