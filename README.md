@@ -6,8 +6,8 @@
   
   Our team wanted to create a functioning retail web-portal with the goals of providing a modern and smooth shopping experience. The main components of this web-page are:
   
-  - Overview by Charlie Um
-  - Recommended Items by Wonseok Park
+  - Product Overview by Charlie Um
+  - Recommended Items by William (Wonseok) Park
   - Questions & Answers by Matthew Sigler
   - Ratings & Reviews by Johnathan Sindorf
   
@@ -26,4 +26,43 @@
  
 ## Demo
  
-### Communication
+## Team
+
+Throughout the project, our team worked in an agile environment. If you would like to get in contact with us, our information is below: 
+
+Product Overview: Charlie\
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/charlie-um-b7209824/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/charlieum)
+
+Recommended Items: William (Wonseok)\
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wonseok-park-7748b7170/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/officiallywily)
+
+Questions & Answers: Matt\
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matthew-sigler-15859610a/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/siglerm)
+
+Ratings & Reviews: John\
+[![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jonathan-sindorf-a6a646118/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sindwarf)
+
+### Start the Application Locally
+
+1. Clone the repository locally.
+```
+git clone https://github.com/TacoBellFEC/front-end-capstone.git
+```
+
+2. Install the required dependencies.
+```
+npm install
+```
+
+3. Create a copy of `example.config.js`, rename it to `config.js`, and add the required API key from your GitHub account.
+
+4. Serve the files with Webpack.
+```
+npm run dev
+```
+
+The application is now live locally at `http://localhost:8080/`.
