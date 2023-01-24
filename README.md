@@ -9,7 +9,7 @@
   - Product Overview by Charlie Um
   - Recommended Items by William (Wonseok) Park
   - Questions & Answers by Matthew Sigler
-  - Ratings & Reviews by Johnathan Sindorf
+  - Ratings & Reviews by Jonathan Sindorf
   
 ## Tech Stack
 
