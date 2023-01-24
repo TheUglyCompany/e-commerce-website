@@ -37,7 +37,11 @@
 ![ezgif com-gif-maker](https://im.ezgif.com/tmp/ezgif-1-3930caf2ca.gif)
 
 ### Ratings & Reviews
- 
+
+ ![FirstGif](https://user-images.githubusercontent.com/45885748/214370430-4e77410b-73c8-4e75-a290-4a4d252c1eae.gif)
+ ![SSecondGif](https://user-images.githubusercontent.com/45885748/214374302-a904dadb-bdb5-46f1-80e0-a4066dddeb5d.gif)
+ ![sThirdGif](https://user-images.githubusercontent.com/45885748/214374390-f9b46d79-7e9b-4235-84ce-e2f2951797a5.gif)
+
 ## Team
 
 Throughout the project, our team worked in an agile environment. If you would like to get in contact with us, our information is below: 
@@ -54,7 +58,7 @@ Questions & Answers: Matt\
 [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matthew-sigler-15859610a/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/siglerm)
 
-Ratings & Reviews: John\
+Ratings & Reviews: Jonathan\
 [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jonathan-sindorf-a6a646118/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sindwarf)
 
