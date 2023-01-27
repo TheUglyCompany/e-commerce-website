@@ -32,9 +32,9 @@
 
 ### Questions & Answers
 
-![ezgif com-gif-maker](https://im.ezgif.com/tmp/ezgif-1-5ff639d555.gif)
-![ezgif com-gif-maker](https://im.ezgif.com/tmp/ezgif-1-840e024133.gif)
-![ezgif com-gif-maker](https://im.ezgif.com/tmp/ezgif-1-3930caf2ca.gif)
+![Ugly Company Demo](https://user-images.githubusercontent.com/108692919/214984524-50d0bd67-84e3-4e65-b96c-3186f2aa238f.gif)
+![Ugly Company Demo Part 2](https://user-images.githubusercontent.com/108692919/214984538-aa82e076-c82b-4e7e-b214-db469f7b7b9d.gif)
+![Ugly Part 3](https://user-images.githubusercontent.com/108692919/214984546-44d1a49b-3a3f-4ebf-8482-ae3ad9addfb5.gif)
 
 ### Ratings & Reviews
 
