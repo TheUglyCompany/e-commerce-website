@@ -27,20 +27,17 @@
 ## Demo
 
 ### Overview
+<img src="https://user-images.githubusercontent.com/112330601/215925928-27f8ace9-7c86-4fbc-ba4b-1b22935ba11a.gif" width=300><img src="https://user-images.githubusercontent.com/112330601/215925958-71c53325-5839-4035-ad04-3e78555ee7e3.gif" width=300>
 
 ### Related Items
 
 ### Questions & Answers
 
-![Ugly Company Demo](https://user-images.githubusercontent.com/108692919/214984524-50d0bd67-84e3-4e65-b96c-3186f2aa238f.gif)
-![Ugly Company Demo Part 2](https://user-images.githubusercontent.com/108692919/214984538-aa82e076-c82b-4e7e-b214-db469f7b7b9d.gif)
-![Ugly Part 3](https://user-images.githubusercontent.com/108692919/214984546-44d1a49b-3a3f-4ebf-8482-ae3ad9addfb5.gif)
+<img src="https://user-images.githubusercontent.com/108692919/214984524-50d0bd67-84e3-4e65-b96c-3186f2aa238f.gif" width=300><img src="https://user-images.githubusercontent.com/108692919/214984538-aa82e076-c82b-4e7e-b214-db469f7b7b9d.gif" width=300><img src="https://user-images.githubusercontent.com/108692919/214984546-44d1a49b-3a3f-4ebf-8482-ae3ad9addfb5.gif" width=300>
 
 ### Ratings & Reviews
 
- ![FirstGif](https://user-images.githubusercontent.com/45885748/214370430-4e77410b-73c8-4e75-a290-4a4d252c1eae.gif)
- ![SSecondGif](https://user-images.githubusercontent.com/45885748/214374302-a904dadb-bdb5-46f1-80e0-a4066dddeb5d.gif)
- ![sThirdGif](https://user-images.githubusercontent.com/45885748/214374390-f9b46d79-7e9b-4235-84ce-e2f2951797a5.gif)
+<img src="https://user-images.githubusercontent.com/45885748/214370430-4e77410b-73c8-4e75-a290-4a4d252c1eae.gif" width=300><img src="https://user-images.githubusercontent.com/45885748/214374302-a904dadb-bdb5-46f1-80e0-a4066dddeb5d.gif" width=300><img src="https://user-images.githubusercontent.com/45885748/214374390-f9b46d79-7e9b-4235-84ce-e2f2951797a5.gif" width=300>
 
 ## Team
 
